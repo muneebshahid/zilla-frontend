@@ -14,9 +14,9 @@
   - `pg_ctl -D /usr/local/var/postgres start`
     - If needed, served can be stopped using `pg_ctl -D /usr/local/var/postgres stop`
 - Create DB and user
-  - `createuser -P -d aursasta_user`
+  - `createuser -P -d zilla_user`
     - Password: `pass`
-  - `createdb aursasta_db -U aursasta_user`
+  - `createdb zilla_db -U zilla_user`
     - Check: You should be able to login to psql using following command now `psql aursasta_db`
 - Make migrations and run the server
   - `python manage.py makemigrations`
