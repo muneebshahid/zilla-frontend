@@ -4299,7 +4299,7 @@ option {
   min-height: 160px;
   margin: 0 auto 30px;
   max-width: 540px;
-  background: url(///home/muazzam/mywork/findgo/wp-content/themes/findgo/images/bg-test.png) no-repeat center center;
+  background: url(../images/bg-test.png) no-repeat center center;
   display: flex;
   display: -webkit-flex;
   /* Safari */
@@ -6712,7 +6712,7 @@ input, button, .btn {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.9) url("///home/muazzam/mywork/findgo/wp-content/themes/findgo/images/loading.gif") no-repeat center center/25px auto;
+  background: rgba(255, 255, 255, 0.9) url("../images/loading.gif") no-repeat center center/25px auto;
   opacity: 0;
   filter: alpha(opacity=0);
 }
@@ -6762,7 +6762,7 @@ input, button, .btn {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.9) url("///home/muazzam/mywork/findgo/wp-content/themes/findgo/images/loading.gif") no-repeat center center/20px auto;
+  background: rgba(255, 255, 255, 0.9) url("../images/loading.gif") no-repeat center center/20px auto;
   opacity: 0;
   filter: alpha(opacity=0);
 }
@@ -9610,7 +9610,7 @@ div.wpcf7-validation-errors {
   -ms-transform: scale(1.5);
   -o-transform: scale(1.5);
   transform: scale(1.5);
-  background: url("///home/muazzam/mywork/findgo/wp-content/themes/findgo/images/plus.png") no-repeat scroll center center/60px 60px rgba(0, 0, 0, 0.6);
+  background: url("../images/plus.png") no-repeat scroll center center/60px 60px rgba(0, 0, 0, 0.6);
 }
 .rtl .image-plus-1::before {
   right: 0;
@@ -9635,7 +9635,7 @@ div.wpcf7-validation-errors {
   z-index: 199;
   top: 0;
   position: absolute;
-  background: url("///home/muazzam/mywork/findgo/wp-content/themes/findgo/images/plus.png") no-repeat scroll center center/60px 60px rgba(0, 0, 0, 0.8);
+  background: url("../images/plus.png") no-repeat scroll center center/60px 60px rgba(0, 0, 0, 0.8);
   width: 100%;
   height: 100%;
   left: 0;
@@ -11639,7 +11639,7 @@ div.wpcf7-validation-errors {
   display: none;
 }
 .widget-listing-categories.style1 .category-icon {
-  background: url(///home/muazzam/mywork/findgo/wp-content/themes/findgo/images/bg-category.png) no-repeat center center;
+  background: url(../images/bg-category.png) no-repeat center center;
   color: #fff;
   font-size: 35px;
   display: inline-block;
@@ -13392,7 +13392,7 @@ div.wpcf7-validation-errors {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.9) url("///home/muazzam/mywork/findgo/wp-content/themes/findgo/images/loading.gif") no-repeat center center/15px auto;
+  background: rgba(255, 255, 255, 0.9) url("../images/loading.gif") no-repeat center center/15px auto;
 }
 .listing-metas .listing-price-range,
 .listing-metas .listing-bookmark,
@@ -14242,7 +14242,7 @@ div.job_listings.loading:before {
   left: 0;
   width: 100%;
   height: 700px;
-  background: #f8f8f8 url("///home/muazzam/mywork/findgo/wp-content/themes/findgo/images/loading.gif") no-repeat center 100px;
+  background: #f8f8f8 url("../images/loading.gif") no-repeat center 100px;
   max-height: 100%;
 }
 div.job_listings .job-manager-pagination {
@@ -14412,7 +14412,7 @@ div.job_listings .load_more_jobs:focus, div.job_listings .load_more_jobs:hover {
   background-color: #1d96b4;
 }
 div.job_listings .load_more_jobs.loading:hover, div.job_listings .load_more_jobs.loading {
-  background: rgba(40, 184, 220, 0.4) url("///home/muazzam/mywork/findgo/wp-content/themes/findgo/images/loading.gif") no-repeat center center/28px auto;
+  background: rgba(40, 184, 220, 0.4) url("../images/loading.gif") no-repeat center center/28px auto;
 }
 div.job_listings .load_more_jobs.load_previous {
   margin-top: 30px;
@@ -15388,7 +15388,7 @@ div.job_listings .load_more_jobs strong {
 }
 .group-upload-preview:before {
   content: '';
-  background: url("///home/muazzam/mywork/findgo/wp-content/themes/findgo/images/up.jpg") no-repeat;
+  background: url("../images/up.jpg") no-repeat;
   width: 14px;
   height: 10px;
   position: absolute;
@@ -15650,7 +15650,7 @@ div.job_listings .load_more_jobs strong {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.9) url("///home/muazzam/mywork/findgo/wp-content/themes/findgo/images/loading.gif") no-repeat center center/15px auto;
+  background: rgba(255, 255, 255, 0.9) url("../images/loading.gif") no-repeat center center/15px auto;
 }
 
 #listing-hours .widget-title .listing-time {
@@ -17242,7 +17242,7 @@ body.author .apus-breadscrumb {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.9) url("///home/muazzam/mywork/findgo/wp-content/themes/findgo/images/loading.gif") no-repeat center center/28px auto;
+  background: rgba(255, 255, 255, 0.9) url("../images/loading.gif") no-repeat center center/28px auto;
   opacity: 0;
   filter: alpha(opacity=0);
   -webkit-transition: all 0.2s ease-in-out 0s;
@@ -18229,7 +18229,7 @@ body.author .apus-breadscrumb {
 .comment-dislike:before,
 .comment-love:before,
 .comment-like:before {
-  background: rgba(255, 255, 255, 0.8) url("///home/muazzam/mywork/findgo/wp-content/themes/findgo/images/loading.gif") no-repeat center center/28px auto;
+  background: rgba(255, 255, 255, 0.8) url("../images/loading.gif") no-repeat center center/28px auto;
   content: '';
   position: absolute;
   top: -1px;
@@ -18261,7 +18261,7 @@ div.job_listing .listing-preview {
 div.job_listing .apus-bookmark-add:before,
 div.job_listing .apus-bookmark-added:before,
 div.job_listing .listing-preview:before {
-  background: rgba(0, 0, 0, 0.1) url("///home/muazzam/mywork/findgo/wp-content/themes/findgo/images/loading-white.gif") no-repeat center center/27px auto;
+  background: rgba(0, 0, 0, 0.1) url("../images/loading-white.gif") no-repeat center center/27px auto;
   content: '';
   position: absolute;
   top: 50%;
