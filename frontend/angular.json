@@ -23,9 +23,34 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/bootstrap.css",
+              "src/assets/css/flaticon.css",
+              "src/assets/css/font-awesome.min.css",
+              "src/assets/css/js_composer.min.css",
+              "src/assets/css/select2.css",
+              "src/assets/css/slick.css",
+              "src/assets/css/template.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/assets/js/jquery.js",
+              "src/assets/js/jquery-migrate.min.js",
+              "src/assets/js/jquery.timepicker.min.js",
+              "src/assets/js/jquery.unveil.js",
+              "src/assets/js/bootstrap.min.js",
+              "src/assets/js/slick.min.js",
+              "src/assets/js/jquery.magnific-popup.min.js",
+              "src/assets/js/perfect-scrollbar.jquery.min.js",
+              "src/assets/js/functions.js",
+              "src/assets/js/widget.min.js",
+              "src/assets/js/mouse.min.js",
+              "src/assets/js/slider.min.js",
+              "src/assets/js/select2.full.min.js",
+              "src/assets/js/ajax-filters.min.js",
+              "src/assets/js/listing.js",
+              "src/assets/js/js_composer_front.min.js",
+              "src/assets/js/isotope.pkgd.min.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {
