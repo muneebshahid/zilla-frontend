@@ -15,6 +15,8 @@
          */
         init: function() {
             var self = this;
+            this.findgo_opts = {"ajaxurl":"","time_format":"g:i a","closed_text":"Closed","next":"Next","previous":"Previous"};
+
             
             // slick init
             self.initSlick($("[data-carousel=slick]"));
@@ -101,8 +103,8 @@
                     dots: $(this).data( 'pagination' ),
                     slidesToShow: 4,
                     slidesToScroll: 4,
-                    prevArrow:"<button type='button' class='slick-arrow slick-prev pull-left'><i class='fa fa-angle-left' aria-hidden='true'></i></span><span class='textnav'>"+findgo_opts.previous+"</span></button>",
-                    nextArrow:"<button type='button' class='slick-arrow slick-next pull-right'><span class='textnav'>"+findgo_opts.next+"</span><i class='fa fa-angle-right' aria-hidden='true'></i></button>",
+                    prevArrow:"<button type='button' class='slick-arrow slick-prev pull-left'><i class='fa fa-angle-left' aria-hidden='true'></i></span><span class='textnav'>"+self.findgo_opts.previous+"</span></button>",
+                    nextArrow:"<button type='button' class='slick-arrow slick-next pull-right'><span class='textnav'>"+self.findgo_opts.next+"</span><i class='fa fa-angle-right' aria-hidden='true'></i></button>",
                 };
             
                 var slick = $(this);
@@ -572,7 +574,7 @@
                 var $this= $(this);
                 $('.alert', this).remove(); 
                 $.ajax({
-                    url: findgo_opts.ajaxurl,
+                    url: this.findgo_opts.ajaxurl,
                     type:'POST',
                     dataType: 'json',
                     data:  $(this).serialize()+"&action=apus_ajax_login"
@@ -597,7 +599,7 @@
                 var $this= $(this);
                 $('.alert', this).remove(); 
                 $.ajax({
-                  url: findgo_opts.ajaxurl,
+                  url: this.findgo_opts.ajaxurl,
                   type:'POST',
                   dataType: 'json',
                   data:  $(this).serialize()+"&action=apus_ajax_forgotpass"
@@ -621,7 +623,7 @@
                 var $this= $(this);
                 $('.alert', this).remove(); 
                 $.ajax({
-                  url: findgo_opts.ajaxurl,
+                  url: this.findgo_opts.ajaxurl,
                   type:'POST',
                   dataType: 'json',
                   data:  $(this).serialize()+"&action=apus_ajax_register"
