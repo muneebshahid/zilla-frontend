@@ -24,15 +24,17 @@
             ],
             "styles": [
               "src/styles.css",
+              "src/assets/css/select2.css",
+              "src/assets/css/js_composer.min.css",
               "src/assets/css/bootstrap.css",
               "src/assets/css/flaticon.css",
+              "src/assets/css/theme_style.css",
               "src/assets/css/font-awesome.min.css",
-              "src/assets/css/js_composer.min.css",
-              "src/assets/css/select2.css",
               "src/assets/css/slick.css",
               "src/assets/css/template.css"
             ],
             "scripts": [
+              "src/assets/js/support.js",
               "src/assets/js/jquery.js",
               "src/assets/js/jquery-migrate.min.js",
               "src/assets/js/jquery.timepicker.min.js",
