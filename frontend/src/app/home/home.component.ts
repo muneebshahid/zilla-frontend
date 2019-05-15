@@ -44,15 +44,15 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     // dummy markers
-    this.markers.push(this.createMarker(51.678418, 7.809007))
-    this.markers.push(this.createMarker(52.678418, 7.809007))
-    this.markers.push(this.createMarker(53.678418, 7.809007))
-    this.markers.push(this.createMarker(54.678418, 7.809007))
+    this.markers.push(this.createMarker(48.1548894, 11.4716248))
+    this.markers.push(this.createMarker(48.2548894, 11.4716248))
+    this.markers.push(this.createMarker(48.3548894, 11.4716248))
+    this.markers.push(this.createMarker(48.4548894, 11.4716248))
 
     this.location = {
-      lng: 48.1548894,
+      lng: 42.1548894,
       lat: 11.4716248,
-      zoom: 12
+      zoom: 10
     };
 
   }
@@ -63,6 +63,7 @@ export class HomeComponent implements OnInit {
       lat: lat,
       lng: lng,
       draggable: false,
+      //icon: 'HTTP URL'
     }
   }
 
