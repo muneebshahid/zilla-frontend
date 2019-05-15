@@ -85,5 +85,10 @@ target/
 __pycache__/
 local_settings.py
 
-.env
+### DB Instances ###
 db.sqlite3
+
+### VSCODE ###
+.VSCODE
+
+.env
