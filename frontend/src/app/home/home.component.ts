@@ -1,6 +1,7 @@
 import { Component, Input, ViewChild, NgZone, OnInit } from '@angular/core';
-import { MapsAPILoader, AgmMap } from '@agm/core';
+import { MapsAPILoader, AgmMap, AgmMarker } from '@agm/core';
 import { GoogleMapsAPIWrapper } from '@agm/core/services';
+import { last } from '@angular/router/src/utils/collection';
  
 declare var google: any;
  
@@ -8,20 +9,14 @@ interface Marker {
   lat: number;
   lng: number;
   label?: string;
+  icon?: string;
   draggable: boolean;
 }
  
 interface Location {
   lat: number;
   lng: number;
-  viewport?: Object;
   zoom: number;
-  address_level_1?:string;
-  address_level_2?: string;
-  address_country?: string;
-  address_zip?: string;
-  address_state?: string;
-  marker?: Marker;
 }
 
 @Component({
@@ -32,7 +27,9 @@ interface Location {
 
 export class HomeComponent implements OnInit {
   geocoder:any;
-  location:Location;
+  location: Location;
+  markers: Array<Marker> = [];
+
   @ViewChild(AgmMap) map: AgmMap;
 
   constructor(public mapsApiLoader: MapsAPILoader,
@@ -46,19 +43,27 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    // dummy markers
+    this.markers.push(this.createMarker(51.678418, 7.809007))
+    this.markers.push(this.createMarker(52.678418, 7.809007))
+    this.markers.push(this.createMarker(53.678418, 7.809007))
+    this.markers.push(this.createMarker(54.678418, 7.809007))
+
     this.location = {
-      lat: 51.678418,
-      lng: 7.809007,
-      marker: {
-        lat: 51.678418,
-        lng: 7.809007,
-        draggable: true
-      },
-      zoom: 5
+      lng: 48.1548894,
+      lat: 11.4716248,
+      zoom: 12
     };
-    this.location.marker.draggable = true;
+
   }
 
 
+  createMarker(lat, lng){
+    return { 
+      lat: lat,
+      lng: lng,
+      draggable: false,
+    }
+  }
 
 }
