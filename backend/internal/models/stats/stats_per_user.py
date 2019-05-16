@@ -1,10 +1,11 @@
 from django.db import models
-from backend.internal.models.users import Client
-from backend.internal.models.stats.stats import Stats
+from internal.models.item import Item
+from internal.models.users import Client, Business
+from internal.models.stats import Stats
 
 
 class StatsPerUser(Stats):
-    """ Abstract class for Page wide stats """
+    """ Abstract class for stats by user """
 
     review = models.TextField()
     score = models.FloatField()
@@ -13,3 +14,23 @@ class StatsPerUser(Stats):
 
     class Meta:
         abstract = True
+
+
+class UserStatsPerItem(StatsPerUser):
+    """ User stats for an Item """
+
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    tried = models.BooleanField()
+
+    class Meta:
+        unique_together = ("user", "item")
+
+
+class UserStatsPerBusiness(StatsPerUser):
+    """ User stats for a Business """
+
+    business = models.ForeignKey(Business, on_delete=models.CASCADE)
+    checkin = models.BooleanField()
+
+    class Meta:
+        unique_together = ("user", "business")
