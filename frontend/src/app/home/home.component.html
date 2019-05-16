@@ -1,3 +1,21 @@
-<agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [fitBounds]="true">
-    <agm-marker *ngFor="let marker of markers" [(latitude)]="marker.lat" [(longitude)]="marker.lng" [agmFitBounds]="true"></agm-marker>
-</agm-map>
+<mat-drawer-container class="parent-container">
+    <mat-drawer #drawer class="sidenav" mode="side">
+      <p>Auto-resizing sidenav</p>
+      <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+      <button (click)="showFiller = !showFiller" mat-raised-button>
+        Toggle extra text
+      </button>
+    </mat-drawer>
+  
+    <div class="map">
+      <button type="button" mat-button (click)="drawer.toggle()">
+        Toggle sidenav
+      </button>
+      <!-- <agm-map mapTypeId="roadmap" [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [fitBounds]="true">
+        <agm-marker *ngFor="let marker of markers" [(latitude)]="marker.lat" [(longitude)]="marker.lng" [agmFitBounds]="true"></agm-marker>
+      </agm-map> -->
+    </div>
+  
+  </mat-drawer-container>
+  
+  

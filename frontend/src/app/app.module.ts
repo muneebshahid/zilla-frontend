@@ -6,6 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatSidenavModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     NgbModule.forRoot(),
     FormsModule,
-    AgmCoreModule.forRoot({apiKey: 'AIzaSyAZfyL5pncodSyDVTP28vnyQep4SNeQDgY'})    
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyAZfyL5pncodSyDVTP28vnyQep4SNeQDgY'}),
+    BrowserAnimationsModule,
+    MatSidenavModule
   ],
   providers: [GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]

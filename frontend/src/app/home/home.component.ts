@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, NgZone, OnInit } from '@angular/core';
+import { Component, Input, ViewChild, NgZone, OnInit, ElementRef } from '@angular/core';
 import { MapsAPILoader, AgmMap, AgmMarker } from '@agm/core';
 import { GoogleMapsAPIWrapper } from '@agm/core/services';
 import { last } from '@angular/router/src/utils/collection';
@@ -18,7 +18,6 @@ interface Location {
   lng: number;
   zoom: number;
 }
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -29,6 +28,8 @@ export class HomeComponent implements OnInit {
   geocoder:any;
   location: Location;
   markers: Array<Marker> = [];
+  showFiller = false;
+
 
   @ViewChild(AgmMap) map: AgmMap;
 
@@ -41,7 +42,6 @@ export class HomeComponent implements OnInit {
       this.mapsApiLoader.load().then(() => {
       });
   }
-
   ngOnInit() {
     // dummy markers
     this.markers.push(this.createMarker(48.1548894, 11.4716248))
