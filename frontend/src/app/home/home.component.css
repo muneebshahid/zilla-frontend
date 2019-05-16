@@ -3,37 +3,34 @@
     width: 100%;
     position: absolute;
 }
+
 .parent-container {
-    display: flex;
-    position: fixed;
-    flex-direction: column;
+    position: absolute;
     width: 100%;
     height: 100%;
-    border: 3px solid black;
 }
 
   
-.sidenav {
-    flex-grow: 1;
-    border: 3px solid red;
+.parent-container .sidenav {
     height: 100%;
+    position: absolute;
+    z-index: 100;
+    border: 1px solid #ccc;
 }
 
-.map {
-    flex-grow: 1;
-    border: 3px solid green;
+.parent-container .map {
     height: 100%;
     width: 100%;
-    position: fixed;
+    position: absolute;
 }
 
-.mat-btn{
+.parent-container .map .mat-btn{
     position: absolute;
     left: 100px;
     top: 10px;
     z-index: 100;
 }
 
-.mat-sidenav {
-    width: 500px;
+.parent-container mat-drawer {
+    width: 40%;
 }
