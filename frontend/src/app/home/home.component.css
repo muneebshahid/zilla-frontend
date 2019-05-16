@@ -23,6 +23,15 @@
     flex-grow: 1;
     border: 3px solid green;
     height: 100%;
+    width: 100%;
+    position: fixed;
+}
+
+.mat-btn{
+    position: absolute;
+    left: 100px;
+    top: 10px;
+    z-index: 100;
 }
 
 .mat-sidenav {

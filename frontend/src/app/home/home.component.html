@@ -8,12 +8,12 @@
     </mat-drawer>
   
     <div class="map">
-      <button type="button" mat-button (click)="drawer.toggle()">
+      <button type="button" class="mat-btn" mat-button (click)="drawer.toggle()">
         Toggle sidenav
       </button>
-      <!-- <agm-map mapTypeId="roadmap" [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [fitBounds]="true">
+      <agm-map mapTypeId="roadmap" [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [fitBounds]="true">
         <agm-marker *ngFor="let marker of markers" [(latitude)]="marker.lat" [(longitude)]="marker.lng" [agmFitBounds]="true"></agm-marker>
-      </agm-map> -->
+      </agm-map>
     </div>
   
   </mat-drawer-container>
