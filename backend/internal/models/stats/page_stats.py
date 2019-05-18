@@ -1,38 +1,53 @@
-from django.contrib.postgres.fields import ArrayField
+from django.contrib.postgres.fields import JSONField
 from django.db import models
 
-from internal.models.item import Item
-from internal.models.offers import Ad
-from internal.models.users import Business
+from internal.models import Business, Item, SitePage
+from internal.models.offers import Ad, Coupon
 from internal.models.stats import Stats
 
 
 class PageStats(Stats):
     """ Abstract class for Page wide stats """
 
+    date = models.DateField()
     num_clicks = models.IntegerField()
 
-    # TODO: Need to be moved to own tables.
-    source_ip = ArrayField(models.CharField(max_length=100))
-    source_location = ArrayField(models.CharField(max_length=300))
+    # JSON Structure {"ip": {"num_clicks": int, "location": str}}
+    click_details = JSONField()
 
     class Meta:
         abstract = True
+
+    def update_stats(self, stats_dict):
+        # TODO: Needs to be implemented.
+        raise NotImplementedError("Needs to be implemented")
 
 
 class BusinessPageStats(PageStats):
     """ Page wide stats for a business """
 
-    business = models.OneToOneField(Business, on_delete=models.CASCADE)
+    business = models.ForeignKey(Business, on_delete=models.CASCADE)
 
 
 class ItemPageStats(PageStats):
     """ Page wide stats for an Item """
 
-    item = models.OneToOneField(Item, on_delete=models.CASCADE)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
 
 
 class AdPageStats(PageStats):
-    """ Page wide stats for an Ad"""
+    """ Page wide stats for an Ad """
 
-    ad = models.OneToOneField(Ad, on_delete=models.CASCADE)
+    ad = models.ForeignKey(Ad, on_delete=models.CASCADE)
+
+
+class CouponPageStats(PageStats):
+    """ Page wide stats for a Coupon """
+
+    coupon = models.ForeignKey(Coupon, on_delete=models.CASCADE)
+
+
+class SitePageStats(PageStats):
+    """ Page wide stats for a Site page """
+
+    site_page = models.ForeignKey(SitePage, on_delete=models.CASCADE)

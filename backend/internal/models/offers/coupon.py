@@ -1,5 +1,5 @@
 from django.db import models
-from internal.models.offers.promotion import Deal
+from internal.models.offers import Deal
 
 
 class Coupon(models.Model):
@@ -10,3 +10,7 @@ class Coupon(models.Model):
     redeemed = models.BooleanField()
     expired = models.BooleanField()
     expiry_date = models.DateTimeField()
+
+    def is_valid(self):
+        # TODO: Needs to be implemented
+        raise NotImplementedError("Not implemented yet")

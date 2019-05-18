@@ -1,5 +1,5 @@
 from django.db import models
-from internal.models.users import Business
+from internal.models import Business
 
 
 class Promotion(models.Model):

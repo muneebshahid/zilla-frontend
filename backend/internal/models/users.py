@@ -8,5 +8,9 @@ class Client(models.Model):
 
 class Business(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    website = models.CharField(max_length=100)
+    website = models.CharField(max_length=200)
+    address = models.TextField()
     claimed = models.BooleanField()
+
+    def is_open(self):
+        raise NotImplementedError("Needs to be implemented")

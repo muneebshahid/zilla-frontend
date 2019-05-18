@@ -15,9 +15,10 @@ class Item(models.Model):
     description = models.TextField()
     min_price = models.FloatField()
     max_price = models.FloatField()
-    approved = models.BooleanField()
+    available = models.BooleanField()
+    hidden = models.BooleanField()
     # TODO: change it to tags
     tags = models.TextField()
     portion_size = models.ManyToManyField(PortionSize)
-    portion_price_combos = JSONField()
+    portion_prices = JSONField()
     addon_price_combos = JSONField()

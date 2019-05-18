@@ -11,6 +11,7 @@ class StatsPerUser(Stats):
     score = models.FloatField()
     like = models.BooleanField()
     user = models.ForeignKey(Client, on_delete=models.CASCADE)
+    date_time = models.DateTimeField()
 
     class Meta:
         abstract = True
