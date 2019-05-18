@@ -13,6 +13,7 @@ import {MatSidenavModule,
         MatRippleModule} from '@angular/material';
 
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     AppRoutingModule,
     NgbModule.forRoot(),
     FormsModule,
+    MatTabsModule,
     MatFormFieldModule,
     MatInputModule,
     MatGridListModule,
