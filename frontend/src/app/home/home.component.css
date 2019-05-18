@@ -1,7 +1,6 @@
 .sebm-google-map-container {
     height: 100%;
     width: 100%;
-    position: absolute;
 }
 
 .parent-container {
@@ -15,7 +14,7 @@
 .parent-container .sidenav {
     height: 100%;
     width: 46%;
-    position: absolute;
+    background-color: white;
     z-index: 100;
     border: 1px solid #ccc;
 }
@@ -23,7 +22,6 @@
 .parent-container .map {
     height: 100%;
     width: 100%;
-    position: absolute;
 }
 
 .parent-container .map .mat-btn{
@@ -41,3 +39,20 @@ mat-grid-tile {
     background: lightblue;
     overflow: auto;
 }
+
+.example-container {
+    width: 500px;
+    height: 300px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+  }
+  
+  .example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .example-sidenav {
+    padding: 20px;
+  }
