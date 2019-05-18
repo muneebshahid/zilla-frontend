@@ -7,7 +7,10 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatSidenavModule} from '@angular/material';
+import {MatSidenavModule, 
+        MatFormFieldModule,
+        MatInputModule,
+        MatRippleModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,9 @@ import {MatSidenavModule} from '@angular/material';
     AppRoutingModule,
     NgbModule.forRoot(),
     FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRippleModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyAZfyL5pncodSyDVTP28vnyQep4SNeQDgY'}),
     BrowserAnimationsModule,
     MatSidenavModule
