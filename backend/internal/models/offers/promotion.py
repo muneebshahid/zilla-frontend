@@ -1,10 +1,11 @@
+import uuid
 from django.db import models
 from internal.models import Business
 
 
 class Promotion(models.Model):
 
-    id = models.IntegerField(primary_key=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     description = models.TextField()
     time_created = models.DateTimeField()
     expiry_date = models.DateTimeField()

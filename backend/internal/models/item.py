@@ -1,15 +1,16 @@
+import uuid
 from django.contrib.postgres.fields import JSONField
 from django.db import models
 from internal.models.users import Business
 
 
 class PortionSize(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     size = models.CharField(max_length=50)
 
 
 class Item(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     owner = models.ForeignKey(Business, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="")
     description = models.TextField()

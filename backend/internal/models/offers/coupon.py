@@ -1,10 +1,11 @@
+import uuid
 from django.db import models
 from internal.models.offers import Deal
 
 
 class Coupon(models.Model):
 
-    id = models.IntegerField(primary_key=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     code = models.CharField(max_length=50)
     deal = models.ForeignKey(Deal, on_delete=models.CASCADE)
     redeemed = models.BooleanField()
