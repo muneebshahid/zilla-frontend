@@ -12,6 +12,8 @@ import {MatSidenavModule,
         MatInputModule,
         MatRippleModule} from '@angular/material';
 
+import {MatGridListModule} from '@angular/material/grid-list';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +26,7 @@ import {MatSidenavModule,
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatGridListModule,
     MatRippleModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyAZfyL5pncodSyDVTP28vnyQep4SNeQDgY'}),
     BrowserAnimationsModule,

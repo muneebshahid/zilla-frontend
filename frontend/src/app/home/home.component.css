@@ -10,9 +10,11 @@
     height: 100%;
 }
 
+
   
 .parent-container .sidenav {
     height: 100%;
+    width: 46%;
     position: absolute;
     z-index: 100;
     border: 1px solid #ccc;
@@ -31,3 +33,6 @@
     z-index: 100;
 }
 
+mat-grid-tile {
+    background: lightblue;
+}
