@@ -360,6 +360,7 @@
     </div>
   </header> -->
   <div id="apus-main-content">
+
     <section id="main-container" class="inner">
       <div id="primary" class="content-area">
         <div class="entry-content">
@@ -370,10 +371,11 @@
               <div class="apus-half-map-layout apus-half-map-layout-v1 apus-listing-warpper">
                 <div class="row no-margin wrapper-half-map">
                   <div class="col-md-5 no-padding">
+                  
                     <div class="list-content clearfix">
                       <div class="wrapper-123-filter">
                         <div class="listings-filter-header hidden-sm hidden-xs">
-                          Search Filters<i class="fa fa-align-center" aria-hidden="true"></i>
+                          More Filters<i class="fa fa-align-center" aria-hidden="true"></i>
                         </div>
                         <div class="listings-filter-wrapper ps-container"
                           data-ps-id="681c1d54-49a7-9c31-b604-0fe10c472387" style="">
@@ -438,41 +440,12 @@
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="search_keywords ">
-                                      <input type="text" name="search_keywords" id="search_keywords"
+                                    <div class="search_keywords">
+                                      <input type="text" name="search_keywords" id="search_keywords" class="search-filter-inputs col-md-12"
                                         placeholder="Keywords" value="">
                                     </div>
-                                    <div class="select-categories">
-                                      <div class="search_categories1">
-                                        <select name="search_categories[]" id="search_categories"
-                                          class="job-manager-category-dropdown " data-placeholder="Choose a category…"
-                                          data-no_results_text="No results match"
-                                          data-multiple_text="Select Some Options" style="display: none;">
-                                          <option value="">All categories</option>
-                                          <option class="level-0" value="55">Art&amp;History</option>
-                                          <option class="level-0" value="53">Events</option>
-                                          <option class="level-0" value="54">Fitness</option>
-                                          <option class="level-0" value="50">Hotels</option>
-                                          <option class="level-0" value="48">Nightlife</option>
-                                          <option class="level-0" value="51">Outdoor Activities</option>
-                                          <option class="level-0" value="49" selected="selected">Restaurant</option>
-                                          <option class="level-0" value="52">Shops</option>
-                                        </select>
-                                        <div class="chosen-container chosen-container-single" style="width: 380px;"
-                                          title="" id="search_categories_chosen"><a class="chosen-single"
-                                            tabindex="-1"><span>Restaurant</span>
-                                            <div><b></b></div>
-                                          </a>
-                                          <div class="chosen-drop">
-                                            <div class="chosen-search"><input type="text" autocomplete="off"></div>
-                                            <ul class="chosen-results"></ul>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
                                     <div class="search_location">
-                                      <input type="text" name="search_location" id="search_location"
-                                        placeholder="Location" value="" autocomplete="off">
+                                      <input type="text" name="search_location" id="search_location" class="col-md-12 search-filter-inputs" placeholder="Location" value="" autocomplete="off">
                                       <span class="clear-location hidden"><i class="fa fa-times"></i></span>
                                       <span class="find-me"><svg xmlns="http://www.w3.org/2000/svg"
                                           xmlns:xlink="http://www.w3.org/1999/xlink" width="15px" height="15px"
@@ -604,7 +577,7 @@
                       </div>
                       <div class="mobile-groups-button hidden-lg hidden-md">
                         <button class="btn-xs btn btn-second btn-filter">
-                          Search Filters </button>
+                          More Filters </button>
                         <button class="pull-right btn btn-xs btn-second btn-view-map" type="button"><i
                             class="fa fa-map-o" aria-hidden="true"></i> Map View</button>
                         <button class="pull-right btn btn-xs btn-second btn-view-listing hidden-sm hidden-xs"
@@ -612,7 +585,18 @@
                       </div>
                       <noscript>Your browser does not support JavaScript, or it is disabled. JavaScript must be enabled
                         in order to view listings.</noscript>
-                      <div class=" main-results">
+                        
+                        <div class="job_filters job_filters-sidebar ng-untouched ng-pristine ng-valid main-search-box">
+                          <div class="filter-inner clearfix">
+                            <div class="search_jobs">
+                                    <div class="content">
+                                        <input type="text" name="search_location" id="search_location" class="col-md-12 search-filter-inputs" placeholder="e.g pizza shops near me " value="" autocomplete="off">
+                                    </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class=" main-results">
                         <div class="listing-action clearfix">
                           <div class="listing-search-result">
                             <div class="results"><span class="results-no">3</span> Results Found (Showing 1 - 3)</div>
@@ -905,11 +889,11 @@
                   </div>
                   <div class="col-md-5 no-padding half-map">
                     <div class="apus-listing-map fix-map hidden-sm hidden-xs leaflet-container leaflet-fade-anim map--google" tabindex="0" >
-                      <agm-map mapTypeId="roadmap" [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom"
+                      <!-- <agm-map mapTypeId="roadmap" [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom"
                           [disableDefaultUI]="true" [zoomControl]="true" [fitBounds]="true" class="agm-map">
                           <agm-marker *ngFor="let marker of markers" [(latitude)]="marker.lat" [(longitude)]="marker.lng"
                             [agmFitBounds]="true"></agm-marker>
-                      </agm-map> 
+                      </agm-map>  -->
                     </div>
                   </div>
                 </div>
