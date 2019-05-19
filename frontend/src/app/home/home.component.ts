@@ -56,6 +56,9 @@ export class HomeComponent implements OnInit {
     };
 
   }
+  tabClick(e){
+    console.log(e);
+  }
 
 
   createMarker(lat, lng){

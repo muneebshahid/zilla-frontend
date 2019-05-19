@@ -115,7 +115,7 @@
                                   </form>
 
                                   <!-- GRID VIEW STARTING HERE -->
-                                  <mat-tab-group mat-align-tabs="center">
+                                  <mat-tab-group mat-align-tabs="center" (selectedTabChange)="tabClick($event)">
                                     <mat-tab label="Products">  
                                       <mat-grid-list cols="2" rowHeight="2:1" gutterSize="10">
                                           <mat-grid-tile>1</mat-grid-tile>

@@ -39,8 +39,7 @@ mat-grid-list {
 mat-grid-tile {
     background: lightblue;
 }
-mat-tab{
-}
-.mat-tab-group {
-    margin-bottom: 48px;
+
+mat-tab-group{
+    min-height:"800px";
 }

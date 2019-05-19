@@ -14,11 +14,13 @@ import {MatSidenavModule,
 
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTabsModule} from '@angular/material/tabs';
+import { ListingComponent } from './listing/listing.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    ListingComponent
   ],
   imports: [
     BrowserModule,
