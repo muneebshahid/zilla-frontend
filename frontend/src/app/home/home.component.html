@@ -1,459 +1,900 @@
-<mat-drawer-container class="parent-container">
-
-  <mat-drawer #drawer class="sidenav" opened="true" mode="side">
-    <div id="wrapper-container" class="wrapper-container">
-      <div id="apus-main-content">
-        <section id="main-container" class="inner">
-          <div id="primary" class="content-area">
-            <div class="entry-content">
-              <main id="main" class="site-main" role="main">
-                <div class="job_listings" data-location="" data-keywords="" data-show_filters="true"
-                  data-show_pagination="false" data-per_page="10" data-orderby="featured" data-order="DESC"
-                  data-categories="">
-                  <div class="apus-half-map-layout apus-half-map-layout-v4 apus-listing-warpper">
-                    <div class="row no-margin wrapper-half-map">
-                      <div class="col-md-12 no-padding">
-                        <div class="list-content clearfix">
-                          <div class="wrapper-filters clearfix">
-                            <div class="col-xs-12 filter-parent">
-                              <form class="job_filters job_filters-location">
-                                <input id="input_display_mode" type="hidden" name="display_mode" value="grid">
-                                <input class="input_filter_oder" type="hidden" name="filter_order" value="default">
-                                <div class="filter-inner clearfix">
-                                  <div class="search_jobs">
-                                    <div class="row row-top">
-                                      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="search_keywords">
-                                          <input type="text" name="search_keywords" id="search_keywords"
-                                            placeholder="Keywords" value="" />
-                                        </div>
-                                      </div>
-
-                                      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="search_price_range clearfix">
-                                          <div class="click-price clearfix">
-                                            <span class="pull-left">Price</span>
-                                            <span class="pull-right">$</span>
-                                          </div>
-                                          <ul class="list-price">
-                                            <li>
-                                              <label for="filter_price_range_inexpensive" data-placement="right"
-                                                data-toggle="tooltip" title="Inexpensive">
-                                                <input id="filter_price_range_inexpensive" type="checkbox"
-                                                  name="filter_price_range[]" value="inexpensive"> $ </label>
-                                            </li>
-                                            <br>
-                                            <li>
-                                              <label for="filter_price_range_moderate" data-placement="right"
-                                                data-toggle="tooltip" title="Moderate">
-                                                <input id="filter_price_range_moderate" type="checkbox"
-                                                  name="filter_price_range[]" value="moderate"> $$ </label>
-                                            </li>
-                                            <br>
-                                            <li>
-                                              <label for="filter_price_range_pricey" data-placement="right"
-                                                data-toggle="tooltip" title="Pricey">
-                                                <input id="filter_price_range_pricey" type="checkbox"
-                                                  name="filter_price_range[]" value="pricey"> $$$ </label>
-                                            </li>
-                                            <br>
-                                            <li>
-                                              <label for="filter_price_range_ultra_high_end" data-placement="right"
-                                                data-toggle="tooltip" title="Ultra High">
-                                                <input id="filter_price_range_ultra_high_end" type="checkbox"
-                                                  name="filter_price_range[]" value="ultra_high_end"> $$$$ </label>
-                                            </li>
-                                            <br>
-                                          </ul>
-                                        </div>
-                                      </div>
-                                      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="listing-orderby">
-                                          <select name="filter_order" autocomplete="off">
-                                            <option value="default" selected="selected">Default Order</option>
-                                            <option value="date-desc">Newest First</option>
-                                            <option value="date-asc">Oldest First</option>
-                                            <option value="rating-desc">Highest Rating</option>
-                                            <option value="rating-asc">Lowest Rating</option>
-                                            <option value="random">Random</option>
-                                          </select>
-                                        </div>
-                                      </div>
-
-                                      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="search_location">
-                                          <input type="text" name="search_location" id="search_location"
-                                            placeholder="Location" value="" />
-                                        </div>
-                                      </div>
-
-                                      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="search_distance_wrapper clearfix">
-                                          <div class="search-distance-label">
-                                            <label for="use_search_distance">
-                                              <input name="use_search_distance" id="use_search_distance" checked
-                                                type="checkbox">
-                                              Radius:
-                                            </label>
-                                          </div>
-                                          <div class="search-distance-wrapper">
-                                            <input type="hidden" name="search_distance" id="search_distance"
-                                              value="50" />
-                                            <div id="search-distance-slider">
-                                              <div id="distance-custom-handle" class="ui-slider-handle"></div>
+<div id="wrapper-container" class="wrapper-container">
+  <div id="apus-mobile-menu" class="apus-offcanvas hidden-desktop">
+    <button type="button" class="btn btn-toggle-canvas" data-toggle="offcanvas">
+      <i class="flaticon-cross-out"></i>
+    </button>
+    <div class="apus-offcanvas-body ps-container" data-ps-id="9390d8f9-2b33-f013-8b9f-af1d4d99b7ba">
+      <div class="header-top-mobile clearfix">
+        <div class="add-listing">
+          <a class="btn btn-theme" href="https://demoapus.com/findgo/submit-listings/"><i class="icon-add"
+              aria-hidden="true"></i> Add Listing</a>
+        </div>
+      </div>
+      <nav class="navbar navbar-offcanvas navbar-static" role="navigation">
+        <div class="navbar-collapse navbar-offcanvas-collapse">
+          <ul id="main-mobile-menu" class="nav navbar-nav">
+            <li id="menu-item-31" class="has-submenu menu-item-31"><a href="#">Home<span
+                  class="text-label label-hot">Hot</span></a> <span class="icon-toggle"><i
+                  class="fa fa-plus-theme"></i></span>
+              <ul class="sub-menu">
+                <li id="menu-item-2593" class="menu-item-2593"><a
+                    href="https://demoapus.com/findgo/home-1/?_preset=1547539960">Home 1</a></li>
+                <li id="menu-item-2594" class="menu-item-2594"><a
+                    href="https://demoapus.com/findgo/home-2/?_preset=1547539960">Home 2</a></li>
+                <li id="menu-item-2595" class="menu-item-2595"><a
+                    href="https://demoapus.com/findgo/home-3/?_preset=1547539960">Home 3</a></li>
+                <li id="menu-item-2596" class="menu-item-2596"><a
+                    href="https://demoapus.com/findgo/home-4/?_preset=1547539960">Home 4</a></li>
+                <li id="menu-item-2597" class="menu-item-2597"><a
+                    href="https://demoapus.com/findgo/home-5/?_preset=1547539960">Home 5</a></li>
+                <li id="menu-item-2598" class="menu-item-2598"><a
+                    href="https://demoapus.com/findgo/home-6/?_preset=1547539415">Home 6<span
+                      class="text-label label-new">New</span></a></li>
+              </ul>
+            </li>
+            <li id="menu-item-320" class="has-submenu menu-item-320"><a
+                href="https://demoapus.com/findgo/listings/">Listings</a> <span class="icon-toggle"><i
+                  class="fa fa-plus-theme"></i></span>
+              <ul class="sub-menu">
+                <li id="menu-item-516" class="menu-item-516"><a
+                    href="https://demoapus.com/findgo/listings/?_preset=1525855507">Listing Half Map v1</a></li>
+                <li id="menu-item-517" class="menu-item-517"><a
+                    href="https://demoapus.com/findgo/listings/?_preset=1525855683">Listing Half Map v2</a></li>
+                <li id="menu-item-518" class="menu-item-518"><a
+                    href="https://demoapus.com/findgo/listings/?_preset=1525855763">Listing Half Map v3</a></li>
+                <li id="menu-item-519" class="menu-item-519"><a
+                    href="https://demoapus.com/findgo/listings/?_preset=1525855946">Listing Half Map v4</a></li>
+                <li id="menu-item-520" class="menu-item-520"><a
+                    href="https://demoapus.com/findgo/listings/?_preset=1525856081">Listing Full</a></li>
+                <li id="menu-item-521" class="menu-item-521"><a
+                    href="https://demoapus.com/findgo/listings/?_preset=1525856320">Listing Right Sidebar</a></li>
+                <li id="menu-item-731" class="menu-item-731"><a
+                    href="https://demoapus.com/findgo/listing-category/nightlife/?_preset=1527562303">Listing Category
+                    Description</a></li>
+                <li id="menu-item-522" class="has-submenu menu-item-522"><a href="#">Listing Detail</a> <span
+                    class="icon-toggle"><i class="fa fa-plus-theme"></i></span>
+                  <ul class="sub-menu">
+                    <li id="menu-item-523" class="menu-item-523"><a
+                        href="https://demoapus.com/findgo/listings/liberty-club/?_preset=1525856687">Single v1</a></li>
+                    <li id="menu-item-524" class="menu-item-524"><a
+                        href="https://demoapus.com/findgo/listings/liberty-club/?_preset=1525857504">Single v2</a></li>
+                    <li id="menu-item-525" class="menu-item-525"><a
+                        href="https://demoapus.com/findgo/listings/liberty-club/?_preset=1525857631">Single v3</a></li>
+                    <li id="menu-item-526" class="menu-item-526"><a
+                        href="https://demoapus.com/findgo/listings/liberty-club/?_preset=1525859207">Single v4</a></li>
+                    <li id="menu-item-527" class="menu-item-527"><a
+                        href="https://demoapus.com/findgo/listings/liberty-club/?_preset=1525859659">Single v5</a></li>
+                  </ul>
+                </li>
+                <li id="menu-item-349" class="menu-item-349"><a href="https://demoapus.com/findgo/list-categories/">List
+                    Categories</a></li>
+              </ul>
+            </li>
+            <li id="menu-item-563" class="has-submenu active menu-item-563"><a href="#">Explore</a> <span
+                class="icon-toggle"><i class="fa fa-plus-theme"></i></span>
+              <ul class="sub-menu">
+                <li id="menu-item-569" class="menu-item-569"><a
+                    href="https://demoapus.com/findgo/listing-category/nightlife/">Nightlife</a></li>
+                <li id="menu-item-570" class="active menu-item-570"><a
+                    href="https://demoapus.com/findgo/listing-category/restaurant/">Restaurant</a></li>
+                <li id="menu-item-571" class="menu-item-571"><a
+                    href="https://demoapus.com/findgo/listing-category/events/">Events</a></li>
+                <li id="menu-item-572" class="menu-item-572"><a
+                    href="https://demoapus.com/findgo/listing-category/fitness/">Fitness</a></li>
+                <li id="menu-item-564" class="has-submenu menu-item-564"><a href="#">Location</a> <span
+                    class="icon-toggle"><i class="fa fa-plus-theme"></i></span>
+                  <ul class="sub-menu">
+                    <li id="menu-item-565" class="menu-item-565"><a
+                        href="https://demoapus.com/findgo/region/new-york/">New York</a></li>
+                    <li id="menu-item-566" class="menu-item-566"><a
+                        href="https://demoapus.com/findgo/region/istanbul/">Istanbul</a></li>
+                    <li id="menu-item-567" class="menu-item-567"><a
+                        href="https://demoapus.com/findgo/region/amsterdam/">Amsterdam</a></li>
+                    <li id="menu-item-568" class="menu-item-568"><a
+                        href="https://demoapus.com/findgo/region/london/">London</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li id="menu-item-32" class="has-submenu menu-item-32"><a href="#">Pages</a> <span class="icon-toggle"><i
+                  class="fa fa-plus-theme"></i></span>
+              <ul class="sub-menu">
+                <li id="menu-item-214" class="has-submenu menu-item-214"><a
+                    href="https://demoapus.com/findgo/shop/">Shop</a> <span class="icon-toggle"><i
+                      class="fa fa-plus-theme"></i></span>
+                  <ul class="sub-menu">
+                    <li id="menu-item-562" class="menu-item-562"><a
+                        href="https://demoapus.com/findgo/product/ash-wood-leather-camp/">Single Product</a></li>
+                  </ul>
+                </li>
+                <li id="menu-item-200" class="has-submenu menu-item-200"><a
+                    href="https://demoapus.com/findgo/blog/">Blog</a> <span class="icon-toggle"><i
+                      class="fa fa-plus-theme"></i></span>
+                  <ul class="sub-menu">
+                    <li id="menu-item-529" class="menu-item-529"><a
+                        href="https://demoapus.com/findgo/blog/?_preset=1525914776">Blog v1</a></li>
+                    <li id="menu-item-530" class="menu-item-530"><a
+                        href="https://demoapus.com/findgo/blog/?_preset=1525914858">Blog v2</a></li>
+                    <li id="menu-item-531" class="menu-item-531"><a
+                        href="https://demoapus.com/findgo/blog/?_preset=1525914984">Blog List</a></li>
+                    <li id="menu-item-532" class="menu-item-532"><a
+                        href="https://demoapus.com/findgo/2018/04/11/the-top-25-restaurants-in-london/">Single Post</a>
+                    </li>
+                  </ul>
+                </li>
+                <li id="menu-item-33" class="menu-item-33"><a href="https://demoapus.com/findgo/contact/">Contact</a>
+                </li>
+                <li id="menu-item-34" class="menu-item-34"><a href="https://demoapus.com/findgo/elements/">Elements</a>
+                </li>
+                <li id="menu-item-35" class="menu-item-35"><a href="https://demoapus.com/findgo/error/">Error</a></li>
+                <li id="menu-item-41" class="menu-item-41"><a href="https://demoapus.com/findgo/pricing/">Pricing</a>
+                </li>
+                <li id="menu-item-42" class="menu-item-42"><a href="https://demoapus.com/findgo/service/">Service</a>
+                </li>
+                <li id="menu-item-43" class="menu-item-43"><a href="https://demoapus.com/findgo/terms/">Terms</a></li>
+                <li id="menu-item-44" class="menu-item-44"><a
+                    href="https://demoapus.com/findgo/testimonials/">Testimonials</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
+        <div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div>
+      </div>
+      <div class="ps-scrollbar-y-rail" style="top: 0px; right: 0px;">
+        <div class="ps-scrollbar-y" style="top: 0px; height: 0px;"></div>
+      </div>
+    </div>
+  </div>
+  <div id="apus-header-mobile" class="header-mobile hidden-desktop clearfix">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-3">
+          <div class="active-mobile pull-left">
+            <button data-toggle="offcanvas" class="btn btn-sm btn-offcanvas offcanvas" type="button">
+              <i class="fa fa-align-left" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <div class="logo logo-theme text-center">
+            <a href="https://demoapus.com/findgo/">
+              <img src="https://demoapus.com/findgo/wp-content/themes/findgo/images/logo-white.png" alt="FindGo">
+            </a>
+          </div>
+        </div>
+        <div class="col-xs-3">
+          <div class="pull-right account-buttons">
+            <div class="setting-account">
+              <span class="accountbt-hover"><i class="flaticon-avatar"></i></span>
+              <ul class="user-account list-line">
+                <li><a href="#apus_login_forgot_tab" class="apus-user-login wel-user">Login</a> </li>
+                <li><a href="#apus_register_tab" class="apus-user-register wel-user">Register</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <header id="apus-header" class="site-header header-v1 hidden-tablet" role="banner">
+    <div class="main-sticky-header-wrapper" style="height: 96px;">
+      <div class="main-sticky-header">
+        <div class="header-main">
+          <div class="header-inner visible-table">
+            <div class="pull-left">
+              <div class="visible-table">
+                <div class="logo-in-theme  pull-left">
+                  <div class="logo logo-theme">
+                    <a href="https://demoapus.com/findgo/">
+                      <img class="logo-main hidden"
+                        src="https://demoapus.com/findgo/wp-content/themes/findgo/images/logo.png" alt="FindGo">
+                      <img class="logo-second"
+                        src="https://demoapus.com/findgo/wp-content/themes/findgo/images/logo-white.png" alt="FindGo">
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="pull-right">
+              <div class="pull-right account-buttons">
+                <div class="setting-account">
+                  <span class="accountbt-hover"><i class="flaticon-avatar"></i></span>
+                  <ul class="user-account list-line">
+                    <li><a href="#apus_login_forgot_tab" class="apus-user-login wel-user">Login</a> </li>
+                    <li><a href="#apus_register_tab" class="apus-user-register wel-user">Register</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="add-listing pull-right">
+                <a class="btn btn-white btn-outline" href="https://demoapus.com/findgo/submit-listings/"><i
+                    class="icon-add" aria-hidden="true"></i> Add Listing</a>
+              </div>
+              <div class="site-header-mainmenu pull-right">
+                <nav data-duration="400" class="apus-megamenu slide animate navbar" role="navigation">
+                  <div class="collapse navbar-collapse no-padding">
+                    <ul id="primary-menu" class="apus-nav navbar-nav megamenu">
+                      <li class="dropdown menu-item-31 aligned-left"><a href="#" class="dropdown-toggle"
+                          data-hover="dropdown" data-toggle="dropdown">Home <b class="caret"></b><span
+                            class="text-label label-hot">Hot</span></a>
+                        <ul class="dropdown-menu">
+                          <li class="menu-item-2593 aligned-"><a
+                              href="https://demoapus.com/findgo/home-1/?_preset=1547539960">Home 1</a></li>
+                          <li class="menu-item-2594 aligned-"><a
+                              href="https://demoapus.com/findgo/home-2/?_preset=1547539960">Home 2</a></li>
+                          <li class="menu-item-2595 aligned-"><a
+                              href="https://demoapus.com/findgo/home-3/?_preset=1547539960">Home 3</a></li>
+                          <li class="menu-item-2596 aligned-"><a
+                              href="https://demoapus.com/findgo/home-4/?_preset=1547539960">Home 4</a></li>
+                          <li class="menu-item-2597 aligned-"><a
+                              href="https://demoapus.com/findgo/home-5/?_preset=1547539960">Home 5</a></li>
+                          <li class="menu-item-2598 aligned-"><a
+                              href="https://demoapus.com/findgo/home-6/?_preset=1547539415">Home 6<span
+                                class="text-label label-new">New</span></a></li>
+                        </ul>
+                      </li>
+                      <li class="dropdown menu-item-320 aligned-left"><a href="https://demoapus.com/findgo/listings/"
+                          class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Listings <b
+                            class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <li class="menu-item-516 aligned-"><a
+                              href="https://demoapus.com/findgo/listings/?_preset=1525855507">Listing Half Map v1</a>
+                          </li>
+                          <li class="menu-item-517 aligned-"><a
+                              href="https://demoapus.com/findgo/listings/?_preset=1525855683">Listing Half Map v2</a>
+                          </li>
+                          <li class="menu-item-518 aligned-"><a
+                              href="https://demoapus.com/findgo/listings/?_preset=1525855763">Listing Half Map v3</a>
+                          </li>
+                          <li class="menu-item-519 aligned-"><a
+                              href="https://demoapus.com/findgo/listings/?_preset=1525855946">Listing Half Map v4</a>
+                          </li>
+                          <li class="menu-item-520 aligned-"><a
+                              href="https://demoapus.com/findgo/listings/?_preset=1525856081">Listing Full</a></li>
+                          <li class="menu-item-521 aligned-"><a
+                              href="https://demoapus.com/findgo/listings/?_preset=1525856320">Listing Right Sidebar</a>
+                          </li>
+                          <li class="menu-item-731 aligned-"><a
+                              href="https://demoapus.com/findgo/listing-category/nightlife/?_preset=1527562303">Listing
+                              Category Description</a></li>
+                          <li class="dropdown menu-item-522 aligned-"><a href="#" class="dropdown-toggle"
+                              data-hover="dropdown" data-toggle="dropdown">Listing Detail <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                              <li class="menu-item-523 aligned-"><a
+                                  href="https://demoapus.com/findgo/listings/liberty-club/?_preset=1525856687">Single
+                                  v1</a></li>
+                              <li class="menu-item-524 aligned-"><a
+                                  href="https://demoapus.com/findgo/listings/liberty-club/?_preset=1525857504">Single
+                                  v2</a></li>
+                              <li class="menu-item-525 aligned-"><a
+                                  href="https://demoapus.com/findgo/listings/liberty-club/?_preset=1525857631">Single
+                                  v3</a></li>
+                              <li class="menu-item-526 aligned-"><a
+                                  href="https://demoapus.com/findgo/listings/liberty-club/?_preset=1525859207">Single
+                                  v4</a></li>
+                              <li class="menu-item-527 aligned-"><a
+                                  href="https://demoapus.com/findgo/listings/liberty-club/?_preset=1525859659">Single
+                                  v5</a></li>
+                            </ul>
+                          </li>
+                          <li class="menu-item-349 aligned-"><a href="https://demoapus.com/findgo/list-categories/">List
+                              Categories</a></li>
+                        </ul>
+                      </li>
+                      <li class="dropdown active menu-item-563 aligned-left"><a href="#" class="dropdown-toggle"
+                          data-hover="dropdown" data-toggle="dropdown">Explore <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <li class="menu-item-569 aligned-"><a
+                              href="https://demoapus.com/findgo/listing-category/nightlife/">Nightlife</a></li>
+                          <li class="active menu-item-570 aligned-"><a
+                              href="https://demoapus.com/findgo/listing-category/restaurant/">Restaurant</a></li>
+                          <li class="menu-item-571 aligned-"><a
+                              href="https://demoapus.com/findgo/listing-category/events/">Events</a></li>
+                          <li class="menu-item-572 aligned-"><a
+                              href="https://demoapus.com/findgo/listing-category/fitness/">Fitness</a></li>
+                          <li class="dropdown menu-item-564 aligned-"><a href="#" class="dropdown-toggle"
+                              data-hover="dropdown" data-toggle="dropdown">Location <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                              <li class="menu-item-565 aligned-"><a
+                                  href="https://demoapus.com/findgo/region/new-york/">New York</a></li>
+                              <li class="menu-item-566 aligned-"><a
+                                  href="https://demoapus.com/findgo/region/istanbul/">Istanbul</a></li>
+                              <li class="menu-item-567 aligned-"><a
+                                  href="https://demoapus.com/findgo/region/amsterdam/">Amsterdam</a></li>
+                              <li class="menu-item-568 aligned-"><a
+                                  href="https://demoapus.com/findgo/region/london/">London</a></li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="dropdown menu-item-32 aligned-left"><a href="#" class="dropdown-toggle"
+                          data-hover="dropdown" data-toggle="dropdown">Pages <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <li class="dropdown menu-item-214 aligned-"><a href="https://demoapus.com/findgo/shop/"
+                              class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Shop <b
+                                class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                              <li class="menu-item-562 aligned-"><a
+                                  href="https://demoapus.com/findgo/product/ash-wood-leather-camp/">Single Product</a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="dropdown menu-item-200 aligned-"><a href="https://demoapus.com/findgo/blog/"
+                              class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Blog <b
+                                class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                              <li class="menu-item-529 aligned-"><a
+                                  href="https://demoapus.com/findgo/blog/?_preset=1525914776">Blog v1</a></li>
+                              <li class="menu-item-530 aligned-"><a
+                                  href="https://demoapus.com/findgo/blog/?_preset=1525914858">Blog v2</a></li>
+                              <li class="menu-item-531 aligned-"><a
+                                  href="https://demoapus.com/findgo/blog/?_preset=1525914984">Blog List</a></li>
+                              <li class="menu-item-532 aligned-"><a
+                                  href="https://demoapus.com/findgo/2018/04/11/the-top-25-restaurants-in-london/">Single
+                                  Post</a></li>
+                            </ul>
+                          </li>
+                          <li class="menu-item-33 aligned-"><a href="https://demoapus.com/findgo/contact/">Contact</a>
+                          </li>
+                          <li class="menu-item-34 aligned-"><a href="https://demoapus.com/findgo/elements/">Elements</a>
+                          </li>
+                          <li class="menu-item-35 aligned-"><a href="https://demoapus.com/findgo/error/">Error</a></li>
+                          <li class="menu-item-41 aligned-"><a href="https://demoapus.com/findgo/pricing/">Pricing</a>
+                          </li>
+                          <li class="menu-item-42 aligned-"><a href="https://demoapus.com/findgo/service/">Service</a>
+                          </li>
+                          <li class="menu-item-43 aligned-"><a href="https://demoapus.com/findgo/terms/">Terms</a></li>
+                          <li class="menu-item-44 aligned-"><a
+                              href="https://demoapus.com/findgo/testimonials/">Testimonials</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header> -->
+  <div id="apus-main-content">
+    <section id="main-container" class="inner">
+      <div id="primary" class="content-area">
+        <div class="entry-content">
+          <main id="main" class="site-main" role="main">
+            <div class="job_listings" data-location="" data-keywords="" data-show_filters="true"
+              data-show_pagination="false" data-per_page="8" data-orderby="featured" data-order="DESC"
+              data-categories="49">
+              <div class="apus-half-map-layout apus-half-map-layout-v1 apus-listing-warpper">
+                <div class="row no-margin wrapper-half-map">
+                  <div class="col-md-5 no-padding">
+                    <div class="list-content clearfix">
+                      <div class="wrapper-123-filter">
+                        <div class="listings-filter-header hidden-sm hidden-xs">
+                          Search Filters<i class="fa fa-align-center" aria-hidden="true"></i>
+                        </div>
+                        <div class="listings-filter-wrapper ps-container"
+                          data-ps-id="681c1d54-49a7-9c31-b604-0fe10c472387" style="">
+                          <div class="filter-stick">
+                            <h3 class="title-filter-2">What are you looking for?</h3>
+                            <div class="desc">Search or select categories</div>
+                            <span class="close-filter"><i class="flaticon-cross-out"></i></span>
+                          </div>
+                          <form class="job_filters job_filters-sidebar">
+                            <input class="input_display_mode" type="hidden" name="display_mode" value="grid">
+                            <div class="filter-inner clearfix">
+                              <div class="search_jobs">
+                                <div class="widget">
+                                  <div class="content">
+                                    <div class="filter-top">
+                                      <div class="row filter-top-inner clearfix">
+                                        <div class="col-xs-6">
+                                          <div class="search_price_range clearfix">
+                                            <div class="click-price clearfix">
+                                              <span class="pull-left">Price</span>
+                                              <span class="pull-right">$</span>
                                             </div>
+                                            <ul class="list-price">
+                                              <li>
+                                                <label for="filter_price_range_inexpensive" data-placement="right"
+                                                  data-toggle="tooltip" title="" data-original-title="Inexpensive">
+                                                  <input id="filter_price_range_inexpensive" type="checkbox"
+                                                    name="filter_price_range[]" value="inexpensive"> $ </label>
+                                              </li>
+                                              <li>
+                                                <label for="filter_price_range_moderate" data-placement="right"
+                                                  data-toggle="tooltip" title="" data-original-title="Moderate">
+                                                  <input id="filter_price_range_moderate" type="checkbox"
+                                                    name="filter_price_range[]" value="moderate"> $$ </label>
+                                              </li>
+                                              <li>
+                                                <label for="filter_price_range_pricey" data-placement="right"
+                                                  data-toggle="tooltip" title="" data-original-title="Pricey">
+                                                  <input id="filter_price_range_pricey" type="checkbox"
+                                                    name="filter_price_range[]" value="pricey"> $$$ </label>
+                                              </li>
+                                              <li>
+                                                <label for="filter_price_range_ultra_high_end" data-placement="right"
+                                                  data-toggle="tooltip" title="" data-original-title="Ultra High">
+                                                  <input id="filter_price_range_ultra_high_end" type="checkbox"
+                                                    name="filter_price_range[]" value="ultra_high_end"> $$$$ </label>
+                                              </li>
+                                            </ul>
+                                          </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                          <div class="listing-orderby">
+                                            <select name="filter_order" autocomplete="off">
+                                              <option value="default" selected="selected">Default Order</option>
+                                              <option value="date-desc">Newest First</option>
+                                              <option value="date-asc">Oldest First</option>
+                                              <option value="rating-desc">Highest Rating</option>
+                                              <option value="rating-asc">Lowest Rating</option>
+                                              <option value="random">Random</option>
+                                            </select>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
-
+                                    <div class="search_keywords ">
+                                      <input type="text" name="search_keywords" id="search_keywords"
+                                        placeholder="Keywords" value="">
+                                    </div>
+                                    <div class="select-categories">
+                                      <div class="search_categories1">
+                                        <select name="search_categories[]" id="search_categories"
+                                          class="job-manager-category-dropdown " data-placeholder="Choose a category…"
+                                          data-no_results_text="No results match"
+                                          data-multiple_text="Select Some Options" style="display: none;">
+                                          <option value="">All categories</option>
+                                          <option class="level-0" value="55">Art&amp;History</option>
+                                          <option class="level-0" value="53">Events</option>
+                                          <option class="level-0" value="54">Fitness</option>
+                                          <option class="level-0" value="50">Hotels</option>
+                                          <option class="level-0" value="48">Nightlife</option>
+                                          <option class="level-0" value="51">Outdoor Activities</option>
+                                          <option class="level-0" value="49" selected="selected">Restaurant</option>
+                                          <option class="level-0" value="52">Shops</option>
+                                        </select>
+                                        <div class="chosen-container chosen-container-single" style="width: 380px;"
+                                          title="" id="search_categories_chosen"><a class="chosen-single"
+                                            tabindex="-1"><span>Restaurant</span>
+                                            <div><b></b></div>
+                                          </a>
+                                          <div class="chosen-drop">
+                                            <div class="chosen-search"><input type="text" autocomplete="off"></div>
+                                            <ul class="chosen-results"></ul>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="search_location">
+                                      <input type="text" name="search_location" id="search_location"
+                                        placeholder="Location" value="" autocomplete="off">
+                                      <span class="clear-location hidden"><i class="fa fa-times"></i></span>
+                                      <span class="find-me"><svg xmlns="http://www.w3.org/2000/svg"
+                                          xmlns:xlink="http://www.w3.org/1999/xlink" width="15px" height="15px"
+                                          viewBox="0 0 15 15" version="1.1">
+                                          <g id="Welcome" stroke="none" stroke-width="1" fill="none"
+                                            fill-rule="evenodd">
+                                            <g id="All-listings" transform="translate(-964.000000, -626.000000)"
+                                              fill-rule="nonzero" fill="#9B9B9B">
+                                              <g id="Group-4-Copy" transform="translate(731.000000, 611.000000)">
+                                                <g id="target-with-circle" transform="translate(233.000000, 15.000000)">
+                                                  <g>
+                                                    <path
+                                                      d="M7.48790875,4.76543726 C5.98346008,4.76543726 4.76543726,5.98346008 4.76543726,7.48790875 C4.76543726,8.99235741 5.98346008,10.2103802 7.48790875,10.2103802 C8.99235741,10.2103802 10.2103802,8.99235741 10.2103802,7.48790875 C10.2103802,5.98346008 8.99235741,4.76543726 7.48790875,4.76543726 Z M13.5730894,6.80652091 C13.2604848,3.96798479 11.0072338,1.71473384 8.16869772,1.40272814 L8.16869772,0 L6.80714829,0 L6.80714829,1.40272814 C3.96858365,1.71473384 1.71536122,3.96798479 1.40210076,6.80652091 L0,6.80652091 L0,8.1693251 L1.40272814,8.1693251 C1.71596008,11.0078612 3.96921103,13.2611122 6.80774715,13.5731179 L6.80774715,14.975846 L8.16929658,14.975846 L8.16929658,13.5731179 C11.0078327,13.2611122 13.2610837,11.0078897 13.5736882,8.1693251 L14.975789,8.1693251 L14.975789,6.80652091 C14.975846,6.80652091 13.5730894,6.80652091 13.5730894,6.80652091 Z M7.48790875,12.253346 C4.85341255,12.253346 2.72247148,10.1224049 2.72247148,7.48790875 C2.72247148,4.85341255 4.85341255,2.72247148 7.48790875,2.72247148 C10.1224049,2.72247148 12.253346,4.85341255 12.253346,7.48790875 C12.253346,10.1224049 10.1224049,12.253346 7.48790875,12.253346 Z"
+                                                      id="Shape"></path>
+                                                  </g>
+                                                </g>
+                                              </g>
+                                            </g>
+                                          </g>
+                                        </svg></span>
+                                      <input type="hidden" name="search_lat" id="search_lat" value="">
+                                      <input type="hidden" name="search_lng" id="search_lng" value="">
+                                    </div>
                                     <div class="search_tag_wrapper">
-                                      <a href="javascript:void(0);" class="show-more-filter">More Filters <i
-                                          class="fa fa-minus"></i></a>
+                                      <a href="javascript:void(0);" class="show-more-filter title">Tags <i
+                                          class="fa fa-minus"></i>
+                                      </a>
                                       <div class="tags-wrap active">
-                                        <ul class="job_tags">
-                                          <li><label for="job_amenity_accepts-credit-cards"
+                                        <ul class="row job_tags">
+                                          <li class="col-xs-6"><label for="job_amenity_accepts-credit-cards"
                                               class="accepts-credit-cards"><input type="checkbox"
                                                 name="filter_job_amenity[]" value="accepts-credit-cards"
-                                                id="job_amenity_accepts-credit-cards" /> Accepts Credit Cards</label>
+                                                id="job_amenity_accepts-credit-cards"> Accepts Credit Cards</label></li>
+                                          <li class="col-xs-6"><label for="job_amenity_bike-parking"
+                                              class="bike-parking"><input type="checkbox" name="filter_job_amenity[]"
+                                                value="bike-parking" id="job_amenity_bike-parking"> Bike Parking</label>
                                           </li>
-                                          <li><label for="job_amenity_bike-parking" class="bike-parking"><input
-                                                type="checkbox" name="filter_job_amenity[]" value="bike-parking"
-                                                id="job_amenity_bike-parking" /> Bike Parking</label></li>
-                                          <li><label for="job_amenity_coupons" class="coupons"><input type="checkbox"
-                                                name="filter_job_amenity[]" value="coupons" id="job_amenity_coupons" />
-                                              Coupons</label></li>
-                                          <li><label for="job_amenity_outdoor-seating" class="outdoor-seating"><input
-                                                type="checkbox" name="filter_job_amenity[]" value="outdoor-seating"
-                                                id="job_amenity_outdoor-seating" /> Outdoor Seating</label></li>
-                                          <li><label for="job_amenity_parking-street" class="parking-street"><input
-                                                type="checkbox" name="filter_job_amenity[]" value="parking-street"
-                                                id="job_amenity_parking-street" /> Parking street</label></li>
-                                          <li><label for="job_amenity_reservations" class="reservations"><input
-                                                type="checkbox" name="filter_job_amenity[]" value="reservations"
-                                                id="job_amenity_reservations" /> Reservations</label></li>
-                                          <li><label for="job_amenity_smoking-allowed" class="smoking-allowed"><input
-                                                type="checkbox" name="filter_job_amenity[]" value="smoking-allowed"
-                                                id="job_amenity_smoking-allowed" /> Smoking Allowed</label></li>
-                                          <li><label for="job_amenity_wheelchair-accesible"
+                                          <li class="col-xs-6"><label for="job_amenity_coupons" class="coupons"><input
+                                                type="checkbox" name="filter_job_amenity[]" value="coupons"
+                                                id="job_amenity_coupons"> Coupons</label></li>
+                                          <li class="col-xs-6"><label for="job_amenity_outdoor-seating"
+                                              class="outdoor-seating"><input type="checkbox" name="filter_job_amenity[]"
+                                                value="outdoor-seating" id="job_amenity_outdoor-seating"> Outdoor
+                                              Seating</label></li>
+                                          <li class="col-xs-6"><label for="job_amenity_parking-street"
+                                              class="parking-street"><input type="checkbox" name="filter_job_amenity[]"
+                                                value="parking-street" id="job_amenity_parking-street"> Parking
+                                              street</label></li>
+                                          <li class="col-xs-6"><label for="job_amenity_reservations"
+                                              class="reservations"><input type="checkbox" name="filter_job_amenity[]"
+                                                value="reservations" id="job_amenity_reservations"> Reservations</label>
+                                          </li>
+                                          <li class="col-xs-6"><label for="job_amenity_smoking-allowed"
+                                              class="smoking-allowed"><input type="checkbox" name="filter_job_amenity[]"
+                                                value="smoking-allowed" id="job_amenity_smoking-allowed"> Smoking
+                                              Allowed</label></li>
+                                          <li class="col-xs-6"><label for="job_amenity_wheelchair-accesible"
                                               class="wheelchair-accesible"><input type="checkbox"
                                                 name="filter_job_amenity[]" value="wheelchair-accesible"
-                                                id="job_amenity_wheelchair-accesible" /> Wheelchair Accesible</label>
-                                          </li>
-                                          <li><label for="job_amenity_wireless-internet"
+                                                id="job_amenity_wheelchair-accesible"> Wheelchair Accesible</label></li>
+                                          <li class="col-xs-6"><label for="job_amenity_wireless-internet"
                                               class="wireless-internet"><input type="checkbox"
                                                 name="filter_job_amenity[]" value="wireless-internet"
-                                                id="job_amenity_wireless-internet" /> Wireless Internet</label></li>
+                                                id="job_amenity_wireless-internet"> Wireless Internet</label></li>
                                         </ul>
                                       </div>
                                     </div>
+                                    <div class="search_distance_wrapper clearfix">
+                                      <div class="search-distance-label">
+                                        <label for="use_search_distance">
+                                          <input name="use_search_distance" id="use_search_distance" checked="checked"
+                                            type="checkbox">
+                                          Radius: <span class="text-distance">50</span> km </label>
+                                      </div>
+                                      <div class="search-distance-wrapper">
+                                        <input type="hidden" name="search_distance" id="search_distance" value="50">
+                                        <div id="search-distance-slider"
+                                          class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                                          <div id="distance-custom-handle"
+                                            class="ui-slider-handle ui-state-default ui-corner-all" data-value="50"
+                                            style="left: 50%;"></div>
+                                          <div
+                                            class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"
+                                            style="width: 50%;"></div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="listing-search-result-filter">
+                                      <div class="results">Showing results for <span
+                                          class="text-strong">Category</span>: <span class="highlight">Restaurant</span>
+                                        <a href="#" class="reset">Reset</a></div>
+                                    </div>
                                   </div>
                                 </div>
-                              </form>
-                              <div class="col-md-12 no-padding">
-                                <div class="list-content clearfix">
-                                  <div class=" main-results">
-                                    <div class="listing-action clearfix">
-                                      <div class="listing-search-result">
-                                        <div class="results"><span class="results-no">3</span> Results Found (Showing 1
-                                          - 3)</div>
-                                      </div>
-                                      <div class="listing-display-mode">
-                                        <div class="display-mode">
-                                          <a href="#grid" class="change-view active" data-mode="grid"><i
-                                              class="fa fa-th-large" aria-hidden="true"></i></a>
-                                          <a href="#list" class="change-view " data-mode="list"><i class="fa fa-th-list"
-                                              aria-hidden="true"></i></a>
-                                        </div>
-                                      </div>
+                              </div>
+                              <ul class="job_types">
+                                <li><label for="job_type_freelance" class="freelance"><input type="checkbox"
+                                      name="filter_job_type[]" value="freelance" checked="checked"
+                                      id="job_type_freelance"> Freelance</label></li>
+                                <li><label for="job_type_full-time" class="full-time"><input type="checkbox"
+                                      name="filter_job_type[]" value="full-time" checked="checked"
+                                      id="job_type_full-time"> Full Time</label></li>
+                                <li><label for="job_type_internship" class="internship"><input type="checkbox"
+                                      name="filter_job_type[]" value="internship" checked="checked"
+                                      id="job_type_internship"> Internship</label></li>
+                                <li><label for="job_type_part-time" class="part-time"><input type="checkbox"
+                                      name="filter_job_type[]" value="part-time" checked="checked"
+                                      id="job_type_part-time"> Part Time</label></li>
+                                <li><label for="job_type_temporary" class="temporary"><input type="checkbox"
+                                      name="filter_job_type[]" value="temporary" checked="checked"
+                                      id="job_type_temporary"> Temporary</label></li>
+                              </ul>
+                              <input type="hidden" name="filter_job_type[]" value="">
+                              <div class="showing_jobs wp-job-manager-showing-all" style="display: block;">
+                                <div class="results"><span class="results-no">3</span> Results Found (Showing 1 - 3)
+                                </div><span>Showing results for <span class="text-strong">Category</span>: <span
+                                    class="highlight">Restaurant</span></span><a href="#" class="reset">Reset</a>
+                              </div>
+                            </div>
+                          </form>
+                          <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
+                            <div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div>
+                          </div>
+                          <div class="ps-scrollbar-y-rail" style="top: 0px; right: 0px;">
+                            <div class="ps-scrollbar-y" style="top: 0px; height: 0px;"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mobile-groups-button hidden-lg hidden-md">
+                        <button class="btn-xs btn btn-second btn-filter">
+                          Search Filters </button>
+                        <button class="pull-right btn btn-xs btn-second btn-view-map" type="button"><i
+                            class="fa fa-map-o" aria-hidden="true"></i> Map View</button>
+                        <button class="pull-right btn btn-xs btn-second btn-view-listing hidden-sm hidden-xs"
+                          type="button"><i class="fa fa-list" aria-hidden="true"></i> Listing View</button>
+                      </div>
+                      <noscript>Your browser does not support JavaScript, or it is disabled. JavaScript must be enabled
+                        in order to view listings.</noscript>
+                      <div class=" main-results">
+                        <div class="listing-action clearfix">
+                          <div class="listing-search-result">
+                            <div class="results"><span class="results-no">3</span> Results Found (Showing 1 - 3)</div>
+                          </div>
+                          <div class="listing-display-mode">
+                            <div class="display-mode">
+                              <a href="#grid" class="change-view active" data-mode="grid"><i class="fa fa-th-large"
+                                  aria-hidden="true"></i></a>
+                              <a href="#list" class="change-view" data-mode="list"><i class="fa fa-th-list"
+                                  aria-hidden="true"></i></a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="job_listings job_listings_cards clearfix row">
+                          <div class="md-clear-2 col-md-6 col-sm-6 col-xs-12 	">
+                            <div
+                              class="job-grid-style job-grid-style-v1 post-629 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-restaurant job_listing_type-freelance job_listing_amenity-accepts-credit-cards job_listing_amenity-bike-parking job_listing_amenity-coupons job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-reservations job_listing_amenity-smoking-allowed job_listing_amenity-wheelchair-accesible job_listing_region-new-york job_listing_tag-card-payment job_listing_tag-hotels job_listing_tag-listing job_listing_tag-parking-street job_listing_tag-restaurant job-type-freelance job_position_featured"
+                              itemscope="" itemtype="http://schema.org/LocalBusiness" data-longitude="-73.909874"
+                              data-latitude="40.733693"
+                              data-img="https://demoapus.com/findgo/wp-content/uploads/2018/05/33-375x230.jpg"
+                              data-permalink="https://demoapus.com/findgo/listings/the-activity-people/">
+
+                              <div class="listing-cat-icon hidden">
+                                <i class="flaticon-chef"></i>
+                              </div>
+                              <div class="hidden listing-review">
+                                <div class="review-stars-rated-wrapper">
+                                  <div class="review-stars-rated">
+                                    <ul class="review-stars">
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                    </ul>
+
+                                    <ul class="review-stars filled" style="width: 0%">
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                    </ul>
+                                  </div>
+                                  <span class="nb-review">(0 Reviews)</span>
+                                </div>
+                              </div>
+                              <span class="listing-address hidden">
+                                53-01 58th St, Flushing </span>
+                              <div class="listing-image">
+                                <div class="listing-image-inner">
+                                  <div class="image-wrapper image-loaded">
+                                    <a href="https://demoapus.com/findgo/listings/the-activity-people/">
+                                      <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/33-375x230.jpg"
+                                        alt="The Activity People" class="unveil-image">
+                                    </a>
+                                  </div>
+                                  <span class="price-range">
+                                    $20 - $50 </span>
+                                  <div class="top-imformation">
+                                    <div class="listing-preview-wrapper pull-left">
+                                      <a href="#preview-629" class="listing-preview" data-id="629"><i
+                                          class="flaticon-visible"></i><span class="preview-text">Preview</span></a>
                                     </div>
-                                    <div class="job_listings job_listings_cards clearfix row">
-                                      <div class="md-clear-2 col-md-6 col-sm-6 col-xs-12 	">
-                                        <div
-                                          class="job-grid-style job-grid-style-v1 post-629 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-restaurant job_listing_type-freelance job_listing_amenity-accepts-credit-cards job_listing_amenity-bike-parking job_listing_amenity-coupons job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-reservations job_listing_amenity-smoking-allowed job_listing_amenity-wheelchair-accesible job_listing_region-new-york job_listing_tag-card-payment job_listing_tag-hotels job_listing_tag-listing job_listing_tag-parking-street job_listing_tag-restaurant job-type-freelance job_position_featured"
-                                          itemscope="" itemtype="http://schema.org/LocalBusiness"
-                                          data-longitude="-73.909874" data-latitude="40.733693"
-                                          data-img="https://demoapus.com/findgo/wp-content/uploads/2018/05/33-375x230.jpg"
-                                          data-permalink="https://demoapus.com/findgo/listings/the-activity-people/">
-
-                                          <div class="listing-cat-icon hidden">
-                                            <i class="flaticon-chef"></i>
-                                          </div>
-                                          <div class="hidden listing-review">
-                                            <div class="review-stars-rated-wrapper">
-                                              <div class="review-stars-rated">
-                                                <ul class="review-stars">
-                                                  <li><span class="fa fa-star-o"></span></li>
-                                                  <li><span class="fa fa-star-o"></span></li>
-                                                  <li><span class="fa fa-star-o"></span></li>
-                                                  <li><span class="fa fa-star-o"></span></li>
-                                                  <li><span class="fa fa-star-o"></span></li>
-                                                </ul>
-
-                                                <ul class="review-stars filled" style="width: 0%">
-                                                  <li><span class="fa fa-star"></span></li>
-                                                  <li><span class="fa fa-star"></span></li>
-                                                  <li><span class="fa fa-star"></span></li>
-                                                  <li><span class="fa fa-star"></span></li>
-                                                  <li><span class="fa fa-star"></span></li>
-                                                </ul>
-                                              </div>
-                                              <span class="nb-review">(0 Reviews)</span>
-                                            </div>
-                                          </div>
-                                          <span class="listing-address hidden">
-                                            53-01 58th St, Flushing </span>
-                                          <div class="listing-image">
-                                            <div class="listing-image-inner">
-                                              <div class="image-wrapper image-loaded">
-                                                <a href="https://demoapus.com/findgo/listings/the-activity-people/">
-                                                  <img
-                                                    src="https://demoapus.com/findgo/wp-content/uploads/2018/05/33-375x230.jpg"
-                                                    alt="The Activity People" class="unveil-image">
-                                                </a>
-                                              </div>
-                                              <span class="price-range">
-                                                $20 - $50 </span>
-                                              <div class="top-imformation">
-                                                <div class="listing-preview-wrapper pull-left">
-                                                  <a href="#preview-629" class="listing-preview" data-id="629"><i
-                                                      class="flaticon-visible"></i><span
-                                                      class="preview-text">Preview</span></a>
-                                                </div>
-                                                <div class="listing-bookmark pull-right">
-                                                  <a href="#apus-bookmark-add" class="apus-bookmark-not-login"
-                                                    data-id="629">
-                                                    <span class="bookmark-text">Save</span>
-                                                    <i class="flaticon-like"></i>
-                                                  </a>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                          <div class="bottom-grid">
-                                            <div class="listing-content">
-                                              <h3 class="listing-title">
-                                                <a href="https://demoapus.com/findgo/listings/the-activity-people/">The
-                                                  Activity People</a>
-                                              </h3>
-                                              <div class="listing-tagline">Active for you, my friend</div>
-                                              <div class="listing-tags">
-                                                <div class="listing-review">
-                                                  <span class="review-avg">0.0</span>
-                                                  0 Ratings </div>
-                                                <div class="listing-category">
-                                                  <a href="https://demoapus.com/findgo/listing-category/restaurant/"><i
-                                                      class="flaticon-chef"></i>Restaurant</a> </div>
-                                                <div class="listing-time closed">
-                                                  Closed </div>
-                                              </div>
-                                            </div>
-                                            <div class="listing-content-bottom clearfix">
-                                              <div class="pull-left">
-                                                <div class="listing-location">
-                                                  <i class="flaticon-placeholder"></i><a
-                                                    href="https://demoapus.com/findgo/region/new-york/">New York</a>
-                                                </div>
-                                              </div>
-                                              <div class="listing-phone pull-right">
-                                                <i class="flaticon-phone-call"></i>
-                                                +84 0969 9696 </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="md-clear-2 col-md-6 col-sm-6 col-xs-12 	">
-                                        <div
-                                          class="job-grid-style job-grid-style-v1 post-628 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-restaurant job_listing_type-full-time job_listing_amenity-accepts-credit-cards job_listing_amenity-bike-parking job_listing_amenity-coupons job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-reservations job_listing_amenity-smoking-allowed job_listing_amenity-wheelchair-accesible job_listing_region-new-york job-type-full-time job_position_featured"
-                                          itemscope="" itemtype="http://schema.org/LocalBusiness"
-                                          data-longitude="-73.8877096" data-latitude="40.7373212"
-                                          data-img="https://demoapus.com/findgo/wp-content/uploads/2018/05/2-1-375x230.jpg"
-                                          data-permalink="https://demoapus.com/findgo/listings/green-restaurant/">
-
-                                          <div class="listing-cat-icon hidden">
-                                            <i class="flaticon-chef"></i>
-                                          </div>
-                                          <div class="hidden listing-review">
-                                            <div class="review-stars-rated-wrapper">
-                                              <div class="review-stars-rated">
-                                                <ul class="review-stars">
-                                                  <li><span class="fa fa-star-o"></span></li>
-                                                  <li><span class="fa fa-star-o"></span></li>
-                                                  <li><span class="fa fa-star-o"></span></li>
-                                                  <li><span class="fa fa-star-o"></span></li>
-                                                  <li><span class="fa fa-star-o"></span></li>
-                                                </ul>
-
-                                                <ul class="review-stars filled" style="width: 100%">
-                                                  <li><span class="fa fa-star"></span></li>
-                                                  <li><span class="fa fa-star"></span></li>
-                                                  <li><span class="fa fa-star"></span></li>
-                                                  <li><span class="fa fa-star"></span></li>
-                                                  <li><span class="fa fa-star"></span></li>
-                                                </ul>
-                                              </div>
-                                              <span class="nb-review">(3 Reviews)</span>
-                                            </div>
-                                          </div>
-                                          <span class="listing-address hidden">
-                                            50-40 Jacobus St, Queens </span>
-                                          <div class="listing-image">
-                                            <div class="listing-image-inner">
-                                              <div class="image-wrapper image-loaded">
-                                                <a href="https://demoapus.com/findgo/listings/green-restaurant/">
-                                                  <img
-                                                    src="https://demoapus.com/findgo/wp-content/uploads/2018/05/2-1-375x230.jpg"
-                                                    alt="Green Restaurant" class="unveil-image">
-                                                </a>
-                                              </div>
-                                              <span class="price-range">
-                                                $12 - $18 </span>
-                                              <div class="top-imformation">
-                                                <div class="listing-preview-wrapper pull-left">
-                                                  <a href="#preview-628" class="listing-preview" data-id="628"><i
-                                                      class="flaticon-visible"></i><span
-                                                      class="preview-text">Preview</span></a>
-                                                </div>
-                                                <div class="listing-bookmark pull-right">
-                                                  <a href="#apus-bookmark-add" class="apus-bookmark-not-login"
-                                                    data-id="628">
-                                                    <span class="bookmark-text">Save</span>
-                                                    <i class="flaticon-like"></i>
-                                                  </a>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                          <div class="bottom-grid">
-                                            <div class="listing-content">
-                                              <h3 class="listing-title">
-                                                <a href="https://demoapus.com/findgo/listings/green-restaurant/">Green
-                                                  Restaurant</a>
-                                                <span class="listing-claimed-icon" data-toggle="tooltip" title=""
-                                                  data-original-title="Claimed"><i
-                                                    class="text-theme fa fa-check-circle"></i></span> </h3>
-                                              <div class="listing-tagline">Restaurant for you</div>
-                                              <div class="listing-tags">
-                                                <div class="listing-review">
-                                                  <span class="review-avg">5.0</span>
-                                                  3 Ratings </div>
-                                                <div class="listing-category">
-                                                  <a href="https://demoapus.com/findgo/listing-category/restaurant/"><i
-                                                      class="flaticon-chef"></i>Restaurant</a> </div>
-                                                <div class="listing-time closed">
-                                                  Closed </div>
-                                              </div>
-                                            </div>
-                                            <div class="listing-content-bottom clearfix">
-                                              <div class="pull-left">
-                                                <div class="listing-location">
-                                                  <i class="flaticon-placeholder"></i><a
-                                                    href="https://demoapus.com/findgo/region/new-york/">New York</a>
-                                                </div>
-                                              </div>
-                                              <div class="listing-phone pull-right">
-                                                <i class="flaticon-phone-call"></i>
-                                                +84 123 456 </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="md-clear-2 col-md-6 col-sm-6 col-xs-12 	">
-                                        <div
-                                          class="job-grid-style job-grid-style-v1 post-627 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-restaurant job_listing_type-freelance job_listing_amenity-accepts-credit-cards job_listing_amenity-bike-parking job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-reservations job_listing_amenity-smoking-allowed job_listing_amenity-wheelchair-accesible job_listing_amenity-wireless-internet job_listing_region-new-york job_listing_tag-daily-specials job_listing_tag-hotels job_listing_tag-parking-street job_listing_tag-restaurant job_listing_tag-smoking-allowed job-type-freelance job_position_featured"
-                                          itemscope="" itemtype="http://schema.org/LocalBusiness"
-                                          data-longitude="-73.8809714" data-latitude="40.741847"
-                                          data-img="https://demoapus.com/findgo/wp-content/uploads/2018/05/20-375x230.jpg"
-                                          data-permalink="https://demoapus.com/findgo/listings/apartment-luxary-spa/">
-
-                                          <div class="listing-cat-icon hidden">
-                                            <i class="flaticon-chef"></i>
-                                          </div>
-                                          <div class="hidden listing-review">
-                                            <div class="review-stars-rated-wrapper">
-                                              <div class="review-stars-rated">
-                                                <ul class="review-stars">
-                                                  <li><span class="fa fa-star-o"></span></li>
-                                                  <li><span class="fa fa-star-o"></span></li>
-                                                  <li><span class="fa fa-star-o"></span></li>
-                                                  <li><span class="fa fa-star-o"></span></li>
-                                                  <li><span class="fa fa-star-o"></span></li>
-                                                </ul>
-
-                                                <ul class="review-stars filled" style="width: 0%">
-                                                  <li><span class="fa fa-star"></span></li>
-                                                  <li><span class="fa fa-star"></span></li>
-                                                  <li><span class="fa fa-star"></span></li>
-                                                  <li><span class="fa fa-star"></span></li>
-                                                  <li><span class="fa fa-star"></span></li>
-                                                </ul>
-                                              </div>
-                                              <span class="nb-review">(0 Reviews)</span>
-                                            </div>
-                                          </div>
-                                          <span class="listing-address hidden">
-                                            45th Ave, Elmhurst, NY </span>
-                                          <div class="listing-image">
-                                            <div class="listing-image-inner">
-                                              <div class="image-wrapper image-loaded">
-                                                <a href="https://demoapus.com/findgo/listings/apartment-luxary-spa/">
-                                                  <img
-                                                    src="https://demoapus.com/findgo/wp-content/uploads/2018/05/20-375x230.jpg"
-                                                    alt="Apartment Luxary Spa" class="unveil-image">
-                                                </a>
-                                              </div>
-                                              <span class="price-range">
-                                                $80 - $150 </span>
-                                              <div class="top-imformation">
-                                                <div class="listing-preview-wrapper pull-left">
-                                                  <a href="#preview-627" class="listing-preview" data-id="627"><i
-                                                      class="flaticon-visible"></i><span
-                                                      class="preview-text">Preview</span></a>
-                                                </div>
-                                                <div class="listing-bookmark pull-right">
-                                                  <a href="#apus-bookmark-add" class="apus-bookmark-not-login"
-                                                    data-id="627">
-                                                    <span class="bookmark-text">Save</span>
-                                                    <i class="flaticon-like"></i>
-                                                  </a>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                          <div class="bottom-grid">
-                                            <div class="listing-content">
-                                              <h3 class="listing-title">
-                                                <a href="https://demoapus.com/findgo/listings/apartment-luxary-spa/">Apartment
-                                                  Luxary Spa</a>
-                                              </h3>
-                                              <div class="listing-tagline">Hotels, luxury, Spa</div>
-                                              <div class="listing-tags">
-                                                <div class="listing-review">
-                                                  <span class="review-avg">0.0</span>
-                                                  0 Ratings </div>
-                                                <div class="listing-category">
-                                                  <a href="https://demoapus.com/findgo/listing-category/restaurant/"><i
-                                                      class="flaticon-chef"></i>Restaurant</a> </div>
-                                                <div class="listing-time closed">
-                                                  Closed </div>
-                                              </div>
-                                            </div>
-                                            <div class="listing-content-bottom clearfix">
-                                              <div class="pull-left">
-                                                <div class="listing-location">
-                                                  <i class="flaticon-placeholder"></i><a
-                                                    href="https://demoapus.com/findgo/region/new-york/">New York</a>
-                                                </div>
-                                              </div>
-                                              <div class="listing-phone pull-right">
-                                                <i class="flaticon-phone-call"></i>
-                                                +0123456788 </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
+                                    <div class="listing-bookmark pull-right">
+                                      <a href="#apus-bookmark-add" class="apus-bookmark-not-login" data-id="629">
+                                        <span class="bookmark-text">Save</span>
+                                        <i class="flaticon-like"></i>
+                                      </a>
                                     </div>
                                   </div>
+                                </div>
+                              </div>
+                              <div class="bottom-grid">
+                                <div class="listing-content">
+                                  <h3 class="listing-title">
+                                    <a href="https://demoapus.com/findgo/listings/the-activity-people/">The Activity
+                                      People</a>
+                                  </h3>
+                                  <div class="listing-tagline">Active for you, my friend</div>
+                                  <div class="listing-tags">
+                                    <div class="listing-review">
+                                      <span class="review-avg">0.0</span>
+                                      0 Ratings </div>
+                                    <div class="listing-category">
+                                      <a href="https://demoapus.com/findgo/listing-category/restaurant/"><i
+                                          class="flaticon-chef"></i>Restaurant</a> </div>
+                                    <div class="listing-time closed">
+                                      Closed </div>
+                                  </div>
+                                </div>
+                                <div class="listing-content-bottom clearfix">
+                                  <div class="pull-left">
+                                    <div class="listing-location">
+                                      <i class="flaticon-placeholder"></i><a
+                                        href="https://demoapus.com/findgo/region/new-york/">New York</a> </div>
+                                  </div>
+                                  <div class="listing-phone pull-right">
+                                    <i class="flaticon-phone-call"></i>
+                                    +84 0969 9696 </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="md-clear-2 col-md-6 col-sm-6 col-xs-12 	">
+                            <div
+                              class="job-grid-style job-grid-style-v1 post-628 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-restaurant job_listing_type-full-time job_listing_amenity-accepts-credit-cards job_listing_amenity-bike-parking job_listing_amenity-coupons job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-reservations job_listing_amenity-smoking-allowed job_listing_amenity-wheelchair-accesible job_listing_region-new-york job-type-full-time job_position_featured"
+                              itemscope="" itemtype="http://schema.org/LocalBusiness" data-longitude="-73.8877096"
+                              data-latitude="40.7373212"
+                              data-img="https://demoapus.com/findgo/wp-content/uploads/2018/05/2-1-375x230.jpg"
+                              data-permalink="https://demoapus.com/findgo/listings/green-restaurant/">
+
+                              <div class="listing-cat-icon hidden">
+                                <i class="flaticon-chef"></i>
+                              </div>
+                              <div class="hidden listing-review">
+                                <div class="review-stars-rated-wrapper">
+                                  <div class="review-stars-rated">
+                                    <ul class="review-stars">
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                    </ul>
+
+                                    <ul class="review-stars filled" style="width: 100%">
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                    </ul>
+                                  </div>
+                                  <span class="nb-review">(3 Reviews)</span>
+                                </div>
+                              </div>
+                              <span class="listing-address hidden">
+                                50-40 Jacobus St, Queens </span>
+                              <div class="listing-image">
+                                <div class="listing-image-inner">
+                                  <div class="image-wrapper image-loaded">
+                                    <a href="https://demoapus.com/findgo/listings/green-restaurant/">
+                                      <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/2-1-375x230.jpg"
+                                        alt="Green Restaurant" class="unveil-image">
+                                    </a>
+                                  </div>
+                                  <span class="price-range">
+                                    $12 - $18 </span>
+                                  <div class="top-imformation">
+                                    <div class="listing-preview-wrapper pull-left">
+                                      <a href="#preview-628" class="listing-preview" data-id="628"><i
+                                          class="flaticon-visible"></i><span class="preview-text">Preview</span></a>
+                                    </div>
+                                    <div class="listing-bookmark pull-right">
+                                      <a href="#apus-bookmark-add" class="apus-bookmark-not-login" data-id="628">
+                                        <span class="bookmark-text">Save</span>
+                                        <i class="flaticon-like"></i>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="bottom-grid">
+                                <div class="listing-content">
+                                  <h3 class="listing-title">
+                                    <a href="https://demoapus.com/findgo/listings/green-restaurant/">Green
+                                      Restaurant</a>
+                                    <span class="listing-claimed-icon" data-toggle="tooltip" title=""
+                                      data-original-title="Claimed"><i class="text-theme fa fa-check-circle"></i></span>
+                                  </h3>
+                                  <div class="listing-tagline">Restaurant for you</div>
+                                  <div class="listing-tags">
+                                    <div class="listing-review">
+                                      <span class="review-avg">5.0</span>
+                                      3 Ratings </div>
+                                    <div class="listing-category">
+                                      <a href="https://demoapus.com/findgo/listing-category/restaurant/"><i
+                                          class="flaticon-chef"></i>Restaurant</a> </div>
+                                    <div class="listing-time closed">
+                                      Closed </div>
+                                  </div>
+                                </div>
+                                <div class="listing-content-bottom clearfix">
+                                  <div class="pull-left">
+                                    <div class="listing-location">
+                                      <i class="flaticon-placeholder"></i><a
+                                        href="https://demoapus.com/findgo/region/new-york/">New York</a> </div>
+                                  </div>
+                                  <div class="listing-phone pull-right">
+                                    <i class="flaticon-phone-call"></i>
+                                    +84 123 456 </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="md-clear-2 col-md-6 col-sm-6 col-xs-12 	">
+                            <div
+                              class="job-grid-style job-grid-style-v1 post-627 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-restaurant job_listing_type-freelance job_listing_amenity-accepts-credit-cards job_listing_amenity-bike-parking job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-reservations job_listing_amenity-smoking-allowed job_listing_amenity-wheelchair-accesible job_listing_amenity-wireless-internet job_listing_region-new-york job_listing_tag-daily-specials job_listing_tag-hotels job_listing_tag-parking-street job_listing_tag-restaurant job_listing_tag-smoking-allowed job-type-freelance job_position_featured"
+                              itemscope="" itemtype="http://schema.org/LocalBusiness" data-longitude="-73.8809714"
+                              data-latitude="40.741847"
+                              data-img="https://demoapus.com/findgo/wp-content/uploads/2018/05/20-375x230.jpg"
+                              data-permalink="https://demoapus.com/findgo/listings/apartment-luxary-spa/">
+
+                              <div class="listing-cat-icon hidden">
+                                <i class="flaticon-chef"></i>
+                              </div>
+                              <div class="hidden listing-review">
+                                <div class="review-stars-rated-wrapper">
+                                  <div class="review-stars-rated">
+                                    <ul class="review-stars">
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                    </ul>
+
+                                    <ul class="review-stars filled" style="width: 0%">
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                    </ul>
+                                  </div>
+                                  <span class="nb-review">(0 Reviews)</span>
+                                </div>
+                              </div>
+                              <span class="listing-address hidden">
+                                45th Ave, Elmhurst, NY </span>
+                              <div class="listing-image">
+                                <div class="listing-image-inner">
+                                  <div class="image-wrapper image-loaded">
+                                    <a href="https://demoapus.com/findgo/listings/apartment-luxary-spa/">
+                                      <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/20-375x230.jpg"
+                                        alt="Apartment Luxary Spa" class="unveil-image">
+                                    </a>
+                                  </div>
+                                  <span class="price-range">
+                                    $80 - $150 </span>
+                                  <div class="top-imformation">
+                                    <div class="listing-preview-wrapper pull-left">
+                                      <a href="#preview-627" class="listing-preview" data-id="627"><i
+                                          class="flaticon-visible"></i><span class="preview-text">Preview</span></a>
+                                    </div>
+                                    <div class="listing-bookmark pull-right">
+                                      <a href="#apus-bookmark-add" class="apus-bookmark-not-login" data-id="627">
+                                        <span class="bookmark-text">Save</span>
+                                        <i class="flaticon-like"></i>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="bottom-grid">
+                                <div class="listing-content">
+                                  <h3 class="listing-title">
+                                    <a href="https://demoapus.com/findgo/listings/apartment-luxary-spa/">Apartment
+                                      Luxary Spa</a>
+                                  </h3>
+                                  <div class="listing-tagline">Hotels, luxury, Spa</div>
+                                  <div class="listing-tags">
+                                    <div class="listing-review">
+                                      <span class="review-avg">0.0</span>
+                                      0 Ratings </div>
+                                    <div class="listing-category">
+                                      <a href="https://demoapus.com/findgo/listing-category/restaurant/"><i
+                                          class="flaticon-chef"></i>Restaurant</a> </div>
+                                    <div class="listing-time closed">
+                                      Closed </div>
+                                  </div>
+                                </div>
+                                <div class="listing-content-bottom clearfix">
+                                  <div class="pull-left">
+                                    <div class="listing-location">
+                                      <i class="flaticon-placeholder"></i><a
+                                        href="https://demoapus.com/findgo/region/new-york/">New York</a> </div>
+                                  </div>
+                                  <div class="listing-phone pull-right">
+                                    <i class="flaticon-phone-call"></i>
+                                    +0123456788 </div>
                                 </div>
                               </div>
                             </div>
@@ -462,29 +903,145 @@
                       </div>
                     </div>
                   </div>
+                  <div class="col-md-5 no-padding half-map">
+                    <div class="apus-listing-map fix-map hidden-sm hidden-xs leaflet-container leaflet-fade-anim map--google" tabindex="0" >
+                      <agm-map mapTypeId="roadmap" [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom"
+                          [disableDefaultUI]="true" [zoomControl]="true" [fitBounds]="true" class="agm-map">
+                          <agm-marker *ngFor="let marker of markers" [(latitude)]="marker.lat" [(longitude)]="marker.lng"
+                            [agmFitBounds]="true"></agm-marker>
+                      </agm-map> 
+                    </div>
+                  </div>
                 </div>
-              </main><!-- #main -->
+              </div>
             </div>
-          </div><!-- #primary -->
-        </section>
-
-      </div><!-- .site-content -->
-
-
-    </div><!-- .site -->
-
-
-  </mat-drawer>
-
-  <div class="map">
-    <button type="button" class="mat-btn" mat-button (click)="drawer.toggle()">
-      Toggle sidenav
-    </button>
-    <!-- <agm-map mapTypeId="roadmap" [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom"
-      [disableDefaultUI]="true" [zoomControl]="true" [fitBounds]="true">
-      <agm-marker *ngFor="let marker of markers" [(latitude)]="marker.lat" [(longitude)]="marker.lng"
-        [agmFitBounds]="true"></agm-marker>
-    </agm-map> -->
+          </main>
+        </div>
+      </div>
+    </section>
   </div>
-
-</mat-drawer-container>
+  <footer id="apus-footer" class="apus-footer" role="contentinfo">
+    <div class="footer-builder-wrapper lighting">
+      <div class="container">
+        <div data-vc-full-width="true" data-vc-full-width-init="true" data-vc-stretch-content="true"
+          class="vc_row wpb_row vc_row-fluid vc_row-no-padding"
+          style="position: relative; left: 15px; box-sizing: border-box; width: 1840px;">
+          <div class="wpb_column vc_column_container vc_col-sm-12">
+            <div class="vc_column-inner vc_custom_1523505004468">
+              <div class="wpb_wrapper">
+                <div
+                  class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_pos_align_center vc_separator_no_text vc_custom_1523504966148  vc_custom_1523504966148">
+                  <span class="vc_sep_holder vc_sep_holder_l"><span style="border-color:#e8e8e8;"
+                      class="vc_sep_line"></span></span><span class="vc_sep_holder vc_sep_holder_r"><span
+                      style="border-color:#e8e8e8;" class="vc_sep_line"></span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="vc_row-full-width vc_clearfix"></div>
+        <div data-vc-full-width="true" data-vc-full-width-init="true" class="vc_row wpb_row vc_row-fluid"
+          style="position: relative; left: 15px; box-sizing: border-box; width: 1840px; padding-left: 0px; padding-right: 1810px;">
+          <div class="wpb_column vc_column_container vc_col-sm-12">
+            <div class="vc_column-inner">
+              <div class="wpb_wrapper">
+                <div class="vc_empty_space" style="height: 25px"><span class="vc_empty_space_inner"></span></div>
+                <div class="vc_empty_space" style="height: 25px"><span class="vc_empty_space_inner"></span></div>
+                <div class="wpb_single_image wpb_content_element vc_align_center  vc_custom_1523505358357">
+                  <figure class="wpb_wrapper vc_figure">
+                    <div class="vc_single_image-wrapper   vc_box_border_grey"><img width="175" height="40"
+                        src="https://demoapus.com/findgo/wp-content/uploads/2018/04/logo.png"
+                        class="vc_single_image-img attachment-full" alt=""></div>
+                  </figure>
+                </div>
+                <div class="apus_custom_menu st_line">
+                  <div class="widget widget_nav_menu">
+                    <div class="menu-footer-menu-container">
+                      <ul id="menu-footer-menu" class="menu">
+                        <li id="menu-item-99"
+                          class="menu-item menu-item-type-custom menu-item-object-custom menu-item-99"><a
+                            href="#">Home</a></li>
+                        <li id="menu-item-100"
+                          class="menu-item menu-item-type-custom menu-item-object-custom menu-item-100"><a
+                            href="#">Explore</a></li>
+                        <li id="menu-item-101"
+                          class="menu-item menu-item-type-custom menu-item-object-custom menu-item-101"><a
+                            href="#">Explore</a></li>
+                        <li id="menu-item-102"
+                          class="menu-item menu-item-type-custom menu-item-object-custom menu-item-102"><a
+                            href="#">Listings</a></li>
+                        <li id="menu-item-103"
+                          class="menu-item menu-item-type-custom menu-item-object-custom menu-item-103"><a
+                            href="#">Destinations</a></li>
+                        <li id="menu-item-104"
+                          class="menu-item menu-item-type-custom menu-item-object-custom menu-item-104"><a
+                            href="#">Pages</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="wpb_text_column wpb_content_element  vc_custom_1523505390742">
+                  <div class="wpb_wrapper">
+                    <p style="text-align: center;">Collins Street West, Victoria 8007, Australia.<br>
+                      +1 246-345-0695<br>
+                      info@example.com</p>
+                  </div>
+                </div>
+                <div class="widget widget-social  center">
+                  <div class="widget-content">
+                    <ul class="social list-inline">
+                      <li>
+                        <a href="#" class="facebook">
+                          <i class="fa fa-facebook "></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="twitter">
+                          <i class="fa fa-twitter "></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="linkedin">
+                          <i class="fa fa-linkedin "></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="pinterest">
+                          <i class="fa fa-pinterest "></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="instagram">
+                          <i class="fa fa-instagram "></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="vc_empty_space" style="height: 30px"><span class="vc_empty_space_inner"></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="vc_row-full-width vc_clearfix"></div>
+        <div data-vc-full-width="true" data-vc-full-width-init="true"
+          class="vc_row wpb_row vc_row-fluid vc_custom_1523504847097 vc_row-has-fill"
+          style="position: relative; left: 15px; box-sizing: border-box; width: 1840px; padding-left: 0px; padding-right: 1810px;">
+          <div class="wpb_column vc_column_container vc_col-sm-12">
+            <div class="vc_column-inner vc_custom_1523504911969">
+              <div class="wpb_wrapper">
+                <div style="font-size: 13px;color: #8d8d8d;text-align: center"
+                  class="vc_custom_heading vc_custom_1523504897166">© 2018 Find&amp;Go All rights reserved. Design by
+                  Creative Layers</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="vc_row-full-width vc_clearfix"></div>
+      </div>
+    </div>
+  </footer>
+  <a href="#" id="back-to-top">
+    <i class="fa fa-angle-up" aria-hidden="true"></i>
+  </a>
+</div>

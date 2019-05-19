@@ -27,12 +27,6 @@ import {MatCardModule} from '@angular/material/card';
     AppRoutingModule,
     NgbModule.forRoot(),
     FormsModule,
-    MatTabsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatGridListModule,
-    MatRippleModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyAZfyL5pncodSyDVTP28vnyQep4SNeQDgY'}),
     BrowserAnimationsModule,
     MatSidenavModule
