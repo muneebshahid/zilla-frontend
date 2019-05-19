@@ -178,7 +178,7 @@
       </div>
     </div>
   </div>
-  <!-- <header id="apus-header" class="site-header header-v1 hidden-tablet" role="banner">
+  <header id="apus-header" class="site-header header-v1 hidden-tablet" role="banner">
     <div class="main-sticky-header-wrapper" style="height: 96px;">
       <div class="main-sticky-header">
         <div class="header-main">
@@ -358,10 +358,9 @@
         </div>
       </div>
     </div>
-  </header> -->
+  </header>
   <div id="apus-main-content">
-
-    <section id="main-container" class="inner">
+    <section id="main-container" class="inner" style="padding-top:5%;">
       <div id="primary" class="content-area">
         <div class="entry-content">
           <main id="main" class="site-main" role="main">
@@ -370,15 +369,31 @@
               data-categories="49">
               <div class="apus-half-map-layout apus-half-map-layout-v1 apus-listing-warpper">
                 <div class="row no-margin wrapper-half-map">
-                  <div class="col-md-5 no-padding">
-                  
+                  <div class="col-md-8 no-padding">
+
+    
                     <div class="list-content clearfix">
-                      <div class="wrapper-123-filter">
+                        <div class="job_filters job_filters-sidebar ng-untouched ng-pristine ng-valid">
+                            <div class="filter-inner clearfix">
+                              <div class="search_jobs">
+                                <div class="content">
+                                  <div class="widget">
+                                    <div class="search_keywords ">
+                                      <input type="text" name="search_keywords" id="search_keywords" placeholder="pizza nearest point ..."
+                                        value="">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        <div class="wrapper-123-filter">
                         <div class="listings-filter-header hidden-sm hidden-xs">
                           More Filters<i class="fa fa-align-center" aria-hidden="true"></i>
                         </div>
-                        <div class="listings-filter-wrapper ps-container"
-                          data-ps-id="681c1d54-49a7-9c31-b604-0fe10c472387" style="">
+                        <div class="listings-filter-wrapper ps-container ps-active-y"
+                          data-ps-id="19dbe306-579f-54e6-04f0-434da2c85d6a"
+                          style="top: 96px; height: calc(100% - 96px);">
                           <div class="filter-stick">
                             <h3 class="title-filter-2">What are you looking for?</h3>
                             <div class="desc">Search or select categories</div>
@@ -440,12 +455,41 @@
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="search_keywords">
-                                      <input type="text" name="search_keywords" id="search_keywords" class="search-filter-inputs col-md-12"
+                                    <div class="search_keywords ">
+                                      <input type="text" name="search_keywords" id="search_keywords"
                                         placeholder="Keywords" value="">
                                     </div>
+                                    <!-- <div class="select-categories">
+                                      <div class="search_categories1">
+                                        <select name="search_categories[]" id="search_categories"
+                                          class="job-manager-category-dropdown " data-placeholder="Choose a category…"
+                                          data-no_results_text="No results match"
+                                          data-multiple_text="Select Some Options" style="display: none;">
+                                          <option value="">All categories</option>
+                                          <option class="level-0" value="55">Art&amp;History</option>
+                                          <option class="level-0" value="53">Events</option>
+                                          <option class="level-0" value="54">Fitness</option>
+                                          <option class="level-0" value="50">Hotels</option>
+                                          <option class="level-0" value="48">Nightlife</option>
+                                          <option class="level-0" value="51">Outdoor Activities</option>
+                                          <option class="level-0" value="49">Restaurant</option>
+                                          <option class="level-0" value="52">Shops</option>
+                                        </select>
+                                        <div class="chosen-container chosen-container-single" style="width: 380px;"
+                                          title="" id="search_categories_chosen"><a class="chosen-single"
+                                            tabindex="-1"><span>All categories</span>
+                                            <div><b></b></div>
+                                          </a>
+                                          <div class="chosen-drop">
+                                            <div class="chosen-search"><input type="text" autocomplete="off"></div>
+                                            <ul class="chosen-results"></ul>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div> -->
                                     <div class="search_location">
-                                      <input type="text" name="search_location" id="search_location" class="col-md-12 search-filter-inputs" placeholder="Location" value="" autocomplete="off">
+                                      <input type="text" name="search_location" id="search_location"
+                                        placeholder="Location" value="" autocomplete="off">
                                       <span class="clear-location hidden"><i class="fa fa-times"></i></span>
                                       <span class="find-me"><svg xmlns="http://www.w3.org/2000/svg"
                                           xmlns:xlink="http://www.w3.org/1999/xlink" width="15px" height="15px"
@@ -534,11 +578,7 @@
                                       </div>
                                     </div>
 
-                                    <div class="listing-search-result-filter">
-                                      <div class="results">Showing results for <span
-                                          class="text-strong">Category</span>: <span class="highlight">Restaurant</span>
-                                        <a href="#" class="reset">Reset</a></div>
-                                    </div>
+                                    <div class="listing-search-result-filter"></div>
                                   </div>
                                 </div>
                               </div>
@@ -560,24 +600,23 @@
                                       id="job_type_temporary"> Temporary</label></li>
                               </ul>
                               <input type="hidden" name="filter_job_type[]" value="">
-                              <div class="showing_jobs wp-job-manager-showing-all" style="display: block;">
-                                <div class="results"><span class="results-no">3</span> Results Found (Showing 1 - 3)
-                                </div><span>Showing results for <span class="text-strong">Category</span>: <span
-                                    class="highlight">Restaurant</span></span><a href="#" class="reset">Reset</a>
+                              <div class="showing_jobs" style="display: none;">
+                                <div class="results"><span class="results-no">14</span> Results Found (Showing 1 - 14)
+                                </div>
                               </div>
                             </div>
                           </form>
                           <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
                             <div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div>
                           </div>
-                          <div class="ps-scrollbar-y-rail" style="top: 0px; right: 0px;">
-                            <div class="ps-scrollbar-y" style="top: 0px; height: 0px;"></div>
+                          <div class="ps-scrollbar-y-rail" style="top: 0px; height: 610px; right: 0px;">
+                            <div class="ps-scrollbar-y" style="top: 0px; height: 468px;"></div>
                           </div>
                         </div>
                       </div>
                       <div class="mobile-groups-button hidden-lg hidden-md">
                         <button class="btn-xs btn btn-second btn-filter">
-                          More Filters </button>
+                          Search Filters </button>
                         <button class="pull-right btn btn-xs btn-second btn-view-map" type="button"><i
                             class="fa fa-map-o" aria-hidden="true"></i> Map View</button>
                         <button class="pull-right btn btn-xs btn-second btn-view-listing hidden-sm hidden-xs"
@@ -585,21 +624,10 @@
                       </div>
                       <noscript>Your browser does not support JavaScript, or it is disabled. JavaScript must be enabled
                         in order to view listings.</noscript>
-                        
-                        <div class="job_filters job_filters-sidebar ng-untouched ng-pristine ng-valid main-search-box">
-                          <div class="filter-inner clearfix">
-                            <div class="search_jobs">
-                                    <div class="content">
-                                        <input type="text" name="search_location" id="search_location" class="col-md-12 search-filter-inputs" placeholder="e.g pizza shops near me " value="" autocomplete="off">
-                                    </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class=" main-results">
+                      <div class=" main-results">
                         <div class="listing-action clearfix">
                           <div class="listing-search-result">
-                            <div class="results"><span class="results-no">3</span> Results Found (Showing 1 - 3)</div>
+                            <div class="results"><span class="results-no">14</span> Results Found (Showing 1 - 14)</div>
                           </div>
                           <div class="listing-display-mode">
                             <div class="display-mode">
@@ -611,7 +639,370 @@
                           </div>
                         </div>
                         <div class="job_listings job_listings_cards clearfix row">
-                          <div class="md-clear-2 col-md-6 col-sm-6 col-xs-12 	">
+                          <div class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450	">
+                            <div
+                              class="job-grid-style job-grid-style-v1 post-636 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-nightlife job_listing_type-full-time job_listing_amenity-accepts-credit-cards job_listing_amenity-bike-parking job_listing_amenity-coupons job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-reservations job_listing_amenity-smoking-allowed job_listing_amenity-wheelchair-accesible job_listing_region-new-york job_listing_tag-card-payment job_listing_tag-daily-specials job_listing_tag-hotels job_listing_tag-listing job_listing_tag-new-york job_listing_tag-parking-street job_listing_tag-restaurant job_listing_tag-smoking-allowed job-type-full-time job_position_featured"
+                              itemscope="" itemtype="http://schema.org/LocalBusiness" data-longitude="-73.8872109"
+                              data-latitude="40.666016"
+                              data-img="https://demoapus.com/findgo/wp-content/uploads/2018/05/27-375x230.jpg"
+                              data-permalink="https://demoapus.com/findgo/listings/diamond-club/">
+
+                              <div class="listing-cat-icon hidden">
+                                <i class="flaticon-wine-glass"></i>
+                              </div>
+                              <div class="hidden listing-review">
+                                <div class="review-stars-rated-wrapper">
+                                  <div class="review-stars-rated">
+                                    <ul class="review-stars">
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                    </ul>
+
+                                    <ul class="review-stars filled" style="width: 90%">
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                    </ul>
+                                  </div>
+                                  <span class="nb-review">(2 Reviews)</span>
+                                </div>
+                              </div>
+                              <span class="listing-address hidden">
+                                590 Schenck Ave, Brooklyn </span>
+                              <div class="listing-image">
+                                <div class="listing-image-inner">
+                                  <div class="image-wrapper image-loaded">
+                                    <a href="https://demoapus.com/findgo/listings/diamond-club/">
+                                      <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/27-375x230.jpg"
+                                        alt="Diamond Club" class="unveil-image">
+                                    </a>
+                                  </div>
+                                  <span class="price-range">
+                                    $20 - $35 </span>
+                                  <div class="top-imformation">
+                                    <div class="listing-preview-wrapper pull-left">
+                                      <a href="#preview-636" class="listing-preview" data-id="636"><i
+                                          class="flaticon-visible"></i><span class="preview-text">Preview</span></a>
+                                    </div>
+                                    <div class="listing-bookmark pull-right">
+                                      <a href="#apus-bookmark-add" class="apus-bookmark-not-login" data-id="636">
+                                        <span class="bookmark-text">Save</span>
+                                        <i class="flaticon-like"></i>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="bottom-grid">
+                                <div class="listing-content">
+                                  <h3 class="listing-title">
+                                    <a href="https://demoapus.com/findgo/listings/diamond-club/">Diamond Club</a>
+                                    <span class="listing-claimed-icon" data-toggle="tooltip" title=""
+                                      data-original-title="Claimed"><i class="text-theme fa fa-check-circle"></i></span>
+                                  </h3>
+                                  <div class="listing-tagline">Club and shop for you</div>
+                                  <div class="listing-tags">
+                                    <div class="listing-review">
+                                      <span class="review-avg">4.5</span>
+                                      2 Ratings </div>
+                                    <div class="listing-category">
+                                      <a href="https://demoapus.com/findgo/listing-category/nightlife/"><i
+                                          class="flaticon-wine-glass"></i>Nightlife</a> </div>
+                                    <div class="listing-time closed">
+                                      Closed </div>
+                                  </div>
+                                </div>
+                                <div class="listing-content-bottom clearfix">
+                                  <div class="pull-left">
+                                    <div class="listing-location">
+                                      <i class="flaticon-placeholder"></i><a
+                                        href="https://demoapus.com/findgo/region/new-york/">New York</a> </div>
+                                  </div>
+                                  <div class="listing-phone pull-right">
+                                    <i class="flaticon-phone-call"></i>
+                                    +123 456 789 </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450	">
+                            <div
+                              class="job-grid-style job-grid-style-v1 post-635 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-shops job_listing_type-full-time job_listing_amenity-accepts-credit-cards job_listing_amenity-bike-parking job_listing_amenity-coupons job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-reservations job_listing_amenity-smoking-allowed job_listing_amenity-wheelchair-accesible job_listing_region-new-york job_listing_tag-card-payment job_listing_tag-daily-specials job_listing_tag-hotels job_listing_tag-new-york job_listing_tag-parking-street job_listing_tag-restaurant job-type-full-time job_position_featured"
+                              itemscope="" itemtype="http://schema.org/LocalBusiness" data-longitude="-73.9393231"
+                              data-latitude="40.6720677"
+                              data-img="https://demoapus.com/findgo/wp-content/uploads/2018/05/10-375x230.jpg"
+                              data-permalink="https://demoapus.com/findgo/listings/shop-in-city2/">
+
+                              <div class="listing-cat-icon hidden">
+                                <i class="flaticon-shopping-cart"></i>
+                              </div>
+                              <div class="hidden listing-review">
+                                <div class="review-stars-rated-wrapper">
+                                  <div class="review-stars-rated">
+                                    <ul class="review-stars">
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                    </ul>
+
+                                    <ul class="review-stars filled" style="width: 100%">
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                    </ul>
+                                  </div>
+                                  <span class="nb-review">(1 Review)</span>
+                                </div>
+                              </div>
+                              <span class="listing-address hidden">
+                                228-252 Albany Ave, Brooklyn </span>
+                              <div class="listing-image">
+                                <div class="listing-image-inner">
+                                  <div class="image-wrapper image-loaded">
+                                    <a href="https://demoapus.com/findgo/listings/shop-in-city2/">
+                                      <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/10-375x230.jpg"
+                                        alt="Shop In City2" class="unveil-image">
+                                    </a>
+                                  </div>
+                                  <span class="price-range">
+                                    $100 - $200 </span>
+                                  <div class="top-imformation">
+                                    <div class="listing-preview-wrapper pull-left">
+                                      <a href="#preview-635" class="listing-preview" data-id="635"><i
+                                          class="flaticon-visible"></i><span class="preview-text">Preview</span></a>
+                                    </div>
+                                    <div class="listing-bookmark pull-right">
+                                      <a href="#apus-bookmark-add" class="apus-bookmark-not-login" data-id="635">
+                                        <span class="bookmark-text">Save</span>
+                                        <i class="flaticon-like"></i>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="bottom-grid">
+                                <div class="listing-content">
+                                  <h3 class="listing-title">
+                                    <a href="https://demoapus.com/findgo/listings/shop-in-city2/">Shop In City2</a>
+                                  </h3>
+                                  <div class="listing-tagline">Shop for you</div>
+                                  <div class="listing-tags">
+                                    <div class="listing-review">
+                                      <span class="review-avg">5.0</span>
+                                      1 Rating </div>
+                                    <div class="listing-category">
+                                      <a href="https://demoapus.com/findgo/listing-category/shops/"><i
+                                          class="flaticon-shopping-cart"></i>Shops</a> </div>
+                                    <div class="listing-time closed">
+                                      Closed </div>
+                                  </div>
+                                </div>
+                                <div class="listing-content-bottom clearfix">
+                                  <div class="pull-left">
+                                    <div class="listing-location">
+                                      <i class="flaticon-placeholder"></i><a
+                                        href="https://demoapus.com/findgo/region/new-york/">New York</a> </div>
+                                  </div>
+                                  <div class="listing-phone pull-right">
+                                    <i class="flaticon-phone-call"></i>
+                                    +84 123 456 </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450	">
+                            <div
+                              class="job-grid-style job-grid-style-v1 post-634 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-shops job_listing_type-full-time job_listing_region-new-york job_listing_tag-card-payment job_listing_tag-daily-specials job_listing_tag-hotels job_listing_tag-new-york job_listing_tag-parking-street job_listing_tag-restaurant job_listing_tag-smoking-allowed job-type-full-time job_position_featured"
+                              itemscope="" itemtype="http://schema.org/LocalBusiness" data-longitude="-73.9723967"
+                              data-latitude="40.6974885"
+                              data-img="https://demoapus.com/findgo/wp-content/uploads/2018/05/17-375x230.jpg"
+                              data-permalink="https://demoapus.com/findgo/listings/shop-in-city-1/">
+
+                              <div class="listing-cat-icon hidden">
+                                <i class="flaticon-shopping-cart"></i>
+                              </div>
+                              <div class="hidden listing-review">
+                                <div class="review-stars-rated-wrapper">
+                                  <div class="review-stars-rated">
+                                    <ul class="review-stars">
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                    </ul>
+
+                                    <ul class="review-stars filled" style="width: 80%">
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                    </ul>
+                                  </div>
+                                  <span class="nb-review">(1 Review)</span>
+                                </div>
+                              </div>
+                              <span class="listing-address hidden">
+                                1119 Adelphi St, Brooklyn </span>
+                              <div class="listing-image">
+                                <div class="listing-image-inner">
+                                  <div class="image-wrapper image-loaded">
+                                    <a href="https://demoapus.com/findgo/listings/shop-in-city-1/">
+                                      <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/17-375x230.jpg"
+                                        alt="Shop In City 1" class="unveil-image">
+                                    </a>
+                                  </div>
+                                  <span class="price-range">
+                                    $12 - $22 </span>
+                                  <div class="top-imformation">
+                                    <div class="listing-preview-wrapper pull-left">
+                                      <a href="#preview-634" class="listing-preview" data-id="634"><i
+                                          class="flaticon-visible"></i><span class="preview-text">Preview</span></a>
+                                    </div>
+                                    <div class="listing-bookmark pull-right">
+                                      <a href="#apus-bookmark-add" class="apus-bookmark-not-login" data-id="634">
+                                        <span class="bookmark-text">Save</span>
+                                        <i class="flaticon-like"></i>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="bottom-grid">
+                                <div class="listing-content">
+                                  <h3 class="listing-title">
+                                    <a href="https://demoapus.com/findgo/listings/shop-in-city-1/">Shop In City 1</a>
+                                    <span class="listing-claimed-icon" data-toggle="tooltip" title=""
+                                      data-original-title="Claimed"><i class="text-theme fa fa-check-circle"></i></span>
+                                  </h3>
+                                  <div class="listing-tagline">Shop for you in city</div>
+                                  <div class="listing-tags">
+                                    <div class="listing-review">
+                                      <span class="review-avg">4.0</span>
+                                      1 Rating </div>
+                                    <div class="listing-category">
+                                      <a href="https://demoapus.com/findgo/listing-category/shops/"><i
+                                          class="flaticon-shopping-cart"></i>Shops</a> </div>
+                                    <div class="listing-time closed">
+                                      Closed </div>
+                                  </div>
+                                </div>
+                                <div class="listing-content-bottom clearfix">
+                                  <div class="pull-left">
+                                    <div class="listing-location">
+                                      <i class="flaticon-placeholder"></i><a
+                                        href="https://demoapus.com/findgo/region/new-york/">New York</a> </div>
+                                  </div>
+                                  <div class="listing-phone pull-right">
+                                    <i class="flaticon-phone-call"></i>
+                                    +123 456 789 </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450	">
+                            <div
+                              class="job-grid-style job-grid-style-v1 post-631 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-arthistory job_listing_type-full-time job_listing_amenity-accepts-credit-cards job_listing_amenity-bike-parking job_listing_amenity-coupons job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-reservations job_listing_region-new-york job_listing_tag-card-payment job_listing_tag-daily-specials job_listing_tag-hotels job_listing_tag-listing job_listing_tag-new-york job_listing_tag-parking-street job_listing_tag-restaurant job-type-full-time job_position_featured"
+                              itemscope="" itemtype="http://schema.org/LocalBusiness" data-longitude="-73.9383702"
+                              data-latitude="40.7362471"
+                              data-img="https://demoapus.com/findgo/wp-content/uploads/2018/05/19-375x230.jpg"
+                              data-permalink="https://demoapus.com/findgo/listings/museum-of-new-york/">
+
+                              <div class="listing-cat-icon hidden">
+                                <i class="flaticon-antique-building-outline"></i>
+                              </div>
+                              <div class="hidden listing-review">
+                                <div class="review-stars-rated-wrapper">
+                                  <div class="review-stars-rated">
+                                    <ul class="review-stars">
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                    </ul>
+
+                                    <ul class="review-stars filled" style="width: 0%">
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                    </ul>
+                                  </div>
+                                  <span class="nb-review">(0 Reviews)</span>
+                                </div>
+                              </div>
+                              <span class="listing-address hidden">
+                                34-02 Starr Ave, Long Island City </span>
+                              <div class="listing-image">
+                                <div class="listing-image-inner">
+                                  <div class="image-wrapper image-loaded">
+                                    <a href="https://demoapus.com/findgo/listings/museum-of-new-york/">
+                                      <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/19-375x230.jpg"
+                                        alt="Museum of New York" class="unveil-image">
+                                    </a>
+                                  </div>
+                                  <span class="price-range">
+                                    $15 - $25 </span>
+                                  <div class="top-imformation">
+                                    <div class="listing-preview-wrapper pull-left">
+                                      <a href="#preview-631" class="listing-preview" data-id="631"><i
+                                          class="flaticon-visible"></i><span class="preview-text">Preview</span></a>
+                                    </div>
+                                    <div class="listing-bookmark pull-right">
+                                      <a href="#apus-bookmark-add" class="apus-bookmark-not-login" data-id="631">
+                                        <span class="bookmark-text">Save</span>
+                                        <i class="flaticon-like"></i>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="bottom-grid">
+                                <div class="listing-content">
+                                  <h3 class="listing-title">
+                                    <a href="https://demoapus.com/findgo/listings/museum-of-new-york/">Museum of New
+                                      York</a>
+                                    <span class="listing-claimed-icon" data-toggle="tooltip" title=""
+                                      data-original-title="Claimed"><i class="text-theme fa fa-check-circle"></i></span>
+                                  </h3>
+                                  <div class="listing-tagline">History and Art for you</div>
+                                  <div class="listing-tags">
+                                    <div class="listing-review">
+                                      <span class="review-avg">0.0</span>
+                                      0 Ratings </div>
+                                    <div class="listing-category">
+                                      <a href="https://demoapus.com/findgo/listing-category/arthistory/"><i
+                                          class="flaticon-antique-building-outline"></i>Art&amp;History</a> </div>
+                                    <div class="listing-time closed">
+                                      Closed </div>
+                                  </div>
+                                </div>
+                                <div class="listing-content-bottom clearfix">
+                                  <div class="pull-left">
+                                    <div class="listing-location">
+                                      <i class="flaticon-placeholder"></i><a
+                                        href="https://demoapus.com/findgo/region/new-york/">New York</a> </div>
+                                  </div>
+                                  <div class="listing-phone pull-right">
+                                    <i class="flaticon-phone-call"></i>
+                                    +123 456 789 </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450	">
                             <div
                               class="job-grid-style job-grid-style-v1 post-629 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-restaurant job_listing_type-freelance job_listing_amenity-accepts-credit-cards job_listing_amenity-bike-parking job_listing_amenity-coupons job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-reservations job_listing_amenity-smoking-allowed job_listing_amenity-wheelchair-accesible job_listing_region-new-york job_listing_tag-card-payment job_listing_tag-hotels job_listing_tag-listing job_listing_tag-parking-street job_listing_tag-restaurant job-type-freelance job_position_featured"
                               itemscope="" itemtype="http://schema.org/LocalBusiness" data-longitude="-73.909874"
@@ -701,7 +1092,7 @@
                               </div>
                             </div>
                           </div>
-                          <div class="md-clear-2 col-md-6 col-sm-6 col-xs-12 	">
+                          <div class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450	">
                             <div
                               class="job-grid-style job-grid-style-v1 post-628 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-restaurant job_listing_type-full-time job_listing_amenity-accepts-credit-cards job_listing_amenity-bike-parking job_listing_amenity-coupons job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-reservations job_listing_amenity-smoking-allowed job_listing_amenity-wheelchair-accesible job_listing_region-new-york job-type-full-time job_position_featured"
                               itemscope="" itemtype="http://schema.org/LocalBusiness" data-longitude="-73.8877096"
@@ -793,7 +1184,7 @@
                               </div>
                             </div>
                           </div>
-                          <div class="md-clear-2 col-md-6 col-sm-6 col-xs-12 	">
+                          <div class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450	">
                             <div
                               class="job-grid-style job-grid-style-v1 post-627 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-restaurant job_listing_type-freelance job_listing_amenity-accepts-credit-cards job_listing_amenity-bike-parking job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-reservations job_listing_amenity-smoking-allowed job_listing_amenity-wheelchair-accesible job_listing_amenity-wireless-internet job_listing_region-new-york job_listing_tag-daily-specials job_listing_tag-hotels job_listing_tag-parking-street job_listing_tag-restaurant job_listing_tag-smoking-allowed job-type-freelance job_position_featured"
                               itemscope="" itemtype="http://schema.org/LocalBusiness" data-longitude="-73.8809714"
@@ -883,17 +1274,652 @@
                               </div>
                             </div>
                           </div>
+                          <div class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450	">
+                            <div
+                              class="job-grid-style job-grid-style-v1 post-626 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-nightlife job_listing_type-freelance job_listing_amenity-accepts-credit-cards job_listing_amenity-bike-parking job_listing_amenity-coupons job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-reservations job_listing_amenity-wheelchair-accesible job_listing_region-new-york job_listing_tag-card-payment job_listing_tag-daily-specials job_listing_tag-hotels job_listing_tag-listing job_listing_tag-restaurant job-type-freelance job_position_featured"
+                              itemscope="" itemtype="http://schema.org/LocalBusiness" data-longitude="-73.853966"
+                              data-latitude="40.753699"
+                              data-img="https://demoapus.com/findgo/wp-content/uploads/2018/05/24-375x230.jpg"
+                              data-permalink="https://demoapus.com/findgo/listings/luxary-hotel-spa/">
+
+                              <div class="listing-cat-icon hidden">
+                                <i class="flaticon-wine-glass"></i>
+                              </div>
+                              <div class="hidden listing-review">
+                                <div class="review-stars-rated-wrapper">
+                                  <div class="review-stars-rated">
+                                    <ul class="review-stars">
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                    </ul>
+
+                                    <ul class="review-stars filled" style="width: 0%">
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                    </ul>
+                                  </div>
+                                  <span class="nb-review">(0 Reviews)</span>
+                                </div>
+                              </div>
+                              <span class="listing-address hidden">
+                                112-36 38th Ave, Flushing </span>
+                              <div class="listing-image">
+                                <div class="listing-image-inner">
+                                  <div class="image-wrapper image-loaded">
+                                    <a href="https://demoapus.com/findgo/listings/luxary-hotel-spa/">
+                                      <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/24-375x230.jpg"
+                                        alt="Luxary Hotel-Spa" class="unveil-image">
+                                    </a>
+                                  </div>
+                                  <span class="price-range">
+                                    $20 - $100 </span>
+                                  <div class="top-imformation">
+                                    <div class="listing-preview-wrapper pull-left">
+                                      <a href="#preview-626" class="listing-preview" data-id="626"><i
+                                          class="flaticon-visible"></i><span class="preview-text">Preview</span></a>
+                                    </div>
+                                    <div class="listing-bookmark pull-right">
+                                      <a href="#apus-bookmark-add" class="apus-bookmark-not-login" data-id="626">
+                                        <span class="bookmark-text">Save</span>
+                                        <i class="flaticon-like"></i>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="bottom-grid">
+                                <div class="listing-content">
+                                  <h3 class="listing-title">
+                                    <a href="https://demoapus.com/findgo/listings/luxary-hotel-spa/">Luxary
+                                      Hotel-Spa</a>
+                                  </h3>
+                                  <div class="listing-tagline">Hotels, luxury , Spa</div>
+                                  <div class="listing-tags">
+                                    <div class="listing-review">
+                                      <span class="review-avg">0.0</span>
+                                      0 Ratings </div>
+                                    <div class="listing-category">
+                                      <a href="https://demoapus.com/findgo/listing-category/nightlife/"><i
+                                          class="flaticon-wine-glass"></i>Nightlife</a> </div>
+                                    <div class="listing-time closed">
+                                      Closed </div>
+                                  </div>
+                                </div>
+                                <div class="listing-content-bottom clearfix">
+                                  <div class="pull-left">
+                                    <div class="listing-location">
+                                      <i class="flaticon-placeholder"></i><a
+                                        href="https://demoapus.com/findgo/region/new-york/">New York</a> </div>
+                                  </div>
+                                  <div class="listing-phone pull-right">
+                                    <i class="flaticon-phone-call"></i>
+                                    +012348888 </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450	">
+                            <div
+                              class="job-grid-style job-grid-style-v1 post-625 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-nightlife job_listing_type-freelance job_listing_amenity-accepts-credit-cards job_listing_amenity-bike-parking job_listing_amenity-coupons job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-reservations job_listing_amenity-smoking-allowed job_listing_amenity-wheelchair-accesible job_listing_region-new-york job_listing_tag-card-payment job_listing_tag-daily-specials job_listing_tag-hotels job_listing_tag-new-york job_listing_tag-parking-street job_listing_tag-restaurant job-type-freelance job_position_featured"
+                              itemscope="" itemtype="http://schema.org/LocalBusiness" data-longitude="-73.873291"
+                              data-latitude="40.769606"
+                              data-img="https://demoapus.com/findgo/wp-content/uploads/2018/05/5-1-375x230.jpg"
+                              data-permalink="https://demoapus.com/findgo/listings/orlando-villa/">
+
+                              <div class="listing-cat-icon hidden">
+                                <i class="flaticon-wine-glass"></i>
+                              </div>
+                              <div class="hidden listing-review">
+                                <div class="review-stars-rated-wrapper">
+                                  <div class="review-stars-rated">
+                                    <ul class="review-stars">
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                    </ul>
+
+                                    <ul class="review-stars filled" style="width: 0%">
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                    </ul>
+                                  </div>
+                                  <span class="nb-review">(0 Reviews)</span>
+                                </div>
+                              </div>
+                              <span class="listing-address hidden">
+                                22-31 97th St, Flushing </span>
+                              <div class="listing-image">
+                                <div class="listing-image-inner">
+                                  <div class="image-wrapper image-loaded">
+                                    <a href="https://demoapus.com/findgo/listings/orlando-villa/">
+                                      <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/5-1-375x230.jpg"
+                                        alt="Orlando Villa" class="unveil-image">
+                                    </a>
+                                  </div>
+                                  <span class="price-range">
+                                    $15 - $20 </span>
+                                  <div class="top-imformation">
+                                    <div class="listing-preview-wrapper pull-left">
+                                      <a href="#preview-625" class="listing-preview" data-id="625"><i
+                                          class="flaticon-visible"></i><span class="preview-text">Preview</span></a>
+                                    </div>
+                                    <div class="listing-bookmark pull-right">
+                                      <a href="#apus-bookmark-add" class="apus-bookmark-not-login" data-id="625">
+                                        <span class="bookmark-text">Save</span>
+                                        <i class="flaticon-like"></i>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="bottom-grid">
+                                <div class="listing-content">
+                                  <h3 class="listing-title">
+                                    <a href="https://demoapus.com/findgo/listings/orlando-villa/">Orlando Villa</a>
+                                  </h3>
+                                  <div class="listing-tagline">Villa,food for you</div>
+                                  <div class="listing-tags">
+                                    <div class="listing-review">
+                                      <span class="review-avg">0.0</span>
+                                      0 Ratings </div>
+                                    <div class="listing-category">
+                                      <a href="https://demoapus.com/findgo/listing-category/nightlife/"><i
+                                          class="flaticon-wine-glass"></i>Nightlife</a> </div>
+                                    <div class="listing-time closed">
+                                      Closed </div>
+                                  </div>
+                                </div>
+                                <div class="listing-content-bottom clearfix">
+                                  <div class="pull-left">
+                                    <div class="listing-location">
+                                      <i class="flaticon-placeholder"></i><a
+                                        href="https://demoapus.com/findgo/region/new-york/">New York</a> </div>
+                                  </div>
+                                  <div class="listing-phone pull-right">
+                                    <i class="flaticon-phone-call"></i>
+                                    +0123456888 </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450	">
+                            <div
+                              class="job-grid-style job-grid-style-v1 post-624 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-outdoor-activities job_listing_type-full-time job_listing_amenity-accepts-credit-cards job_listing_amenity-bike-parking job_listing_amenity-coupons job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-reservations job_listing_amenity-smoking-allowed job_listing_amenity-wheelchair-accesible job_listing_region-hong-kong job_listing_tag-card-payment job_listing_tag-daily-specials job_listing_tag-hotels job_listing_tag-parking-street job_listing_tag-restaurant job_listing_tag-smoking-allowed job_listing_tag-trips job_listing_tag-wireless-internet job-type-full-time"
+                              itemscope="" itemtype="http://schema.org/LocalBusiness" data-longitude="114.171385"
+                              data-latitude="22.3166811"
+                              data-img="https://demoapus.com/findgo/wp-content/uploads/2018/05/25-375x230.jpg"
+                              data-permalink="https://demoapus.com/findgo/listings/bike-tours-hollywood/">
+
+                              <div class="listing-cat-icon hidden">
+                                <i class="flaticon-mountain"></i>
+                              </div>
+                              <div class="hidden listing-review">
+                                <div class="review-stars-rated-wrapper">
+                                  <div class="review-stars-rated">
+                                    <ul class="review-stars">
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                    </ul>
+
+                                    <ul class="review-stars filled" style="width: 0%">
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                    </ul>
+                                  </div>
+                                  <span class="nb-review">(0 Reviews)</span>
+                                </div>
+                              </div>
+                              <span class="listing-address hidden">
+                                50 Soy St, Mong Kok </span>
+                              <div class="listing-image">
+                                <div class="listing-image-inner">
+                                  <div class="image-wrapper image-loaded">
+                                    <a href="https://demoapus.com/findgo/listings/bike-tours-hollywood/">
+                                      <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/25-375x230.jpg"
+                                        alt="Bike Tours Hollywood" class="unveil-image">
+                                    </a>
+                                  </div>
+                                  <span class="price-range">
+                                    $10 - $20 </span>
+                                  <div class="top-imformation">
+                                    <div class="listing-preview-wrapper pull-left">
+                                      <a href="#preview-624" class="listing-preview" data-id="624"><i
+                                          class="flaticon-visible"></i><span class="preview-text">Preview</span></a>
+                                    </div>
+                                    <div class="listing-bookmark pull-right">
+                                      <a href="#apus-bookmark-add" class="apus-bookmark-not-login" data-id="624">
+                                        <span class="bookmark-text">Save</span>
+                                        <i class="flaticon-like"></i>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="bottom-grid">
+                                <div class="listing-content">
+                                  <h3 class="listing-title">
+                                    <a href="https://demoapus.com/findgo/listings/bike-tours-hollywood/">Bike Tours
+                                      Hollywood</a>
+                                  </h3>
+                                  <div class="listing-tagline">Outdoor, luxury for you</div>
+                                  <div class="listing-tags">
+                                    <div class="listing-review">
+                                      <span class="review-avg">0.0</span>
+                                      0 Ratings </div>
+                                    <div class="listing-category">
+                                      <a href="https://demoapus.com/findgo/listing-category/outdoor-activities/"><i
+                                          class="flaticon-mountain"></i>Outdoor Activities</a> </div>
+                                    <div class="listing-time closed">
+                                      Closed </div>
+                                  </div>
+                                </div>
+                                <div class="listing-content-bottom clearfix">
+                                  <div class="pull-left">
+                                    <div class="listing-location">
+                                      <i class="flaticon-placeholder"></i><a
+                                        href="https://demoapus.com/findgo/region/hong-kong/">Hong Kong</a> </div>
+                                  </div>
+                                  <div class="listing-phone pull-right">
+                                    <i class="flaticon-phone-call"></i>
+                                    +0123456789 </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450	">
+                            <div
+                              class="job-grid-style job-grid-style-v1 post-236 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-fitness job_listing_type-full-time job_listing_amenity-accepts-credit-cards job_listing_amenity-bike-parking job_listing_amenity-coupons job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-reservations job_listing_amenity-smoking-allowed job_listing_amenity-wheelchair-accesible job_listing_amenity-wireless-internet job_listing_region-london job_listing_tag-card-payment job_listing_tag-daily-specials job_listing_tag-hotels job_listing_tag-listing job_listing_tag-restaurant job_listing_tag-smoking-allowed job_listing_tag-trips job-type-full-time"
+                              itemscope="" itemtype="http://schema.org/LocalBusiness" data-longitude="-0.1260016"
+                              data-latitude="51.5106508"
+                              data-img="https://demoapus.com/findgo/wp-content/uploads/2018/05/1-2-375x230.jpg"
+                              data-permalink="https://demoapus.com/findgo/listings/liberty-club/">
+
+                              <div class="listing-cat-icon hidden">
+                                <i class="flaticon-weightlifting"></i>
+                              </div>
+                              <div class="hidden listing-review">
+                                <div class="review-stars-rated-wrapper">
+                                  <div class="review-stars-rated">
+                                    <ul class="review-stars">
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                    </ul>
+
+                                    <ul class="review-stars filled" style="width: 90%">
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                    </ul>
+                                  </div>
+                                  <span class="nb-review">(6 Reviews)</span>
+                                </div>
+                              </div>
+                              <span class="listing-address hidden">
+                                9 Hop Gardens, London </span>
+                              <div class="listing-image">
+                                <div class="listing-image-inner">
+                                  <div class="image-wrapper image-loaded">
+                                    <a href="https://demoapus.com/findgo/listings/liberty-club/">
+                                      <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/1-2-375x230.jpg"
+                                        alt="Liberty Club" class="unveil-image">
+                                    </a>
+                                  </div>
+                                  <span class="price-range">
+                                    $80 - $100 </span>
+                                  <div class="top-imformation">
+                                    <div class="listing-preview-wrapper pull-left">
+                                      <a href="#preview-236" class="listing-preview" data-id="236"><i
+                                          class="flaticon-visible"></i><span class="preview-text">Preview</span></a>
+                                    </div>
+                                    <div class="listing-bookmark pull-right">
+                                      <a href="#apus-bookmark-add" class="apus-bookmark-not-login" data-id="236">
+                                        <span class="bookmark-text">Save</span>
+                                        <i class="flaticon-like"></i>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="bottom-grid">
+                                <div class="listing-content">
+                                  <h3 class="listing-title">
+                                    <a href="https://demoapus.com/findgo/listings/liberty-club/">Liberty Club</a>
+                                  </h3>
+                                  <div class="listing-tagline">Club, luxury food for you</div>
+                                  <div class="listing-tags">
+                                    <div class="listing-review">
+                                      <span class="review-avg">4.5</span>
+                                      6 Ratings </div>
+                                    <div class="listing-category">
+                                      <a href="https://demoapus.com/findgo/listing-category/fitness/"><i
+                                          class="flaticon-weightlifting"></i>Fitness</a> </div>
+                                    <div class="listing-time closed">
+                                      Closed </div>
+                                  </div>
+                                </div>
+                                <div class="listing-content-bottom clearfix">
+                                  <div class="pull-left">
+                                    <div class="listing-location">
+                                      <i class="flaticon-placeholder"></i><a
+                                        href="https://demoapus.com/findgo/region/london/">London</a> </div>
+                                  </div>
+                                  <div class="listing-phone pull-right">
+                                    <i class="flaticon-phone-call"></i>
+                                    +84 888 999 </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450	">
+                            <div
+                              class="job-grid-style job-grid-style-v1 post-235 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-events job_listing_type-part-time job_listing_amenity-coupons job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-reservations job_listing_amenity-smoking-allowed job_listing_amenity-wheelchair-accesible job_listing_region-amsterdam job_listing_tag-hotels job_listing_tag-listing job_listing_tag-restaurant job_listing_tag-trips job_listing_tag-wireless-internet job-type-part-time"
+                              itemscope="" itemtype="http://schema.org/LocalBusiness" data-longitude="4.866789"
+                              data-latitude="52.366769"
+                              data-img="https://demoapus.com/findgo/wp-content/uploads/2018/05/34-375x230.jpg"
+                              data-permalink="https://demoapus.com/findgo/listings/urban-hotels/">
+
+                              <div class="listing-cat-icon hidden">
+                                <i class="flaticon-guitar"></i>
+                              </div>
+                              <div class="hidden listing-review">
+                                <div class="review-stars-rated-wrapper">
+                                  <div class="review-stars-rated">
+                                    <ul class="review-stars">
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                    </ul>
+
+                                    <ul class="review-stars filled" style="width: 0%">
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                    </ul>
+                                  </div>
+                                  <span class="nb-review">(0 Reviews)</span>
+                                </div>
+                              </div>
+                              <span class="listing-address hidden">
+                                Ten Katestraat 24AIII, 1053 CG </span>
+                              <div class="listing-image">
+                                <div class="listing-image-inner">
+                                  <div class="image-wrapper image-loaded">
+                                    <a href="https://demoapus.com/findgo/listings/urban-hotels/">
+                                      <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/34-375x230.jpg"
+                                        alt="Urban Hotels" class="unveil-image">
+                                    </a>
+                                  </div>
+                                  <span class="price-range">
+                                    $220 - $250 </span>
+                                  <div class="top-imformation">
+                                    <div class="listing-preview-wrapper pull-left">
+                                      <a href="#preview-235" class="listing-preview" data-id="235"><i
+                                          class="flaticon-visible"></i><span class="preview-text">Preview</span></a>
+                                    </div>
+                                    <div class="listing-bookmark pull-right">
+                                      <a href="#apus-bookmark-add" class="apus-bookmark-not-login" data-id="235">
+                                        <span class="bookmark-text">Save</span>
+                                        <i class="flaticon-like"></i>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="bottom-grid">
+                                <div class="listing-content">
+                                  <h3 class="listing-title">
+                                    <a href="https://demoapus.com/findgo/listings/urban-hotels/">Urban Hotels</a>
+                                    <span class="listing-claimed-icon" data-toggle="tooltip" title=""
+                                      data-original-title="Claimed"><i class="text-theme fa fa-check-circle"></i></span>
+                                  </h3>
+                                  <div class="listing-tagline">Hotels, luxury food for you</div>
+                                  <div class="listing-tags">
+                                    <div class="listing-review">
+                                      <span class="review-avg">0.0</span>
+                                      0 Ratings </div>
+                                    <div class="listing-category">
+                                      <a href="https://demoapus.com/findgo/listing-category/events/"><i
+                                          class="flaticon-guitar"></i>Events</a> </div>
+                                    <div class="listing-time opening">
+                                      Open </div>
+                                  </div>
+                                </div>
+                                <div class="listing-content-bottom clearfix">
+                                  <div class="pull-left">
+                                    <div class="listing-location">
+                                      <i class="flaticon-placeholder"></i><a
+                                        href="https://demoapus.com/findgo/region/amsterdam/">Amsterdam</a> </div>
+                                  </div>
+                                  <div class="listing-phone pull-right">
+                                    <i class="flaticon-phone-call"></i>
+                                    +0123456789 </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450	">
+                            <div
+                              class="job-grid-style job-grid-style-v1 post-234 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-hotels job_listing_type-full-time job_listing_amenity-bike-parking job_listing_amenity-coupons job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-reservations job_listing_amenity-smoking-allowed job_listing_region-istanbul job_listing_tag-card-payment job_listing_tag-daily-specials job_listing_tag-listing job_listing_tag-new-york job_listing_tag-parking-street job_listing_tag-restaurant job_listing_tag-smoking-allowed job_listing_tag-trips job_listing_tag-wireless-internet job-type-full-time"
+                              itemscope="" itemtype="http://schema.org/LocalBusiness" data-longitude="28.8646596"
+                              data-latitude="41.0277359"
+                              data-img="https://demoapus.com/findgo/wp-content/uploads/2018/05/14-375x230.jpg"
+                              data-permalink="https://demoapus.com/findgo/listings/hills-restaurant/">
+
+                              <div class="listing-cat-icon hidden">
+                                <i class="flaticon-hotel"></i>
+                              </div>
+                              <div class="hidden listing-review">
+                                <div class="review-stars-rated-wrapper">
+                                  <div class="review-stars-rated">
+                                    <ul class="review-stars">
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                    </ul>
+
+                                    <ul class="review-stars filled" style="width: 66.6%">
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                    </ul>
+                                  </div>
+                                  <span class="nb-review">(6 Reviews)</span>
+                                </div>
+                              </div>
+                              <span class="listing-address hidden">
+                                Işık Sk. 4-6, 34164 Güngören </span>
+                              <div class="listing-image">
+                                <div class="listing-image-inner">
+                                  <div class="image-wrapper image-loaded">
+                                    <a href="https://demoapus.com/findgo/listings/hills-restaurant/">
+                                      <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/14-375x230.jpg"
+                                        alt="Hills Restaurant" class="unveil-image">
+                                    </a>
+                                  </div>
+                                  <span class="price-range">
+                                    $80 - $100 </span>
+                                  <div class="top-imformation">
+                                    <div class="listing-preview-wrapper pull-left">
+                                      <a href="#preview-234" class="listing-preview" data-id="234"><i
+                                          class="flaticon-visible"></i><span class="preview-text">Preview</span></a>
+                                    </div>
+                                    <div class="listing-bookmark pull-right">
+                                      <a href="#apus-bookmark-add" class="apus-bookmark-not-login" data-id="234">
+                                        <span class="bookmark-text">Save</span>
+                                        <i class="flaticon-like"></i>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="bottom-grid">
+                                <div class="listing-content">
+                                  <h3 class="listing-title">
+                                    <a href="https://demoapus.com/findgo/listings/hills-restaurant/">Hills
+                                      Restaurant</a>
+                                  </h3>
+                                  <div class="listing-tagline">Delicious, luxury food for you</div>
+                                  <div class="listing-tags">
+                                    <div class="listing-review">
+                                      <span class="review-avg">3.3</span>
+                                      6 Ratings </div>
+                                    <div class="listing-category">
+                                      <a href="https://demoapus.com/findgo/listing-category/hotels/"><i
+                                          class="flaticon-hotel"></i>Hotels</a> </div>
+                                    <div class="listing-time closed">
+                                      Closed </div>
+                                  </div>
+                                </div>
+                                <div class="listing-content-bottom clearfix">
+                                  <div class="pull-left">
+                                    <div class="listing-location">
+                                      <i class="flaticon-placeholder"></i><a
+                                        href="https://demoapus.com/findgo/region/istanbul/">Istanbul</a> </div>
+                                  </div>
+                                  <div class="listing-phone pull-right">
+                                    <i class="flaticon-phone-call"></i>
+                                    +1 246-345-0695 </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450	">
+                            <div
+                              class="job-grid-style job-grid-style-v1 post-232 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-hotels job_listing_type-freelance job_listing_amenity-accepts-credit-cards job_listing_amenity-coupons job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-wheelchair-accesible job_listing_amenity-wireless-internet job_listing_region-istanbul job_listing_tag-hotels job_listing_tag-listing job_listing_tag-new-york job_listing_tag-restaurant job_listing_tag-smoking-allowed job_listing_tag-trips job-type-freelance"
+                              itemscope="" itemtype="http://schema.org/LocalBusiness" data-longitude="28.8799594"
+                              data-latitude="41.0195394"
+                              data-img="https://demoapus.com/findgo/wp-content/uploads/2018/05/12-375x230.jpg"
+                              data-permalink="https://demoapus.com/findgo/listings/burger-house/">
+
+                              <div class="listing-cat-icon hidden">
+                                <i class="flaticon-hotel"></i>
+                              </div>
+                              <div class="hidden listing-review">
+                                <div class="review-stars-rated-wrapper">
+                                  <div class="review-stars-rated">
+                                    <ul class="review-stars">
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                      <li><span class="fa fa-star-o"></span></li>
+                                    </ul>
+
+                                    <ul class="review-stars filled" style="width: 0%">
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                      <li><span class="fa fa-star"></span></li>
+                                    </ul>
+                                  </div>
+                                  <span class="nb-review">(0 Reviews)</span>
+                                </div>
+                              </div>
+                              <span class="listing-address hidden">
+                                Kavak Sk. 21-9, 34165 Güngören </span>
+                              <div class="listing-image">
+                                <div class="listing-image-inner">
+                                  <div class="image-wrapper image-loaded">
+                                    <a href="https://demoapus.com/findgo/listings/burger-house/">
+                                      <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/12-375x230.jpg"
+                                        alt="Burger House" class="unveil-image">
+                                    </a>
+                                  </div>
+                                  <span class="price-range">
+                                    $100 - $120 </span>
+                                  <div class="top-imformation">
+                                    <div class="listing-preview-wrapper pull-left">
+                                      <a href="#preview-232" class="listing-preview" data-id="232"><i
+                                          class="flaticon-visible"></i><span class="preview-text">Preview</span></a>
+                                    </div>
+                                    <div class="listing-bookmark pull-right">
+                                      <a href="#apus-bookmark-add" class="apus-bookmark-not-login" data-id="232">
+                                        <span class="bookmark-text">Save</span>
+                                        <i class="flaticon-like"></i>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="bottom-grid">
+                                <div class="listing-content">
+                                  <h3 class="listing-title">
+                                    <a href="https://demoapus.com/findgo/listings/burger-house/">Burger House</a>
+                                    <span class="listing-claimed-icon" data-toggle="tooltip" title=""
+                                      data-original-title="Claimed"><i class="text-theme fa fa-check-circle"></i></span>
+                                  </h3>
+                                  <div class="listing-tagline">House, luxury food for you</div>
+                                  <div class="listing-tags">
+                                    <div class="listing-review">
+                                      <span class="review-avg">0.0</span>
+                                      0 Ratings </div>
+                                    <div class="listing-category">
+                                      <a href="https://demoapus.com/findgo/listing-category/hotels/"><i
+                                          class="flaticon-hotel"></i>Hotels</a> </div>
+                                    <div class="listing-time closed">
+                                      Closed </div>
+                                  </div>
+                                </div>
+                                <div class="listing-content-bottom clearfix">
+                                  <div class="pull-left">
+                                    <div class="listing-location">
+                                      <i class="flaticon-placeholder"></i><a
+                                        href="https://demoapus.com/findgo/region/istanbul/">Istanbul</a> </div>
+                                  </div>
+                                  <div class="listing-phone pull-right">
+                                    <i class="flaticon-phone-call"></i>
+                                    +1 246-345-0695 </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
+                        <a class="load_more_jobs" href="#" style="display: none;"><strong>Load more
+                            listings</strong></a>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-5 no-padding half-map">
-                    <div class="apus-listing-map fix-map hidden-sm hidden-xs leaflet-container leaflet-fade-anim map--google" tabindex="0" >
-                      <!-- <agm-map mapTypeId="roadmap" [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom"
-                          [disableDefaultUI]="true" [zoomControl]="true" [fitBounds]="true" class="agm-map">
-                          <agm-marker *ngFor="let marker of markers" [(latitude)]="marker.lat" [(longitude)]="marker.lng"
-                            [agmFitBounds]="true"></agm-marker>
-                      </agm-map>  -->
+                  <div class="col-md-3 no-padding half-map">
+                    <div
+                      class="apus-listing-map fix-map hidden-sm hidden-xs leaflet-container leaflet-fade-anim map--google"
+                      tabindex="0">
+                      <agm-map mapTypeId="roadmap" [(latitude)]="location.lat" [(longitude)]="location.lng"
+                        [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [fitBounds]="true"
+                        class="agm-map">
+                        <agm-marker *ngFor="let marker of markers" [(latitude)]="marker.lat" [(longitude)]="marker.lng"
+                          [agmFitBounds]="true"></agm-marker>
+                      </agm-map>
                     </div>
                   </div>
                 </div>
