@@ -7,6 +7,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
+
 }
 
 
@@ -17,6 +18,7 @@
     background-color: white;
     z-index: 100;
     border: 1px solid #ccc;
+    min-height: 1200px!important;
 }
 
 .parent-container .map {
@@ -31,6 +33,11 @@
     z-index: 100;
 }
 
+mat-tab-group{
+    height: 600px;
+    overflow: auto;
+}
+
 mat-grid-list {
     height: 100px;
     margin: 3%!important;
@@ -40,6 +47,6 @@ mat-grid-tile {
     background: lightblue;
 }
 
-mat-tab-group{
-    min-height:"800px";
+.mat-drawer .mat-drawer-inner-container{
+    overflow: hidden!important;
 }

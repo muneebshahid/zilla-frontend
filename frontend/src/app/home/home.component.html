@@ -12,7 +12,7 @@
                           <div class="col-md-12 no-padding">
                             <div class="list-content clearfix">
                               <div class="wrapper-filters clearfix">
-                                <div class="col-xs-12">
+                                <div class="col-xs-12 filter-parent">
                                   <form class="job_filters job_filters-location">
                                     <input id="input_display_mode" type="hidden" name="display_mode" value="grid">
                                     <input class="input_filter_oder" type="hidden" name="filter_order" value="default">
@@ -114,38 +114,6 @@
                                     </div>
                                   </form>
 
-                                  <!-- GRID VIEW STARTING HERE -->
-                                  <mat-tab-group mat-align-tabs="center" (selectedTabChange)="tabClick($event)">
-                                    <mat-tab label="Products">  
-                                      <mat-grid-list cols="2" rowHeight="2:1" gutterSize="10">
-                                          <mat-grid-tile>1</mat-grid-tile>
-                                          <mat-grid-tile>2</mat-grid-tile>
-                                          <mat-grid-tile>3</mat-grid-tile>
-                                          <mat-grid-tile>4</mat-grid-tile>
-                                          <mat-grid-tile>3</mat-grid-tile>
-                                          <mat-grid-tile>4</mat-grid-tile>
-                                          <mat-grid-tile>3</mat-grid-tile>
-                                          <mat-grid-tile>4</mat-grid-tile>
-                                          <mat-grid-tile>3</mat-grid-tile>
-                                          <mat-grid-tile>4</mat-grid-tile>
-                                      </mat-grid-list>
-
-                                    </mat-tab>
-                                    <mat-tab label="Deals">
-                                        <mat-grid-list cols="2" rowHeight="2:1" gutterSize="10">
-                                            <mat-grid-tile>1</mat-grid-tile>
-                                            <mat-grid-tile>2</mat-grid-tile>
-                                            <mat-grid-tile>3</mat-grid-tile>
-                                            <mat-grid-tile>4</mat-grid-tile>
-                                            <mat-grid-tile>3</mat-grid-tile>
-                                            <mat-grid-tile>4</mat-grid-tile>
-                                            <mat-grid-tile>3</mat-grid-tile>
-                                            <mat-grid-tile>4</mat-grid-tile>
-                                            <mat-grid-tile>3</mat-grid-tile>
-                                            <mat-grid-tile>4</mat-grid-tile>
-                                        </mat-grid-list>
-                                    </mat-tab>
-                                  </mat-tab-group>
 
                                 </div>
                               </div>
@@ -158,7 +126,43 @@
                 </div>
               </div><!-- #primary -->
             </section>
+
           </div><!-- .site-content -->
+
+
+                                  <!-- GRID VIEW STARTING HERE -->
+                                  <mat-tab-group mat-align-tabs="center" (selectedTabChange)="tabClick($event)">
+                                      <mat-tab label="Products">  
+                                        <mat-grid-list cols="2" rowHeight="2:1" gutterSize="10">
+                                            <mat-grid-tile>1</mat-grid-tile>
+                                            <mat-grid-tile>2</mat-grid-tile>
+                                            <mat-grid-tile>3</mat-grid-tile>
+                                            <mat-grid-tile>4</mat-grid-tile>
+                                            <mat-grid-tile>3</mat-grid-tile>
+                                            <mat-grid-tile>4</mat-grid-tile>
+                                            <mat-grid-tile>3</mat-grid-tile>
+                                            <mat-grid-tile>4</mat-grid-tile>
+                                            <mat-grid-tile>3</mat-grid-tile>
+                                            <mat-grid-tile>4</mat-grid-tile>
+                                        </mat-grid-list>
+  
+                                      </mat-tab>
+                                      <mat-tab label="Deals">
+                                          <mat-grid-list cols="2" rowHeight="2:1" gutterSize="10">
+                                              <mat-grid-tile>1</mat-grid-tile>
+                                              <mat-grid-tile>2</mat-grid-tile>
+                                              <mat-grid-tile>3</mat-grid-tile>
+                                              <mat-grid-tile>4</mat-grid-tile>
+                                              <mat-grid-tile>3</mat-grid-tile>
+                                              <mat-grid-tile>4</mat-grid-tile>
+                                              <mat-grid-tile>3</mat-grid-tile>
+                                              <mat-grid-tile>4</mat-grid-tile>
+                                              <mat-grid-tile>3</mat-grid-tile>
+                                              <mat-grid-tile>4</mat-grid-tile>
+                                          </mat-grid-list>
+                                      </mat-tab>
+                                    </mat-tab-group>
+  
         </div><!-- .site -->
   
 
