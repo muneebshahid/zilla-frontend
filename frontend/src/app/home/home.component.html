@@ -371,23 +371,39 @@
                 <div class="row no-margin wrapper-half-map">
                   <div class="col-md-8 no-padding">
 
-    
+
                     <div class="list-content clearfix">
-                        <div class="job_filters job_filters-sidebar ng-untouched ng-pristine ng-valid">
-                            <div class="filter-inner clearfix">
-                              <div class="search_jobs">
-                                <div class="content">
-                                  <div class="widget">
+                      <div class="job_filters job_filters-sidebar ng-untouched ng-pristine ng-valid main-search-box">
+                        <div class="filter-inner clearfix">
+                          <div class="search_jobs">
+                                <div class="filter-top">
+                                  <div class="row filter-top-inner clearfix">
                                     <div class="search_keywords ">
-                                      <input type="text" name="search_keywords" id="search_keywords" placeholder="pizza nearest point ..."
-                                        value="">
-                                    </div>
+                                      <div class="col-md-9">
+                                        <input type="text" name="search_keywords" id="search_keywords"
+                                          placeholder="pizza nearest point ..." value="">
+                                      </div>
+                                      <div class="col-md-3">
+                                        <div class="listing-orderby">
+                                          <select name="filter_order" autocomplete="off">
+                                            <option value="default" selected="selected">Default Order</option>
+                                            <option value="date-desc">Newest First</option>
+                                            <option value="date-asc">Oldest First</option>
+                                            <option value="rating-desc">Highest Rating</option>
+                                            <option value="rating-asc">Lowest Rating</option>
+                                            <option value="random">Random</option>
+                                          </select>
+                                        </div>
+
                                   </div>
+
                                 </div>
                               </div>
                             </div>
                           </div>
-                        <div class="wrapper-123-filter">
+                        </div>
+                      </div>
+                      <div class="wrapper-123-filter">
                         <div class="listings-filter-header hidden-sm hidden-xs">
                           More Filters<i class="fa fa-align-center" aria-hidden="true"></i>
                         </div>
