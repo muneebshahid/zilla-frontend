@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, NgZone, OnInit, ElementRef } from '@angular/core';
+import { Component, Input, ViewChild, NgZone, OnInit, ViewEncapsulation, ElementRef } from '@angular/core';
 import { MapsAPILoader, AgmMap, AgmMarker } from '@agm/core';
 import { GoogleMapsAPIWrapper } from '@agm/core/services';
 import { last } from '@angular/router/src/utils/collection';

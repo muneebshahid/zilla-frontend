@@ -15,7 +15,7 @@ import {MatSidenavModule,
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTabsModule} from '@angular/material/tabs';
 import { ListingComponent } from './listing/listing.component';
-
+import {MatCardModule} from '@angular/material/card';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +30,7 @@ import { ListingComponent } from './listing/listing.component';
     MatTabsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCardModule,
     MatGridListModule,
     MatRippleModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyAZfyL5pncodSyDVTP28vnyQep4SNeQDgY'}),

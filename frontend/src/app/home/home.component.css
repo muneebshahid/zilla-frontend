@@ -37,16 +37,18 @@ mat-tab-group{
     height: 600px;
     overflow: auto;
 }
+.mat-tab-header{
+    margin-bottom: 1%!important;
+}
+
 
 mat-grid-list {
     height: 100px;
     margin: 3%!important;
     overflow: auto;
 }
+
 mat-grid-tile {
     background: lightblue;
-}
+} 
 
-.mat-drawer .mat-drawer-inner-container{
-    overflow: hidden!important;
-}
