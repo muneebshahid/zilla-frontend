@@ -7,20 +7,19 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatSidenavModule, 
-        MatFormFieldModule,
-        MatInputModule,
-        MatRippleModule} from '@angular/material';
 
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatTabsModule} from '@angular/material/tabs';
-import { ListingComponent } from './listing/listing.component';
-import {MatCardModule} from '@angular/material/card';
+import { HomeFilterDrawerComponent } from './home-filter-drawer/home-filter-drawer.component';
+import { HomeListingsComponent } from './home-listings/home-listings.component';
+import { MenuComponent } from './menu/menu.component';
+import { HomeMapComponent } from './home-map/home-map.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ListingComponent
+    HomeFilterDrawerComponent,
+    HomeListingsComponent,
+    MenuComponent,
+    HomeMapComponent
   ],
   imports: [
     BrowserModule,
@@ -28,8 +27,7 @@ import {MatCardModule} from '@angular/material/card';
     NgbModule.forRoot(),
     FormsModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyAZfyL5pncodSyDVTP28vnyQep4SNeQDgY'}),
-    BrowserAnimationsModule,
-    MatSidenavModule
+    BrowserAnimationsModule
   ],
   providers: [GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]
