@@ -12,6 +12,7 @@ import { HomeFilterDrawerComponent } from './home-filter-drawer/home-filter-draw
 import { HomeListingsComponent } from './home-listings/home-listings.component';
 import { MenuComponent } from './menu/menu.component';
 import { HomeMapComponent } from './home-map/home-map.component';
+import { BusinessDetailComponent } from './business-detail/business-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,8 @@ import { HomeMapComponent } from './home-map/home-map.component';
     HomeFilterDrawerComponent,
     HomeListingsComponent,
     MenuComponent,
-    HomeMapComponent
+    HomeMapComponent,
+    BusinessDetailComponent
   ],
   imports: [
     BrowserModule,
