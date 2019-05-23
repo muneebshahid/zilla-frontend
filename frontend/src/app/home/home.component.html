@@ -192,7 +192,9 @@
                 <div class="row no-margin wrapper-half-map">
 
                   <app-home-listings></app-home-listings>
-                  <app-home-map></app-home-map>
+                  <div class="col-md-3 no-padding half-map">
+                    <app-home-map [mapClass]="mapClass"></app-home-map>
+                  </div>
                 </div>
               </div>
             </div>

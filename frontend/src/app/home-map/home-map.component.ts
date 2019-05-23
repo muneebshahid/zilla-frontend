@@ -25,6 +25,8 @@ interface Location {
 })
 export class HomeMapComponent implements OnInit {
 
+  @Input() mapClass;
+
   geocoder:any;
   location: Location;
   markers: Array<Marker> = [];

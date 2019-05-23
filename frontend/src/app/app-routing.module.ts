@@ -5,8 +5,8 @@ import { BusinessDetailComponent } from './business-detail/business-detail.compo
 
 const routes: Routes = [
   { path: '', redirectTo: 'detail', pathMatch: 'full' },
-  { path: 'detail', component: BusinessDetailComponent },
-  { path: 'home', redirectTo: 'home' }
+  { path: 'home', component: HomeComponent },
+  { path: 'detail', component: BusinessDetailComponent }
 ];
 
 @NgModule({
