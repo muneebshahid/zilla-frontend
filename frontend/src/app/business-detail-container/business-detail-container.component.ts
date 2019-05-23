@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BusinessDetailContainerComponent implements OnInit {
 
-  mapClass = 'agm-map-detail';
 
   constructor() { }
 

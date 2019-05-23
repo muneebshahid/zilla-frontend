@@ -17,6 +17,11 @@ import { BusinessDetailHeaderGalleryComponent } from './business-detail-header-g
 import { BusinessDetailHeaderComponent } from './business-detail-header/business-detail-header.component';
 import { BusinessDetailContainerComponent } from './business-detail-container/business-detail-container.component';
 import { BusinessDetailDescriptionComponent } from './business-detail-description/business-detail-description.component';
+import { BusinessDetailMenuComponent } from './business-detail-menu/business-detail-menu.component';
+import { BusinessDetailAmenitiesComponent } from './business-detail-amenities/business-detail-amenities.component';
+import { BusinessDetailGalleryComponent } from './business-detail-gallery/business-detail-gallery.component';
+import { BusinessDetailOpeningHoursComponent } from './business-detail-opening-hours/business-detail-opening-hours.component';
+import { BusinessDetailMapComponent } from './business-detail-map/business-detail-map.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +34,12 @@ import { BusinessDetailDescriptionComponent } from './business-detail-descriptio
     BusinessDetailHeaderGalleryComponent,
     BusinessDetailHeaderComponent,
     BusinessDetailContainerComponent,
-    BusinessDetailDescriptionComponent
+    BusinessDetailDescriptionComponent,
+    BusinessDetailMenuComponent,
+    BusinessDetailAmenitiesComponent,
+    BusinessDetailGalleryComponent,
+    BusinessDetailOpeningHoursComponent,
+    BusinessDetailMapComponent
   ],
   imports: [
     BrowserModule,
