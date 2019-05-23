@@ -13,6 +13,10 @@ import { HomeListingsComponent } from './home-listings/home-listings.component';
 import { MenuComponent } from './menu/menu.component';
 import { HomeMapComponent } from './home-map/home-map.component';
 import { BusinessDetailComponent } from './business-detail/business-detail.component';
+import { BusinessDetailHeaderGalleryComponent } from './business-detail-header-gallery/business-detail-header-gallery.component';
+import { BusinessDetailHeaderComponent } from './business-detail-header/business-detail-header.component';
+import { BusinessDetailContainerComponent } from './business-detail-container/business-detail-container.component';
+import { BusinessDetailDescriptionComponent } from './business-detail-description/business-detail-description.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +25,11 @@ import { BusinessDetailComponent } from './business-detail/business-detail.compo
     HomeListingsComponent,
     MenuComponent,
     HomeMapComponent,
-    BusinessDetailComponent
+    BusinessDetailComponent,
+    BusinessDetailHeaderGalleryComponent,
+    BusinessDetailHeaderComponent,
+    BusinessDetailContainerComponent,
+    BusinessDetailDescriptionComponent
   ],
   imports: [
     BrowserModule,
