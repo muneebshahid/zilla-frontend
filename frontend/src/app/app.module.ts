@@ -11,7 +11,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HomeFilterDrawerComponent } from './home-filter-drawer/home-filter-drawer.component';
 import { HomeListingsComponent } from './home-listings/home-listings.component';
 import { MenuComponent } from './menu/menu.component';
-import { HomeMapComponent } from './home-map/home-map.component';
+import { MapComponent } from './map/map.component';
 import { BusinessDetailComponent } from './business-detail/business-detail.component';
 import { BusinessDetailHeaderGalleryComponent } from './business-detail-header-gallery/business-detail-header-gallery.component';
 import { BusinessDetailHeaderComponent } from './business-detail-header/business-detail-header.component';
@@ -29,7 +29,7 @@ import { BusinessDetailMapComponent } from './business-detail-map/business-detai
     HomeFilterDrawerComponent,
     HomeListingsComponent,
     MenuComponent,
-    HomeMapComponent,
+    MapComponent,
     BusinessDetailComponent,
     BusinessDetailHeaderGalleryComponent,
     BusinessDetailHeaderComponent,

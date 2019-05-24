@@ -19,11 +19,11 @@ interface Location {
 }
 
 @Component({
-  selector: 'app-home-map',
-  templateUrl: './home-map.component.html',
-  styleUrls: ['./home-map.component.css']
+  selector: 'app-map',
+  templateUrl: './map.component.html',
+  styleUrls: ['./map.component.css']
 })
-export class HomeMapComponent implements OnInit {
+export class MapComponent implements OnInit {
 
   @Input() mapClass;
 
