@@ -22,6 +22,7 @@ import { BusinessDetailAmenitiesComponent } from './business-detail-amenities/bu
 import { BusinessDetailGalleryComponent } from './business-detail-gallery/business-detail-gallery.component';
 import { BusinessDetailOpeningHoursComponent } from './business-detail-opening-hours/business-detail-opening-hours.component';
 import { BusinessDetailMapComponent } from './business-detail-map/business-detail-map.component';
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import { BusinessDetailMapComponent } from './business-detail-map/business-detai
     BusinessDetailAmenitiesComponent,
     BusinessDetailGalleryComponent,
     BusinessDetailOpeningHoursComponent,
-    BusinessDetailMapComponent
+    BusinessDetailMapComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
