@@ -94,3 +94,4 @@ db.sqlite3
 ### Migrations ###
 backend/internal/migrations/*
 .env
+backend/media/*
