@@ -5,7 +5,7 @@
   <app-menu></app-menu>
   
   <div id="apus-main-content">
-    <section id="main-container" class="inner" style="padding-top:5%;">
+    <section id="main-container" class="inner">
       <div id="primary" class="content-area">
         <div class="entry-content">
           <main id="main" class="site-main" role="main">
@@ -16,8 +16,8 @@
                 <div class="row no-margin wrapper-half-map">
 
                   <app-home-listings></app-home-listings>
-                  <div class="col-md-3 no-padding half-map">
-                    <!-- <app-map [mapClass]="mapClass"></app-map> -->
+                  <div class="col-md-3 no-padding half-map xs-half-map">
+                    <app-map [mapClass]="mapClass"></app-map>
                   </div>
                 </div>
               </div>
