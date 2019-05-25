@@ -1,6 +1,6 @@
 from django.db import models
-from internal.models.item import Item
-from internal.models.users import Client, Business
+from internal.models.items import Item
+from internal.models import SiteUser, Business
 from internal.models.stats import Stats
 
 
@@ -10,7 +10,7 @@ class StatsPerUser(Stats):
     review = models.TextField()
     score = models.FloatField()
     like = models.BooleanField()
-    user = models.ForeignKey(Client, on_delete=models.CASCADE)
+    user = models.ForeignKey(SiteUser, on_delete=models.CASCADE)
     date_time = models.DateTimeField()
 
     class Meta:

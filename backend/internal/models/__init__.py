@@ -1,5 +1,5 @@
-from internal.models.item import Item
-from internal.models.users import Client, Business
+from internal.models.users import Business, SiteUser
+from internal.models.items import Item, Victual
 from internal.models.offers import Ad, Coupon, Deal, Promotion
 from internal.models.opening_timings import OpeningTimings
 from internal.models.site_page import SitePage
