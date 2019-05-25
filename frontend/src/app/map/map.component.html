@@ -1,0 +1,8 @@
+  <div class="additional-css apus-listing-map fix-map hidden-sm hidden-xs leaflet-container leaflet-fade-anim map--google"
+    tabindex="0">
+    <agm-map [className]="mapClass" mapTypeId="roadmap" [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom"
+      [disableDefaultUI]="true" [zoomControl]="true" [fitBounds]="true" class="agm-map">
+      <agm-marker *ngFor="let marker of markers" [(latitude)]="marker.lat" [(longitude)]="marker.lng"
+        [agmFitBounds]="true"></agm-marker>
+    </agm-map>
+  </div>

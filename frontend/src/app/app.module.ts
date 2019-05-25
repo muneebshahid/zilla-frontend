@@ -7,12 +7,41 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatSidenavModule} from '@angular/material';
 
+import { HomeFilterDrawerComponent } from './home-filter-drawer/home-filter-drawer.component';
+import { HomeListingsComponent } from './home-listings/home-listings.component';
+import { MenuComponent } from './menu/menu.component';
+import { MapComponent } from './map/map.component';
+import { BusinessDetailComponent } from './business-detail/business-detail.component';
+import { BusinessDetailHeaderGalleryComponent } from './business-detail-header-gallery/business-detail-header-gallery.component';
+import { BusinessDetailHeaderComponent } from './business-detail-header/business-detail-header.component';
+import { BusinessDetailContainerComponent } from './business-detail-container/business-detail-container.component';
+import { BusinessDetailDescriptionComponent } from './business-detail-description/business-detail-description.component';
+import { BusinessDetailMenuComponent } from './business-detail-menu/business-detail-menu.component';
+import { BusinessDetailAmenitiesComponent } from './business-detail-amenities/business-detail-amenities.component';
+import { BusinessDetailGalleryComponent } from './business-detail-gallery/business-detail-gallery.component';
+import { BusinessDetailOpeningHoursComponent } from './business-detail-opening-hours/business-detail-opening-hours.component';
+import { BusinessDetailMapComponent } from './business-detail-map/business-detail-map.component';
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    HomeFilterDrawerComponent,
+    HomeListingsComponent,
+    MenuComponent,
+    MapComponent,
+    BusinessDetailComponent,
+    BusinessDetailHeaderGalleryComponent,
+    BusinessDetailHeaderComponent,
+    BusinessDetailContainerComponent,
+    BusinessDetailDescriptionComponent,
+    BusinessDetailMenuComponent,
+    BusinessDetailAmenitiesComponent,
+    BusinessDetailGalleryComponent,
+    BusinessDetailOpeningHoursComponent,
+    BusinessDetailMapComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -20,8 +49,7 @@ import {MatSidenavModule} from '@angular/material';
     NgbModule.forRoot(),
     FormsModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyAZfyL5pncodSyDVTP28vnyQep4SNeQDgY'}),
-    BrowserAnimationsModule,
-    MatSidenavModule
+    BrowserAnimationsModule
   ],
   providers: [GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]

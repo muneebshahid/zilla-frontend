@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="entry-listing-content">
+    <div class="apus-single-listing" data-latitude="51.5106508" data-longitude="-0.1260016"
+      data-categories="Fitness" data-icon="">
+      <meta itemprop="title" content="Liberty Club">
+      <meta property="og:image"
+        content="https://demoapus.com/findgo/wp-content/uploads/2018/05/1-2-825x510.jpg">
+      <div class="listing-cat-icon hidden">
+        <i class="flaticon-weightlifting"></i>
+      </div>
+      <div class="row">
+        <div class="col-md-8 column-content entry-content ">
+          <div class="listing-main-content">
+
+            <div id="listing-description" class="job_description" itemprop="description">
+              <app-business-detail-description></app-business-detail-description>
+            </div>
+            <div id="listing-menu-prices" class="listing-menu-prices widget">
+              <app-business-detail-menu></app-business-detail-menu>
+            </div>
+            <div id="listing-amenities" class="listing-amenities widget">
+              <app-business-detail-amenities></app-business-detail-amenities>
+            </div>
+            <!-- <div id="listing-photos" class="photos-wrapper widget">
+              <app-business-detail-gallery></app-business-detail-gallery>
+            </div> -->
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="sidebar sidebar-detail-job sidebar-right">
+            <app-business-detail-opening-hours></app-business-detail-opening-hours>
+            <div id="listing-map-contact" class="listing-map widget">
+              <h3 class="widget-title">
+                <span>Location</span>
+              </h3>
+              <div class="listing-map-contact box-inner">
+                <app-business-detail-map></app-business-detail-map>
+              </div>
+            </div>
+            <div id="claim-listing-form-hidden" class="hidden">
+              <div class="claim-listing-form-wrapper">
+                <div class="row">
+                  <div class="col-md-6 col-sm-12">
+                    <img src="https://demoapus.com/findgo/wp-content/uploads/2018/06/banner-claim.jpg"
+                      alt="Claim Image">
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <form action="" class="claim-listing-form" method="post">
+                      <input type="hidden" name="post_id" class="post_id_input">
+                      <div class="msg"></div>
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="fullname" placeholder="Fullname"
+                          required="required">
+                      </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="phone" placeholder="Phone"
+                          required="required">
+                      </div>
+                      <div class="form-group">
+                        <textarea class="form-control" name="message"
+                          placeholder="Additional proof to expedite your claim approval..." cols="30" rows="5"
+                          required="required"></textarea>
+                      </div>
+                      <button class="button btn btn-block btn-theme radius-3x" name="submit-claim-listing"
+                        value="">Claim This Business</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

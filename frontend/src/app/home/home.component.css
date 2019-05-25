@@ -1,36 +1,3 @@
-.sebm-google-map-container {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-}
-
-.parent-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
-  
-.parent-container .sidenav {
-    height: 100%;
-    position: absolute;
-    z-index: 100;
-    border: 1px solid #ccc;
-}
-
-.parent-container .map {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-}
-
-.parent-container .map .mat-btn{
-    position: absolute;
-    left: 100px;
-    top: 10px;
-    z-index: 100;
-}
-
-.parent-container mat-drawer {
-    width: 40%;
+footer{
+    display: none!important;
 }
