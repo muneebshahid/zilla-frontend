@@ -23,6 +23,9 @@ import { BusinessDetailGalleryComponent } from './business-detail-gallery/busine
 import { BusinessDetailOpeningHoursComponent } from './business-detail-opening-hours/business-detail-opening-hours.component';
 import { BusinessDetailMapComponent } from './business-detail-map/business-detail-map.component';
 import { FooterComponent } from './footer/footer.component';
+import { ExploreComponent } from './explore/explore.component';
+import { ExploreBusinessesComponent } from './explore-businesses/explore-businesses.component';
+import { ExploreProductsComponent } from './explore-products/explore-products.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +44,10 @@ import { FooterComponent } from './footer/footer.component';
     BusinessDetailGalleryComponent,
     BusinessDetailOpeningHoursComponent,
     BusinessDetailMapComponent,
-    FooterComponent
+    FooterComponent,
+    ExploreComponent,
+    ExploreBusinessesComponent,
+    ExploreProductsComponent
   ],
   imports: [
     BrowserModule,
