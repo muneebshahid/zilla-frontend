@@ -27,7 +27,7 @@ import { ExploreComponent } from './explore-components/explore/explore.component
 import { ExploreBusinessesComponent } from './explore-components/explore-businesses/explore-businesses.component';
 import { ExploreProductsComponent } from './explore-components/explore-products/explore-products.component';
 import { ProductDetailComponent } from './general-components/product-detail/product-detail.component';
-import { MHomeFilterDrawerComponent } from './home-components/m-home-filter-drawer/m-home-filter-drawer.component';
+import { MHomeMenuDrawerComponent } from './home-components/m-home-menu-drawer/m-home-menu-drawer.component';
 import { MMenuComponent } from './general-components/m-menu/m-menu.component';
 @NgModule({
   declarations: [
@@ -52,7 +52,7 @@ import { MMenuComponent } from './general-components/m-menu/m-menu.component';
     ExploreBusinessesComponent,
     ExploreProductsComponent,
     ProductDetailComponent,
-    MHomeFilterDrawerComponent,
+    MHomeMenuDrawerComponent,
     MMenuComponent
   ],
   imports: [

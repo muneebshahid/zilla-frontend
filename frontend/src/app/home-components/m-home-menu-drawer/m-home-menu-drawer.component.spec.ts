@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MHomeFilterDrawerComponent } from './m-home-filter-drawer.component';
+import { MHomeMenuDrawerComponent } from './m-home-menu-drawer.component';
 
-describe('MHomeFilterDrawerComponent', () => {
-  let component: MHomeFilterDrawerComponent;
-  let fixture: ComponentFixture<MHomeFilterDrawerComponent>;
+describe('MHomeMenuDrawerComponent', () => {
+  let component: MHomeMenuDrawerComponent;
+  let fixture: ComponentFixture<MHomeMenuDrawerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MHomeFilterDrawerComponent ]
+      declarations: [ MHomeMenuDrawerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MHomeFilterDrawerComponent);
+    fixture = TestBed.createComponent(MHomeMenuDrawerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
