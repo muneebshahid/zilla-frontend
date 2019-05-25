@@ -27,6 +27,8 @@ import { ExploreComponent } from './explore-components/explore/explore.component
 import { ExploreBusinessesComponent } from './explore-components/explore-businesses/explore-businesses.component';
 import { ExploreProductsComponent } from './explore-components/explore-products/explore-products.component';
 import { ProductDetailComponent } from './general-components/product-detail/product-detail.component';
+import { MHomeFilterDrawerComponent } from './home-components/m-home-filter-drawer/m-home-filter-drawer.component';
+import { MMenuComponent } from './general-components/m-menu/m-menu.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +51,9 @@ import { ProductDetailComponent } from './general-components/product-detail/prod
     ExploreComponent,
     ExploreBusinessesComponent,
     ExploreProductsComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    MHomeFilterDrawerComponent,
+    MMenuComponent
   ],
   imports: [
     BrowserModule,
