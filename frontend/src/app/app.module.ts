@@ -26,6 +26,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ExploreComponent } from './explore/explore.component';
 import { ExploreBusinessesComponent } from './explore-businesses/explore-businesses.component';
 import { ExploreProductsComponent } from './explore-products/explore-products.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +48,8 @@ import { ExploreProductsComponent } from './explore-products/explore-products.co
     FooterComponent,
     ExploreComponent,
     ExploreBusinessesComponent,
-    ExploreProductsComponent
+    ExploreProductsComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,
