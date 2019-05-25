@@ -3,7 +3,6 @@ from django.contrib.auth.models import AbstractUser
 
 
 class SiteUser(AbstractUser):
-    is_end_user = models.BooleanField(default=True)
     is_business = models.BooleanField(default=False)
 
 
