@@ -6,7 +6,15 @@ import { HomeComponent } from './home-components/home/home.component';
 import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { appReducers } from './store/reducers/app.reducer'
+import { environment } from '../environments/environment'
+
+import { ItemEffects } from './store/effects/item'
 
 import { HomeFilterDrawerComponent } from './home-components/home-filter-drawer/home-filter-drawer.component';
 import { HomeListingsComponent } from './home-components/home-listings/home-listings.component';
@@ -60,6 +68,10 @@ import { MMenuComponent } from './general-components/m-menu/m-menu.component';
     AppRoutingModule,
     NgbModule.forRoot(),
     FormsModule,
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot([ItemEffects]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     AgmCoreModule.forRoot({apiKey: 'AIzaSyAZfyL5pncodSyDVTP28vnyQep4SNeQDgY'}),
     BrowserAnimationsModule
   ],
