@@ -1,0 +1,25 @@
+
+
+
+
+
+@media (min-width:319px){
+    #search_keywords{
+        width: 100%!important;
+    }
+}
+@media (min-width:1023px){
+    .main-search-box-mobile{
+        margin-top: 3%;
+    }
+}
+@media (min-width:1420px){
+    #search_keywords{
+        width: 100%!important;
+    }
+    /* Remove the searchbar appearing for mobile on bigger screen */
+    .main-search-box-mobile{
+        display: none;
+    }
+}
+
