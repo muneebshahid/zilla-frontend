@@ -2,11 +2,8 @@ footer{
     display: none!important;
 }
 
-.inner{
-    padding-top: 5%;
-}
 
-@media (min-width:1366px){
+@media (min-width:320px){
     .inner{
     }
 }
@@ -18,4 +15,8 @@ footer{
 @media (min-width:1024px){
     .inner{
     }
+}
+
+.inner{
+    padding-top: 5%;
 }

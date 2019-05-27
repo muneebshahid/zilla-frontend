@@ -37,6 +37,8 @@ import { ExploreProductsComponent } from './explore-components/explore-products/
 import { ProductDetailComponent } from './general-components/product-detail/product-detail.component';
 import { MHomeMenuDrawerComponent } from './home-components/m-home-menu-drawer/m-home-menu-drawer.component';
 import { MMenuComponent } from './general-components/m-menu/m-menu.component';
+import { MFilterMapMenuComponent } from './home-components/m-filter-map-menu/m-filter-map-menu.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +63,8 @@ import { MMenuComponent } from './general-components/m-menu/m-menu.component';
     ExploreProductsComponent,
     ProductDetailComponent,
     MHomeMenuDrawerComponent,
-    MMenuComponent
+    MMenuComponent,
+    MFilterMapMenuComponent
   ],
   imports: [
     BrowserModule,
