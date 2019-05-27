@@ -1,0 +1,10 @@
+@media (min-width:319px){
+    .listings-filter-wrapper{
+        overflow: auto;
+    }
+}
+
+#search_keywords,
+#search_location{
+    width: 100%!important;
+}
