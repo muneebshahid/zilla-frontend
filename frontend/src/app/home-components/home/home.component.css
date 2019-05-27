@@ -1,22 +1,6 @@
 footer{
     display: none!important;
 }
-
-
-@media (min-width:320px){
-    .inner{
-    }
-}
-@media (min-width:1279px){
-    .inner{
-    }
-}
-
-@media (min-width:1024px){
-    .inner{
-    }
-}
-
 .inner{
     padding-top: 5%;
 }

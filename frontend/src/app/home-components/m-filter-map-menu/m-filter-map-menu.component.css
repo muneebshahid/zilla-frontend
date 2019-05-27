@@ -8,7 +8,12 @@
         width: 100%!important;
     }
 }
-@media (min-width:1441px){
+@media (min-width:1023px){
+    .main-search-box-mobile{
+        margin-top: 3%;
+    }
+}
+@media (min-width:1420px){
     #search_keywords{
         width: 100%!important;
     }
