@@ -1,18 +1,20 @@
 
 
 
-/* Remove the searchbar appearing for mobile on bigger screen */
-.main-search-box-mobile{
-    display: none;
-}
 
 
 @media (min-width:319px){
-    .main-search-box-mobile{
-        display: inherit;
-    }
     #search_keywords{
         width: 100%!important;
+    }
+}
+@media (min-width:1441px){
+    #search_keywords{
+        width: 100%!important;
+    }
+    /* Remove the searchbar appearing for mobile on bigger screen */
+    .main-search-box-mobile{
+        display: none;
     }
 }
 
