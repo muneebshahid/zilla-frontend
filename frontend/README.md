@@ -1,10 +1,16 @@
-# BusinessListing
+## How To Run
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
+To run the project. Perform the following steps.
 
-## Development server
+- Run `npm install` in the project root (frontend) directory.
+- Run `ng serve`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Before starting Development.
+
+#### Code Styleguide
+
+- Install [VSCode prettier extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) to start using it.
+- For further details. Check [this blog](https://medium.com/@victormejia/setting-up-prettier-in-an-angular-cli-project-2f50c3b9a537).
 
 ## Code scaffolding
 
