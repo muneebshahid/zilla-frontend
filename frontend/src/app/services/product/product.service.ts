@@ -9,7 +9,7 @@ export class ProductService {
 
   getProductDetails(id: number) {}
 
-  getProducts() {
+  getProducts(id: number) {
     console.log(this.httpService.getPosts());
   }
 

@@ -1,7 +1,8 @@
 import { Action } from "@ngrx/store";
 
 export enum EProductActions {
-  GetProductDetails = "[Product] Get Product Details"
+  GetProductDetails = "[Product] Get Product Details",
+  GetProductDetailsSuccess = "[Product] Get Product Details Success"
 }
 
 export class GetProductDetails implements Action {
@@ -11,4 +12,10 @@ export class GetProductDetails implements Action {
   constructor(public payload: number) {}
 }
 
-export type ProductActions = GetProductDetails;
+export class GetProductDetailsSuccess implements Action {
+  public readonly type = EProductActions.GetProductDetailsSuccess;
+
+  constructor() {}
+}
+
+export type ProductActions = GetProductDetails | GetProductDetailsSuccess;
