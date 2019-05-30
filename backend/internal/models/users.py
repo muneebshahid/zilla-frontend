@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth.models import AbstractUser
+from django.utils.text import slugify
 
 
 class SiteUser(AbstractUser):
@@ -8,17 +9,40 @@ class SiteUser(AbstractUser):
 
 
 class Business(models.Model):
+    """ OneToOne Model to SiteUser """
+
+    prepopulated_fields = {"slug": ("title",)}
+
     user = models.OneToOneField(
-        SiteUser, on_delete=models.CASCADE, related_name="business"
+        SiteUser, on_delete=models.CASCADE, related_name="business", primary_key=True
     )
 
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=500)
+    slug = models.SlugField(max_length=500)
     description = models.TextField()
-    website = models.CharField(max_length=200)
+    website = models.CharField(max_length=500)
     address = models.TextField()
     claimed = models.BooleanField()
     latlng = ArrayField(models.FloatField())
     objects = models.Manager()
+
+    def __str__(self):
+        return self.title
+
+    # def _get_unique_slug(self):
+    #     slug = slugify(self.title)
+    #     unique_slug = slug
+    #     num = 1
+    #     while Business.objects.filter(slug=unique_slug).exists():
+    #         unique_slug = "{}-{}".format(slug, num)
+    #         num += 1
+    #     return unique_slug
+
+    def save(self, *args, **kwargs):
+        """ Compute slug and pass on to the parent class """
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
     def is_open(self):
         raise NotImplementedError("Needs to be implemented")
