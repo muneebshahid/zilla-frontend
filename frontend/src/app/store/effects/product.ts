@@ -17,7 +17,7 @@ export class ProductEffects {
     ofType<GetProductDetails>(EProductActions.GetProductDetails),
     map(action => action.payload),
     switchMap(payload => {
-      console.log(payload);
+      this.productService.getProducts(payload);
       return of(new GetProductDetailsSuccess());
     })
   );
