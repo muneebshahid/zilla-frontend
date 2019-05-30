@@ -1,16 +1,15 @@
-import { RouterReducerState } from '@ngrx/router-store';
+import { RouterReducerState } from "@ngrx/router-store";
 
-import { initialItemState } from './item';
-import { IItem } from '../../models/item'
-
+import { initialProductState } from "./product";
+import { IProduct } from "../../models/product";
 
 export interface IAppState {
   router?: RouterReducerState;
-  items: IItem;
+  products: IProduct;
 }
 
 export const initialAppState: IAppState = {
-  items: initialItemState
+  products: initialProductState
 };
 
 export function getInitialState(): IAppState {

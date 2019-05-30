@@ -10,7 +10,9 @@ To run the project. Perform the following steps.
 #### Code Styleguide
 
 - Install [VSCode prettier extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) to start using it.
-- For further details. Check [this blog](https://medium.com/@victormejia/setting-up-prettier-in-an-angular-cli-project-2f50c3b9a537).
+- Do `npm i` to install the prettier package.
+- Enable `“editor.formatOnSave”: true` in VS Code.
+- If it still doesn't work, check [this blog](https://medium.com/@victormejia/setting-up-prettier-in-an-angular-cli-project-2f50c3b9a537).
 
 ## Code scaffolding
 

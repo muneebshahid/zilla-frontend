@@ -1,40 +1,40 @@
-import { createSelector } from '@ngrx/store';
+import { createSelector } from "@ngrx/store";
 
-import { IAppState } from '../state/app.state';
-import { IItem } from '../../models/item';
+import { IAppState } from "../state/app.state";
+import { IProduct } from "../../models/product";
 
-const selectItems = (state: IAppState) => state.items;
+const selectItems = (state: IAppState) => state.products;
 
 export const selectItemID = createSelector(
   selectItems,
-  (state: IItem) => state.id
+  (state: IProduct) => state.id
 );
 
 export const selectItemImages = createSelector(
   selectItems,
-  (state: IItem) => state.images
+  (state: IProduct) => state.images
 );
 export const selectItemOwner = createSelector(
   selectItems,
-  (state: IItem) => state.owner
+  (state: IProduct) => state.owner
 );
 export const selectItemPrice = createSelector(
   selectItems,
-  (state: IItem) => state.price
+  (state: IProduct) => state.price
 );
 export const selectItemTags = createSelector(
   selectItems,
-  (state: IItem) => state.tags
+  (state: IProduct) => state.tags
 );
 export const selectItemHidden = createSelector(
   selectItems,
-  (state: IItem) => state.hidden
+  (state: IProduct) => state.hidden
 );
 export const selectItemDescription = createSelector(
   selectItems,
-  (state: IItem) => state.description
+  (state: IProduct) => state.description
 );
 export const selectItemAvailable = createSelector(
   selectItems,
-  (state: IItem) => state.available
+  (state: IProduct) => state.available
 );
