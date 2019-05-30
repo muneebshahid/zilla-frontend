@@ -3,15 +3,17 @@ import uuid
 from django.contrib.postgres.fields import JSONField
 from django.db import models
 from internal.models import Business
+from django.utils.text import slugify
 
 
 class Item(models.Model):
     """ Conceret Django model for Item"""
 
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    title = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=100, null=True, blank=True)
-    owner = models.ForeignKey(Business, on_delete=models.CASCADE)
+    TYPES = ((0, "Item"), (1, "Vicutal"))
+    item = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=500)
+    slug = models.SlugField(max_length=500)
+    owner = models.ForeignKey(Business, on_delete=models.CASCADE, related_name="items")
     image = models.ImageField(upload_to="item/images/")
     description = models.TextField()
     price = models.FloatField()
@@ -19,8 +21,16 @@ class Item(models.Model):
     hidden = models.BooleanField()
     # TODO: change it to tags
     tags = models.TextField()
+    item_type = models.IntegerField(choices=TYPES, default=1)
+
     # Only to get rid of linting errors.
     objects = models.Manager()
+
+    def save(self, *args, **kwargs):
+        """ Compute slug and pass on to the parent class """
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
 
 class Victual(Item):

@@ -2,6 +2,7 @@
 
 import os
 from faker import Faker
+from tqdm import tqdm
 import django
 import numpy as np
 from internal.fake_providers import Provider
@@ -18,7 +19,7 @@ Business.objects.all().delete()
 
 NUM_BUSINESSES = 100
 
-for i in range(NUM_BUSINESSES):
+for i in tqdm(range(NUM_BUSINESSES)):
     user = SiteUser(
         username=fake.format("user_name"),
         password=fake.format("password"),
@@ -51,5 +52,3 @@ for i in range(NUM_BUSINESSES):
             portion_prices_combos={},
             addon_price_combos={},
         ).save()
-    print("{0:.2f} % Done".format((i + 1) / NUM_BUSINESSES * 100))
-
