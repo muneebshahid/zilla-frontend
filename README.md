@@ -21,6 +21,8 @@
 - Make migrations and run the server
   - `python manage.py makemigrations`
   - `python manage.py migrate`
+  - Import fixtures (Optional)
+    - `python internal/fake_providers/populate_db.py`
   - `python manage.py createsuperuser`
     - Username: `root`, Password: `root`
   - `python manage.py runserver`
