@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpService } from "../http/http.service";
 import { Observable } from "rxjs";
-import { IProduct } from "src/app/models/product";
+import { IProductState } from "src/app/store/state/product";
 
 @Injectable({
   providedIn: "root"
@@ -11,7 +11,7 @@ export class ProductService {
 
   getProductDetails(id: number) {}
 
-  getNearbyProducts(latlng: any): Observable<IProduct> {
+  getNearbyProducts(latlng: any): Observable<IProductState> {
     return this.httpService.get("explore");
   }
 

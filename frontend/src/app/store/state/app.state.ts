@@ -1,11 +1,11 @@
 import { RouterReducerState } from "@ngrx/router-store";
 
 import { initialProductState } from "./product";
-import { IProduct } from "../../models/product";
+import { IProductState } from "./product";
 
 export interface IAppState {
   router?: RouterReducerState;
-  products: IProduct;
+  products: IProductState;
 }
 
 export const initialAppState: IAppState = {

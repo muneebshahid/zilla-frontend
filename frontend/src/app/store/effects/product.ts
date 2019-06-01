@@ -17,8 +17,9 @@ export class ProductEffects {
     ofType<GetNearbyProducts>(EProductActions.GetNearbyProducts),
     map(action => action.payload),
     switchMap(payload => {
-      const obs = this.productService.getNearbyProducts(payload);
-      return of(new GetNearbyProductsSuccess(obs));
+      return this.productService
+        .getNearbyProducts(payload)
+        .pipe(map(products => new GetNearbyProductsSuccess(products)));
     })
   );
 
