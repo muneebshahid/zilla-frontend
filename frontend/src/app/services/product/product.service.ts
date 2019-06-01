@@ -15,7 +15,7 @@ export class ProductService {
     return this.httpService.get("explore");
   }
 
-  /* BusinessObj will contain the slug and business id to send */
+  /* businessObj will contain the slug and business id to post */
   getProductsOfBusiness(businessObj: any) {}
 
   updateProductDetails(object: any) {}
