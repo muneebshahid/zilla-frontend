@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth.models import AbstractUser
 from django.utils.text import slugify
+from internal.models import Tag
 
 
 class SiteUser(AbstractUser):
@@ -16,7 +17,6 @@ class Business(models.Model):
     user = models.OneToOneField(
         SiteUser, on_delete=models.CASCADE, related_name="business", primary_key=True
     )
-
     title = models.CharField(max_length=500)
     slug = models.SlugField(max_length=500)
     description = models.TextField()
@@ -25,6 +25,7 @@ class Business(models.Model):
     claimed = models.BooleanField()
     latlng = ArrayField(models.FloatField())
     objects = models.Manager()
+    tags = models.ManyToManyField(Tag, related_name="businesses", blank=True)
 
     def __str__(self):
         return self.title

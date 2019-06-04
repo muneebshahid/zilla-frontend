@@ -16,10 +16,7 @@ class BusinessProfile(APIView):
             business = Business.objects.get(user=user, slug=slug)
             try:
                 items_s = ItemSerialzier(
-                    business.items.all(),
-                    many=True,
-                    # include=["item"]
-                    exclude=["image", "item_type"],
+                    business.items.all(), many=True, exclude=["image", "item_type"]
                 ).data
             except:
                 items_s = {}

@@ -10,7 +10,7 @@ from internal.fake_providers import Provider
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "zilla.settings")
 django.setup()
 
-from internal.models import Business, SiteUser, Victual
+from internal.models import Business, SiteUser, Victual, OpeningTimings
 
 fake = Faker()
 fake.add_provider(Provider)
@@ -52,3 +52,20 @@ for i in tqdm(range(NUM_BUSINESSES)):
             portion_prices_combos={},
             addon_price_combos={},
         ).save()
+    OpeningTimings(
+        business=business,
+        monday_open=fake.format("time"),
+        monday_close=fake.format("time"),
+        tuesday_open=fake.format("time"),
+        tuesday_close=fake.format("time"),
+        wednesday_open=fake.format("time"),
+        wednesday_close=fake.format("time"),
+        thursday_open=fake.format("time"),
+        thursday_close=fake.format("time"),
+        friday_open=fake.format("time"),
+        friday_close=fake.format("time"),
+        saturday_open=fake.format("time"),
+        saturday_close=fake.format("time"),
+        sunday_open=fake.format("time"),
+        sunday_close=fake.format("time"),
+    ).save()
