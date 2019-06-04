@@ -43,7 +43,14 @@ import {
   ExploreProductsComponent
 } from "./explore-components";
 
-import { MenuComponent, MapComponent, FooterComponent, MMenuComponent } from "./general-components";
+import {
+  MenuComponent,
+  MapComponent,
+  FooterComponent,
+  MMenuComponent,
+  LoadingComponent
+} from "./general-components";
+
 import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
@@ -71,7 +78,8 @@ import { HttpClientModule } from "@angular/common/http";
     ExploreComponent,
     ExploreBusinessesComponent,
     ExploreProductsComponent,
-    HomeProductInfoComponent
+    HomeProductInfoComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
