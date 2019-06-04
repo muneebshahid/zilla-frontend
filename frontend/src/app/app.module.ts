@@ -20,7 +20,8 @@ import {
   HomeFilterDrawerComponent,
   HomeListingsComponent,
   MHomeMenuDrawerComponent,
-  MFilterMapMenuComponent
+  MFilterMapMenuComponent,
+  HomeProductInfoComponent
 } from "./home-components";
 
 import {
@@ -69,7 +70,8 @@ import { HttpClientModule } from "@angular/common/http";
     BusinessDetailMapComponent,
     ExploreComponent,
     ExploreBusinessesComponent,
-    ExploreProductsComponent
+    ExploreProductsComponent,
+    HomeProductInfoComponent
   ],
   imports: [
     BrowserModule,

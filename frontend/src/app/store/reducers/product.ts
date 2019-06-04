@@ -1,13 +1,16 @@
 import { ProductActions, EProductActions } from "../actions/product";
 import { initialProductState } from "../state/product";
-import { IProduct } from "../../models/product";
+import { IProductState } from "../state/product";
 
-export const productReducers = (state = initialProductState, action: ProductActions): IProduct => {
+export const productReducers = (
+  state = initialProductState,
+  action: ProductActions
+): IProductState => {
   switch (action.type) {
-    case EProductActions.GetProductDetails: {
+    case EProductActions.GetNearbyProductsSuccess: {
       return {
         ...state,
-        id: action.payload
+        products: action.payload
       };
     }
 
