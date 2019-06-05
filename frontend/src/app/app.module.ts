@@ -52,6 +52,7 @@ import {
 } from "./general-components";
 
 import { HttpClientModule } from "@angular/common/http";
+import { AgmSnazzyInfoWindowModule } from "@agm/snazzy-info-window";
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import { HttpClientModule } from "@angular/common/http";
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
     AgmCoreModule.forRoot({ apiKey: "AIzaSyAZfyL5pncodSyDVTP28vnyQep4SNeQDgY" }),
+    AgmSnazzyInfoWindowModule,
     BrowserAnimationsModule
   ],
   providers: [GoogleMapsAPIWrapper],
