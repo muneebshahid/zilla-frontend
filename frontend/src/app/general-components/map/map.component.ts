@@ -59,9 +59,9 @@ export class MapComponent implements OnInit {
     this.markers.push(this.createMarker(48.4548894, 11.4716248));
 
     this.location = {
-      lng: 43.1548894,
-      lat: 11.4716248,
-      zoom: 10
+      lng: 42.1548894,
+      lat: 12.4716248,
+      zoom: 8
     };
   }
   tabClick(e) {
