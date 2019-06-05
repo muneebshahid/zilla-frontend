@@ -1,0 +1,10 @@
+2019-05-31 16:40:00.559 CEST [8284] LOG:  could not bind IPv4 address "127.0.0.1": Address already in use
+2019-05-31 16:40:00.559 CEST [8284] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2019-05-31 16:40:00.559 CEST [8284] WARNING:  could not create listen socket for "localhost"
+2019-05-31 16:40:00.559 CEST [8284] FATAL:  could not create any TCP/IP sockets
+2019-05-31 16:40:00.559 CEST [8284] LOG:  database system is shut down
+2019-05-31 16:40:06.011 CEST [8304] LOG:  could not bind IPv4 address "127.0.0.1": Address already in use
+2019-05-31 16:40:06.011 CEST [8304] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2019-05-31 16:40:06.011 CEST [8304] WARNING:  could not create listen socket for "localhost"
+2019-05-31 16:40:06.011 CEST [8304] FATAL:  could not create any TCP/IP sockets
+2019-05-31 16:40:06.011 CEST [8304] LOG:  database system is shut down

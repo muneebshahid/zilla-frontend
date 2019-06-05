@@ -1,23 +1,16 @@
-
-@media (min-width:319px){
-    .list-content{
-        background-color: white!important;
-    }
-    .main-search-box-mobile{
-        display: inline;
-    }
-}
-@media (min-width:1420px){
-    .list-content{
-        margin-top: 3%;
-    }
+@media (min-width: 319px) {
+  .list-content {
+    background-color: white !important;
+  }
+  .main-search-box-mobile {
+    display: inline;
+  }
 }
 
-.main-search-box{
-    margin: 3%;
+.main-search-box {
+  margin: 3%;
 }
 
-
-.search-input{
-    width: 100%;
+.search-input {
+  width: 100%;
 }

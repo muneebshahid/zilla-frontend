@@ -3,7 +3,6 @@ import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home-components/home/home.component";
-import { AgmCoreModule, GoogleMapsAPIWrapper } from "@agm/core";
 import { FormsModule } from "@angular/forms";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -53,6 +52,7 @@ import {
 
 import { HttpClientModule } from "@angular/common/http";
 import { AgmSnazzyInfoWindowModule } from "@agm/snazzy-info-window";
+import { AgmCoreModule, GoogleMapsAPIWrapper } from "@agm/core";
 
 @NgModule({
   declarations: [
