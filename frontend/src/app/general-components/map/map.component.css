@@ -1,9 +1,7 @@
 .agm-map-home {
   position: fixed;
-  width: 100%;
+  width: 57.9%;
   height: 100%;
-  top: 0;
-  display: flex;
 }
 
 .agm-map-detail {
