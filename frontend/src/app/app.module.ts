@@ -3,7 +3,6 @@ import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home-components/home/home.component";
-import { AgmCoreModule, GoogleMapsAPIWrapper } from "@agm/core";
 import { FormsModule } from "@angular/forms";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -43,8 +42,17 @@ import {
   ExploreProductsComponent
 } from "./explore-components";
 
-import { MenuComponent, MapComponent, FooterComponent, MMenuComponent } from "./general-components";
+import {
+  MenuComponent,
+  MapComponent,
+  FooterComponent,
+  MMenuComponent,
+  LoadingComponent
+} from "./general-components";
+
 import { HttpClientModule } from "@angular/common/http";
+import { AgmSnazzyInfoWindowModule } from "@agm/snazzy-info-window";
+import { AgmCoreModule, GoogleMapsAPIWrapper } from "@agm/core";
 
 @NgModule({
   declarations: [
@@ -71,7 +79,8 @@ import { HttpClientModule } from "@angular/common/http";
     ExploreComponent,
     ExploreBusinessesComponent,
     ExploreProductsComponent,
-    HomeProductInfoComponent
+    HomeProductInfoComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -84,6 +93,7 @@ import { HttpClientModule } from "@angular/common/http";
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
     AgmCoreModule.forRoot({ apiKey: "AIzaSyAZfyL5pncodSyDVTP28vnyQep4SNeQDgY" }),
+    AgmSnazzyInfoWindowModule,
     BrowserAnimationsModule
   ],
   providers: [GoogleMapsAPIWrapper],

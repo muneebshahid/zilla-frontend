@@ -1,8 +1,111 @@
-  <div class="additional-css apus-listing-map fix-map hidden-sm hidden-xs leaflet-container leaflet-fade-anim map--google"
-    tabindex="0">
-    <agm-map [className]="mapClass" mapTypeId="roadmap" [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom"
-      [disableDefaultUI]="true" [zoomControl]="true" [fitBounds]="true" class="agm-map">
-      <agm-marker *ngFor="let marker of markers" [(latitude)]="marker.lat" [(longitude)]="marker.lng"
-        [agmFitBounds]="true"></agm-marker>
+<div
+  class="additional-css apus-listing-map fix-map hidden-sm hidden-xs leaflet-container leaflet-fade-anim map--google"
+  tabindex="0"
+>
+  <div class="leaflet-google-layer leaflet-top leaflet-left" id="_GMapContainer">
+    <agm-map
+      [className]="mapClass"
+      mapTypeId="roadmap"
+      [(latitude)]="location.lat"
+      [(longitude)]="location.lng"
+      [(zoom)]="location.zoom"
+      [disableDefaultUI]="true"
+      [zoomControl]="true"
+      [fitBounds]="true"
+      class="agm-map"
+    >
+      <agm-marker
+        *ngFor="let marker of markers"
+        [(latitude)]="marker.lat"
+        [(longitude)]="marker.lng"
+        [agmFitBounds]="true"
+        [iconUrl]=""
+      >
+        <div class="map-popup">
+          <div class="icon-cat">
+            <i class="flaticon-chef"></i>
+          </div>
+        </div>
+        <agm-snazzy-info-window [isOpen]="false" [closeWhenOthersOpen]="true" [padding]="0">
+          <ng-template>
+            <div class="leaflet-popup-pane">
+              <div
+                class="leaflet-popup  leaflet-zoom-animated"
+                style="opacity: 1; bottom: 52px; left: -113px;"
+              >
+                <div class="leaflet-popup-content-wrapper">
+                  <div class="leaflet-popup-content" style="width: 226px;">
+                    <div class="job-grid-style job_listing">
+                      <div class="listing-image">
+                        <div class="image-wrapper image-loaded">
+                          <a
+                            class="map-popup-url"
+                            href="https://demoapus.com/findgo/listings/green-restaurant/"
+                            ><img
+                              src="https://demoapus.com/findgo/wp-content/uploads/2018/05/2-1-375x230.jpg"
+                              alt=""
+                          /></a>
+                        </div>
+                        <div class="listing-time">
+                          Open
+                        </div>
+                      </div>
+                      <div class="listing-content clearfix">
+                        <div class="listing-title-wrapper">
+                          <h3 class="listing-title">
+                            <a href="https://demoapus.com/findgo/listings/green-restaurant/"
+                              >Green Restaurant</a
+                            >
+                            <span class="listing-claimed-icon" data-toggle="tooltip" title="Claimed"
+                              ><i class="text-theme fa fa-check-circle"></i
+                            ></span>
+                          </h3>
+                          <div class="listing-address">
+                            50-40 Jacobus St, Queens
+                          </div>
+                        </div>
+                        <div class="listing-review pull-left">
+                          <div class="review-stars-rated-wrapper">
+                            <div class="review-stars-rated">
+                              <ul class="review-stars">
+                                <li><span class="fa fa-star-o"></span></li>
+                                <li><span class="fa fa-star-o"></span></li>
+                                <li><span class="fa fa-star-o"></span></li>
+                                <li><span class="fa fa-star-o"></span></li>
+                                <li><span class="fa fa-star-o"></span></li>
+                              </ul>
+
+                              <ul class="review-stars filled" style="width: 100%">
+                                <li><span class="fa fa-star"></span></li>
+                                <li><span class="fa fa-star"></span></li>
+                                <li><span class="fa fa-star"></span></li>
+                                <li><span class="fa fa-star"></span></li>
+                                <li><span class="fa fa-star"></span></li>
+                              </ul>
+                            </div>
+                            <span class="nb-review">(3 Reviews)</span>
+                          </div>
+                        </div>
+                        <div class="listing-bookmark pull-right">
+                          <a
+                            href="#apus-bookmark-add"
+                            class="apus-bookmark-not-login"
+                            data-id="628"
+                          >
+                            <span class="bookmark-text">Save</span>
+                            <i class="flaticon-like"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="leaflet-popup-tip-container"><div class="leaflet-popup-tip"></div></div>
+              </div>
+            </div>
+          </ng-template>
+        </agm-snazzy-info-window>
+      </agm-marker>
     </agm-map>
   </div>
+</div>

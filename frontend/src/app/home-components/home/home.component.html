@@ -4,6 +4,8 @@
 
   <app-menu></app-menu>
 
+  <app-loading transparency="partial-transparency" *ngIf="loading"></app-loading>
+
   <div id="apus-main-content">
     <section id="main-container" class="inner">
       <div id="primary" class="content-area">
@@ -24,7 +26,7 @@
                 <div class="row no-margin wrapper-half-map">
                   <app-home-listings [products]="products"></app-home-listings>
                   <div class="no-padding half-map xs-half-map">
-                    <!-- <app-map [mapClass]="mapClass"></app-map> -->
+                    <app-map [mapClass]="mapClass"></app-map>
                   </div>
                 </div>
               </div>

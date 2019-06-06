@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   mapClass = "agm-map-home";
   productSelector = this.store.pipe(select(selectProduct));
   products: IProduct[];
+  loading = false;
 
   constructor(private store: Store<IAppState>) {}
 
