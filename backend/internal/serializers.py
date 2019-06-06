@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from internal.models import Tag, Business, Item, Victual, OpeningTimings
+from internal.models import Tag, Business, Product, OpeningTimings
 
 
 class DynamicFieldsSerializer(serializers.ModelSerializer):
@@ -35,19 +35,11 @@ class BusinessSerializer(DynamicFieldsSerializer):
         fields = "__all__"
 
 
-class ItemSerialzier(DynamicFieldsSerializer):
+class ProductSerialzier(DynamicFieldsSerializer):
     """ Serializer for Business Model """
 
     class Meta:
-        model = Item
-        fields = "__all__"
-
-
-class VictualSerializer(DynamicFieldsSerializer):
-    """ Serializer for Vicual """
-
-    class Meta:
-        model = Victual
+        model = Product
         fields = "__all__"
 
 

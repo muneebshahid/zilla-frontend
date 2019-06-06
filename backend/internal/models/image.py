@@ -3,7 +3,7 @@ import uuid
 import ntpath
 from django.db import models
 from django.dispatch import receiver
-from internal.models import Business, Item
+from internal.models import Business, Product
 
 
 def get_business_image_path(instance, filename):
@@ -12,8 +12,10 @@ def get_business_image_path(instance, filename):
     )
 
 
-def get_item_image_path(instance, filename):
-    return os.path.join("item", str(instance.item), "{}.jp2".format(str(uuid.uuid4())))
+def get_product_image_path(instance, filename):
+    return os.path.join(
+        "product", str(instance.product), "{}.jp2".format(str(uuid.uuid4()))
+    )
 
 
 class BusinessImage(models.Model):
@@ -24,13 +26,15 @@ class BusinessImage(models.Model):
     file = models.ImageField(upload_to=get_business_image_path)
 
 
-class ItemImage(models.Model):
+class ProductImage(models.Model):
 
-    item = models.ForeignKey(Item, related_name="images", on_delete=models.CASCADE)
-    file = models.ImageField(upload_to=get_item_image_path)
+    product = models.ForeignKey(
+        Product, related_name="images", on_delete=models.CASCADE
+    )
+    file = models.ImageField(upload_to=get_product_image_path)
 
 
-@receiver(models.signals.post_delete, sender=[BusinessImage, ItemImage])
+@receiver(models.signals.post_delete, sender=[BusinessImage, ProductImage])
 def auto_delete_image_on_delete(sender, instance, **kwargs):
     """
         Deletes file from the file system

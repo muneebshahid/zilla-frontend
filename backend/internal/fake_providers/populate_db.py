@@ -15,13 +15,13 @@ from django.core.files import File
 from internal.models import (
     Business,
     SiteUser,
-    Victual,
     OpeningTimings,
     BusinessImage,
-    ItemImage,
+    ProductImage,
+    Product,
     AmenityTag,
     BusinessTypeTag,
-    VictualTag,
+    ProductTag,
     Tag,
 )
 
@@ -39,8 +39,8 @@ for business_type in Provider.BUSINESS_TYPE_TAGS:
 for amenity in Provider.AMENITY_TAGS:
     AmenityTag(tag=amenity).save()
 
-for tag in Provider.VICTUAL_TAGS:
-    VictualTag(tag=tag).save()
+for tag in Provider.PRODUCT_TAGS:
+    ProductTag(tag=tag).save()
 
 NUM_BUSINESSES = 100
 
@@ -67,20 +67,17 @@ for i in tqdm(range(NUM_BUSINESSES)):
     business.save()
     business.amenities.set([fake.format("amenity") for _ in range(5)])
     for _ in range(50):
-        v = Victual(
-            title=fake.format("victual"),
+        product = Product(
+            title=fake.format("product_title"),
             owner=business,
             description=fake.format("text"),
             price=np.round(np.random.uniform(15), 2),
             available=fake.format("boolean"),
             hidden=fake.format("boolean"),
-            max_price=np.round(np.random.uniform(14, 20), 2),
-            portion_prices_combos={},
-            addon_price_combos={},
         )
-        v.save()
-        v.tags.set([fake.format("victual_tag") for _ in range(5)])
-        ItemImage(item=v).file.save("", fake.format("item_image"))
+        product.save()
+        product.tags.set([fake.format("product_tag") for _ in range(5)])
+        ProductImage(product=product).file.save("", fake.format("product_image"))
     OpeningTimings(
         business=business,
         monday_open=fake.format("time"),

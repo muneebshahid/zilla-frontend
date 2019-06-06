@@ -4,23 +4,25 @@ from django.contrib.postgres.fields import JSONField
 from django.db import models
 from internal.models import Business
 from django.utils.text import slugify
-from internal.models import VictualTag
+from internal.models import ProductTag
 
 
-class Item(models.Model):
+class Product(models.Model):
     """ Conceret Django model for Item"""
 
     TYPES = ((0, "Item"), (1, "Vicutal"))
-    item = models.AutoField(primary_key=True)
+    product = models.AutoField(primary_key=True)
     title = models.CharField(max_length=500)
     slug = models.SlugField(max_length=500)
-    owner = models.ForeignKey(Business, on_delete=models.CASCADE, related_name="items")
-    image = models.ImageField(upload_to="item/images/")
+    owner = models.ForeignKey(
+        Business, on_delete=models.CASCADE, related_name="products"
+    )
     description = models.TextField()
     price = models.FloatField()
     available = models.BooleanField()
     hidden = models.BooleanField()
-    tags = models.ManyToManyField(VictualTag, related_name="items")
+
+    tags = models.ManyToManyField(ProductTag, related_name="products")
 
     # Only to get rid of linting errors.
     objects = models.Manager()
@@ -32,9 +34,9 @@ class Item(models.Model):
         super().save(*args, **kwargs)
 
 
-class Victual(Item):
-    """ Represents model for food and drink items """
+# class Victual(Item):
+#     """ Represents model for food and drink items """
 
-    max_price = models.FloatField()
-    portion_prices_combos = JSONField()
-    addon_price_combos = JSONField()
+#     max_price = models.FloatField()
+#     portion_prices_combos = JSONField()
+#     addon_price_combos = JSONField()

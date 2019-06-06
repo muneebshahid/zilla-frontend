@@ -1,6 +1,6 @@
 import random, os
 from glob import glob
-from internal.models import AmenityTag, BusinessTypeTag, VictualTag
+from internal.models import AmenityTag, BusinessTypeTag, Product, ProductTag
 from faker.providers import BaseProvider
 from django.core.files import File
 
@@ -20,7 +20,7 @@ class Provider(BaseProvider):
         "Wireless Internet",
     ]
 
-    VICTUAL_TAGS = [
+    PRODUCT_TAGS = [
         "halal",
         "vegan",
         "alkohal frei",
@@ -39,7 +39,7 @@ class Provider(BaseProvider):
         "peanut",
     ]
 
-    VICTUALS = [
+    PRODUCTS = [
         "Mega Burger",
         "Chicken Burger",
         "Vegetable Burger",
@@ -71,9 +71,9 @@ class Provider(BaseProvider):
         "Flat White Coffee",
     ]
 
-    def victual(self):
+    def product_title(self):
         """ Returns a random vitual """
-        return random.choice(Provider.VICTUALS)
+        return random.choice(Provider.PRODUCTS)
 
     def amenity(self):
         """ Returns a random business type """
@@ -85,9 +85,9 @@ class Provider(BaseProvider):
             tag=random.choice(Provider.BUSINESS_TYPE_TAGS)
         )
 
-    def victual_tag(self):
-        """ Return a random Victual Tag """
-        return VictualTag.objects.get(tag=random.choice(Provider.VICTUAL_TAGS))
+    def product_tag(self):
+        """ Return a random Product Tag """
+        return ProductTag.objects.get(tag=random.choice(Provider.PRODUCT_TAGS))
 
     def random_image_file(self, end_dir):
         """ Returns a random file object from end_dir """
@@ -110,9 +110,9 @@ class Provider(BaseProvider):
             )
         )
 
-    def item_image(self):
-        """ Returns a random file path from items directory """
-        return self.random_image_file("items")
+    def product_image(self):
+        """ Returns a random file path from products directory """
+        return self.random_image_file("products")
 
     def business_image(self):
         """ Returns a random file path from business directory """

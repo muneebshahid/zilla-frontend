@@ -40,7 +40,7 @@ class AmenityTag(Tag):
         super().save(*args, **kwargs)
 
 
-class VictualTag(Tag):
+class ProductTag(Tag):
     """ """
 
     def save(self, *args, **kwargs):

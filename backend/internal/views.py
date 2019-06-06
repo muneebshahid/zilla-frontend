@@ -1,13 +1,13 @@
 from django.shortcuts import render
-from internal.models import Business, Item
-from internal.serializers import BusinessSerializer, ItemSerialzier, VictualSerializer
+from internal.models import Business, Product
+from internal.serializers import BusinessSerializer, ProductSerialzier
 from rest_framework import status
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 # Create your views here.
-class BusinessProfile(APIView):
+class BusinessDetail(APIView):
     # renderer_classes = (JSONRenderer,)
 
     def get(self, request, slug, user, format=None):
@@ -15,7 +15,7 @@ class BusinessProfile(APIView):
         try:
             business = Business.objects.get(user=user, slug=slug)
             try:
-                items_s = ItemSerialzier(
+                items_s = ProductSerialzier(
                     business.items.all(), many=True, exclude=["image", "item_type"]
                 ).data
             except:
@@ -27,15 +27,15 @@ class BusinessProfile(APIView):
             return Response(data=str(e), status=status.HTTP_404_NOT_FOUND)
 
 
-class ItemProfile(APIView):
-    def get(self, request, slug, item, format=None):
-        """ Gets details about an item """
+class ProductDetail(APIView):
+    def get(self, request, slug, product, format=None):
+        """ Gets details about a product """
 
         try:
-            item = Item.objects.get(item=item, slug=slug)
+            product = Product.objects.get(product=product, slug=slug)
             # For now we only have food drink items.
-            item_s = VictualSerializer(item.victual, exclude=["image"]).data
-            return Response(data=item_s, status=status.HTTP_200_OK)
+            product_s = ProductSerializer(product, exclude=["image"]).data
+            return Response(data=product_s, status=status.HTTP_200_OK)
         except:
             return Response(data={}, status=status.HTTP_404_NOT_FOUND)
 
@@ -64,3 +64,4 @@ class ExploreItemView(APIView):
             return Response(data=items_s, status=status.HTTP_200_OK)
         except:
             return Response(data={}, status=status.HTTP_404_NOT_FOUND)
+
