@@ -12,7 +12,7 @@
 @media (min-width: 1020px) {
   .products-grid {
     z-index: 20;
-    margin-top: 0 !important;
+    margin-top: inherit;
   }
   .list-content {
     background-color: white !important;

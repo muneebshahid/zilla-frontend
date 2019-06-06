@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth.models import AbstractUser
 from django.utils.text import slugify
-from internal.models import Tag
+from internal.models import AmenityTag, BusinessTypeTag
 
 
 class SiteUser(AbstractUser):
@@ -13,6 +13,7 @@ class Business(models.Model):
     """ OneToOne Model to SiteUser """
 
     prepopulated_fields = {"slug": ("title",)}
+    TYPES = ((0, "Resturant"), (1, "Cafe"), (2, "Bar"), (3, "Club"))
 
     user = models.OneToOneField(
         SiteUser, on_delete=models.CASCADE, related_name="business", primary_key=True
@@ -25,7 +26,10 @@ class Business(models.Model):
     claimed = models.BooleanField()
     latlng = ArrayField(models.FloatField())
     objects = models.Manager()
-    tags = models.ManyToManyField(Tag, related_name="businesses", blank=True)
+    amenities = models.ManyToManyField(AmenityTag, related_name="businesses")
+    business_type = models.ForeignKey(
+        BusinessTypeTag, on_delete=models.PROTECT, related_name="businesses"
+    )
 
     def __str__(self):
         return self.title

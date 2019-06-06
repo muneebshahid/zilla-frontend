@@ -51,6 +51,10 @@ export class MapComponent implements OnInit {
     this.mapsApiLoader.load().then(() => {});
   }
   ngOnInit() {
+    this.initializeMarkersAndMapZoom();
+  }
+
+  initializeMarkersAndMapZoom() {
     // dummy markers
     this.markers.push(this.createMarker(48.1548894, 11.0716248));
     this.markers.push(this.createMarker(48.2548894, 11.0716248));
@@ -60,7 +64,7 @@ export class MapComponent implements OnInit {
     this.location = {
       lng: 48.1548894,
       lat: 11.4716248,
-      zoom: 6
+      zoom: 8
     };
   }
   tabClick(e) {

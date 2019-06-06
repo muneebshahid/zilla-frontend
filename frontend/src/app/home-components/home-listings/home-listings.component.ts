@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { IProduct } from "src/app/models/product";
 
 @Component({
@@ -8,10 +8,15 @@ import { IProduct } from "src/app/models/product";
 })
 export class HomeListingsComponent implements OnInit {
   @Input() products: IProduct[];
+  @Output() setMobileMapView = new EventEmitter<string>();
 
   constructor() {}
 
   baseUrl = "/api";
 
   ngOnInit() {}
+
+  updateMobileMapView() {
+    this.setMobileMapView.next("setMobileMapView");
+  }
 }

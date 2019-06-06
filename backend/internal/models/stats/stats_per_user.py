@@ -1,5 +1,5 @@
 from django.db import models
-from internal.models.items import Item
+from internal.models import Product
 from internal.models import SiteUser, Business
 from internal.models.stats import Stats
 
@@ -20,7 +20,7 @@ class StatsPerUser(Stats):
 class UserStatsPerItem(StatsPerUser):
     """ User stats for an Item """
 
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    item = models.ForeignKey(Product, on_delete=models.CASCADE)
     tried = models.BooleanField()
 
     class Meta:

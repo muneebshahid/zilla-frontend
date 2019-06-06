@@ -1,7 +1,7 @@
 from django.contrib.postgres.fields import JSONField
 from django.db import models
 
-from internal.models import Business, Item, SitePage
+from internal.models import Business, Product, SitePage
 from internal.models.offers import Ad, Coupon
 from internal.models.stats import Stats
 
@@ -32,7 +32,7 @@ class BusinessPageStats(PageStats):
 class ItemPageStats(PageStats):
     """ Page wide stats for an Item """
 
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    item = models.ForeignKey(Product, on_delete=models.CASCADE)
 
 
 class AdPageStats(PageStats):
