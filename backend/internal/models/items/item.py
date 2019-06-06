@@ -4,7 +4,7 @@ from django.contrib.postgres.fields import JSONField
 from django.db import models
 from internal.models import Business
 from django.utils.text import slugify
-from internal.models import Tag
+from internal.models import VictualTag
 
 
 class Item(models.Model):
@@ -20,9 +20,7 @@ class Item(models.Model):
     price = models.FloatField()
     available = models.BooleanField()
     hidden = models.BooleanField()
-    # TODO: change it to tags
-    tags = models.ManyToManyField(Tag, related_name="items")
-    item_type = models.IntegerField(choices=TYPES, default=1)
+    tags = models.ManyToManyField(VictualTag, related_name="items")
 
     # Only to get rid of linting errors.
     objects = models.Manager()

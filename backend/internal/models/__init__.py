@@ -1,4 +1,4 @@
-from internal.models.tag import Tag
+from internal.models.tag import AmenityTag, BusinessTypeTag, VictualTag, Tag
 from internal.models.users import Business, SiteUser
 from internal.models.items import Item, Victual
 from internal.models.image import BusinessImage, ItemImage

@@ -1,12 +1,19 @@
 import os
 import uuid
+import ntpath
 from django.db import models
 from django.dispatch import receiver
 from internal.models import Business, Item
 
 
 def get_business_image_path(instance, filename):
-    return os.path.join("business", str(instance.business.user.id), str(uuid.uuid4()))
+    return os.path.join(
+        "business", str(instance.business.user.id), "{}.jpg".format(str(uuid.uuid4()))
+    )
+
+
+def get_item_image_path(instance, filename):
+    return os.path.join("item", str(instance.item.id), str(uuid.uuid4()))
 
 
 class BusinessImage(models.Model):
@@ -25,7 +32,7 @@ class ItemImage(models.Model):
 @receiver(models.signals.post_delete, sender=BusinessImage)
 def auto_delete_business_image_on_delete(sender, instance, **kwargs):
     """
-        Delets file from the file system
+        Deletes file from the file system
     """
     if instance.file:
         if os.path.isfile(instance.file.path):
