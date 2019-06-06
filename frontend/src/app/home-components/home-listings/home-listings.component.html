@@ -1,7 +1,7 @@
 <div class="col-md-8 no-padding products-grid">
   <div class="list-content clearfix">
     <app-home-filter-drawer></app-home-filter-drawer>
-    <app-m-filter-map-menu></app-m-filter-map-menu>
+    <app-m-filter-map-menu (setMobileMapView)="updateMobileMapView()"></app-m-filter-map-menu>
     <div class=" main-results">
       <div class="listing-action clearfix">
         <div class="listing-search-result">
