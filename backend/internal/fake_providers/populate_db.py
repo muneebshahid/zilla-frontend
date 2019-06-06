@@ -4,18 +4,43 @@ import os
 from faker import Faker
 from tqdm import tqdm
 import django
-import numpy as np
-from internal.fake_providers import Provider
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "zilla.settings")
 django.setup()
+import numpy as np
+from internal.fake_providers import Provider
+from django.core.files import File
 
-from internal.models import Business, SiteUser, Victual, OpeningTimings
+
+from internal.models import (
+    Business,
+    SiteUser,
+    OpeningTimings,
+    BusinessImage,
+    ProductImage,
+    Product,
+    AmenityTag,
+    BusinessTypeTag,
+    ProductTag,
+    Tag,
+)
 
 fake = Faker()
 fake.add_provider(Provider)
-SiteUser.objects.all().delete()
+
+
+SiteUser.objects.filter(is_superuser=False).delete()
 Business.objects.all().delete()
+Tag.objects.all().delete()
+
+for business_type in Provider.BUSINESS_TYPE_TAGS:
+    BusinessTypeTag(tag=business_type).save()
+
+for amenity in Provider.AMENITY_TAGS:
+    AmenityTag(tag=amenity).save()
+
+for tag in Provider.PRODUCT_TAGS:
+    ProductTag(tag=tag).save()
 
 NUM_BUSINESSES = 100
 
@@ -37,21 +62,22 @@ for i in tqdm(range(NUM_BUSINESSES)):
         address=fake.format("address"),
         claimed=fake.format("boolean"),
         latlng=[float(x) for x in fake.format("latlng")],
+        business_type=fake.format("business_type"),
     )
     business.save()
+    business.amenities.set([fake.format("amenity") for _ in range(5)])
     for _ in range(50):
-        Victual(
-            title=fake.format("victual"),
+        product = Product(
+            title=fake.format("product_title"),
             owner=business,
             description=fake.format("text"),
             price=np.round(np.random.uniform(15), 2),
             available=fake.format("boolean"),
             hidden=fake.format("boolean"),
-            tags=fake.format("text"),
-            max_price=np.round(np.random.uniform(14, 20), 2),
-            portion_prices_combos={},
-            addon_price_combos={},
-        ).save()
+        )
+        product.save()
+        product.tags.set([fake.format("product_tag") for _ in range(5)])
+        ProductImage(product=product).file.save("", fake.format("product_image"))
     OpeningTimings(
         business=business,
         monday_open=fake.format("time"),
@@ -69,3 +95,4 @@ for i in tqdm(range(NUM_BUSINESSES)):
         sunday_open=fake.format("time"),
         sunday_close=fake.format("time"),
     ).save()
+    BusinessImage(business=business).file.save("", fake.format("business_image"))

@@ -1,7 +1,7 @@
-from internal.models.tag import Tag
+from internal.models.tag import AmenityTag, BusinessTypeTag, ProductTag, Tag
 from internal.models.users import Business, SiteUser
-from internal.models.items import Item, Victual
-from internal.models.image import BusinessImage, ItemImage
+from internal.models.product import Product
+from internal.models.image import BusinessImage, ProductImage
 from internal.models.offers import Ad, Coupon, Deal, Promotion
 from internal.models.opening_timings import OpeningTimings
 from internal.models.site_page import SitePage
