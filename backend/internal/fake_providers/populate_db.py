@@ -18,6 +18,7 @@ from internal.models import (
     Victual,
     OpeningTimings,
     BusinessImage,
+    ItemImage,
     AmenityTag,
     BusinessTypeTag,
     VictualTag,
@@ -79,6 +80,7 @@ for i in tqdm(range(NUM_BUSINESSES)):
         )
         v.save()
         v.tags.set([fake.format("victual_tag") for _ in range(5)])
+        ItemImage(item=v).file.save("", fake.format("item_image"))
     OpeningTimings(
         business=business,
         monday_open=fake.format("time"),
@@ -96,6 +98,4 @@ for i in tqdm(range(NUM_BUSINESSES)):
         sunday_open=fake.format("time"),
         sunday_close=fake.format("time"),
     ).save()
-    BusinessImage(business=business).file.save(
-        "", File(open(fake.format("business_image"), "rb"))
-    )
+    BusinessImage(business=business).file.save("", fake.format("business_image"))

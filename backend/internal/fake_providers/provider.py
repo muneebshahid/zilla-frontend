@@ -2,6 +2,7 @@ import random, os
 from glob import glob
 from internal.models import AmenityTag, BusinessTypeTag, VictualTag
 from faker.providers import BaseProvider
+from django.core.files import File
 
 # create new provider class. Note that the class name _must_ be ``Provider``.
 class Provider(BaseProvider):
@@ -88,14 +89,31 @@ class Provider(BaseProvider):
         """ Return a random Victual Tag """
         return VictualTag.objects.get(tag=random.choice(Provider.VICTUAL_TAGS))
 
-    def business_image(self):
-        """ Returns a random file path from the harcoded directory """
-        return random.choice(
-            glob(
-                "{}/*.jp2".format(
-                    os.path.join(
-                        "backend", "internal", "fake_providers", "images", "business"
+    def random_image_file(self, end_dir):
+        """ Returns a random file object from end_dir """
+        return File(
+            open(
+                random.choice(
+                    glob(
+                        "{}/*.jp2".format(
+                            os.path.join(
+                                "backend",
+                                "internal",
+                                "fake_providers",
+                                "images",
+                                end_dir,
+                            )
+                        )
                     )
-                )
+                ),
+                "rb",
             )
         )
+
+    def item_image(self):
+        """ Returns a random file path from items directory """
+        return self.random_image_file("items")
+
+    def business_image(self):
+        """ Returns a random file path from business directory """
+        return self.random_image_file("business")
