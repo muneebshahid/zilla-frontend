@@ -1,32 +1,39 @@
 <div id="wrapper-container" class="wrapper-container">
-    <app-m-home-menu-drawer></app-m-home-menu-drawer>
-    <app-m-menu></app-m-menu>
-    <app-menu></app-menu>
-    
-    <div id="apus-main-content">
-      <section id="main-container" class="inner" style="padding-top:5%;">
-        <div id="primary" class="content-area">
-          <div class="entry-content">
-            <main id="main" class="site-main" role="main">
-              <div class="job_listings" data-location="" data-keywords="" data-show_filters="true"
-                data-show_pagination="false" data-per_page="8" data-orderby="featured" data-order="DESC"
-                data-categories="49">
-                <div class="apus-half-map-layout apus-half-map-layout-v1 apus-listing-warpper">
-                  <div class="row no-margin wrapper-half-map">
-  
-                    <app-explore-businesses></app-explore-businesses>
-                    <div class="col-md-7 no-padding half-map">
-                        <app-explore-products></app-explore-products>
-                    </div>
+  <app-m-home-menu-drawer></app-m-home-menu-drawer>
+  <app-m-menu></app-m-menu>
+  <app-menu></app-menu>
+
+  <div id="apus-main-content">
+    <section id="main-container" class="inner">
+      <div id="primary" class="content-area">
+        <div class="entry-content">
+          <main id="main" class="site-main" role="main">
+            <div
+              class="job_listings"
+              data-location=""
+              data-keywords=""
+              data-show_filters="true"
+              data-show_pagination="false"
+              data-per_page="8"
+              data-orderby="featured"
+              data-order="DESC"
+              data-categories="49"
+            >
+              <div class="apus-half-map-layout apus-half-map-layout-v1 apus-listing-warpper">
+                <div class="row no-margin wrapper-half-map">
+                  <app-explore-businesses></app-explore-businesses>
+                  <div class="col-md-7 no-padding half-map">
+                    <app-explore-products></app-explore-products>
                   </div>
                 </div>
               </div>
-            </main>
-          </div>
+            </div>
+          </main>
         </div>
-      </section>
-    </div>
-    <a href="#" id="back-to-top">
-      <i class="fa fa-angle-up" aria-hidden="true"></i>
-    </a>
+      </div>
+    </section>
   </div>
+  <a href="#" id="back-to-top">
+    <i class="fa fa-angle-up" aria-hidden="true"></i>
+  </a>
+</div>
