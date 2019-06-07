@@ -94,3 +94,7 @@ db.sqlite3
 backend/internal/migrations/*
 .env
 backend/media/*
+
+### Sample images ###
+backend/internal/fake_providers/images/business/*.jp2
+backend/internal/fake_providers/images/products/*.jp2
