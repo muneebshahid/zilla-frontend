@@ -68,6 +68,7 @@ class BusinessSerializer(DynamicFieldsSerializer):
     business_type = serializers.SerializerMethodField()
     amenities = serializers.SerializerMethodField()
     opening_timings = serializers.SerializerMethodField()
+    products = serializers.SerializerMethodField()
 
     def get_images(self, obj):
         if "images" not in self.exclude:
@@ -97,6 +98,17 @@ class BusinessSerializer(DynamicFieldsSerializer):
         else:
             return None
 
+    def get_products(self, obj):
+        if "products" not in self.exclude:
+            return ProductSerialzier(
+                obj.products.all(),
+                read_only=True,
+                many=True,
+                exclude=["owner", "hidden"],
+            ).data
+        else:
+            return None
+
     class Meta:
         model = Business
         fields = "__all__"
@@ -105,13 +117,20 @@ class BusinessSerializer(DynamicFieldsSerializer):
 class ProductSerialzier(DynamicFieldsSerializer):
     """ Serializer for Business Model """
 
+    tags = serializers.SerializerMethodField()
     images = serializers.SerializerMethodField()
 
     def get_images(self, obj):
         if "images" not in self.exclude:
             return ProductImageSerializer(
-                obj.images, read_only=True, many=True, exclude=["id", "business"]
+                obj.images, read_only=True, many=True, exclude=["id", "product"]
             ).data
+        else:
+            return None
+
+    def get_tags(self, obj):
+        if "business_type" not in self.exclude:
+            return TagSerializer(obj.tags.all(), many=True, exclude=["tag_type"]).data
         else:
             return None
 
