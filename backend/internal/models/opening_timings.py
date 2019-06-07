@@ -27,3 +27,28 @@ class OpeningTimings(models.Model):
     saturday_close = models.TimeField()
     sunday_open = models.TimeField()
     sunday_close = models.TimeField()
+
+    def to_json(self):
+        return {
+            0: "{}-{}-{}".format(
+                "Monday", str(self.monday_open), str(self.monday_close)
+            ),
+            1: "{}-{}-{}".format(
+                "Tuesday", str(self.tuesday_open), str(self.tuesday_close)
+            ),
+            2: "{}-{}-{}".format(
+                "Wednesday", str(self.wednesday_open), str(self.wednesday_close)
+            ),
+            3: "{}-{}-{}".format(
+                "Thursday", str(self.thursday_open), str(self.thursday_close)
+            ),
+            4: "{}-{}-{}".format(
+                "Friday", str(self.friday_open), str(self.friday_close)
+            ),
+            5: "{}-{}-{}".format(
+                "Saturday", str(self.saturday_open), str(self.saturday_close)
+            ),
+            6: "{}-{}-{}".format(
+                "Sunday", str(self.sunday_open), str(self.sunday_close)
+            ),
+        }

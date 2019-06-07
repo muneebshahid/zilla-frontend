@@ -1,6 +1,6 @@
 """ Code for populating db """
 
-import os
+import os, random
 from faker import Faker
 from tqdm import tqdm
 import django
@@ -23,6 +23,7 @@ from internal.models import (
     BusinessTypeTag,
     ProductTag,
     Tag,
+    OpeningTimings,
 )
 
 fake = Faker()
@@ -60,6 +61,7 @@ for i in tqdm(range(NUM_BUSINESSES)):
         description=fake.format("text"),
         website=fake.format("hostname"),
         address=fake.format("address"),
+        phone_no=fake.format("phone_number"),
         claimed=fake.format("boolean"),
         latlng=[float(x) for x in fake.format("latlng")],
         business_type=fake.format("business_type"),
@@ -95,4 +97,5 @@ for i in tqdm(range(NUM_BUSINESSES)):
         sunday_open=fake.format("time"),
         sunday_close=fake.format("time"),
     ).save()
-    BusinessImage(business=business).file.save("", fake.format("business_image"))
+    for _ in range(random.randint(0, 3)):
+        BusinessImage(business=business).file.save("", fake.format("business_image"))

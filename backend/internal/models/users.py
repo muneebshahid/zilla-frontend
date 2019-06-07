@@ -24,6 +24,7 @@ class Business(models.Model):
     website = models.CharField(max_length=500)
     address = models.TextField()
     claimed = models.BooleanField()
+    phone_no = models.CharField(max_length=500, null=True)
     latlng = ArrayField(models.FloatField())
     objects = models.Manager()
     amenities = models.ManyToManyField(AmenityTag, related_name="businesses")

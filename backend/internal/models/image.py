@@ -14,7 +14,7 @@ def get_business_image_path(instance, filename):
 
 def get_product_image_path(instance, filename):
     return os.path.join(
-        "product", str(instance.product), "{}.jp2".format(str(uuid.uuid4()))
+        "product", str(instance.product.product), "{}.jp2".format(str(uuid.uuid4()))
     )
 
 

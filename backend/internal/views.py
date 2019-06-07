@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from internal.models import Business, Product
+from internal.models import Business, BusinessImage, Product, ProductImage
 from internal.serializers import BusinessSerializer, ProductSerialzier
 from rest_framework import status
 from rest_framework.renderers import JSONRenderer
@@ -15,13 +15,13 @@ class BusinessDetail(APIView):
         try:
             business = Business.objects.get(user=user, slug=slug)
             try:
-                items_s = ProductSerialzier(
+                product_s = ProductSerialzier(
                     business.items.all(), many=True, exclude=["image", "item_type"]
                 ).data
             except:
-                items_s = {}
+                product_s = {}
             business_s = BusinessSerializer(business).data
-            business_s["items"] = items_s
+            business_s["products"] = product_s
             return Response(data=business_s, status=status.HTTP_200_OK)
         except Exception as e:
             return Response(data=str(e), status=status.HTTP_404_NOT_FOUND)
@@ -43,7 +43,7 @@ class ProductDetail(APIView):
 class ExploreBusinessView(APIView):
     """ Explore Business View """
 
-    def get(self, request, format=None):
+    def get(self, request, lat, lng, format=None):
         """ Explore View """
         return Response(
             data=BusinessSerializer(
@@ -60,7 +60,9 @@ class ExploreItemView(APIView):
         """ Explore Items """
         try:
             business = Business.objects.get(user=user)
-            items_s = ItemSerialzier(business.items.all(), many=True).data
+            print(business.products.all())
+            items_s = ProductSerialzier(business.products.all(), many=True).data
+            print(items_s)
             return Response(data=items_s, status=status.HTTP_200_OK)
         except:
             return Response(data={}, status=status.HTTP_404_NOT_FOUND)
