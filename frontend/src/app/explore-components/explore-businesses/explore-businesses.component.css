@@ -1,23 +1,21 @@
-@media (max-width: 1441px) {
-  .businesses-position {
-    overflow: auto;
-    width: 40%;
-    height: 100%;
-    position: fixed;
-    top: 1;
-  }
-}
 @media (max-width: 1025px) {
   .wrapper-list {
     font-size: 10px !important;
   }
 }
 
-.mobile-preview-btn {
-  display: none;
+@media (max-width: 1370px) {
+  div.job_listing .listing-image-inner .price-range {
+    padding: 3px !important;
+    line-height: 1 !important;
+    font-size: 12px !important;
+    -webkit-border-radius: 0 !important;
+  }
 }
-.mobile-price-range {
-  display: none;
+@media (max-width: 1026px) {
+  .businesses-position {
+    top: 7% !important;
+  }
 }
 
 .list-content {
@@ -29,5 +27,5 @@
   width: 40%;
   height: 100%;
   position: fixed;
-  top: 3;
+  top: 10%;
 }

@@ -1,15 +1,17 @@
-.search-input{
-    width: 100%;
-}
-
 @media (max-width: 1281px) {
-    .menu-items-media-margin{
-        margin-right: -1px;
-    }
+  .menu-items-media-margin {
+    margin-right: -1px;
+  }
 }
 
 @media (max-width: 1025px) {
-    .menu-items-media-margin{
-        margin-right: -1px;
-    }
+  .menu-items-media-margin {
+    margin-right: -1px;
+  }
+}
+.site-header {
+  position: fixed;
+}
+.search-input {
+  width: 100%;
 }
