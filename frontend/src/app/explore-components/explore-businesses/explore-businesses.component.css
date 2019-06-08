@@ -10,6 +10,7 @@
     line-height: 1 !important;
     font-size: 12px !important;
     -webkit-border-radius: 0 !important;
+    border-radius: 0;
   }
 }
 @media (max-width: 1026px) {

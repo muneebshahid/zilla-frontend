@@ -42,8 +42,9 @@
     *ngIf="!searchBarEnabled"
     class="pull-right btn btn-xs btn-second btn-view-products"
     type="button"
+    (click)="productViewClicked()"
   >
-    <i class="fa fa-th-large" aria-hidden="true"></i> Products View
+    <i class="fa fa-th-large" aria-hidden="true"></i> {{ productViewBtnText }}
   </button>
 
   <button
