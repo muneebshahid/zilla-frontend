@@ -18,6 +18,11 @@
   }
 }
 
+@media (max-width: 770px) {
+  .businesses-position {
+    width: 100% !important;
+  }
+}
 .list-content {
   padding: 0 30px !important;
 }

@@ -7,3 +7,8 @@
     padding-top: 0 !important;
   }
 }
+@media (max-width: 770px) {
+  .app-explore-business {
+    display: none;
+  }
+}

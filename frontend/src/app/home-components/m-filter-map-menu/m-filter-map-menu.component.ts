@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 
 @Component({
   selector: "app-m-filter-map-menu",
@@ -7,7 +7,7 @@ import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 })
 export class MFilterMapMenuComponent implements OnInit {
   @Output() setMobileMapView = new EventEmitter<string>();
-
+  @Input() searchBarEnabled = true;
   constructor() {}
 
   ngOnInit() {}

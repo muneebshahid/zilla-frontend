@@ -7,6 +7,7 @@
         <div class="search_keywords ">
           <div class="col-md-12">
             <input
+              *ngIf="searchBarEnabled"
               type="text"
               name="search_keywords"
               id="search_keywords"
@@ -26,12 +27,23 @@
     Search Filters
   </button>
 
+  <!-- This btn is for home page to toggle with products and maps -->
   <button
+    *ngIf="searchBarEnabled"
     class="pull-right btn btn-xs btn-second btn-view-map"
     type="button"
     (click)="updateMobileMapView()"
   >
     <i class="fa fa-map-o" aria-hidden="true"></i> Map View
+  </button>
+
+  <!-- This btn is for explore page to toggle with products and businesses -->
+  <button
+    *ngIf="!searchBarEnabled"
+    class="pull-right btn btn-xs btn-second btn-view-products"
+    type="button"
+  >
+    <i class="fa fa-th-large" aria-hidden="true"></i> Products View
   </button>
 
   <button
