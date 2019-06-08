@@ -1,23 +1,15 @@
 @media (max-width: 1441px) {
-  .mobile-price-range {
-    float: right;
-    border-radius: 50px;
-    background-color: #fb3640;
-    color: white;
-    padding: 2px 10px;
-    font-size: 13px;
-    font-family: "Rubik", Helvetica, Arial, sans-serif;
-    display: inherit !important;
+  .businesses-position {
+    overflow: auto;
+    width: 40%;
+    height: 100%;
+    position: fixed;
+    top: 1;
   }
-  .price-range,
-  .preview-btn {
-    display: none !important;
-  }
-  .listing-tags > div {
-    display: inline !important;
-  }
-  .listing-image {
-    width: 153px !important;
+}
+@media (max-width: 1025px) {
+  .wrapper-list {
+    font-size: 10px !important;
   }
 }
 
@@ -37,4 +29,5 @@
   width: 40%;
   height: 100%;
   position: fixed;
+  top: 3;
 }
