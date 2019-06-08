@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 # Create your views here.
-class BusinessDetail(APIView):
+class BusinessDetailView(APIView):
     # renderer_classes = (JSONRenderer,)
 
     def get(self, request, slug, user, format=None):
@@ -23,7 +23,7 @@ class BusinessDetail(APIView):
             return Response(data=str(e), status=status.HTTP_404_NOT_FOUND)
 
 
-class ProductDetail(APIView):
+class ProductDetailView(APIView):
     def get(self, request, slug, product, format=None):
         """ Gets details about a product """
 
@@ -58,7 +58,6 @@ class ExploreBusinessView(APIView):
         """ Explore Items """
         try:
             business = Business.objects.get(user=user)
-            print(business.products.all())
             items_s = ProductSerialzier(
                 business.products.all(), many=True, exclude=["hidden"]
             ).data
@@ -66,3 +65,25 @@ class ExploreBusinessView(APIView):
         except Exception as e:
             return Response(data=str(e), status=status.HTTP_404_NOT_FOUND)
 
+
+class SearchView(APIView):
+    """ Returns search """
+
+    def get(self, request, query, lat, lng, format=None):
+        """ """
+        try:
+            query_regex = r"({})".format(query.replace(" ", ""))
+            business = Business.objects.filter(title__iregex=query_regex)[:20]
+            products = Product.objects.filter(title__iregex=query_regex)[:20]
+            return Response(
+                data=dict(
+                    products=ProductSerialzier(
+                        products, many=True, exclude=["hidden"]
+                    ).data,
+                    businesses=BusinessSerializer(
+                        business, many=True, exclude=["products"]
+                    ).data,
+                )
+            )
+        except Exception as e:
+            return Response(data=str(e), status=status.HTTP_404_NOT_FOUND)

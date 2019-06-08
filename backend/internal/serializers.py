@@ -119,6 +119,7 @@ class ProductSerialzier(DynamicFieldsSerializer):
 
     tags = serializers.SerializerMethodField()
     images = serializers.SerializerMethodField()
+    latlng = serializers.SerializerMethodField()
 
     def get_images(self, obj):
         if "images" not in self.exclude:
@@ -131,6 +132,12 @@ class ProductSerialzier(DynamicFieldsSerializer):
     def get_tags(self, obj):
         if "business_type" not in self.exclude:
             return TagSerializer(obj.tags.all(), many=True, exclude=["tag_type"]).data
+        else:
+            return None
+
+    def get_latlng(self, obj):
+        if "latlng" not in self.exclude:
+            return obj.owner.latlng
         else:
             return None
 
