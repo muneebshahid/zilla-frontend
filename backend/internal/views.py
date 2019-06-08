@@ -58,7 +58,6 @@ class ExploreBusinessView(APIView):
         """ Explore Items """
         try:
             business = Business.objects.get(user=user)
-            print(business.products.all())
             items_s = ProductSerialzier(
                 business.products.all(), many=True, exclude=["hidden"]
             ).data
@@ -74,14 +73,16 @@ class SearchView(APIView):
         """ """
         try:
             query_regex = r"({})".format(query.replace(" ", ""))
-            business = Business.objects.filter(title__iregex=query_regex)
-            products = Product.objects.filter(title__iregex=query_regex)
+            business = Business.objects.filter(title__iregex=query_regex)[:20]
+            products = Product.objects.filter(title__iregex=query_regex)[:20]
             return Response(
                 data=dict(
-                    products=ProductSerialzier(products, many=True).data[:20],
+                    products=ProductSerialzier(
+                        products, many=True, exclude=["hidden"]
+                    ).data,
                     businesses=BusinessSerializer(
                         business, many=True, exclude=["products"]
-                    ).data[:20],
+                    ).data,
                 )
             )
         except Exception as e:
