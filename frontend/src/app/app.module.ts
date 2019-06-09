@@ -28,10 +28,8 @@ import {
   BusinessDetailHeaderGalleryComponent,
   BusinessDetailHeaderComponent,
   BusinessDetailContainerComponent,
-  BusinessDetailDescriptionComponent,
   BusinessDetailMenuComponent,
   BusinessDetailAmenitiesComponent,
-  BusinessDetailGalleryComponent,
   BusinessDetailMapComponent,
   BusinessDetailOpeningHoursComponent
 } from "./business-detail-components";
@@ -70,10 +68,8 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from "@agm/core";
     BusinessDetailHeaderGalleryComponent,
     BusinessDetailHeaderComponent,
     BusinessDetailContainerComponent,
-    BusinessDetailDescriptionComponent,
     BusinessDetailMenuComponent,
     BusinessDetailAmenitiesComponent,
-    BusinessDetailGalleryComponent,
     BusinessDetailOpeningHoursComponent,
     BusinessDetailMapComponent,
     ExploreComponent,
