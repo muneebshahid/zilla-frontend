@@ -19,7 +19,7 @@
   - `createdb zilla_db -U zilla_user`
     - Check: You should be able to login to psql using following command now `psql aursasta_db`
 - Make migrations and run the server
-  - `python manage.py makemigrations`
+  - `python manage.py makemigrations internal`
   - `python manage.py migrate`
   - Import fixtures (Optional)
     - `python internal/fake_providers/populate_db.py`
