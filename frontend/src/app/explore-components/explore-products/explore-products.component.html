@@ -1,4 +1,7 @@
-<div class="col-xs-12 main-results">
+<div class="col-xs-12 main-results" [ngClass]="{ 'products-wrapper': productsLoading }">
+  <div class="loading-sign" *ngIf="productsLoading">
+    <img src="http://localhost:4200/assets/images/ajax-loader.gif" class="ajax-loader" />
+  </div>
   <div class="listing-action clearfix">
     <div class="listing-search-result">
       <div class="results"><span class="results-no">14</span> Results Found (Showing 1 - 8)</div>
