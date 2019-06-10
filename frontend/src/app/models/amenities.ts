@@ -1,4 +1,4 @@
-export interface ITags {
+export interface IAmenities {
   name: string;
   slug: string;
 }

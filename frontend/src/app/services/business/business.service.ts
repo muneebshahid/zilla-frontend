@@ -13,5 +13,8 @@ export class BusinessService {
     return this.httpService.get("explore");
   }
   getBusinessFromProduct() {}
-  getExploreBusiness() {}
+  getExploreBusiness(latlng: any): Observable<IBusiness> {
+    let data = this.httpService.get(`explore/${latlng.lat}/${latlng.lng}`);
+    return data;
+  }
 }

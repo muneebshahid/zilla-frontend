@@ -1,9 +1,8 @@
-import { IUser } from "./user";
 import { IProduct } from "./product";
 import { ITimings } from "./timings";
 
 export interface IBusiness {
-  user: IUser;
+  user: number;
   website: string;
   address: string;
   phone: string;
@@ -11,7 +10,10 @@ export interface IBusiness {
   opening_times: Array<ITimings>;
   images: Array<string>;
   slug: string;
-  lnglat: Array<number>;
+  latlng: Array<number>;
   title: string;
+  tags: Array<string>;
+  claimed: boolean;
   description: string;
+  type: string;
 }
