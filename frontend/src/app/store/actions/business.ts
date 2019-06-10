@@ -1,8 +1,8 @@
 import { Action } from "@ngrx/store";
 
 export enum EBusinessActions {
-  GetExploreBusiness = "[Product] Get Explore Business",
-  GetExploreBusinessSuccess = "[Product] Get Explore Business Success"
+  GetExploreBusiness = "[Business] Get Explore Business",
+  GetExploreBusinessSuccess = "[Business] Get Explore Business Success"
 }
 
 export class GetExploreBusiness implements Action {

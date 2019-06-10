@@ -10,7 +10,7 @@ import { BusinessService } from "../../services/business/business.service";
 import { EBusinessActions } from "../actions/business";
 
 @Injectable()
-export class ProductEffects {
+export class BusinessEffects {
   @Effect()
   getExploreBusinesses$ = this.actions$.pipe(
     ofType<GetExploreBusiness>(EBusinessActions.GetExploreBusiness),

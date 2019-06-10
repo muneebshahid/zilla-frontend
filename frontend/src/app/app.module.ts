@@ -51,6 +51,7 @@ import {
 import { HttpClientModule } from "@angular/common/http";
 import { AgmSnazzyInfoWindowModule } from "@agm/snazzy-info-window";
 import { AgmCoreModule, GoogleMapsAPIWrapper } from "@agm/core";
+import { BusinessEffects } from "./store/effects/business";
 
 @NgModule({
   declarations: [
@@ -85,7 +86,7 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from "@agm/core";
     NgbModule.forRoot(),
     FormsModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([ProductEffects]),
+    EffectsModule.forRoot([ProductEffects, BusinessEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
     AgmCoreModule.forRoot({ apiKey: "AIzaSyAZfyL5pncodSyDVTP28vnyQep4SNeQDgY" }),

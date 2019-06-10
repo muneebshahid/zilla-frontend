@@ -7,6 +7,8 @@ import { HttpService } from "../http/http.service";
   providedIn: "root"
 })
 export class BusinessService {
+  EXPLORE_URL = "e";
+
   constructor(private httpService: HttpService) {}
 
   getNearbyBusinesses(latlng: any): Observable<IBusiness> {
@@ -14,7 +16,6 @@ export class BusinessService {
   }
   getBusinessFromProduct() {}
   getExploreBusiness(latlng: any): Observable<IBusiness> {
-    let data = this.httpService.get(`explore/${latlng.lat}/${latlng.lng}`);
-    return data;
+    return this.httpService.get(`${this.EXPLORE_URL}/${latlng.lat}/${latlng.lng}`);
   }
 }

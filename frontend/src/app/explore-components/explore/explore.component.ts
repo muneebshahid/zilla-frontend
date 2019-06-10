@@ -22,9 +22,9 @@ export class ExploreComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(new GetExploreBusiness({ lat: 20, lng: 20 }));
+
     this.businessSelector.subscribe(businesses => {
       this.businesses = businesses;
-      console.log(businesses);
     });
   }
 }
