@@ -91,7 +91,8 @@
           </div>
         </div>
       </div>
-      <div class="col-md-12 col-sm-12	">
+
+      <div class="col-md-12 col-sm-12	" *ngFor="let business of businesses">
         <div
           class="job-list-style post-635 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-shops job_listing_type-full-time job_listing_amenity-accepts-credit-cards job_listing_amenity-bike-parking job_listing_amenity-coupons job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-reservations job_listing_amenity-smoking-allowed job_listing_amenity-wheelchair-accesible job_listing_region-new-york job_listing_tag-card-payment job_listing_tag-daily-specials job_listing_tag-hotels job_listing_tag-new-york job_listing_tag-parking-street job_listing_tag-restaurant job-type-full-time job_position_featured"
           itemscope=""
@@ -105,20 +106,20 @@
             <i class="flaticon-shopping-cart"></i>
           </div>
 
-          <span class="listing-address hidden"> 228-252 Albany Ave, Brooklyn </span>
+          <span class="listing-address hidden"> {{ business.address }} </span>
           <div class="wrapper-list">
             <div class="listing-image">
               <div class="listing-image-inner">
                 <div class="image-wrapper image-loaded">
                   <a href="https://demoapus.com/findgo/listings/shop-in-city2/">
                     <img
-                      src="https://demoapus.com/findgo/wp-content/uploads/2018/05/10-220x155.jpg"
-                      alt="Shop In City2"
+                      [src]="business.images[0].file"
+                      [alt]="business.title"
                       class="unveil-image"
                     />
                   </a>
                 </div>
-                <span class="price-range"> $100 - $200 </span>
+                <span class="price-range"> 20$ - 30$ </span>
                 <div class="top-imformation">
                   <div class="listing-preview-wrapper pull-left">
                     <a href="#preview-635" class="listing-preview" data-id="635"
@@ -138,17 +139,26 @@
               <div class="bottom-grid-inner">
                 <div class="listing-content">
                   <h3 class="listing-title">
-                    <a href="https://demoapus.com/findgo/listings/shop-in-city2/">Shop In City2</a>
+                    <a href="https://demoapus.com/findgo/listings/shop-in-city2/">{{
+                      business.title
+                    }}</a>
+                    <span
+                      class="listing-claimed-icon"
+                      data-toggle="tooltip"
+                      title=""
+                      data-original-title="Claimed"
+                      ><i class="text-theme fa fa-check-circle"></i
+                    ></span>
                   </h3>
-                  <div class="listing-tagline">Shop for you</div>
+                  <div class="listing-tagline">{{ business.description }}</div>
                   <div class="listing-tags">
-                    <div class="listing-review">
+                    <!-- <div class="listing-review">
                       <span class="review-avg">5.0</span>
                       1 Rating
-                    </div>
-                    <div class="listing-category">
+                    </div> -->
+                    <div class="listing-category" *ngIf="business.claimed">
                       <a href="https://demoapus.com/findgo/listing-category/shops/"
-                        ><i class="flaticon-shopping-cart"></i>Shops</a
+                        ><i class="flaticon-shopping-cart"></i>{{ business.business_type.tag }}</a
                       >
                     </div>
                     <div class="listing-time closed">
@@ -160,12 +170,14 @@
                   <div class="pull-left">
                     <div class="listing-location">
                       <i class="flaticon-placeholder"></i
-                      ><a href="https://demoapus.com/findgo/region/new-york/">New York</a>
+                      ><a href="https://demoapus.com/findgo/region/new-york/">{{
+                        business.address
+                      }}</a>
                     </div>
                   </div>
                   <div class="listing-phone pull-left">
                     <i class="flaticon-phone-call"></i>
-                    +84 123 456
+                    {{ business.phone_no }}
                   </div>
                 </div>
               </div>
@@ -173,6 +185,7 @@
           </div>
         </div>
       </div>
+
       <div class="col-md-12 col-sm-12	">
         <div
           class="job-list-style post-634 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-shops job_listing_type-full-time job_listing_region-new-york job_listing_tag-card-payment job_listing_tag-daily-specials job_listing_tag-hotels job_listing_tag-new-york job_listing_tag-parking-street job_listing_tag-restaurant job_listing_tag-smoking-allowed job-type-full-time job_position_featured"

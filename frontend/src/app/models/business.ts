@@ -1,19 +1,17 @@
+import { IType } from "./type";
 import { IProduct } from "./product";
 import { ITimings } from "./timings";
 
 export interface IBusiness {
   user: number;
+  images: Array<string>;
+  business_type: IType;
+  opening_timings: Array<ITimings>;
+  title: string;
+  slug: string;
+  description: string;
   website: string;
   address: string;
-  phone: string;
-  products: Array<IProduct>;
-  opening_times: Array<ITimings>;
-  images: Array<string>;
-  slug: string;
-  latlng: Array<number>;
-  title: string;
-  tags: Array<string>;
   claimed: boolean;
-  description: string;
-  type: string;
+  phone_no: string;
 }
