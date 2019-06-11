@@ -24,11 +24,11 @@ class Business(models.Model):
     website = models.CharField(max_length=500)
     address = models.TextField()
     claimed = models.BooleanField()
-    phone_no = models.CharField(max_length=500, null=True)
+    phone = models.CharField(max_length=500, null=True)
     latlng = ArrayField(models.FloatField())
     objects = models.Manager()
     amenities = models.ManyToManyField(AmenityTag, related_name="businesses")
-    business_type = models.ForeignKey(
+    type = models.ForeignKey(
         BusinessTypeTag, on_delete=models.PROTECT, related_name="businesses"
     )
 
