@@ -1,3 +1,6 @@
-.accountbt-hover{
-    margin-top:4px;
+.accountbt-hover {
+  margin-top: 4px;
+}
+.header-mobile {
+  position: fixed;
 }

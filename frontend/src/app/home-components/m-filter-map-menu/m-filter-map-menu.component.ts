@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 
 @Component({
   selector: "app-m-filter-map-menu",
@@ -7,6 +7,9 @@ import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 })
 export class MFilterMapMenuComponent implements OnInit {
   @Output() setMobileMapView = new EventEmitter<string>();
+  @Input() searchBarEnabled = true;
+
+  productViewBtnText = "Businesses";
 
   constructor() {}
 
@@ -14,5 +17,13 @@ export class MFilterMapMenuComponent implements OnInit {
 
   updateMobileMapView() {
     this.setMobileMapView.next("setMobileMapView");
+  }
+
+  productViewClicked() {
+    if (this.productViewBtnText === "Products") {
+      this.productViewBtnText = "Businesses";
+    } else {
+      this.productViewBtnText = "Products";
+    }
   }
 }

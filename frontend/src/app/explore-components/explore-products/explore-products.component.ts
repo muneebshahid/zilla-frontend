@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-explore-products',
-  templateUrl: './explore-products.component.html',
-  styleUrls: ['./explore-products.component.css']
+  selector: "app-explore-products",
+  templateUrl: "./explore-products.component.html",
+  styleUrls: ["./explore-products.component.css"]
 })
 export class ExploreProductsComponent implements OnInit {
+  productsLoading = false;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

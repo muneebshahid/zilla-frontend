@@ -71,7 +71,7 @@
     changePaddingTopMobileContent: function() {
       if ($(window).width() < 1025) {
         var header_h = $("#apus-header-mobile").outerHeight();
-        $("#apus-main-content").css({ "padding-top": header_h });
+        $("#apus-main-content").css({ "padding-top": header_h - 10 });
         $(".listings-filter-wrapper").css({ top: header_h });
         $(".listings-filter-wrapper").css({ height: "calc(100% - " + header_h + "px)" });
       } else {

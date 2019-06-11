@@ -1,4 +1,4 @@
 export interface ITags {
-  id: number;
-  name: string;
+  tag: string;
+  slug: string;
 }

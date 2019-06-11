@@ -1,9 +1,14 @@
-.inner {
+/* .inner {
   padding-top: 6%;
-}
+} */
 
 @media (max-width: 1025px) {
   .inner {
     padding-top: 0 !important;
+  }
+}
+@media (max-width: 770px) {
+  .app-explore-business {
+    display: none;
   }
 }
