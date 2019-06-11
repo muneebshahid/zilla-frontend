@@ -95,7 +95,7 @@ class Provider(BaseProvider):
             open(
                 random.choice(
                     glob(
-                        "{}/*.jp2".format(
+                        "{}/*.jpg".format(
                             os.path.join(
                                 "backend",
                                 "internal",
