@@ -8,13 +8,13 @@ from internal.models import Business, Product
 
 def get_business_image_path(instance, filename):
     return os.path.join(
-        "business", str(instance.business.user.id), "{}.jp2".format(str(uuid.uuid4()))
+        "business", str(instance.business.user.id), "{}.jpg".format(str(uuid.uuid4()))
     )
 
 
 def get_product_image_path(instance, filename):
     return os.path.join(
-        "product", str(instance.product.product), "{}.jp2".format(str(uuid.uuid4()))
+        "product", str(instance.product.product), "{}.jpg".format(str(uuid.uuid4()))
     )
 
 
