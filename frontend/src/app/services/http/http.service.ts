@@ -1,14 +1,14 @@
+import { environment } from "./../../../environments/environment";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { HttpParamsOptions } from "@angular/common/http/src/params";
-
 @Injectable({
   providedIn: "root"
 })
 export class HttpService {
   // private readonly baseUrl = "https://jsonplaceholder.typicode.com";
-  private readonly baseUrl = "http://localhost:8000";
+  public readonly baseUrl = environment.apiEndpoint;
 
   constructor(private httpclient: HttpClient) {}
 

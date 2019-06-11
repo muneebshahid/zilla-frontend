@@ -97,7 +97,7 @@ class Provider(BaseProvider):
                     glob(
                         "{}/*.jpg".format(
                             os.path.join(
-                                "backend",
+                                # "backend",
                                 "internal",
                                 "fake_providers",
                                 "images",

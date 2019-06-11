@@ -1,3 +1,4 @@
+import { environment } from "./../../../environments/environment";
 import { IBusiness } from "src/app/models/business";
 import { Component, OnInit, Input } from "@angular/core";
 
@@ -9,6 +10,7 @@ import { Component, OnInit, Input } from "@angular/core";
 export class ExploreBusinessesComponent implements OnInit {
   @Input() businesses: IBusiness[];
 
+  endpoint = environment.apiEndpoint;
   constructor() {}
 
   ngOnInit() {}
