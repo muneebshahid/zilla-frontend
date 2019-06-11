@@ -28,7 +28,7 @@ class Business(models.Model):
     latlng = ArrayField(models.FloatField())
     objects = models.Manager()
     amenities = models.ManyToManyField(AmenityTag, related_name="businesses")
-    type = models.ForeignKey(
+    business_type = models.ForeignKey(
         BusinessTypeTag, on_delete=models.PROTECT, related_name="businesses"
     )
 
