@@ -61,7 +61,7 @@ for i in tqdm(range(NUM_BUSINESSES)):
         description=fake.format("text"),
         website=fake.format("hostname"),
         address=fake.format("address"),
-        phone_no=fake.format("phone_number"),
+        phone=fake.format("phone_number"),
         claimed=fake.format("boolean"),
         latlng=[float(x) for x in fake.format("latlng")],
         business_type=fake.format("business_type"),
