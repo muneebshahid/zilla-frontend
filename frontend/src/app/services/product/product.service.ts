@@ -1,3 +1,4 @@
+import { environment } from "./../../../environments/environment";
 import { Injectable } from "@angular/core";
 import { HttpService } from "../http/http.service";
 import { Observable } from "rxjs";
@@ -15,8 +16,10 @@ export class ProductService {
     return this.httpService.get("explore");
   }
 
-  /* businessObj will contain the slug and business id to post */
-  getProductsOfBusiness(businessObj: any) {}
+  /* businessObj business id to post */
+  getProductsOfBusiness(businessId: any) {
+    return this.httpService.get(`${environment.exploreUrl}/${businessId}`);
+  }
 
   updateProductDetails(object: any) {}
 

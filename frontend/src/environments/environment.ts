@@ -4,7 +4,19 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: "http://localhost:8000"
+  apiEndpoint: "http://localhost:8000",
+
+  /*
+    u/<slug:slug>/<int:user>
+    p/<slug:slug>/<int:product>
+    e/<int:user>
+    e/<lat>/<lng>
+    s/<query>/<lat>/<lng>
+  */
+
+  exploreUrl: "e",
+  productUrl: "p",
+  userUrl: "p"
 };
 
 /*
