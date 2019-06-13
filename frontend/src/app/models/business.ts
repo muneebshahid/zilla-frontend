@@ -14,4 +14,5 @@ export interface IBusiness {
   claimed: boolean;
   description: string;
   business_type: IType;
+  open: boolean;
 }

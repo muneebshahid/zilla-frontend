@@ -12,4 +12,5 @@ export interface IProduct {
   owner: number;
   slug: string;
   latlng: Array<number>;
+  expensive: number;
 }
