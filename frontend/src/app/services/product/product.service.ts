@@ -17,7 +17,7 @@ export class ProductService {
   }
 
   /* businessObj business id to post */
-  getProductsOfBusiness(businessId: any) {
+  getProductsOfBusiness(businessId: any): Observable<IProductState> {
     return this.httpService.get(`${environment.exploreUrl}/${businessId}`);
   }
 

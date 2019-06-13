@@ -25,7 +25,6 @@ export class ExploreComponent implements OnInit, OnDestroy {
 
   businesses: IBusiness[] = null;
   products: IProduct[] = null;
-  loading = false;
 
   constructor(private store: Store<IAppState>) {}
 

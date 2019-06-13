@@ -21,3 +21,8 @@
   pointer-events: none;
   opacity: 0.5;
 }
+.listing-tagline.ellipsize-description {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
