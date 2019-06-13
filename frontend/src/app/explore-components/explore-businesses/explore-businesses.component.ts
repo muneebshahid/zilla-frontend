@@ -1,6 +1,6 @@
 import { environment } from "./../../../environments/environment";
 import { IBusiness } from "src/app/models/business";
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from "@angular/core";
 import { selectBusinesses } from "../../store/selectors/business";
 import { GetProductsOfBusiness } from "src/app/store/actions/product";
 import { Subscription } from "rxjs";
@@ -21,6 +21,8 @@ export class ExploreBusinessesComponent implements OnInit, OnDestroy {
 
   private businessSelector = this.store.pipe(select(selectBusinesses));
   private subscriptionsArr: Subscription[] = [];
+
+  @Output() enableProductLoadingSign = new EventEmitter<string>();
 
   constructor(private store: Store<IAppState>) {}
 
@@ -47,6 +49,11 @@ export class ExploreBusinessesComponent implements OnInit, OnDestroy {
       });
 
     this.subscriptionsArr.push(subcriberBusiness);
+  }
+
+  public businessSelected(index) {
+    this.store.dispatch(new GetProductsOfBusiness(this.businesses[index].user));
+    this.enableProductLoadingSign.next();
   }
 
   ngOnDestroy() {

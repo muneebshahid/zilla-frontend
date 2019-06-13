@@ -30,10 +30,13 @@ export class ExploreProductsComponent implements OnInit, OnDestroy {
       this.products = products;
 
       if (this.products !== null) {
-        this.productsLoading = false;
+        this.toggleLoadingSign(false);
       }
     });
     this.subscriptionsArr.push(subcriberProduct);
+  }
+  toggleLoadingSign(toggleOption: boolean) {
+    this.productsLoading = toggleOption;
   }
   ngOnDestroy() {
     for (const subscriber of this.subscriptionsArr) {

@@ -40,6 +40,10 @@
   overflow: hidden;
   white-space: nowrap;
 }
+.wrapper-list:hover {
+  background-color: #f7f7f7;
+  cursor: pointer;
+}
 
 .business-wrapper {
   pointer-events: none;
