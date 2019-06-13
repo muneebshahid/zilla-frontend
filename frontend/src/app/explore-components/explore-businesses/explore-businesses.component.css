@@ -49,6 +49,9 @@
   pointer-events: none;
   opacity: 0.5;
 }
+.is-Selected {
+  background-color: #f1fcff;
+}
 
 .ajax-loader {
   position: fixed;

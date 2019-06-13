@@ -24,7 +24,11 @@
           </div>
 
           <span class="listing-address hidden"> {{ business.address }} </span>
-          <div class="wrapper-list" (click)="businessSelected(i)">
+          <div
+            class="wrapper-list"
+            (click)="businessSelected(i)"
+            [ngClass]="{ 'is-Selected': businessSelectionActive[i] }"
+          >
             <div class="listing-image">
               <div class="listing-image-inner">
                 <div class="image-wrapper image-loaded">

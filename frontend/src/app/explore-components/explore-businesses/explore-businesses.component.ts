@@ -19,6 +19,10 @@ export class ExploreBusinessesComponent implements OnInit, OnDestroy {
   public businesses: IBusiness[];
   public businessLoading: boolean = true;
 
+  /* prevents user to reload already loaded products on multiple clicks */
+  public lastSelectedIndex: number = 0;
+  public businessSelectionActive: Array<boolean>;
+
   private businessSelector = this.store.pipe(select(selectBusinesses));
   private subscriptionsArr: Subscription[] = [];
 
@@ -45,6 +49,8 @@ export class ExploreBusinessesComponent implements OnInit, OnDestroy {
 
         if (businesses !== null) {
           this.businessLoading = false;
+          this.businessSelectionActive = new Array(this.businesses.length).fill(false);
+          this.businessSelectionActive[0] = true;
         }
       });
 
@@ -52,8 +58,14 @@ export class ExploreBusinessesComponent implements OnInit, OnDestroy {
   }
 
   public businessSelected(index) {
-    this.store.dispatch(new GetProductsOfBusiness(this.businesses[index].user));
-    this.enableProductLoadingSign.next();
+    if (index !== this.lastSelectedIndex) {
+      this.store.dispatch(new GetProductsOfBusiness(this.businesses[index].user));
+      this.enableProductLoadingSign.next();
+
+      this.businessSelectionActive[this.lastSelectedIndex] = false;
+      this.businessSelectionActive[index] = true;
+    }
+    this.lastSelectedIndex = index;
   }
 
   ngOnDestroy() {
