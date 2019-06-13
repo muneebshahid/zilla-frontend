@@ -1,4 +1,7 @@
-<div class="col-xs-12 main-results" [ngClass]="{ 'products-wrapper': productsLoading }">
+<div
+  class="col-xs-12 main-results products-position"
+  [ngClass]="{ 'products-wrapper': productsLoading }"
+>
   <div class="loading-sign" *ngIf="productsLoading">
     <img src="/assets/images/ajax-loader.gif" class="ajax-loader" />
   </div>
