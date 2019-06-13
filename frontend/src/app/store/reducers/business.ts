@@ -12,6 +12,12 @@ export const businessReducers = (
         businesses: action.payload
       };
     }
+    case EBusinessActions.GetBusinessDetailSuccess: {
+      return {
+        ...state,
+        business: action.payload
+      };
+    }
 
     default:
       return state;

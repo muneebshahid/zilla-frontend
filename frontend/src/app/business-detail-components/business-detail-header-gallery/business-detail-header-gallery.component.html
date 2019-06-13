@@ -11,7 +11,7 @@
       data-nav="true"
       data-loop="true"
     >
-      <div class="item">
+      <!-- <div class="item">
         <a class="photo-item" href="https://demoapus.com/findgo/wp-content/uploads/2018/05/1-2.jpg">
           <div class="image-wrapper">
             <img
@@ -40,9 +40,9 @@
           </div>
           <i class="fa fa-arrows-alt"></i>
         </a>
-      </div>
-      <div class="item">
-        <a class="photo-item" href="https://demoapus.com/findgo/wp-content/uploads/2018/05/36.jpg">
+      </div> -->
+      <div class="item" *ngFor="let image of images">
+        <a class="photo-item" [href]="endpoint + image.file">
           <div class="image-wrapper">
             <img
               width="820"
@@ -50,13 +50,13 @@
               src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' viewBox%3D'0 0 820 440'%2F%3E"
               class="attachment-findgo-image-gallery4 size-findgo-image-gallery4 unveil-image"
               alt=""
-              data-src="https://demoapus.com/findgo/wp-content/uploads/2018/05/36-820x440.jpg"
+              [attr.data-src]="endpoint + image.file"
             />
           </div>
           <i class="fa fa-arrows-alt"></i>
         </a>
       </div>
-      <div class="item">
+      <!-- <div class="item">
         <a class="photo-item" href="https://demoapus.com/findgo/wp-content/uploads/2018/05/30.jpg">
           <div class="image-wrapper">
             <img
@@ -70,7 +70,7 @@
           </div>
           <i class="fa fa-arrows-alt"></i>
         </a>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

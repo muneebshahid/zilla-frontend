@@ -9,3 +9,7 @@ export const selectBusinesses = createSelector(
   selectItems,
   (state: IBusinessState) => state.businesses
 );
+export const selectBusiness = createSelector(
+  selectItems,
+  (state: IBusinessState) => state.business
+);

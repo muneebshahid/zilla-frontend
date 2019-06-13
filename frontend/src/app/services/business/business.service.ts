@@ -13,8 +13,13 @@ export class BusinessService {
   getNearbyBusinesses(latlng: any): Observable<IBusiness> {
     return this.httpService.get("explore");
   }
+
   getBusinessFromProduct() {}
-  getExploreBusiness(latlng: any): Observable<IBusiness> {
+  getBusinessDetail(slugID: any): Observable<IBusiness> {
+    return this.httpService.get(`${environment.userUrl}/${slugID.slug}/${slugID.id}`);
+  }
+
+  getExploreBusiness(latlng: any): Observable<IBusiness[]> {
     return this.httpService.get(`${environment.exploreUrl}/${latlng.lat}/${latlng.lng}`);
   }
 }

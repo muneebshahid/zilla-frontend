@@ -16,7 +16,7 @@ export const environment = {
 
   exploreUrl: "e",
   productUrl: "p",
-  userUrl: "p"
+  userUrl: "u"
 };
 
 /*
