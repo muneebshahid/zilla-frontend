@@ -1,3 +1,4 @@
+import { IImage } from "./image";
 import { IType } from "./type";
 import { ITimings } from "./timings";
 
@@ -7,7 +8,7 @@ export interface IBusiness {
   address: string;
   phone: string;
   opening_timings: Array<ITimings>;
-  images: Array<string>;
+  images: Array<IImage>;
   slug: string;
   title: string;
   claimed: boolean;

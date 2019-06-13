@@ -111,7 +111,7 @@
             <div class="listing-image">
               <div class="listing-image-inner">
                 <div class="image-wrapper image-loaded">
-                  <a href="https://demoapus.com/findgo/listings/shop-in-city2/">
+                  <a [href]="business.slug" *ngIf="business.images[0]">
                     <img
                       [src]="endpoint + business.images[0].file"
                       [alt]="business.title"
@@ -139,9 +139,7 @@
               <div class="bottom-grid-inner">
                 <div class="listing-content">
                   <h3 class="listing-title">
-                    <a href="https://demoapus.com/findgo/listings/shop-in-city2/">{{
-                      business.title
-                    }}</a>
+                    <a [href]="business.slug">{{ business.title }}</a>
                     <span
                       class="listing-claimed-icon"
                       data-toggle="tooltip"

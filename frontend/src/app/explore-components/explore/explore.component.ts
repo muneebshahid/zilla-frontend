@@ -23,8 +23,8 @@ export class ExploreComponent implements OnInit, OnDestroy {
   productsSelector = this.store.pipe(select(selectProduct));
   private subscriptionsArr: Subscription[] = [];
 
-  businesses: IBusiness[];
-  products: IProduct[];
+  businesses: IBusiness[] = null;
+  products: IProduct[] = null;
   loading = false;
 
   constructor(private store: Store<IAppState>) {}
@@ -36,8 +36,13 @@ export class ExploreComponent implements OnInit, OnDestroy {
 
   private subscriptions() {
     const subcriberBusiness = this.businessSelector
-      // .pipe(tap(business => this.store.dispatch(new GetProductsOfBusiness(business[0].user))))
-      .pipe(tap(business => console.log(business[0].user)))
+      .pipe(
+        tap(business => {
+          if (business !== null) {
+            this.store.dispatch(new GetProductsOfBusiness(business[0].user));
+          }
+        })
+      )
       .subscribe(businesses => {
         this.businesses = businesses;
       });
