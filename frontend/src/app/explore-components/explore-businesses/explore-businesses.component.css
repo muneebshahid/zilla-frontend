@@ -40,3 +40,15 @@
   overflow: hidden;
   white-space: nowrap;
 }
+
+.business-wrapper {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.ajax-loader {
+  position: fixed;
+  top: 50%;
+  left: 20%;
+  z-index: 99;
+}

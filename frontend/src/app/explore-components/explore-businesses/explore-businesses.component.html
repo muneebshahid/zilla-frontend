@@ -1,4 +1,11 @@
-<div class="list-content clearfix businesses-position">
+<div
+  class="list-content clearfix businesses-position"
+  [ngClass]="{ 'business-wrapper': businessLoading }"
+>
+  <div class="loading-sign" *ngIf="businessLoading">
+    <img src="/assets/images/ajax-loader.gif" class="ajax-loader" />
+  </div>
+
   <div class=" main-results">
     <div class="listing-action clearfix"></div>
     <div class="job_listings job_listings_cards clearfix row">
@@ -119,7 +126,7 @@
                     />
                   </a>
                 </div>
-                <span class="price-range"> 20$ - 30$ </span>
+                <!-- <span class="price-range"> 20$ - 30$ </span> -->
                 <div class="top-imformation">
                   <div class="listing-preview-wrapper pull-left">
                     <a href="#preview-635" class="listing-preview" data-id="635"

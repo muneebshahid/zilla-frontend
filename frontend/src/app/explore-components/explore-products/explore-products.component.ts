@@ -12,7 +12,7 @@ import { Subscription } from "rxjs";
   styleUrls: ["./explore-products.component.css"]
 })
 export class ExploreProductsComponent implements OnInit, OnDestroy {
-  public productsLoading = false;
+  public productsLoading = true;
   public endpoint = environment.apiEndpoint;
 
   private productsSelector = this.store.pipe(select(selectProduct));
@@ -28,6 +28,10 @@ export class ExploreProductsComponent implements OnInit, OnDestroy {
   subscriptions() {
     const subcriberProduct = this.productsSelector.subscribe(products => {
       this.products = products;
+
+      if (this.products !== null) {
+        this.productsLoading = false;
+      }
     });
     this.subscriptionsArr.push(subcriberProduct);
   }

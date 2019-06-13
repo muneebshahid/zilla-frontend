@@ -17,6 +17,7 @@ import { GetExploreBusiness } from "./../../store/actions/business";
 export class ExploreBusinessesComponent implements OnInit, OnDestroy {
   public endpoint = environment.apiEndpoint;
   public businesses: IBusiness[];
+  public businessLoading: boolean = true;
 
   private businessSelector = this.store.pipe(select(selectBusinesses));
   private subscriptionsArr: Subscription[] = [];
@@ -39,6 +40,10 @@ export class ExploreBusinessesComponent implements OnInit, OnDestroy {
       )
       .subscribe(businesses => {
         this.businesses = businesses;
+
+        if (businesses !== null) {
+          this.businessLoading = false;
+        }
       });
 
     this.subscriptionsArr.push(subcriberBusiness);
