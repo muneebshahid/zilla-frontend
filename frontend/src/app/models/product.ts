@@ -1,15 +1,15 @@
-import { IBusiness } from "./business";
+import { IImage } from "./image";
+import { ITags } from "./tags";
 
 export interface IProduct {
-  item: number;
-  images: Array<string>;
+  product: number;
+  images: Array<IImage>;
   description: string;
   title: string;
   price: number;
-  type: string;
   available: boolean;
-  tags: Array<string>;
-  owner: IBusiness;
+  tags: Array<ITags>;
+  owner: number;
   slug: string;
   latlng: Array<number>;
 }

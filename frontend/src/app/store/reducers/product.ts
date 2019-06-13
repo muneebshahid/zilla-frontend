@@ -13,6 +13,12 @@ export const productReducers = (
         products: action.payload
       };
     }
+    case EProductActions.GetProductsOfBusinessSuccess: {
+      return {
+        ...state,
+        products: action.payload
+      };
+    }
 
     default:
       return state;

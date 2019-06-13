@@ -3,7 +3,20 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiEndpoint: "http://localhost:8000",
+
+  /*
+    u/<slug:slug>/<int:user>
+    p/<slug:slug>/<int:product>
+    e/<int:user>
+    e/<lat>/<lng>
+    s/<query>/<lat>/<lng>
+  */
+
+  exploreUrl: "e",
+  productUrl: "p",
+  userUrl: "p"
 };
 
 /*

@@ -1,4 +1,4 @@
 export interface IType {
-  type: string;
+  tag: string;
   slug: string;
 }
