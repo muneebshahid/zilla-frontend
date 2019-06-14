@@ -10,12 +10,12 @@ declare var apusCore: any;
 export class BusinessDetailHeaderGalleryComponent implements OnInit, AfterViewInit {
   @Input() images: Array<string>;
   public endpoint: string = environment.apiEndpoint;
-  @ViewChildren("galleryItem") things: QueryList<any>;
+  @ViewChildren("galleryItem") galleryItems: QueryList<any>;
   constructor() {}
 
   ngOnInit() {}
   ngAfterViewInit() {
-    this.things.changes.subscribe(t => {
+    this.galleryItems.changes.subscribe(t => {
       this.ngForRendred();
     });
   }

@@ -3,14 +3,14 @@ import { ITags } from "./tags";
 
 export interface IProduct {
   product: number;
+  tags: Array<ITags>;
   images: Array<IImage>;
-  description: string;
+  latlng: Array<number>;
   title: string;
+  slug: string;
+  description: string;
   price: number;
   available: boolean;
-  tags: Array<ITags>;
   owner: number;
-  slug: string;
-  latlng: Array<number>;
   expensive: number;
 }

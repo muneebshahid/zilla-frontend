@@ -19,16 +19,20 @@
         <div class="col-md-8 column-content entry-content ">
           <div class="listing-main-content">
             <div id="listing-menu-prices" class="listing-menu-prices widget">
-              <app-business-detail-menu></app-business-detail-menu>
+              <app-business-detail-menu [products]="business?.products"></app-business-detail-menu>
             </div>
             <div id="listing-amenities" class="listing-amenities widget">
-              <app-business-detail-amenities></app-business-detail-amenities>
+              <app-business-detail-amenities
+                [amenities]="business?.amenities"
+              ></app-business-detail-amenities>
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="sidebar sidebar-detail-job sidebar-right">
-            <app-business-detail-opening-hours></app-business-detail-opening-hours>
+            <app-business-detail-opening-hours
+              [opening_timings]="business?.opening_timings"
+            ></app-business-detail-opening-hours>
             <div id="listing-map-contact" class="listing-map widget">
               <h3 class="widget-title">
                 <span>Location</span>

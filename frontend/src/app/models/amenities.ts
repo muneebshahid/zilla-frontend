@@ -1,4 +1,4 @@
 export interface IAmenities {
-  name: string;
+  tag: string;
   slug: string;
 }

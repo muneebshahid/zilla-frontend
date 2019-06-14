@@ -1,76 +1,12 @@
 <h3 class="widget-title"><span>Amenities</span></h3>
 <div class="box-inner">
   <ul class="listing-amenity-list">
-    <li>
+    <li *ngFor="let amenity of amenities">
       <a href="https://demoapus.com/findgo/amenity/accepts-credit-cards/">
         <span class="amenity-icon">
-          <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/a1.png">
+          <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/a1.png" />
         </span>
-        <span class="amenity-title">Accepts Credit Cards</span>
-      </a>
-    </li>
-    <li>
-      <a href="https://demoapus.com/findgo/amenity/bike-parking/">
-        <span class="amenity-icon">
-          <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/Shape-12.jpg">
-        </span>
-        <span class="amenity-title">Bike Parking</span>
-      </a>
-    </li>
-    <li>
-      <a href="https://demoapus.com/findgo/amenity/coupons/">
-        <span class="amenity-icon">
-          <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/Shape-1.jpg">
-        </span>
-        <span class="amenity-title">Coupons</span>
-      </a>
-    </li>
-    <li>
-      <a href="https://demoapus.com/findgo/amenity/outdoor-seating/">
-        <span class="amenity-icon">
-          <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/Forma-15.jpg">
-        </span>
-        <span class="amenity-title">Outdoor Seating</span>
-      </a>
-    </li>
-    <li>
-      <a href="https://demoapus.com/findgo/amenity/parking-street/">
-        <span class="amenity-icon">
-          <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/Forma-12.jpg">
-        </span>
-        <span class="amenity-title">Parking street</span>
-      </a>
-    </li>
-    <li>
-      <a href="https://demoapus.com/findgo/amenity/reservations/">
-        <span class="amenity-icon">
-          <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/Forma-1.jpg">
-        </span>
-        <span class="amenity-title">Reservations</span>
-      </a>
-    </li>
-    <li>
-      <a href="https://demoapus.com/findgo/amenity/smoking-allowed/">
-        <span class="amenity-icon">
-          <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/Forma-11.jpg">
-        </span>
-        <span class="amenity-title">Smoking Allowed</span>
-      </a>
-    </li>
-    <li>
-      <a href="https://demoapus.com/findgo/amenity/wheelchair-accesible/">
-        <span class="amenity-icon">
-          <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/Shape-11.jpg">
-        </span>
-        <span class="amenity-title">Wheelchair Accesible</span>
-      </a>
-    </li>
-    <li>
-      <a href="https://demoapus.com/findgo/amenity/wireless-internet/">
-        <span class="amenity-icon">
-          <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/Forma-13.jpg">
-        </span>
-        <span class="amenity-title">Wireless Internet</span>
+        <span class="amenity-title">{{ amenity.tag }}</span>
       </a>
     </li>
   </ul>
