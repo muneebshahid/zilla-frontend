@@ -1,7 +1,6 @@
-import { Component, OnInit, Input, AfterViewInit } from "@angular/core";
+import { Component, OnInit, Input, AfterViewInit, ViewChildren, QueryList } from "@angular/core";
 import { environment } from "src/environments/environment";
-declare var jquery: any;
-declare var $: any;
+declare var jQuery: any;
 
 @Component({
   selector: "app-business-detail-header-gallery",
@@ -11,10 +10,16 @@ declare var $: any;
 export class BusinessDetailHeaderGalleryComponent implements OnInit, AfterViewInit {
   @Input() images: Array<string>;
   public endpoint: string = environment.apiEndpoint;
+  @ViewChildren("allTheseThings") things: QueryList<any>;
   constructor() {}
 
   ngOnInit() {}
   ngAfterViewInit() {
-    console.log($);
+    this.things.changes.subscribe(t => {
+      this.ngForRendred();
+    });
+  }
+  ngForRendred() {
+    apusCore(jQuery, 2);
   }
 }

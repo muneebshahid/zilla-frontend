@@ -1,17 +1,33 @@
-(function($) {
+function apusCore($, option) {
   "use strict";
 
   if (!$.apusThemeExtensions) $.apusThemeExtensions = {};
 
-  function ApusThemeCore() {
+  function ApusThemeCore(option) {
     var self = this;
-    self.init();
+    if (option === 1) {
+      self.init();
+    } else {
+      self.init2();
+    }
   }
 
   ApusThemeCore.prototype = {
     /**
      *  Initialize
      */
+    init2: function() {
+      var self = this;
+      this.findgo_opts = {
+        ajaxurl: "",
+        time_format: "g:i a",
+        closed_text: "Closed",
+        next: "Next",
+        previous: "Previous"
+      };
+      self.initSlick($("[data-carousel=slick]"));
+    },
+
     init: function() {
       var self = this;
       this.findgo_opts = {
@@ -23,7 +39,7 @@
       };
 
       // slick init
-      self.initSlick($("[data-carousel=slick]"));
+      // self.initSlick($("[data-carousel=slick]"));
 
       // Unveil init
       setTimeout(function() {
@@ -700,8 +716,8 @@
   };
 
   $(document).ready(function() {
-    console.log("chikna");
-    new ApusThemeCore();
+    new ApusThemeCore(option);
     $(".mod-heading .widget-title > span").wrapStart(1);
   });
-})(jQuery);
+}
+apusCore(jQuery, 1);
