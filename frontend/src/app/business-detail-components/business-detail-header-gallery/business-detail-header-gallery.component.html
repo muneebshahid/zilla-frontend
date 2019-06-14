@@ -41,19 +41,16 @@
           <i class="fa fa-arrows-alt"></i>
         </a>
       </div> -->
-      <div class="item gallery-item" *ngFor="let image of images" #allTheseThings>
-        <a
-          class="photo-item"
-          href="http://localhost:8000/media/business/174/87372fda-00aa-474e-a5cf-2d8d65c578c3.jpg"
-        >
+      <div class="item" *ngFor="let image of images" #galleryItem>
+        <a class="photo-item" [href]="endpoint + image">
           <div class="image-wrapper">
             <img
               width="820"
               height="440"
-              src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' viewBox%3D'0 0 820 440'%2F%3E"
+              [src]="endpoint + image.file"
               class="attachment-findgo-image-gallery4 size-findgo-image-gallery4 unveil-image"
               alt=""
-              data-src="http://localhost:8000/media/business/174/87372fda-00aa-474e-a5cf-2d8d65c578c3.jpg"
+              [attr.data-src]="endpoint + image.file"
             />
           </div>
           <i class="fa fa-arrows-alt"></i>

@@ -10,7 +10,7 @@ declare var jQuery: any;
 export class BusinessDetailHeaderGalleryComponent implements OnInit, AfterViewInit {
   @Input() images: Array<string>;
   public endpoint: string = environment.apiEndpoint;
-  @ViewChildren("allTheseThings") things: QueryList<any>;
+  @ViewChildren("galleryItem") things: QueryList<any>;
   constructor() {}
 
   ngOnInit() {}
