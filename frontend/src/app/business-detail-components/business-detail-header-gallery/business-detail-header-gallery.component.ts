@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, AfterViewInit, ViewChildren, QueryList } from "@angular/core";
 import { environment } from "src/environments/environment";
 declare var jQuery: any;
-
+declare var apusCore: any;
 @Component({
   selector: "app-business-detail-header-gallery",
   templateUrl: "./business-detail-header-gallery.component.html",
