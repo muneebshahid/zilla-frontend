@@ -700,9 +700,8 @@
   };
 
   $(document).ready(function() {
-    // Initialize script
+    console.log("chikna");
     new ApusThemeCore();
-
     $(".mod-heading .widget-title > span").wrapStart(1);
   });
 })(jQuery);
