@@ -15,7 +15,7 @@ export class GetProductDetails implements Action {
   public readonly type = EProductActions.GetProductDetails;
 
   // product id as payload
-  constructor(public payload: number) {}
+  constructor(public payload: any) {}
 }
 export class GetProductsOfBusiness implements Action {
   public readonly type = EProductActions.GetProductsOfBusiness;

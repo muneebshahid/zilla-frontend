@@ -1,3 +1,4 @@
+import { GetProductDetails, GetProductDetailsSuccess } from "./../actions/product";
 import { IAppState } from "./../state/app.state";
 import { Store } from "@ngrx/store";
 import { Injectable } from "@angular/core";
@@ -35,6 +36,16 @@ export class ProductEffects {
       return this.productService
         .getProductsOfBusiness(payload)
         .pipe(map(products => new GetProductsOfBusinessSuccess(products)));
+    })
+  );
+  @Effect()
+  getProductDetails$ = this.actions$.pipe(
+    ofType<GetProductDetails>(EProductActions.GetProductDetails),
+    map(action => action.payload),
+    switchMap(payload => {
+      return this.productService
+        .getProductDetails(payload)
+        .pipe(map(products => new GetProductDetailsSuccess(products)));
     })
   );
 

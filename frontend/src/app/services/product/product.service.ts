@@ -10,7 +10,9 @@ import { IProductState } from "src/app/store/state/product";
 export class ProductService {
   constructor(private httpService: HttpService) {}
 
-  getProductDetails(id: number) {}
+  getProductDetails(productObj: any) {
+    return this.httpService.get(`${environment.productUrl}/${productObj.slug}/${productObj.id}`);
+  }
 
   getNearbyProducts(latlng: any): Observable<IProductState> {
     return this.httpService.get("explore");

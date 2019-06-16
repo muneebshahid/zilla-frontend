@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Store, select } from "@ngrx/store";
 import { GetNearbyProducts } from "src/app/store/actions/product";
 import { IAppState } from "src/app/store/state/app.state";
-import { selectProduct } from "../../store/selectors/product";
+import { selectProducts } from "../../store/selectors/product";
 import { IProduct } from "src/app/models/product";
 @Component({
   selector: "app-home",
@@ -11,7 +11,7 @@ import { IProduct } from "src/app/models/product";
 })
 export class HomeComponent implements OnInit {
   mapClass = "agm-map-home";
-  productSelector = this.store.pipe(select(selectProduct));
+  productSelector = this.store.pipe(select(selectProducts));
   products: IProduct[];
   loading = false;
 

@@ -19,6 +19,12 @@ export const productReducers = (
         products: action.payload
       };
     }
+    case EProductActions.GetProductDetailsSuccess: {
+      return {
+        ...state,
+        product: action.payload
+      };
+    }
 
     default:
       return state;

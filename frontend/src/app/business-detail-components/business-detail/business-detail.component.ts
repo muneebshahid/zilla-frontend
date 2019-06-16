@@ -21,7 +21,7 @@ export class BusinessDetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // this.route.paramMap.subscribe(params => {
     //   this.store.dispatch(
-    //     new GetBusinessDetail({ slug: params.get("slug"), id: params.get("id") })
+    //     new GetBusinessDetail({ slug: params.get("business_slug"), id: params.get("business_id") })
     //   );
     // });
     this.store.dispatch(new GetBusinessDetail({ slug: "sparks-miles", id: 1 }));
