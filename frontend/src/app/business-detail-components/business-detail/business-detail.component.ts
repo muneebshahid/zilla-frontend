@@ -5,6 +5,7 @@ import { IAppState } from "src/app/store/state/app.state";
 import { Subscription } from "rxjs";
 import { selectBusiness } from "src/app/store/selectors/business";
 import { IBusiness } from "src/app/models/business";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-business-detail",
@@ -12,13 +13,17 @@ import { IBusiness } from "src/app/models/business";
   styleUrls: ["./business-detail.component.css"]
 })
 export class BusinessDetailComponent implements OnInit, OnDestroy {
-  constructor(private store: Store<IAppState>) {}
+  constructor(private store: Store<IAppState>, private route: ActivatedRoute) {}
   private businessSelector = this.store.pipe(select(selectBusiness));
   private subscriptionsArr: Subscription[] = [];
   public business: IBusiness;
 
   ngOnInit() {
-    this.store.dispatch(new GetBusinessDetail({ slug: "lee-hull-and-brown", id: 174 }));
+    this.route.paramMap.subscribe(params => {
+      this.store.dispatch(
+        new GetBusinessDetail({ slug: params.get("slug"), id: params.get("id") })
+      );
+    });
     this.subscriptions();
   }
   private subscriptions() {
