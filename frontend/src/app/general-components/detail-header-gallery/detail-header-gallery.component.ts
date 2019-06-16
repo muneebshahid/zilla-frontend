@@ -3,11 +3,11 @@ import { environment } from "src/environments/environment";
 declare var jQuery: any;
 declare var apusCore: any;
 @Component({
-  selector: "app-business-detail-header-gallery",
-  templateUrl: "./business-detail-header-gallery.component.html",
-  styleUrls: ["./business-detail-header-gallery.component.css"]
+  selector: "app-detail-header-gallery",
+  templateUrl: "./detail-header-gallery.component.html",
+  styleUrls: ["./detail-header-gallery.component.css"]
 })
-export class BusinessDetailHeaderGalleryComponent implements OnInit, AfterViewInit {
+export class DetailHeaderGalleryComponent implements OnInit, AfterViewInit {
   @Input() images: Array<string>;
   public endpoint: string = environment.apiEndpoint;
   @ViewChildren("galleryItem") galleryItems: QueryList<any>;

@@ -3,14 +3,14 @@
     <div class="entry-header-wrapper clearfix">
       <div class="entry-header-left pull-left">
         <h1 class="entry-title" itemprop="name">
-          {{ business?.title }}
+          {{ title }}
           <div class="listing-time closed">
             Closed
           </div>
         </h1>
         <div class="job_listing">
           <div class="listing-tagline">
-            {{ business?.description }}
+            {{ description }}
           </div>
           <div class="listing-tags">
             <!-- <div class="review-star">
@@ -18,7 +18,7 @@
                 <span class="highlight">6 Ratings</span> </div> -->
             <div class="listing-category">
               <a href="https://demoapus.com/findgo/listing-category/fitness/"
-                ><i class="flaticon-weightlifting"></i>{{ business?.business_type.tag }}</a
+                ><i class="flaticon-weightlifting"></i>{{ tag }}</a
               >
             </div>
             <div class="p-relative">
@@ -29,7 +29,7 @@
                 title=""
                 data-original-title="Moderate"
               >
-                $$
+                <span *ngFor="let dummy of ' '.repeat(expensive).split(''); let x = index">$</span>
               </div>
             </div>
           </div>
@@ -44,12 +44,12 @@
                 class="google_map_link"
                 href="http://maps.google.com/maps?q=9+Hop+Gardens%2C+London&amp;zoom=14&amp;size=512x512&amp;maptype=roadmap&amp;sensor=false"
                 target="_blank"
-                >{{ business?.address }}</a
+                >{{ address }}</a
               >
             </div>
             <div class="listing-phone pull-left">
               <i class="flaticon-phone-call"></i>
-              {{ business?.phone }}
+              {{ phone }}
             </div>
           </div>
         </div>

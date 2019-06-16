@@ -25,8 +25,6 @@ import {
 
 import {
   BusinessDetailComponent,
-  BusinessDetailHeaderGalleryComponent,
-  BusinessDetailHeaderComponent,
   BusinessDetailContainerComponent,
   BusinessDetailMenuComponent,
   BusinessDetailAmenitiesComponent,
@@ -43,10 +41,13 @@ import {
 import {
   MenuComponent,
   MapComponent,
+  DetailHeaderGalleryComponent,
+  DetailHeaderComponent,
   FooterComponent,
   MMenuComponent,
   LoadingComponent
 } from "./general-components";
+import { ProductDetailComponent } from "./product-detail-components";
 
 import { HttpClientModule } from "@angular/common/http";
 import { AgmSnazzyInfoWindowModule } from "@agm/snazzy-info-window";
@@ -66,8 +67,8 @@ import { BusinessEffects } from "./store/effects/business";
     FooterComponent,
     MMenuComponent,
     BusinessDetailComponent,
-    BusinessDetailHeaderGalleryComponent,
-    BusinessDetailHeaderComponent,
+    DetailHeaderGalleryComponent,
+    DetailHeaderComponent,
     BusinessDetailContainerComponent,
     BusinessDetailMenuComponent,
     BusinessDetailAmenitiesComponent,
@@ -77,7 +78,8 @@ import { BusinessEffects } from "./store/effects/business";
     ExploreBusinessesComponent,
     ExploreProductsComponent,
     HomeProductInfoComponent,
-    LoadingComponent
+    LoadingComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,

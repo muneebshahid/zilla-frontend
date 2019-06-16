@@ -17,4 +17,5 @@ export interface IBusiness {
   business_type: IType;
   open: boolean;
   products: Array<IProduct>;
+  expensive: number;
 }

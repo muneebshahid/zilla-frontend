@@ -1,6 +1,4 @@
 export * from "./business-detail/business-detail.component";
-export * from "./business-detail-header-gallery/business-detail-header-gallery.component";
-export * from "./business-detail-header/business-detail-header.component";
 export * from "./business-detail-container/business-detail-container.component";
 export * from "./business-detail-menu/business-detail-menu.component";
 export * from "./business-detail-amenities/business-detail-amenities.component";
