@@ -19,15 +19,12 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   private subscriptionsArr: Subscription[] = [];
 
   ngOnInit() {
-    // this.route.paramMap.subscribe(params => {
-    //   // this.store.dispatch(new GetProductDetails({ slug: "frites", id: 1 }));
-    //   console.log("chikna");
-    //   console.log(params.get("business_slug"));
-    //   console.log(params.get("product_id"));
-    //   console.log(params.get("product_slug"));
-    // });
-    this.store.dispatch(new GetProductDetails({ slug: "frites", id: 1 }));
-    this.subscriptions();
+    this.route.paramMap.subscribe(params => {
+      this.store.dispatch(
+        new GetProductDetails({ slug: params.get("product_slug"), id: params.get("product_id") })
+      );
+      this.subscriptions();
+    });
   }
 
   private subscriptions() {

@@ -59,3 +59,7 @@
   left: 20%;
   z-index: 99;
 }
+
+.listing-detail-icon {
+  vertical-align: initial !important;
+}

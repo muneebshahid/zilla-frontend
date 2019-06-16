@@ -24,6 +24,9 @@
   position: relative;
   top: 0;
 }
+.individual-product:hover {
+  cursor: pointer;
+}
 
 .products-wrapper {
   pointer-events: none;
@@ -36,5 +39,5 @@
 }
 
 .price {
-  color: #25bd13 !important;
+  color: #5cb85c !important;
 }

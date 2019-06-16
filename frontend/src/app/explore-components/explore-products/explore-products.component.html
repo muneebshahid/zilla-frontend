@@ -16,8 +16,10 @@
     </div>
   </div>
   <div class="job_listings job_listings_cards clearfix row">
-    <div
-      class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450"
+    <a
+      href="/product/{{ product.slug }}/{{ product.product }}"
+      target="_blank"
+      class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450 individual-product"
       *ngFor="let product of products"
     >
       <div
@@ -116,6 +118,6 @@
           </div>-->
         </div>
       </div>
-    </div>
+    </a>
   </div>
 </div>
