@@ -34,3 +34,7 @@
   overflow: hidden;
   white-space: nowrap;
 }
+
+.price {
+  color: #25bd13 !important;
+}

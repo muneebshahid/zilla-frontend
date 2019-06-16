@@ -62,6 +62,7 @@
                   <h3 class="listing-title">
                     <a [href]="business.slug">{{ business.title }}</a>
                     <span
+                      *ngIf="business.claimed"
                       class="listing-claimed-icon"
                       data-toggle="tooltip"
                       title=""
@@ -82,8 +83,24 @@
                         ><i class="flaticon-shopping-cart"></i>{{ business.business_type.tag }}</a
                       >
                     </div>
-                    <div class="listing-time closed">
-                      Closed
+                    <div class="listing-time" [ngClass]="{ closed: !business.is_open }">
+                      <span *ngIf="!business.is_open">Closed</span>
+                      <span *ngIf="business.is_open">Open</span>
+                    </div>
+                    <div
+                      class="listing-price-range"
+                      data-placement="top"
+                      data-toggle="tooltip"
+                      title=""
+                      data-original-title="Moderate"
+                    >
+                      <span
+                        *ngFor="
+                          let dummy of ' '.repeat(business.expensive).split('');
+                          let x = index
+                        "
+                        >$</span
+                      >
                     </div>
                   </div>
                 </div>

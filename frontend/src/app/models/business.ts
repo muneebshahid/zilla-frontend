@@ -5,17 +5,16 @@ import { IProduct } from "./product";
 
 export interface IBusiness {
   user: number;
+  images: Array<IImage>;
+  business_type: IType;
+  opening_timings: Array<ITimings>;
+  is_open: boolean;
+  title: string;
+  slug: string;
+  description: string;
   website: string;
   address: string;
-  phone: string;
-  opening_timings: Array<ITimings>;
-  images: Array<IImage>;
-  slug: string;
-  title: string;
   claimed: boolean;
-  description: string;
-  business_type: IType;
-  open: boolean;
-  products: Array<IProduct>;
+  phone: string;
   expensive: number;
 }
