@@ -41,7 +41,7 @@
       <div class="entry-header-right pull-right">
         <div class="entry-header-right-top clearfix">
           <div class="pull-right">
-            <div class="listing-location pull-left">
+            <div class="listing-location pull-left" *ngIf="address">
               <i class="flaticon-placeholder"></i>
               <a
                 class="google_map_link"
@@ -50,7 +50,7 @@
                 >{{ address }}</a
               >
             </div>
-            <div class="listing-phone pull-left">
+            <div class="listing-phone pull-left" *ngIf="phone">
               <i class="flaticon-phone-call"></i>
               {{ phone }}
             </div>
