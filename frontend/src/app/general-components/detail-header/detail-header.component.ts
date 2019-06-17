@@ -13,7 +13,7 @@ export class DetailHeaderComponent implements OnInit {
   @Input() address: string;
   @Input() phone: string;
   @Input() expensive: number;
-
+  @Input() tags: Array<string>;
   constructor() {}
 
   ngOnInit() {}

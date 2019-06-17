@@ -32,6 +32,9 @@
                 <span *ngFor="let dummy of ' '.repeat(expensive).split(''); let x = index">$</span>
               </div>
             </div>
+            <div class="listing-review">
+              <span class="review-avg food-tag" *ngFor="let tag of tags">{{ tag.tag }}</span>
+            </div>
           </div>
         </div>
       </div>

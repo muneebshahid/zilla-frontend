@@ -57,13 +57,11 @@
         <div class="listing-image">
           <div class="listing-image-inner">
             <div class="image-wrapper image-loaded">
-              <a [href]="product.slug" *ngIf="product.images[0]">
-                <img
-                  [src]="endpoint + product.images[0].file"
-                  [alt]="product.title"
-                  class="unveil-image"
-                />
-              </a>
+              <img
+                [src]="endpoint + product.images[0].file"
+                [alt]="product.title"
+                class="unveil-image"
+              />
             </div>
             <!-- <span class="price-range"> $100 - $200 </span> -->
             <div class="top-imformation">
