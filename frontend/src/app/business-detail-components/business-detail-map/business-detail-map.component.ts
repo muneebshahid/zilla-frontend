@@ -9,7 +9,10 @@ import { MapComponent } from "src/app/general-components";
 export class BusinessDetailMapComponent implements OnInit, OnChanges {
   mapClass = "agm-map-detail";
   @ViewChild("mapComponent") mapComponent: MapComponent;
-  @Input() latlng: Array<string>;
+  @Input() latlng = [10, 10];
+  @Input() address: string;
+  @Input() phone: string;
+  @Input() website: string;
 
   constructor() {}
 

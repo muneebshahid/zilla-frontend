@@ -18,28 +18,28 @@
       <div class="contact-info-address">
         <a
           class="google_map_link"
-          href="http://maps.google.com/maps?q=9+Hop+Gardens%2C+London&amp;zoom=14&amp;size=512x512&amp;maptype=roadmap&amp;sensor=false"
+          href="http://maps.google.com/maps?q={{ address }}"
           target="_blank"
-          >9 Hop Gardens, London</a
+          >{{ address }}</a
         >
       </div>
     </li>
     <li>
       <div class="contact-info-address">
-        <a class="listing-contact listing--phone" href="tel:+84 888 999" itemprop="telephone"
-          >+84 888 999</a
-        >
+        <a class="listing-contact listing--phone" href="tel:{{ phone }}" itemprop="telephone">{{
+          phone
+        }}</a>
       </div>
     </li>
     <li>
       <div class="contact-info-address">
         <a
           class="listing-contact  listing--website"
-          href="http://themeforest.net"
+          [href]="website"
           itemprop="url"
           target="_blank"
           rel="nofollow"
-          >themeforest.net</a
+          >{{ website }}</a
         >
       </div>
     </li>

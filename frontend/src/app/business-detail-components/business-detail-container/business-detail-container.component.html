@@ -38,7 +38,12 @@
                 <span>Location</span>
               </h3>
               <div class="listing-map-contact box-inner">
-                <app-business-detail-map [latlng]="business?.latlng"></app-business-detail-map>
+                <app-business-detail-map
+                  [latlng]="business?.latlng"
+                  [address]="business?.address"
+                  [phone]="business?.phone"
+                  [website]="business?.website"
+                ></app-business-detail-map>
               </div>
             </div>
             <div id="claim-listing-form-hidden" class="hidden">
