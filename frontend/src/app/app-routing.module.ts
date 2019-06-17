@@ -9,9 +9,9 @@ const routes: Routes = [
   { path: "", redirectTo: "product-detail", pathMatch: "full" },
   { path: "home", component: HomeComponent },
   { path: "explore", component: ExploreComponent },
-  { path: "business/:business_slug/:business_id", component: BusinessDetailComponent },
+  { path: "u/:business_slug/:business_id", component: BusinessDetailComponent },
   {
-    path: "product/:product_slug/:product_id",
+    path: "p/:product_slug/:product_id",
     // path: "products",
     component: ProductDetailComponent
   }

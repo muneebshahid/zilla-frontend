@@ -41,3 +41,8 @@
 .price {
   color: #5cb85c !important;
 }
+
+.review-avg.food-tag {
+  background: #28b8dc !important;
+  margin-top: 2%;
+}

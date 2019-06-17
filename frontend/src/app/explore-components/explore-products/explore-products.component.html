@@ -17,7 +17,7 @@
   </div>
   <div class="job_listings job_listings_cards clearfix row">
     <a
-      href="/product/{{ product.slug }}/{{ product.product }}"
+      href="/p/{{ product.slug }}/{{ product.product }}"
       target="_blank"
       class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450 individual-product"
       *ngFor="let product of products"
@@ -88,24 +88,28 @@
             </h3>
             <div class="listing-tagline ellipsize-description">{{ product.description }}</div>
             <div class="listing-tags">
-              <!--
-              <div class="listing-review">
+              <!-- <div class="listing-review">
                 <span class="review-avg">5.0</span>
                 1 Rating
-              </div>
-            -->
-              <div class="listing-category">
+              </div> -->
+
+              <!-- <div class="listing-category">
                 <a href="https://demoapus.com/findgo/listing-category/shops/"
                   ><i class="flaticon-shopping-cart"></i>Shops</a
                 >
-              </div>
+              </div> -->
               <div class="p-relative">
                 <div class="listing-price-range price">{{ product.price }} $</div>
               </div>
             </div>
           </div>
-          <!--<div class="listing-content-bottom clearfix">
-              <div class="pull-left">
+          <div class="listing-content-bottom clearfix">
+            <div class="listing-review">
+              <span class="review-avg food-tag" *ngFor="let tag of product.tags">{{
+                tag.tag
+              }}</span>
+            </div>
+            <!-- <div class="pull-left">
               <div class="listing-location">
                 <i class="flaticon-placeholder"></i
                 ><a href="https://demoapus.com/findgo/region/new-york/"></a>
@@ -114,8 +118,8 @@
             <div class="listing-phone pull-right">
               <i class="flaticon-phone-call"></i>
               +84 123 456
-            </div>
-          </div>-->
+            </div> -->
+          </div>
         </div>
       </div>
     </a>

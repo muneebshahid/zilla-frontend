@@ -9,9 +9,9 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange } from
 export class BusinessDetailOpeningHoursComponent implements OnInit, OnChanges {
   @Input() opening_timings: any[];
 
-  days = [];
-  time_start = [];
-  time_end = [];
+  days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  open_time = [];
+  close_time = [];
 
   constructor() {}
 
@@ -20,11 +20,8 @@ export class BusinessDetailOpeningHoursComponent implements OnInit, OnChanges {
     // const name: SimpleChange = changes.name;
     if (this.opening_timings !== null) {
       for (let key in this.opening_timings) {
-        let result = this.opening_timings[key].split("-");
-
-        this.days.push(result[0]);
-        this.time_start.push(result[1]);
-        this.time_end.push(result[2]);
+        this.open_time.push(this.opening_timings[key].open);
+        this.close_time.push(this.opening_timings[key].close);
       }
     }
   }
