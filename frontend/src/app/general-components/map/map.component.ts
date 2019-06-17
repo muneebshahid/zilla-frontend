@@ -54,12 +54,23 @@ export class MapComponent implements OnInit {
     this.initializeMarkersAndMapZoom();
   }
 
+  /* is called from the detail page to set the pin on the location of the product or business */
+  setDetailPageLocation(latlng: any) {
+    console.log("detail page pe agya");
+    this.markers.push(this.createMarker(latlng[0], latlng[1]));
+    this.location = {
+      lat: latlng[0],
+      lng: latlng[1],
+      zoom: 8
+    };
+  }
+
   initializeMarkersAndMapZoom() {
     // dummy markers
-    this.markers.push(this.createMarker(48.1548894, 11.0716248));
-    this.markers.push(this.createMarker(48.2548894, 11.0716248));
-    this.markers.push(this.createMarker(48.3548894, 11.0716248));
-    this.markers.push(this.createMarker(48.4548894, 11.0716248));
+    // this.markers.push(this.createMarker(48.1548894, 11.0716248));
+    // this.markers.push(this.createMarker(48.2548894, 11.0716248));
+    // this.markers.push(this.createMarker(48.3548894, 11.0716248));
+    // this.markers.push(this.createMarker(48.4548894, 11.0716248));
 
     this.location = {
       lng: 48.1548894,

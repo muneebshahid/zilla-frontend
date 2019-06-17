@@ -1,16 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, OnChanges, SimpleChanges } from "@angular/core";
+import { MapComponent } from "src/app/general-components";
 
 @Component({
-  selector: 'app-business-detail-map',
-  templateUrl: './business-detail-map.component.html',
-  styleUrls: ['./business-detail-map.component.css']
+  selector: "app-business-detail-map",
+  templateUrl: "./business-detail-map.component.html",
+  styleUrls: ["./business-detail-map.component.css"]
 })
-export class BusinessDetailMapComponent implements OnInit {
-  mapClass = 'agm-map-detail';
+export class BusinessDetailMapComponent implements OnInit, OnChanges {
+  mapClass = "agm-map-detail";
+  @ViewChild("mapComponent") mapComponent: MapComponent;
+  @Input() latlng: Array<string>;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
+  ngOnChanges(changes: SimpleChanges) {
+    // const name: SimpleChange = changes.name;
+    if (this.latlng !== null) {
+      this.mapComponent.setDetailPageLocation(this.latlng);
+    }
   }
 
+  ngOnInit() {}
 }
