@@ -56,7 +56,6 @@ export class MapComponent implements OnInit {
 
   /* is called from the detail page to set the pin on the location of the product or business */
   setDetailPageLocation(latlng: any) {
-    console.log("detail page pe agya");
     this.markers.push(this.createMarker(latlng[0], latlng[1]));
     this.location = {
       lat: latlng[0],
