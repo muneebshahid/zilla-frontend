@@ -1,6 +1,6 @@
 	/*
   	Flaticon icon font: Flaticon
-  	Creation date: 18/06/2019 09:13
+  	Creation date: 18/06/2019 09:24
   	*/
 
 @font-face {
@@ -46,3 +46,4 @@ margin-left: 20px;
 .flaticon-wheelchair:before { content: "\f10d"; }
 .flaticon-cafe:before { content: "\f10e"; }
 .flaticon-coffee-truck:before { content: "\f10f"; }
+.flaticon-mobile-phone-auricular-part-outline-with-call-sound-lines:before { content: "\f110"; }
