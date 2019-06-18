@@ -4,7 +4,8 @@
     <li *ngFor="let amenity of amenities">
       <a href="https://demoapus.com/findgo/amenity/accepts-credit-cards/">
         <span class="amenity-icon">
-          <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/a1.png" />
+          <!-- <img src="https://demoapus.com/findgo/wp-content/uploads/2018/05/a1.png" /> -->
+          <i class="{{ amenity.icon }}"></i>
         </span>
         <span class="amenity-title">{{ amenity.tag }}</span>
       </a>
