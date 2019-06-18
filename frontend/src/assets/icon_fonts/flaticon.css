@@ -1,6 +1,6 @@
 	/*
   	Flaticon icon font: Flaticon
-  	Creation date: 18/06/2019 08:49
+  	Creation date: 18/06/2019 09:13
   	*/
 
 @font-face {
@@ -37,11 +37,12 @@ margin-left: 20px;
 .flaticon-terrace:before { content: "\f104"; }
 .flaticon-credit-card:before { content: "\f105"; }
 .flaticon-pizza:before { content: "\f106"; }
-.flaticon-fried-egg:before { content: "\f107"; }
-.flaticon-ice-cream:before { content: "\f108"; }
-.flaticon-beer:before { content: "\f109"; }
-.flaticon-cake:before { content: "\f10a"; }
-.flaticon-cocktail:before { content: "\f10b"; }
-.flaticon-wifi:before { content: "\f10c"; }
-.flaticon-street-food:before { content: "\f10d"; }
-.flaticon-cigarette:before { content: "\f10e"; }
+.flaticon-ice-cream:before { content: "\f107"; }
+.flaticon-beer:before { content: "\f108"; }
+.flaticon-cocktail:before { content: "\f109"; }
+.flaticon-wifi:before { content: "\f10a"; }
+.flaticon-cigarette:before { content: "\f10b"; }
+.flaticon-car:before { content: "\f10c"; }
+.flaticon-wheelchair:before { content: "\f10d"; }
+.flaticon-cafe:before { content: "\f10e"; }
+.flaticon-coffee-truck:before { content: "\f10f"; }
