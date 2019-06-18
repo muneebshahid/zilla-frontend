@@ -18,7 +18,7 @@
                 <span class="highlight">6 Ratings</span> </div> -->
             <div class="listing-category">
               <a href="https://demoapus.com/findgo/listing-category/fitness/"
-                ><i class="flaticon-weightlifting"></i>{{ tag }}</a
+                ><i class="{{ type?.icon }}"></i>{{ type?.tag }}</a
               >
             </div>
             <div class="p-relative" *ngIf="expensive != 0">

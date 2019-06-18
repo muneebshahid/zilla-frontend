@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from "@angular/core";
   styleUrls: ["./detail-header.component.css"]
 })
 export class DetailHeaderComponent implements OnInit {
-  @Input() tag: string;
+  @Input() type: any;
   @Input() description: string;
   @Input() title: string;
   @Input() address: string;
