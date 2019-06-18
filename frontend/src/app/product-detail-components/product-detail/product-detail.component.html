@@ -31,6 +31,8 @@
               [address]=""
               [expensive]="0"
               [tags]="product?.tags"
+              [is_open_or_available]="product?.available"
+              [open_or_available]="product?.available ? 'Available' : 'Not Available'"
             ></app-detail-header>
           </div>
         </article>

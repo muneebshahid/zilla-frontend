@@ -30,6 +30,8 @@
               [phone]="business?.phone"
               [address]="business?.address"
               [expensive]="business?.expensive"
+              [is_open_or_available]="business?.is_open"
+              [open_or_available]="business?.is_open ? 'Open' : 'Closed'"
             ></app-detail-header>
           </div>
           <app-business-detail-container [business]="business"></app-business-detail-container>

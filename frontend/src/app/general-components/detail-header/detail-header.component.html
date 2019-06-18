@@ -4,8 +4,8 @@
       <div class="entry-header-left pull-left">
         <h1 class="entry-title" itemprop="name">
           {{ title }}
-          <div class="listing-time closed">
-            Closed
+          <div class="listing-time" [ngClass]="{ closed: !is_open_or_available }">
+            {{ open_or_available }}
           </div>
         </h1>
         <div class="job_listing">

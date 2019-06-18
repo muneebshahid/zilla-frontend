@@ -14,6 +14,8 @@ export class DetailHeaderComponent implements OnInit {
   @Input() phone: string;
   @Input() expensive: number;
   @Input() tags: Array<string>;
+  @Input() open_or_available: string = "Closed";
+  @Input() is_open_or_available: boolean = true;
   constructor() {}
 
   ngOnInit() {}
