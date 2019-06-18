@@ -1,3 +1,4 @@
+import { GeoLocationService } from "./services/geo-location/geo-location.service";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
@@ -95,7 +96,7 @@ import { BusinessEffects } from "./store/effects/business";
     AgmSnazzyInfoWindowModule,
     BrowserAnimationsModule
   ],
-  providers: [GoogleMapsAPIWrapper],
+  providers: [GoogleMapsAPIWrapper, GeoLocationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

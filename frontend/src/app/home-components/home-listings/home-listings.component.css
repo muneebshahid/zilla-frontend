@@ -25,7 +25,7 @@
 @media (min-width: 1400px) {
   .products-grid {
     z-index: 20;
-    margin-top: 7% !important;
+    /* margin-top: 7% !important; */
   }
   .list-content {
     background-color: white !important;
@@ -37,7 +37,7 @@
 @media (min-width: 1500px) {
   .products-grid {
     z-index: 20;
-    margin-top: 5% !important;
+    /* margin-top: 5% !important; */
   }
   .list-content {
     background-color: white !important;
