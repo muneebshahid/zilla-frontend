@@ -1,14 +1,8 @@
-import {
-  Component,
-  Input,
-  ViewChild,
-  NgZone,
-  OnInit,
-  ViewEncapsulation,
-  ElementRef
-} from "@angular/core";
+import { Component, Input, ViewChild, NgZone, OnInit } from "@angular/core";
+
 import { MapsAPILoader, AgmMap, AgmMarker } from "@agm/core";
 import { GoogleMapsAPIWrapper } from "@agm/core/services";
+
 declare var google: any;
 
 interface Marker {
@@ -32,6 +26,8 @@ interface Location {
 })
 export class MapComponent implements OnInit {
   @Input() mapClass;
+  @Input() initialMapLocationLat = 48.17669;
+  @Input() initialMapLocationLng = 11.5726359;
 
   geocoder: any;
   location: Location;
@@ -66,14 +62,14 @@ export class MapComponent implements OnInit {
 
   initializeMarkersAndMapZoom() {
     // dummy markers
-    // this.markers.push(this.createMarker(48.1548894, 11.0716248));
+    this.markers.push(this.createMarker(48.1548894, 11.0716248));
     // this.markers.push(this.createMarker(48.2548894, 11.0716248));
     // this.markers.push(this.createMarker(48.3548894, 11.0716248));
     // this.markers.push(this.createMarker(48.4548894, 11.0716248));
 
     this.location = {
-      lng: 48.1548894,
-      lat: 11.4716248,
+      lng: this.initialMapLocationLat,
+      lat: this.initialMapLocationLng,
       zoom: 8
     };
   }
