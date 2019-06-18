@@ -14100,7 +14100,7 @@ div.job_listings .load_more_jobs strong {
   float: right;
 }
 .listing-action .listing-search-result .results:before {
-  content: "\f125";
+  content: "\f119";
   font-size: 22px;
   color: #28b8dc;
   margin-right: 10px;

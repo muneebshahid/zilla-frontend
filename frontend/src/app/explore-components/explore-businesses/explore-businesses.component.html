@@ -78,9 +78,10 @@
                       <span class="review-avg">5.0</span>
                       1 Rating
                     </div> -->
-                    <div class="listing-category" *ngIf="business.claimed">
+                    <div class="listing-category">
                       <a href="https://demoapus.com/findgo/listing-category/shops/"
-                        ><i class="flaticon-shopping-cart"></i>{{ business.business_type.tag }}</a
+                        ><i class="{{ business.business_type.icon }}"></i
+                        >{{ business.business_type.tag }}</a
                       >
                     </div>
                     <div class="listing-time" [ngClass]="{ closed: !business.is_open }">

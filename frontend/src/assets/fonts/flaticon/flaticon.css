@@ -1,6 +1,6 @@
 	/*
   	Flaticon icon font: Flaticon
-  	Creation date: 18/06/2019 20:21
+  	Creation date: 18/06/2019 21:50
   	*/
 
 @font-face {
@@ -55,3 +55,4 @@ margin-left: 20px;
 .flaticon-cafe:before { content: "\f116"; }
 .flaticon-coffee-truck:before { content: "\f117"; }
 .flaticon-mobile-phone-auricular-part-outline-with-call-sound-lines:before { content: "\f118"; }
+.flaticon-eye:before { content: "\f119"; }
