@@ -1,9 +1,9 @@
-	/*
-  	Flaticon icon font: Flaticon
-  	Creation date: 18/06/2019 08:49
-  	*/
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 18/06/2019 08:49
+    */
 
-@font-face {
+    @font-face {
   font-family: "Flaticon";
   src: url("./Flaticon.eot");
   src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
@@ -22,15 +22,22 @@
   }
 }
 
-[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
-[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
-  font-family: Flaticon;
-        font-size: 20px;
-font-style: normal;
-margin-left: 20px;
-}
+    .fi:before{
+        display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
 
-.flaticon-wine:before { content: "\f100"; }
+    .flaticon-wine:before { content: "\f100"; }
 .flaticon-coffee-cup:before { content: "\f101"; }
 .flaticon-pastry:before { content: "\f102"; }
 .flaticon-chef:before { content: "\f103"; }
@@ -45,3 +52,19 @@ margin-left: 20px;
 .flaticon-wifi:before { content: "\f10c"; }
 .flaticon-street-food:before { content: "\f10d"; }
 .flaticon-cigarette:before { content: "\f10e"; }
+    
+    $font-Flaticon-wine: "\f100";
+    $font-Flaticon-coffee-cup: "\f101";
+    $font-Flaticon-pastry: "\f102";
+    $font-Flaticon-chef: "\f103";
+    $font-Flaticon-terrace: "\f104";
+    $font-Flaticon-credit-card: "\f105";
+    $font-Flaticon-pizza: "\f106";
+    $font-Flaticon-fried-egg: "\f107";
+    $font-Flaticon-ice-cream: "\f108";
+    $font-Flaticon-beer: "\f109";
+    $font-Flaticon-cake: "\f10a";
+    $font-Flaticon-cocktail: "\f10b";
+    $font-Flaticon-wifi: "\f10c";
+    $font-Flaticon-street-food: "\f10d";
+    $font-Flaticon-cigarette: "\f10e";
