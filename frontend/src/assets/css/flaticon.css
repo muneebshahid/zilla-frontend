@@ -1,76 +1,154 @@
-	/*
+/*
   	Flaticon icon font: Flaticon
   	Creation date: 17/04/2018 04:01
   	*/
 @font-face {
-  font-family: 'DINPro-Medium';
-  src: url('../fonts/DINPro-Medium.eot');
-  src: url('../fonts/DINPro-Medium.woff') format('woff'), 
-  url('../fonts/DINPro-Medium.ttf') format('truetype'), 
-  url('../fonts/DINPro-Medium.svg') format('svg');
+  font-family: "DINPro-Medium";
+  src: url("../fonts/dinpro/DINPro-Medium.eot");
+  src: url("../fonts/dinpro/DINPro-Medium.woff") format("woff"),
+    url("../fonts/dinpro/DINPro-Medium.ttf") format("truetype"),
+    url("../fonts/dinpro/DINPro-Medium.svg") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "Flaticon";
-  src: url("../fonts/Flaticon.eot");
-  src: url("../fonts/Flaticon.eot#iefix") format("embedded-opentype"),
-       url("../fonts/Flaticon.woff") format("woff"),
-       url("../fonts/Flaticon.ttf") format("truetype"),
-       url("../fonts/Flaticon.svg#Flaticon") format("svg");
+  src: url("../fonts/flaticon/Flaticon.eot");
+  src: url("../fonts/flaticon/Flaticon.eot#iefix") format("embedded-opentype"),
+    url("../fonts/flaticon/Flaticon.woff") format("woff"),
+    url("../fonts/flaticon/Flaticon.ttf") format("truetype"),
+    url("../fonts/flaticon/Flaticon.svg#Flaticon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 
-@media screen and (-webkit-min-device-pixel-ratio:0) {
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
   @font-face {
     font-family: "Flaticon";
-    src: url("../fonts/Flaticon.svg#Flaticon") format("svg");
+    src: url("../fonts/flaticon/Flaticon.svg#Flaticon") format("svg");
   }
 }
 
-[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
-[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+[class^="flaticon-"]:before,
+[class*=" flaticon-"]:before,
+[class^="flaticon-"]:after,
+[class*=" flaticon-"]:after {
   font-family: Flaticon;
-        font-size: 23px;
-font-style: normal;
+  font-size: 23px;
+  font-style: normal;
 }
 
-.flaticon-clipboards:before { content: "\f100"; }
-.flaticon-user-1:before { content: "\f101"; }
-.flaticon-user:before { content: "\f102"; }
-.flaticon-bell:before { content: "\f103"; }
-.flaticon-avatar:before { content: "\f104"; }
-.flaticon-four-grid-layout-design-interface-symbol:before { content: "\f105"; }
-.flaticon-dustbin:before { content: "\f106"; }
-.flaticon-eraser:before { content: "\f107"; }
-.flaticon-share:before { content: "\f108"; }
-.flaticon-cloud-computing:before { content: "\f109"; }
-.flaticon-consulting-message:before { content: "\f10a"; }
-.flaticon-good-review:before { content: "\f10b"; }
-.flaticon-handicapped:before { content: "\f10c"; }
-.flaticon-parking:before { content: "\f10d"; }
-.flaticon-coupon:before { content: "\f10e"; }
-.flaticon-bicycle:before { content: "\f10f"; }
-.flaticon-wifi:before { content: "\f110"; }
-.flaticon-booked:before { content: "\f111"; }
-.flaticon-credit-card:before { content: "\f112"; }
-.flaticon-cigarette:before { content: "\f113"; }
-.flaticon-smile:before { content: "\f114"; }
-.flaticon-like:before { content: "\f115"; }
-.flaticon-thumb-up:before { content: "\f116"; }
-.flaticon-placeholder:before { content: "\f117"; }
-.flaticon-phone-call:before { content: "\f118"; }
-.flaticon-antique-building-outline:before { content: "\f119"; }
-.flaticon-weightlifting:before { content: "\f11a"; }
-.flaticon-guitar:before { content: "\f11b"; }
-.flaticon-mountain:before { content: "\f11c"; }
-.flaticon-hotel:before { content: "\f11d"; }
-.flaticon-chef:before { content: "\f11e"; }
-.flaticon-wine-glass:before { content: "\f11f"; }
-.flaticon-check:before { content: "\f120"; }
-.flaticon-cross-out:before { content: "\f121"; }
-.flaticon-shopping-cart:before { content: "\f122"; }
-.flaticon-back:before { content: "\f123"; }
-.flaticon-search:before { content: "\f124"; }
-.flaticon-visible:before { content: "\f125"; }
+.flaticon-clipboards:before {
+  content: "\f100";
+}
+.flaticon-user-1:before {
+  content: "\f101";
+}
+.flaticon-user:before {
+  content: "\f102";
+}
+.flaticon-bell:before {
+  content: "\f103";
+}
+.flaticon-avatar:before {
+  content: "\f104";
+}
+.flaticon-four-grid-layout-design-interface-symbol:before {
+  content: "\f105";
+}
+.flaticon-dustbin:before {
+  content: "\f106";
+}
+.flaticon-eraser:before {
+  content: "\f107";
+}
+.flaticon-share:before {
+  content: "\f108";
+}
+.flaticon-cloud-computing:before {
+  content: "\f109";
+}
+.flaticon-consulting-message:before {
+  content: "\f10a";
+}
+.flaticon-good-review:before {
+  content: "\f10b";
+}
+.flaticon-handicapped:before {
+  content: "\f10c";
+}
+.flaticon-parking:before {
+  content: "\f10d";
+}
+.flaticon-coupon:before {
+  content: "\f10e";
+}
+.flaticon-bicycle:before {
+  content: "\f10f";
+}
+.flaticon-wifi:before {
+  content: "\f110";
+}
+.flaticon-booked:before {
+  content: "\f111";
+}
+.flaticon-credit-card:before {
+  content: "\f112";
+}
+.flaticon-cigarette:before {
+  content: "\f113";
+}
+.flaticon-smile:before {
+  content: "\f114";
+}
+.flaticon-like:before {
+  content: "\f115";
+}
+.flaticon-thumb-up:before {
+  content: "\f116";
+}
+.flaticon-placeholder:before {
+  content: "\f117";
+}
+.flaticon-phone-call:before {
+  content: "\f118";
+}
+.flaticon-antique-building-outline:before {
+  content: "\f119";
+}
+.flaticon-weightlifting:before {
+  content: "\f11a";
+}
+.flaticon-guitar:before {
+  content: "\f11b";
+}
+.flaticon-mountain:before {
+  content: "\f11c";
+}
+.flaticon-hotel:before {
+  content: "\f11d";
+}
+.flaticon-chef:before {
+  content: "\f11e";
+}
+.flaticon-wine-glass:before {
+  content: "\f11f";
+}
+.flaticon-check:before {
+  content: "\f120";
+}
+.flaticon-cross-out:before {
+  content: "\f121";
+}
+.flaticon-shopping-cart:before {
+  content: "\f122";
+}
+.flaticon-back:before {
+  content: "\f123";
+}
+.flaticon-search:before {
+  content: "\f124";
+}
+.flaticon-visible:before {
+  content: "\f125";
+}

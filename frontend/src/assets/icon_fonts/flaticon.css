@@ -1,4 +1,4 @@
-	/*
+/*
   	Flaticon icon font: Flaticon
   	Creation date: 18/06/2019 09:24
   	*/
@@ -7,43 +7,77 @@
   font-family: "Flaticon";
   src: url("./Flaticon.eot");
   src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
-       url("./Flaticon.woff2") format("woff2"),
-       url("./Flaticon.woff") format("woff"),
-       url("./Flaticon.ttf") format("truetype"),
-       url("./Flaticon.svg#Flaticon") format("svg");
+    url("./Flaticon.woff2") format("woff2"), url("./Flaticon.woff") format("woff"),
+    url("./Flaticon.ttf") format("truetype"), url("./Flaticon.svg#Flaticon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 
-@media screen and (-webkit-min-device-pixel-ratio:0) {
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
   @font-face {
     font-family: "Flaticon";
     src: url("./Flaticon.svg#Flaticon") format("svg");
   }
 }
 
-[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
-[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+[class^="flaticon-"]:before,
+[class*=" flaticon-"]:before,
+[class^="flaticon-"]:after,
+[class*=" flaticon-"]:after {
   font-family: Flaticon;
-        font-size: 20px;
-font-style: normal;
-margin-left: 20px;
+  font-size: 20px;
+  font-style: normal;
+  margin-left: 20px;
 }
 
-.flaticon-wine:before { content: "\f100"; }
-.flaticon-coffee-cup:before { content: "\f101"; }
-.flaticon-pastry:before { content: "\f102"; }
-.flaticon-chef:before { content: "\f103"; }
-.flaticon-terrace:before { content: "\f104"; }
-.flaticon-credit-card:before { content: "\f105"; }
-.flaticon-pizza:before { content: "\f106"; }
-.flaticon-ice-cream:before { content: "\f107"; }
-.flaticon-beer:before { content: "\f108"; }
-.flaticon-cocktail:before { content: "\f109"; }
-.flaticon-wifi:before { content: "\f10a"; }
-.flaticon-cigarette:before { content: "\f10b"; }
-.flaticon-car:before { content: "\f10c"; }
-.flaticon-wheelchair:before { content: "\f10d"; }
-.flaticon-cafe:before { content: "\f10e"; }
-.flaticon-coffee-truck:before { content: "\f10f"; }
-.flaticon-mobile-phone-auricular-part-outline-with-call-sound-lines:before { content: "\f110"; }
+.flaticon-wine:before {
+  content: "\f100";
+}
+.flaticon-coffee-cup:before {
+  content: "\f101";
+}
+.flaticon-pastry:before {
+  content: "\f102";
+}
+.flaticon-chef:before {
+  content: "\f103";
+}
+.flaticon-terrace:before {
+  content: "\f104";
+}
+.flaticon-credit-card:before {
+  content: "\f105";
+}
+.flaticon-pizza:before {
+  content: "\f106";
+}
+.flaticon-ice-cream:before {
+  content: "\f107";
+}
+.flaticon-beer:before {
+  content: "\f108";
+}
+.flaticon-cocktail:before {
+  content: "\f109";
+}
+.flaticon-wifi:before {
+  content: "\f10a";
+}
+.flaticon-cigarette:before {
+  content: "\f10b";
+}
+.flaticon-car:before {
+  content: "\f10c";
+}
+.flaticon-wheelchair:before {
+  content: "\f10d";
+}
+.flaticon-cafe:before {
+  content: "\f10e";
+}
+.flaticon-coffee-truck:before {
+  content: "\f10f";
+}
+.flaticon-mobile-phone-auricular-part-outline-with-call-sound-lines:before {
+  content: "\f110";
+}

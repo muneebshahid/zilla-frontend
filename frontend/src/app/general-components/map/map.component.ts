@@ -62,7 +62,7 @@ export class MapComponent implements OnInit {
 
   initializeMarkersAndMapZoom() {
     // dummy markers
-    this.markers.push(this.createMarker(48.1548894, 11.0716248));
+    // this.markers.push(this.createMarker(48.1548894, 11.0716248));
     // this.markers.push(this.createMarker(48.2548894, 11.0716248));
     // this.markers.push(this.createMarker(48.3548894, 11.0716248));
     // this.markers.push(this.createMarker(48.4548894, 11.0716248));
