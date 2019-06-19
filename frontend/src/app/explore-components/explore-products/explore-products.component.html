@@ -19,7 +19,7 @@
     <a
       href="/p/{{ product.slug }}/{{ product.product }}"
       target="_blank"
-      class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450 individual-product"
+      class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450"
       *ngFor="let product of products"
     >
       <div
@@ -54,14 +54,17 @@
           </div>
           </div>
             -->
+
         <div class="listing-image">
           <div class="listing-image-inner">
             <div class="image-wrapper image-loaded">
-              <img
-                [src]="endpoint + product.images[0].file"
-                [alt]="product.title"
-                class="unveil-image"
-              />
+              <a [href]="endpoint + product.images[0].file">
+                <img
+                  [src]="endpoint + product.images[0].file"
+                  [alt]="product.title"
+                  class="unveil-image"
+                />
+              </a>
             </div>
             <!-- <span class="price-range"> $100 - $200 </span> -->
             <div class="top-imformation">

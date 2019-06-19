@@ -29,12 +29,7 @@
                     [products]="products"
                   ></app-home-listings>
                   <div class="no-padding half-map xs-half-map">
-                    <app-map
-                      #mapParent
-                      [mapClass]="mapClass"
-                      [initialMapLocationLat]="coordinates?.latitude"
-                      [initialMapLocationLng]="coordinates?.longitude"
-                    ></app-map>
+                    <app-map #mapParent [mapClass]="mapClass"></app-map>
                   </div>
                 </div>
               </div>

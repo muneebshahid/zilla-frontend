@@ -26,8 +26,9 @@ interface Location {
 })
 export class MapComponent implements OnInit {
   @Input() mapClass;
-  @Input() initialMapLocationLat = 48.17669;
-  @Input() initialMapLocationLng = 11.5726359;
+  private initialMapLocationLat = 48.17669;
+  private initialMapLocationLng = 11.5726359;
+  private zoom = 8;
 
   geocoder: any;
   location: Location;
@@ -51,12 +52,16 @@ export class MapComponent implements OnInit {
   }
 
   /* is called from the detail page to set the pin on the location of the product or business */
-  setDetailPageLocation(latlng: any) {
-    this.markers.push(this.createMarker(latlng[0], latlng[1]));
+  setPageLocation(lat, lng, zoom) {
+    this.markers.push(this.createMarker(lat, lng));
+    this.setFocusLocation(lat, lng, zoom);
+  }
+
+  setFocusLocation(lat, lng, zoom) {
     this.location = {
-      lat: latlng[0],
-      lng: latlng[1],
-      zoom: 8
+      lng: +lng,
+      lat: +lat,
+      zoom: zoom
     };
   }
 
@@ -66,12 +71,7 @@ export class MapComponent implements OnInit {
     // this.markers.push(this.createMarker(48.2548894, 11.0716248));
     // this.markers.push(this.createMarker(48.3548894, 11.0716248));
     // this.markers.push(this.createMarker(48.4548894, 11.0716248));
-
-    this.location = {
-      lng: this.initialMapLocationLat,
-      lat: this.initialMapLocationLng,
-      zoom: 8
-    };
+    this.setFocusLocation(this.initialMapLocationLat, this.initialMapLocationLng, this.zoom);
   }
   tabClick(e) {
     console.log(e);

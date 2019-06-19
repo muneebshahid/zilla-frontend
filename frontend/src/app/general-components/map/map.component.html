@@ -8,10 +8,10 @@
       mapTypeId="roadmap"
       [(latitude)]="location.lat"
       [(longitude)]="location.lng"
-      [(zoom)]="location.zoom"
+      [zoom]="location.zoom"
       [disableDefaultUI]="true"
       [zoomControl]="true"
-      [fitBounds]="true"
+      [fitBounds]="false"
       class="agm-map"
     >
       <agm-marker
