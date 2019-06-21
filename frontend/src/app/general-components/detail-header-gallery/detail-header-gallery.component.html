@@ -11,7 +11,7 @@
     data-loop="true"
   >
     <div class="item" *ngFor="let image of images" #galleryItem>
-      <a class="photo-item" [href]="endpoint + image.file">
+      <a class="photo-item" [href]="endpoint + image.file" title="mozi rocks">
         <div class="image-wrapper">
           <img
             width="820"

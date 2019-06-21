@@ -3,54 +3,43 @@
     <div class="col-xs-12 col-sm-12">
       <div class="menu-prices-wrapper">
         <h3 class="title-price">Donner</h3>
-        <ul class="listing-menu-prices-list">
-          <li *ngFor="let product of products">
-            <div class="wrapper">
-              <div class="thumbnail menu-thumbnail">
-                <img
-                  src="http://localhost:8000/media/product/7/b2175947-5f6c-47b5-9f51-c1df379f3ed5.jpg"
-                  class="attachment-findgo-image-gallery4 size-findgo-image-gallery4 unveil-image"
-                  alt=""
-                />
-              </div>
-              <div class="information">
-                <h5>
-                  {{ product.title }}<span class="price">${{ product.price }}</span>
-                </h5>
-                <div class="description">
-                  {{ product.description }}
-                  {{ product.description }}
+        <div class="entry-featured-carousel gallery-listing3 gallery-listing">
+          <ul class="listing-menu-prices-list">
+            <li *ngFor="let product of products">
+              <div class="wrapper">
+                <div class="thumbnail menu-thumbnail">
+                  <div class="item">
+                    <a
+                      class="photo-item"
+                      href="https://demoapus.com/findgo/wp-content/uploads/2018/05/27-375x230.jpg"
+                      title="mozi rocks3333"
+                    >
+                      <div class="image-wrapper">
+                        <img
+                          width="820"
+                          height="440"
+                          src="https://demoapus.com/findgo/wp-content/uploads/2018/05/27-375x230.jpg"
+                          class="attachment-findgo-image-gallery4 size-findgo-image-gallery4 unveil-image"
+                          alt=""
+                          data-src="https://demoapus.com/findgo/wp-content/uploads/2018/05/27-375x230.jpg"
+                        />
+                      </div>
+                      <i class="fa fa-arrows-alt"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="information">
+                  <h5>
+                    {{ product.title }}<span class="price">${{ product.price }}</span>
+                  </h5>
+                  <div class="description">
+                    {{ product.description }}
+                  </div>
                 </div>
               </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div class="menu-prices-wrapper">
-        <hr />
-        <h3 class="title-price">Menu</h3>
-        <ul class="listing-menu-prices-list">
-          <li *ngFor="let product of products">
-            <div class="wrapper">
-              <div class="thumbnail menu-thumbnail">
-                <img
-                  src="http://localhost:8000/media/product/7/b2175947-5f6c-47b5-9f51-c1df379f3ed5.jpg"
-                  class="attachment-findgo-image-gallery4 size-findgo-image-gallery4 unveil-image"
-                  alt=""
-                />
-              </div>
-              <div class="information">
-                <h5>
-                  {{ product.title }}<span class="price">${{ product.price }}</span>
-                </h5>
-                <div class="description">
-                  {{ product.description }}
-                  {{ product.description }}
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
