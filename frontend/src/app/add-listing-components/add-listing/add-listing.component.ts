@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddListingComponent implements OnInit {
   selectedCityIds: string[];
+  mapClass = "add-listing-map-height";
 
   cities = [
     {id: 1, name: '08:00'},
