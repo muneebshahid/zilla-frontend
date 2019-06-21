@@ -1,6 +1,6 @@
     /*
     Flaticon icon font: Flaticon
-    Creation date: 18/06/2019 21:50
+    Creation date: 21/06/2019 09:33
     */
 
     @font-face {
@@ -63,6 +63,8 @@
 .flaticon-coffee-truck:before { content: "\f117"; }
 .flaticon-mobile-phone-auricular-part-outline-with-call-sound-lines:before { content: "\f118"; }
 .flaticon-eye:before { content: "\f119"; }
+.flaticon-right-chevron:before { content: "\f11a"; }
+.flaticon-down-chevron:before { content: "\f11b"; }
     
     $font-Flaticon-visible: "\f100";
     $font-Flaticon-shopping-cart: "\f101";
@@ -90,3 +92,5 @@
     $font-Flaticon-coffee-truck: "\f117";
     $font-Flaticon-mobile-phone-auricular-part-outline-with-call-sound-lines: "\f118";
     $font-Flaticon-eye: "\f119";
+    $font-Flaticon-right-chevron: "\f11a";
+    $font-Flaticon-down-chevron: "\f11b";

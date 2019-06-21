@@ -13,3 +13,6 @@
   font-size: 15px;
   padding: 1%;
 }
+.collapseIcon {
+  float: right !important;
+}

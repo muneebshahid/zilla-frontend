@@ -1,6 +1,7 @@
+<h3>Menu</h3>
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingOne">
+    <div class="panel-heading" (click)="toggleCollapseIcon(0)" role="tab" id="headingOne">
       <h4 class="panel-title">
         <a
           role="button"
@@ -12,6 +13,10 @@
         >
           Ice Cream
         </a>
+        <i
+          class="collapseIcon"
+          [ngClass]="chevronState[0] ? 'flaticon-down-chevron' : 'flaticon-right-chevron'"
+        ></i>
       </h4>
     </div>
     <div
