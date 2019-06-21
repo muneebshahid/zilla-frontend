@@ -1,5 +1,6 @@
 import { IProduct } from "src/app/models/product";
 import { Component, OnInit, Input } from "@angular/core";
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: "app-business-detail-menu",
@@ -8,6 +9,7 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class BusinessDetailMenuComponent implements OnInit {
   @Input() products: IProduct[];
+  public endpoint: string = environment.apiEndpoint;
   constructor() {}
 
   ngOnInit() {}

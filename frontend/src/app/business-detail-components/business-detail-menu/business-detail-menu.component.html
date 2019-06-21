@@ -11,20 +11,19 @@
                   <div class="item">
                     <a
                       class="photo-item"
-                      href="https://demoapus.com/findgo/wp-content/uploads/2018/05/27-375x230.jpg"
-                      title="mozi rocks3333"
+                      [href]="endpoint + product.images[0].file"
+                      [title]="product.description"
                     >
                       <div class="image-wrapper">
                         <img
                           width="820"
                           height="440"
-                          src="https://demoapus.com/findgo/wp-content/uploads/2018/05/27-375x230.jpg"
+                          [src]="endpoint + product.images[0].file"
                           class="attachment-findgo-image-gallery4 size-findgo-image-gallery4 unveil-image"
                           alt=""
-                          data-src="https://demoapus.com/findgo/wp-content/uploads/2018/05/27-375x230.jpg"
+                          [attr.data-src]="endpoint + product.images[0].file"
                         />
                       </div>
-                      <i class="fa fa-arrows-alt"></i>
                     </a>
                   </div>
                 </div>
