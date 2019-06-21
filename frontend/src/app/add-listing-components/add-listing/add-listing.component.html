@@ -1,0 +1,457 @@
+<app-menu></app-menu>
+<div class="container">
+  <form action="/findgo/submit-listings/" method="post" id="submit-job-form" class="job-manager-form" enctype="multipart/form-data">
+    <div class="section-wrapper box-user">
+      <div class="content-inner">
+        <div class="row">
+           <div class="clearfix">
+            <div class="col-sm-12">
+              <div class="">
+                <fieldset class="fieldset-job_title">
+                  <label for="job_title">Listing Name <span class="text-red">*</span> </label>
+                  <div class="field required-field">
+                    <input type="text" class="input-text input-field" name="job_title" id="job_title" value="" maxlength="" required="" placeholder="Your listing name">
+                  </div>
+                </fieldset>
+              </div>
+              <div class="">
+                <fieldset class="fieldset-company_tagline">
+                  <label for="company_tagline">Description </label>
+                  <div class="field ">
+                    <input type="text" class="input-text input-field" name="company_tagline" id="company_tagline" value="" maxlength="64" placeholder="Briefly describe your company">
+                  </div>
+                </fieldset>
+              </div>
+              <div class="">
+                <fieldset class="fieldset-job_category">
+                  <label for="job_category">Listing category <span class="text-red">*</span> </label>
+                  <div class="field required-field">
+                    <ng-select [items]="cities2"
+                      bindLabel="name"
+                      bindValue="id"
+                      class="dropdowner"
+                      [multiple]="true"
+                      placeholder="Select cities"
+                      [(ngModel)]="selectedCityIds">
+                    </ng-select>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <fieldset class="fieldset-company_price_range">
+              <label for="company_price_range">Price Range </label>
+              <div class="field ">
+                <select name="company_price_range" id="company_price_range">
+                  <option value="inexpensive">$ - Inexpensive</option>
+                  <option value="moderate">$$ - Moderate</option>
+                  <option value="pricey">$$$ - Pricey</option>
+                  <option value="ultra_high_end">$$$$ - Ultra High</option>
+                </select>
+              </div>
+            </fieldset>
+          </div>
+          <div class="col-sm-6">
+            <fieldset class="fieldset-company_price_from">
+              <label for="company_price_from">Price From </label>
+              <div class="field ">
+                <input type="text" class="input-text  input-field" name="company_price_from" id="company_price_from" value="" maxlength="" placeholder="e.g $100">
+              </div>
+            </fieldset>
+          </div>
+          <div class="col-sm-6">
+            <fieldset class="fieldset-company_price_to">
+              <label for="company_price_to">Price To </label>
+              <div class="field ">
+                <input type="text" class="input-text  input-field" name="company_price_to" id="company_price_to" value="" maxlength="" placeholder="e.g $200">
+              </div>
+           </fieldset>
+          </div>
+          <div class="col-sm-12">
+            <fieldset class="fieldset-job_amenities">
+              <label for="job_amenities">Listing Amenities </label>
+              <div class="field">
+                <ng-select [items]="cities2"
+                  bindLabel="name"
+                  bindValue="id"
+                  class="dropdowner"
+                  [multiple]="true"
+                  placeholder="Select cities"
+                  [(ngModel)]="selectedCityIds">
+                </ng-select>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-wrapper box-user">
+      <div class="content-inner">
+        <h3 class="section-title">Hours</h3>
+        <div class="row">
+          <div class="col-xs-12">
+            <fieldset class="fieldset-job_description">
+              <div class="field required-field"></div>
+            </fieldset>
+          </div>
+          <div class="col-xs-12">
+            <fieldset class="fieldset-job_hours">
+              <label for="job_hours">Hours of Operation </label>
+              <div class="field ">
+                <table>
+                  <tbody>
+                    <tr>
+                      <th width="40%" class="day-th">Day</th>
+                      <th align="left">Open</th>
+                      <th align="left">Close</th>
+                    </tr>
+                    <tr>
+                      <td align="left">Monday</td>
+                      <td align="left" class="hours">
+                        <ng-select [items]="cities"
+                          bindLabel="name"
+                          placeholder="Opening Time"
+                          [(ngModel)]="selectedCity">
+                        </ng-select>
+                      </td>
+                      <td align="left" class="hours">
+                        <ng-select [items]="cities"
+                          bindLabel="name"
+                          placeholder="Closing Time"
+                          [(ngModel)]="selectedCity">
+                        </ng-select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="left">Tuesday</td>
+                      <td align="left">
+                        <ng-select [items]="cities"
+                          bindLabel="name"
+                          placeholder="Opening Time"
+                          [(ngModel)]="selectedCity">
+                        </ng-select>
+                      </td>
+                      <td align="left">
+                        <ng-select [items]="cities"
+                          bindLabel="name"
+                          placeholder="Closing Time"
+                          [(ngModel)]="selectedCity">
+                        </ng-select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="left">Wednesday</td>
+                      <td align="left" class="hours">
+                          <ng-select [items]="cities"
+                          bindLabel="name"
+                          placeholder="Opening Time"
+                          [(ngModel)]="selectedCity">
+                        </ng-select>
+                      </td>
+                      <td align="left" class="hours">
+                          <ng-select [items]="cities"
+                          bindLabel="name"
+                          placeholder="Closing Time"
+                          [(ngModel)]="selectedCity">
+                        </ng-select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="left">Thursday</td>
+                      <td align="left" class="hours">
+                          <ng-select [items]="cities"
+                          bindLabel="name"
+                          placeholder="Opening Time"
+                          [(ngModel)]="selectedCity">
+                        </ng-select>
+                      </td>
+                      <td align="left" class="hours">
+                          <ng-select [items]="cities"
+                          bindLabel="name"
+                          placeholder="Closing Time"
+                          [(ngModel)]="selectedCity">
+                        </ng-select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="left">Friday</td>
+                      <td align="left" class="hours">
+                          <ng-select [items]="cities"
+                          bindLabel="name"
+                          placeholder="Opening Time"
+                          [(ngModel)]="selectedCity">
+                        </ng-select>
+                      </td>
+                      <td align="left" class="hours">
+                          <ng-select [items]="cities"
+                          bindLabel="name"
+                          placeholder="Closing Time"
+                          [(ngModel)]="selectedCity">
+                        </ng-select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="left">Saturday</td>
+                      <td align="left" class="hours">
+                          <ng-select [items]="cities"
+                          bindLabel="name"
+                          placeholder="Opening Time"
+                          [(ngModel)]="selectedCity">
+                        </ng-select>
+                      </td>
+                      <td align="left" class="hours">
+                          <ng-select [items]="cities"
+                          bindLabel="name"
+                          placeholder="Closing Time"
+                          [(ngModel)]="selectedCity">
+                        </ng-select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="left">Sunday</td>
+                      <td align="left" class="hours">
+                          <ng-select [items]="cities"
+                          bindLabel="name"
+                          placeholder="Opening Time"
+                          [(ngModel)]="selectedCity">
+                        </ng-select>
+                      </td>
+                      <td align="left" class="hours">
+                          <ng-select [items]="cities"
+                          bindLabel="name"
+                          placeholder="Closing Time"
+                          [(ngModel)]="selectedCity">
+                        </ng-select>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table> 
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-wrapper box-user">
+      <div class="content-inner">
+        <div class="row">
+          <div class="col-xs-12">
+            <fieldset class="fieldset-job_location">
+              <label for="job_location">Location </label>
+              <div class="field ">
+                <div class="findgo-location-field">
+                  <div class="findgo-location-field-inner">
+                    <input type="text" class="input-text input-location-field  input-field" name="job_location" id="job_location" placeholder="e.g 34 Wigmore Street, London" value="" maxlength="" autocomplete="off">
+                  </div>
+                  <div class="row hidden">
+                    <div class="col-sm-6">
+                      <fieldset>
+                        <label>Latitude</label>
+                        <div class="field">
+                          <input class="geo_latitude  input-field" name="geo_latitude" value="" type="text">
+                        </div>
+                      </fieldset>
+                    </div>
+                    <div class="col-sm-6">
+                      <fieldset>
+                        <label>Longitude</label>
+                        <div class="field">
+                          <input class="geo_longitude  input-field" name="geo_longitude" value="" type="text">
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+                <small class="description">Leave this blank if the location is not important.</small> 
+              </div>
+            </fieldset>
+          </div>
+          <div class="col-xs-12">
+            <fieldset class="fieldset-company_website">
+              <label for="company_website">Website </label>
+              <div class="field ">
+                <input type="text" class="input-text  input-field" name="company_website" id="company_website" value="" maxlength="" placeholder="e.g yourwebsite.com, London">
+                <small class="description"><span class="description_tooltip left">You can add more similar panels to better help the user fill the form</span></small> 
+              </div>
+            </fieldset>
+          </div>
+          <div class="col-xs-12">
+            <fieldset class="fieldset-company_phone">
+              <label for="company_phone">Phone </label>
+              <div class="field ">
+                <input type="text" class="input-text  input-field" name="company_phone" id="company_phone" value="" maxlength="" placeholder="e.g +84-669-996">
+              </div>
+            </fieldset>
+          </div>
+          <div class="col-xs-12">
+            <fieldset class="fieldset-company_email">
+              <label for="company_email">Email </label>
+              <div class="field ">
+                <input type="text" class="input-text input-field" name="company_email" id="company_email" value="" maxlength="" placeholder="e.g youremail@email.com">
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-wrapper box-user">
+    <div class="content-inner">
+    <div class="row">
+    <div class="col-xs-12">
+    <fieldset class="fieldset-job_menu_prices">
+    <label for="job_menu_prices">
+    </label>
+    <div class="field ">
+    <div class="menu-prices-field">
+    <h3 class="title">Menu Prices</h3>
+    <div class="menu-prices-field-wrapper">
+    <div class="menu-prices-section-item">
+    <div class="job-manager-section-title">
+    <h4>Section Title</h4>
+    <input type="text" class="input-text input-section-title input-field" name="_job_menu_prices[0][section_title]" value="">
+    </div>
+    <h4>Section Items</h4>
+    <div class="menu-prices-section-item-wrapper">
+    <div class="menu-prices-item">
+    <div class="row">
+    <div class="col-sm-6">
+    <div class="job-manager-title">
+    <label>Title</label>
+    <input type="text" class="input-text input-section-item-title input-field" name="_job_menu_prices[0][title][]" value="">
+    </div>
+    <div class="job-manager-price">
+    <label>Price</label>
+    <input type="text" class="input-text input-section-item-price input-field" name="_job_menu_prices[0][price][]" value="">
+    </div>
+    </div>
+    <div class="col-sm-6">
+    <div class="job-manager-description">
+    <label>Description</label>
+    <textarea cols="20" rows="3" class="input-text input-section-item-description" name="_job_menu_prices[0][description][]"></textarea>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <a class="add-new-menu-price button button-primary" href="javascript:void(0);">Add New Menu</a>
+    <a class="remove-menu-price button" href="javascript:void(0);">Remove Menu</a>
+    </div>
+    </div>
+    <a class="add-new-section-menu-price button button-primary" href="javascript:void(0);">Add New Section</a>
+    <a class="remove-section-menu-price button" href="javascript:void(0);">Remove Section</a>
+    </div> </div>
+    </fieldset>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="section-wrapper box-user">
+    <div class="content-inner">
+    <h3 class="section-title">Media</h3>
+    <div class="row">
+    <div class="col-xs-12">
+    <fieldset class="fieldset-company_logo">
+    <label for="company_logo">
+    Featured Image </label>
+    <div class="field ">
+    <div class="job-manager-uploaded-files">
+    </div>
+    <input type="file" class="input-text input-field" data-file_types="jpg|jpeg|gif|png" name="company_logo" id="company_logo" placeholder="">
+    <small class="description">
+    The image will be shown on listing cards.	</small>
+     </div>
+    </fieldset>
+    </div>
+    <div class="col-xs-12">
+    <fieldset class="fieldset-gallery_images">
+    <label for="gallery_images">
+    Gallery Images </label>
+    <div class="field ">
+    <div class="job-manager-uploaded-files">
+    </div>
+    <input type="file" class="input-text input-field" data-file_types="jpg|jpeg|gif|png" multiple="" name="gallery_images[]" id="gallery_images" placeholder="">
+    <small class="description">
+    Maximum file size: 2 MB.	</small>
+    </div>
+    </fieldset>
+    </div>
+    <div class="col-xs-12">
+    <fieldset class="fieldset-company_video">
+    <label for="company_video">
+    Video </label>
+    <div class="field ">
+    <input type="text" class="input-text input-field" name="company_video" id="company_video" value="" maxlength="" placeholder="A link to a video about your company">
+    </div>
+    </fieldset>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="section-wrapper box-user">
+    <div class="content-inner">
+    <h3 class="section-title">Social</h3>
+    <div class="row">
+    <div class="col-sm-6">
+    <fieldset class="fieldset-company_twitter">
+    <label for="company_twitter">
+    Twitter url </label>
+    <div class="field ">
+    <input type="text" class="input-text input-field" name="company_twitter" id="company_twitter" value="" maxlength="" placeholder="http://twitter.com/yourusername">
+    </div>
+    </fieldset>
+    </div>
+    <div class="col-sm-6">
+    <fieldset class="fieldset-company_facebook">
+    <label for="company_facebook">
+    Facebook url </label>
+    <div class="field ">
+    <input type="text" class="input-text input-field" name="company_facebook" id="company_facebook" value="" maxlength="" placeholder="http://facebook.com/yourusername">
+    </div>
+    </fieldset>
+    </div>
+    <div class="col-sm-6">
+    <fieldset class="fieldset-company_linkedin">
+    <label for="company_linkedin">
+    Linkedin url </label>
+    <div class="field ">
+    <input type="text" class="input-text input-field" name="company_linkedin" id="company_linkedin" value="" maxlength="" placeholder="http://linkedin.com/yourusername">
+    </div>
+    </fieldset>
+    </div>
+    <div class="col-sm-6">
+    <fieldset class="fieldset-company_instagram">
+    <label for="company_instagram">
+    Instagram url </label>
+    <div class="field ">
+    <input type="text" class="input-text input-field" name="company_instagram" id="company_instagram" value="" maxlength="" placeholder="http://instagram.com/yourusername">
+    </div>
+    </fieldset>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="section-wrapper box-user">
+    <div class="content-inner">
+    <div class="row">
+    <div class="col-xs-12">
+    <fieldset class="fieldset-job_tags">
+    <label for="job_tags">
+    Listing tags </label>
+    <div class="field ">
+    <input type="text" class="input-text input-field" name="job_tags" id="job_tags" value="" maxlength="" placeholder="e.g. PHP, Social Media, Management">
+    <small class="description">Comma separate tags, such as required skills or technologies, for this job.15</small> </div>
+    </fieldset>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    <p class="clearfix">
+    <input type="hidden" name="job_manager_form" value="submit-job">
+    <input type="hidden" name="job_id" value="0">
+    <input type="hidden" name="step" value="1">
+    <input type="submit" name="submit_job" class="button btn-submit pull-right" value="Save &amp; Preview">
+    </p>
+    </form>
+    </div>

@@ -11495,7 +11495,7 @@ div.wpcf7-validation-errors {
 }
 #submit-job-form select,
 #submit-job-form input[type="email"],
-#submit-job-form input[type="text"] {
+#submit-job-form .input-field {
   padding: 10px 20px;
   height: 50px;
   border-radius: 3px;
@@ -11673,9 +11673,9 @@ div.wpcf7-validation-errors {
   }
 }
 #submit-job-form .fieldset-job_hours table input[type="text"] {
-  height: 40px;
+  /* height: 40px;
   padding: 12px 18px;
-  width: 100%;
+  width: 100%; */
 }
 #submit-job-form .fieldset-job_hours table tr {
   background-color: #fafafa;

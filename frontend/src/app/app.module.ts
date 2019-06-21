@@ -13,7 +13,7 @@ import { EffectsModule } from "@ngrx/effects";
 import { StoreRouterConnectingModule } from "@ngrx/router-store";
 import { appReducers } from "./store/reducers/app.reducer";
 import { environment } from "../environments/environment";
-
+import { NgSelectModule } from '@ng-select/ng-select';
 import { ProductEffects } from "./store/effects/product";
 
 import {
@@ -54,6 +54,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { AgmSnazzyInfoWindowModule } from "@agm/snazzy-info-window";
 import { AgmCoreModule, GoogleMapsAPIWrapper } from "@agm/core";
 import { BusinessEffects } from "./store/effects/business";
+import { AddListingComponent } from './add-listing-components/add-listing/add-listing.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { BusinessEffects } from "./store/effects/business";
     ExploreProductsComponent,
     HomeProductInfoComponent,
     LoadingComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    AddListingComponent
   ],
   imports: [
     BrowserModule,
@@ -88,6 +90,7 @@ import { BusinessEffects } from "./store/effects/business";
     AppRoutingModule,
     NgbModule.forRoot(),
     FormsModule,
+    NgSelectModule,
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([ProductEffects, BusinessEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],

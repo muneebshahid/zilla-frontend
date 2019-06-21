@@ -1,0 +1,11 @@
+.container {
+  margin-top: 1%;
+}
+
+.input-text{
+  width: 100%;
+}
+.dropdowner > input[type="text"]{
+  height: initial!important;
+  border: none!important;
+}
