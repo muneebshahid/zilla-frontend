@@ -52,7 +52,7 @@ export class MapComponent implements OnInit {
   }
 
   /* is called from the detail page to set the pin on the location of the product or business */
-  setPageLocation(lat, lng, zoom) {
+  setPageLocation(lat, lng, zoom = 8) {
     this.markers.push(this.createMarker(lat, lng));
     this.setFocusLocation(lat, lng, zoom);
   }
