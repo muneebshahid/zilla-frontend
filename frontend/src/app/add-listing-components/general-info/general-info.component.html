@@ -1,0 +1,124 @@
+<div class="section-wrapper box-user">
+  <div class="content-inner">
+    <div class="row">
+      <div class="clearfix">
+        <div class="col-sm-12">
+          <div class="">
+            <fieldset class="fieldset-job_title">
+              <label for="job_title">Listing Name <span class="text-red">*</span> </label>
+              <div class="field required-field">
+                <input
+                  type="text"
+                  class="input-text input-field"
+                  name="job_title"
+                  id="job_title"
+                  value=""
+                  maxlength=""
+                  required=""
+                  placeholder="Your listing name"
+                />
+              </div>
+            </fieldset>
+          </div>
+          <div class="">
+            <fieldset class="fieldset-company_tagline">
+              <label for="company_tagline">Description </label>
+              <div class="field ">
+                <input
+                  type="text"
+                  class="input-text input-field"
+                  name="company_tagline"
+                  id="company_tagline"
+                  value=""
+                  maxlength="64"
+                  placeholder="Briefly describe your company"
+                />
+              </div>
+            </fieldset>
+          </div>
+          <div class="">
+            <fieldset class="fieldset-job_category">
+              <label for="job_category">Listing category <span class="text-red">*</span> </label>
+              <div class="field required-field">
+                <ng-select
+                  [items]="cities2"
+                  name="listing_category"
+                  bindLabel="name"
+                  bindValue="id"
+                  class="dropdowner"
+                  [multiple]="true"
+                  placeholder="Select cities"
+                  [(ngModel)]="selectedCityIds"
+                >
+                </ng-select>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <fieldset class="fieldset-company_price_range">
+          <label for="company_price_range">Price Range </label>
+          <div class="field ">
+            <select name="company_price_range" id="company_price_range">
+              <option value="inexpensive">$ - Inexpensive</option>
+              <option value="moderate">$$ - Moderate</option>
+              <option value="pricey">$$$ - Pricey</option>
+              <option value="ultra_high_end">$$$$ - Ultra High</option>
+            </select>
+          </div>
+        </fieldset>
+      </div>
+      <div class="col-sm-6">
+        <fieldset class="fieldset-company_price_from">
+          <label for="company_price_from">Price From </label>
+          <div class="field ">
+            <input
+              type="text"
+              class="input-text  input-field"
+              name="company_price_from"
+              id="company_price_from"
+              value=""
+              maxlength=""
+              placeholder="e.g $100"
+            />
+          </div>
+        </fieldset>
+      </div>
+      <div class="col-sm-6">
+        <fieldset class="fieldset-company_price_to">
+          <label for="company_price_to">Price To </label>
+          <div class="field ">
+            <input
+              type="text"
+              class="input-text  input-field"
+              name="company_price_to"
+              id="company_price_to"
+              value=""
+              maxlength=""
+              placeholder="e.g $200"
+            />
+          </div>
+        </fieldset>
+      </div>
+      <div class="col-sm-12">
+        <fieldset class="fieldset-job_amenities">
+          <label for="job_amenities">Listing Amenities </label>
+          <div class="field">
+            <ng-select
+              [items]="cities2"
+              bindLabel="name"
+              name="listing_amenities"
+              bindValue="id"
+              class="dropdowner"
+              [multiple]="true"
+              placeholder="Select cities"
+              [(ngModel)]="selectedCityIds"
+            >
+            </ng-select>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="section-wrapper box-user">
+  <div class="content-inner">
+    <h3 class="section-title">Media</h3>
+    <div class="row">
+      <div class="col-xs-12">
+        <fieldset class="fieldset-company_logo">
+          <label for="company_logo">Featured Image</label>
+          <div class="field">
+            <div class="job-manager-uploaded-files"></div>
+            <input
+              type="file"
+              class="input-text"
+              data-file_types="jpg|jpeg|gif|png"
+              name="company_logo"
+              id="company_logo"
+              placeholder=""
+            />
+            <small class="description">The image will be shown on listing cards. </small>
+          </div>
+        </fieldset>
+      </div>
+      <div class="col-xs-12">
+        <fieldset class="fieldset-gallery_images">
+          <label for="gallery_images">Gallery Images</label>
+          <div class="field">
+            <div class="job-manager-uploaded-files"></div>
+            <input
+              type="file"
+              class="input-text"
+              data-file_types="jpg|jpeg|gif|png"
+              multiple=""
+              name="gallery_images[]"
+              id="gallery_images"
+              placeholder=""
+            />
+            <small class="description">Maximum file size: 128 MB. </small>
+          </div>
+        </fieldset>
+      </div>
+      <div class="col-xs-12">
+        <fieldset class="fieldset-company_video">
+          <label for="company_video">Video</label>
+          <div class="field">
+            <input
+              type="text"
+              class="input-text input-field"
+              name="company_video"
+              id="company_video"
+              value=""
+              maxlength=""
+              placeholder="A link to a video about your company"
+            />
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,112 @@
+<div class="section-wrapper box-user">
+  <div class="content-inner">
+    <div class="row">
+      <div class="col-xs-12">
+        <fieldset class="fieldset-job_location">
+          <label for="job_location">Location </label>
+          <div class="field ">
+            <div class="findgo-location-field">
+              <div class="findgo-location-field-inner">
+                <input
+                  type="text"
+                  class="input-text input-location-field input-field"
+                  placeholder="search for location"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  spellcheck="off"
+                  type="text"
+                  class="form-control"
+                  #search
+                />
+              </div>
+              <app-map #mapParent [mapClass]="mapClass"></app-map>
+
+              <div class="row hidden">
+                <div class="col-sm-6">
+                  <fieldset>
+                    <label>Latitude</label>
+                    <div class="field">
+                      <input
+                        class="geo_latitude  input-field"
+                        name="geo_latitude"
+                        value=""
+                        type="text"
+                      />
+                    </div>
+                  </fieldset>
+                </div>
+                <div class="col-sm-6">
+                  <fieldset>
+                    <label>Longitude</label>
+                    <div class="field">
+                      <input
+                        class="geo_longitude  input-field"
+                        name="geo_longitude"
+                        value=""
+                        type="text"
+                      />
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+            <small class="description">Leave this blank if the location is not important.</small>
+          </div>
+        </fieldset>
+      </div>
+      <div class="col-xs-12">
+        <fieldset class="fieldset-company_website">
+          <label for="company_website">Website </label>
+          <div class="field ">
+            <input
+              type="text"
+              class="input-text  input-field"
+              name="company_website"
+              id="company_website"
+              value=""
+              maxlength=""
+              placeholder="e.g yourwebsite.com, London"
+            />
+            <small class="description"
+              ><span class="description_tooltip left"
+                >You can add more similar panels to better help the user fill the form</span
+              ></small
+            >
+          </div>
+        </fieldset>
+      </div>
+      <div class="col-xs-12">
+        <fieldset class="fieldset-company_phone">
+          <label for="company_phone">Phone </label>
+          <div class="field ">
+            <input
+              type="text"
+              class="input-text  input-field"
+              name="company_phone"
+              id="company_phone"
+              value=""
+              maxlength=""
+              placeholder="e.g +84-669-996"
+            />
+          </div>
+        </fieldset>
+      </div>
+      <div class="col-xs-12">
+        <fieldset class="fieldset-company_email">
+          <label for="company_email">Email </label>
+          <div class="field ">
+            <input
+              type="text"
+              class="input-text input-field"
+              name="company_email"
+              id="company_email"
+              value=""
+              maxlength=""
+              placeholder="e.g youremail@email.com"
+            />
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>

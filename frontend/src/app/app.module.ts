@@ -54,8 +54,17 @@ import { HttpClientModule } from "@angular/common/http";
 import { AgmSnazzyInfoWindowModule } from "@agm/snazzy-info-window";
 import { AgmCoreModule, GoogleMapsAPIWrapper } from "@agm/core";
 import { BusinessEffects } from "./store/effects/business";
-import { AddListingComponent } from "./add-listing-components/add-listing/add-listing.component";
 
+import {
+  AddListingComponent,
+  GeneralInfoComponent,
+  LocationComponent,
+  OpeningClosingHoursComponent,
+  AddMenuComponent,
+  AddMediaComponent,
+  AddSocialLinksComponent,
+  ListingTagsComponent
+} from "./add-listing-components";
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +91,14 @@ import { AddListingComponent } from "./add-listing-components/add-listing/add-li
     HomeProductInfoComponent,
     LoadingComponent,
     ProductDetailComponent,
-    AddListingComponent
+    AddListingComponent,
+    LocationComponent,
+    OpeningClosingHoursComponent,
+    GeneralInfoComponent,
+    AddMenuComponent,
+    AddMediaComponent,
+    AddSocialLinksComponent,
+    ListingTagsComponent
   ],
   imports: [
     BrowserModule,
