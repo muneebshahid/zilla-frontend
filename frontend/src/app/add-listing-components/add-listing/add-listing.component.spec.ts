@@ -4,7 +4,7 @@ import { AddListingComponent } from "./add-listing.component";
 import { Component } from "@angular/core";
 
 @Component({ selector: "app-general-info", template: "" })
-class GeneralInfo {}
+class GeneralInfoComponent {}
 
 @Component({ selector: "app-opening-closing-hours", template: "" })
 class OpeningClosingHoursComponent {}
@@ -35,7 +35,7 @@ describe("AddListingComponent", () => {
     TestBed.configureTestingModule({
       declarations: [
         AddListingComponent,
-        GeneralInfo,
+        GeneralInfoComponent,
         OpeningClosingHoursComponent,
         LocationComponent,
         MenuComponent,
@@ -43,7 +43,8 @@ describe("AddListingComponent", () => {
         AddMediaComponent,
         AddSocialLinksComponent,
         ListingTagsComponent
-      ]
+      ],
+      imports: []
     }).compileComponents();
   }));
 

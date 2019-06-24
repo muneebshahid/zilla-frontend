@@ -1,16 +1,20 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { IBusiness } from "./../../models/business";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ExploreBusinessesComponent } from './explore-businesses.component';
+import { ExploreBusinessesComponent } from "./explore-businesses.component";
+import { provideMockStore, MockStore } from "@ngrx/store/testing";
 
-describe('ExploreBusinessesComponent', () => {
+describe("ExploreBusinessesComponent", () => {
   let component: ExploreBusinessesComponent;
   let fixture: ComponentFixture<ExploreBusinessesComponent>;
+  let store: MockStore<{ business: IBusiness[] }>;
+  const initialState = { business: null };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExploreBusinessesComponent ]
-    })
-    .compileComponents();
+      declarations: [ExploreBusinessesComponent],
+      providers: [provideMockStore({ initialState })]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +23,7 @@ describe('ExploreBusinessesComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

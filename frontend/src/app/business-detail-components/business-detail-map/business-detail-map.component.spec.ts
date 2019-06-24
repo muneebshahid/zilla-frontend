@@ -1,16 +1,21 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { Component, Input } from "@angular/core";
 
-import { BusinessDetailMapComponent } from './business-detail-map.component';
+import { BusinessDetailMapComponent } from "./business-detail-map.component";
 
-describe('BusinessDetailMapComponent', () => {
+@Component({ selector: "app-map", template: "" })
+class MapComponent {
+  @Input() mapClass;
+}
+
+describe("BusinessDetailMapComponent", () => {
   let component: BusinessDetailMapComponent;
   let fixture: ComponentFixture<BusinessDetailMapComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BusinessDetailMapComponent ]
-    })
-    .compileComponents();
+      declarations: [BusinessDetailMapComponent, MapComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +24,7 @@ describe('BusinessDetailMapComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

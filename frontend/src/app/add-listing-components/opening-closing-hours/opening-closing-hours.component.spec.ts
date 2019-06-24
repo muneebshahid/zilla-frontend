@@ -1,16 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { OpeningClosingHoursComponent } from './opening-closing-hours.component';
+import { OpeningClosingHoursComponent } from "./opening-closing-hours.component";
+import { NgSelectModule } from "@ng-select/ng-select";
+import { FormsModule } from "@angular/forms";
 
-describe('OpeningClosingHoursComponent', () => {
+describe("OpeningClosingHoursComponent", () => {
   let component: OpeningClosingHoursComponent;
   let fixture: ComponentFixture<OpeningClosingHoursComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OpeningClosingHoursComponent ]
-    })
-    .compileComponents();
+      declarations: [OpeningClosingHoursComponent],
+      imports: [NgSelectModule, FormsModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +21,7 @@ describe('OpeningClosingHoursComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

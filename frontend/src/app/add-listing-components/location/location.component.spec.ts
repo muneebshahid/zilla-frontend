@@ -1,18 +1,11 @@
 import { Component, Input } from "@angular/core";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { LocationComponent } from "./location.component";
+import { AgmCoreModule, GoogleMapsAPIWrapper } from "@agm/core";
 
 @Component({ selector: "app-map", template: "" })
 class MapComponent {
   @Input() mapClass = "";
-}
-
-export class MockMapsAPILoader {
-  public load(): Promise<boolean> {
-    return new Promise(() => {
-      return true;
-    });
-  }
 }
 
 describe("LocationComponent", () => {
@@ -22,7 +15,13 @@ describe("LocationComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LocationComponent, MapComponent],
-      providers: [MockMapsAPILoader]
+      providers: [GoogleMapsAPIWrapper],
+      imports: [
+        AgmCoreModule.forRoot({
+          apiKey: "AIzaSyAZfyL5pncodSyDVTP28vnyQep4SNeQDgY",
+          libraries: ["places"]
+        })
+      ]
     }).compileComponents();
   }));
 
