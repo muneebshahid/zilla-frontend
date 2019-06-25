@@ -7,8 +7,8 @@ import { provideMockStore, MockStore } from "@ngrx/store/testing";
 describe("ExploreBusinessesComponent", () => {
   let component: ExploreBusinessesComponent;
   let fixture: ComponentFixture<ExploreBusinessesComponent>;
-  let store: MockStore<{ business: IBusiness[] }>;
-  const initialState = { business: null };
+  let store: MockStore<{ businesses: IBusiness[] }>;
+  const initialState = { businesses: null };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

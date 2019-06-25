@@ -10,8 +10,17 @@ class MFilterMapMenuComponent {
   @Input() searchBarEnabled: boolean = false;
 }
 
+@Component({ selector: "app-menu", template: "" })
+class MenuComponent {}
+
 @Component({ selector: "app-m-menu", template: "" })
 class MMenuComponent {}
+
+@Component({ selector: "app-explore-businesses", template: "" })
+class ExploreBusinessesComponent {}
+
+@Component({ selector: "app-explore-products", template: "" })
+class ExploreProductsComponent {}
 
 describe("ExploreComponent", () => {
   let component: ExploreComponent;
@@ -23,7 +32,10 @@ describe("ExploreComponent", () => {
         ExploreComponent,
         MHomeMenuDrawerComponent,
         MFilterMapMenuComponent,
-        MMenuComponent
+        MMenuComponent,
+        MenuComponent,
+        ExploreBusinessesComponent,
+        ExploreProductsComponent
       ]
     }).compileComponents();
   }));
