@@ -1,8 +1,6 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { Component, Input } from "@angular/core";
 
 import { HomeProductInfoComponent } from "./home-product-info.component";
-import { IProduct } from "src/app/models/product";
 
 describe("HomeProductInfoComponent", () => {
   let component: HomeProductInfoComponent;
