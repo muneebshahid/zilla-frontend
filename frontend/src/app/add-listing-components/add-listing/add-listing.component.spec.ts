@@ -57,4 +57,46 @@ describe("AddListingComponent", () => {
   it("should create", () => {
     expect(component).toBeTruthy();
   });
+
+  it("should contain app-general-info components", () => {
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector("app-general-info")).not.toBe(null);
+  });
+
+  it("should contain app-opening-closing-hours components", () => {
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector("app-opening-closing-hours")).not.toBe(null);
+  });
+
+  it("should contain app-location components", () => {
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector("app-location")).not.toBe(null);
+  });
+
+  it("should contain app-add-menu components", () => {
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector("app-add-menu")).not.toBe(null);
+  });
+
+  it("should contain app-add-media components", () => {
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector("app-add-media")).not.toBe(null);
+  });
+
+  it("should contain app-add-social-links components", () => {
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector("app-add-social-links")).not.toBe(null);
+  });
+
+  it("should contain app-listing-tags components", () => {
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector("app-listing-tags")).not.toBe(null);
+  });
 });

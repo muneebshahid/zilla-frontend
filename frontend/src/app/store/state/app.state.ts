@@ -6,8 +6,8 @@ import { IBusinessState, initialBusinessState } from "./business";
 
 export interface IAppState {
   router?: RouterReducerState;
-  products: IProductState;
-  businesses: IBusinessState;
+  products?: IProductState;
+  businesses?: IBusinessState;
 }
 
 export const initialAppState: IAppState = {
