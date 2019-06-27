@@ -5,6 +5,7 @@ import { Component, Input } from "@angular/core";
 import { ProductDetailComponent } from "./product-detail.component";
 import { IImage } from "src/app/models/image";
 import { provideMockStore, MockStore } from "@ngrx/store/testing";
+import { RouterTestingModule } from "@angular/router/testing";
 
 @Component({ selector: "app-m-home-menu-drawer", template: "" })
 class MHomeMenuDrawerComponent {}
@@ -56,7 +57,8 @@ describe("ProductDetailComponent", () => {
         DetailHeaderComponent,
         FooterComponent
       ],
-      providers: [provideMockStore({ initialState })]
+      providers: [provideMockStore({ initialState })],
+      imports: [RouterTestingModule]
     }).compileComponents();
   }));
 

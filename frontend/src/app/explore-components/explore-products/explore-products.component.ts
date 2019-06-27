@@ -28,7 +28,6 @@ export class ExploreProductsComponent implements OnInit, OnDestroy {
   subscriptions() {
     const subcriberProduct = this.productsSelector.subscribe(products => {
       this.products = products;
-
       if (this.products !== null) {
         this.toggleLoadingSign(false);
       }

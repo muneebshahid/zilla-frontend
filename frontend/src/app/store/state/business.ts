@@ -6,6 +6,6 @@ export interface IBusinessState {
 }
 
 export const initialBusinessState: IBusinessState = {
-  businesses: null,
-  business: null
+  businesses: [],
+  business: Object.assign({})
 };

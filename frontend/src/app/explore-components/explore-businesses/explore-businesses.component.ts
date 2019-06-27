@@ -31,7 +31,7 @@ export class ExploreBusinessesComponent implements OnInit, OnDestroy {
   constructor(private store: Store<IAppState>) {}
 
   ngOnInit() {
-    this.store.dispatch(new GetExploreBusiness({ lat: 20, lng: 20 }));
+    // this.store.dispatch(new GetExploreBusiness({ lat: 20, lng: 20 }));
     this.subscriptions();
   }
 
@@ -46,14 +46,12 @@ export class ExploreBusinessesComponent implements OnInit, OnDestroy {
       )
       .subscribe(businesses => {
         this.businesses = businesses;
-
         if (businesses !== null) {
           this.businessLoading = false;
           this.businessSelectionActive = new Array(this.businesses.length).fill(false);
           this.businessSelectionActive[0] = true;
         }
       });
-
     this.subscriptionsArr.push(subcriberBusiness);
   }
 
@@ -61,7 +59,6 @@ export class ExploreBusinessesComponent implements OnInit, OnDestroy {
     if (index !== this.lastSelectedIndex) {
       this.store.dispatch(new GetProductsOfBusiness(this.businesses[index].user));
       this.enableProductLoadingSign.next();
-
       this.businessSelectionActive[this.lastSelectedIndex] = false;
       this.businessSelectionActive[index] = true;
     }

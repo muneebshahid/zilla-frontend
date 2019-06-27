@@ -6,6 +6,6 @@ export interface IProductState {
 }
 
 export const initialProductState: IProductState = {
-  products: null,
-  product: null
+  products: [],
+  product: Object.assign({})
 };
