@@ -37,7 +37,7 @@
           />
         </a>
       </div>
-      <span class="price-range"> {{ product.price }} </span>
+      <span class="price-range"> {{ product?.price }} </span>
       <div class="top-imformation">
         <div class="listing-preview-wrapper pull-left">
           <a href="#preview-636" class="listing-preview" data-id="636"
@@ -56,7 +56,7 @@
   <div class="bottom-grid">
     <div class="listing-content">
       <h3 class="listing-title">
-        <a href="https://demoapus.com/findgo/listings/diamond-club/">{{ product.title }}</a>
+        <a href="https://demoapus.com/findgo/listings/diamond-club/">{{ product?.title }}</a>
         <span
           class="listing-claimed-icon"
           data-toggle="tooltip"
@@ -65,7 +65,7 @@
           ><i class="text-theme fa fa-check-circle"></i
         ></span>
       </h3>
-      <div class="listing-tagline">{{ product.description }}</div>
+      <div class="listing-tagline">{{ product?.description }}</div>
       <div class="listing-tags">
         <!-- <div class="listing-review">
           <span class="review-avg">4.5</span>
@@ -73,7 +73,7 @@
         </div> -->
         <div class="listing-category">
           <a href="https://demoapus.com/findgo/listing-category/nightlife/"
-            ><i class="flaticon-wine-glass"></i>{{ product.product_type }}</a
+            ><i class="flaticon-wine-glass"></i>{{ product?.product_type }}</a
           >
         </div>
         <div class="listing-time closed">
