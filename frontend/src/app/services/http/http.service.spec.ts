@@ -3,8 +3,7 @@ import { TestBed } from "@angular/core/testing";
 import { HttpService } from "./http.service";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { IBusiness } from "src/app/models/business";
-import { asyncData, asyncError } from "src/app/testing/async-observable-helpers";
-import { HttpErrorResponse } from "@angular/common/http";
+import { asyncData } from "src/app/testing/async-observable-helpers";
 
 describe("HttpService", () => {
   let httpClientSpy: { get: jasmine.Spy };
