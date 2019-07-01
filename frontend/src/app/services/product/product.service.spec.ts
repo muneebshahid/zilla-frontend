@@ -3,7 +3,6 @@ import { TestBed } from "@angular/core/testing";
 import { ProductService } from "./product.service";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { IProduct } from "src/app/models/product";
-import { stringify } from "querystring";
 import { of } from "rxjs";
 
 describe("ProductService", () => {
