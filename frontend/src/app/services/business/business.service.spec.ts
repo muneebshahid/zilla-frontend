@@ -26,15 +26,13 @@ describe("BusinessService", () => {
   ];
 
   beforeEach(() => {
-    const stubValue = of();
-
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule]
     });
   });
 
   it("should be created", () => {
-    let service = TestBed.get(BusinessService);
+    const service = TestBed.get(BusinessService);
     expect(service).toBeTruthy();
   });
 
@@ -45,7 +43,7 @@ describe("BusinessService", () => {
     const stubValue = of(emptyObs[0]);
     httpServiceSpy.get.and.returnValue(stubValue);
 
-    let businessService = new BusinessService(httpServiceSpy);
+    const businessService = new BusinessService(httpServiceSpy);
 
     expect(businessService.getBusinessDetail("dummy-slug-id")).toBe(
       stubValue,
@@ -62,7 +60,7 @@ describe("BusinessService", () => {
     const stubValue = of(emptyObs[0]);
     httpServiceSpy.get.and.returnValue(stubValue);
 
-    let businessService = new BusinessService(httpServiceSpy);
+    const businessService = new BusinessService(httpServiceSpy);
 
     expect(businessService.getNearbyBusinesses("dummy-slug-id")).toBe(
       stubValue,
@@ -79,7 +77,7 @@ describe("BusinessService", () => {
     const stubValue = of(emptyObs);
     httpServiceSpy.get.and.returnValue(stubValue);
 
-    let businessService = new BusinessService(httpServiceSpy);
+    const businessService = new BusinessService(httpServiceSpy);
 
     expect(businessService.getExploreBusiness("dummy-slug-id")).toBe(
       stubValue,
