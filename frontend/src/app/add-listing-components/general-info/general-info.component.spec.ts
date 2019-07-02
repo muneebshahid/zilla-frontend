@@ -25,18 +25,4 @@ describe("GeneralInfoComponent", () => {
   it("should create", () => {
     expect(component).toBeTruthy();
   });
-
-  it("should load ng-select successfully", () => {
-    const nativeElement: HTMLElement = fixture.debugElement.query(By.css(".dropdowner"))
-      .nativeElement;
-    tickAndDetectChanges(fixture);
-    const itemsList = fixture.componentInstance.select.itemsList;
-    expect(itemsList.items.length).toBe(7);
-    expect(itemsList.items[0]).toEqual(
-      jasmine.objectContaining({
-        label: "0",
-        value: 0
-      })
-    );
-  });
 });
