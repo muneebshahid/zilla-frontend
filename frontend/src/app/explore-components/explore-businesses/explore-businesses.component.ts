@@ -31,7 +31,7 @@ export class ExploreBusinessesComponent implements OnInit, OnDestroy {
   constructor(private store: Store<IAppState>) {}
 
   ngOnInit() {
-    // this.store.dispatch(new GetExploreBusiness({ lat: 20, lng: 20 }));
+    this.store.dispatch(new GetExploreBusiness({ lat: 20, lng: 20 }));
     this.subscriptions();
   }
 
@@ -39,7 +39,7 @@ export class ExploreBusinessesComponent implements OnInit, OnDestroy {
     const subcriberBusiness = this.businessSelector
       .pipe(
         tap(business => {
-          if (business !== null) {
+          if (business !== null && business.length !== 0) {
             this.store.dispatch(new GetProductsOfBusiness(business[0].user));
           }
         })
