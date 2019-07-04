@@ -1335,16 +1335,23 @@
 
       // section item
       $("body").on("click", ".add-new-menu-price", function(e) {
-        console.log("nahi chalra");
         e.preventDefault();
         var parent = $(this).parent();
-        console.log(parent);
+        console.log("parent1");
         console.log(parent.find(".menu-prices-section-item-wrapper"));
+        // console.log(
+        //   $(".menu-prices-item", parent)
+        //     .eq(0)
+        //     .clone(true)
+        // );
+
         parent.find(".menu-prices-section-item-wrapper").append(
           $(".menu-prices-item", parent)
             .eq(0)
             .clone(true)
         );
+        console.log("parent2");
+        console.log(parent.find(".menu-prices-section-item-wrapper"));
       });
       $("body").on("click", ".remove-menu-price", function(e) {
         e.preventDefault();
