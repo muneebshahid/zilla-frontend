@@ -1,9 +1,19 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  discardPeriodicTasks
+} from "@angular/core/testing";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { GeneralInfoComponent } from "./general-info.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
+import { NgSelectTestCmp } from "src/app/testing/NgSelectTestCmp";
+import { tickAndDetectChanges } from "src/app/testing/general-helpers";
+import { KeyCode } from "@ng-select/ng-select/ng-select/ng-select.types";
+import { selectOption, createNgTestingModule } from "src/app/testing/NgHelper";
 
 describe("GeneralInfoComponent", () => {
   let component: GeneralInfoComponent;
@@ -52,4 +62,27 @@ describe("GeneralInfoComponent", () => {
     expect(listingPriceTo.textContent).toEqual("Price To");
     expect(listingAmenities.textContent).toEqual("Listing Amenities");
   });
+
+  it("should update ngModel on value change", fakeAsync(() => {
+    const fixture = createNgTestingModule(
+      NgSelectTestCmp,
+      `<ng-select [items]="cities"
+                bindLabel="name"
+                [clearable]="true"
+                [(ngModel)]="selectedCity">
+        </ng-select>`
+    );
+
+    selectOption(fixture, KeyCode.ArrowDown, 1);
+    tickAndDetectChanges(fixture);
+    expect(fixture.componentInstance.selectedCity).toEqual(
+      jasmine.objectContaining(fixture.componentInstance.cities[1])
+    );
+
+    fixture.componentInstance.select.clearModel();
+    tickAndDetectChanges(fixture);
+
+    expect(fixture.componentInstance.selectedCity).toEqual(null);
+    discardPeriodicTasks();
+  }));
 });

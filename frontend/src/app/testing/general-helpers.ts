@@ -1,5 +1,4 @@
-import { ComponentFixture, tick } from "@angular/core/testing";
-import { DebugElement } from "@angular/core";
+import { ComponentFixture, tick, TestBed } from "@angular/core/testing";
 
 export function tickAndDetectChanges(fixture: ComponentFixture<any>) {
   fixture.detectChanges();
