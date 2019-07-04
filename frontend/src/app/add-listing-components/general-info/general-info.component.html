@@ -5,7 +5,9 @@
         <div class="col-sm-12">
           <div class="">
             <fieldset class="fieldset-job_title">
-              <label for="job_title">Listing Name <span class="text-red">*</span> </label>
+              <label for="job_title" class="listing-name"
+                >Listing Name <span class="text-red">*</span>
+              </label>
               <div class="field required-field">
                 <input
                   type="text"
@@ -22,7 +24,7 @@
           </div>
           <div class="">
             <fieldset class="fieldset-company_tagline">
-              <label for="company_tagline">Description </label>
+              <label for="company_tagline" class="listing-description">Description</label>
               <div class="field ">
                 <input
                   type="text"
@@ -38,7 +40,9 @@
           </div>
           <div class="">
             <fieldset class="fieldset-job_category">
-              <label for="job_category">Listing category <span class="text-red">*</span> </label>
+              <label for="job_category" class="listing-category"
+                >Listing Category<span class="text-red">*</span>
+              </label>
               <div class="field required-field">
                 <ng-select
                   [items]="cities2"
@@ -58,7 +62,7 @@
       </div>
       <div class="col-sm-12">
         <fieldset class="fieldset-company_price_range">
-          <label for="company_price_range">Price Range </label>
+          <label for="company_price_range" class="price-range">Price Range</label>
           <div class="field ">
             <select name="company_price_range" id="company_price_range">
               <option value="inexpensive">$ - Inexpensive</option>
@@ -71,7 +75,7 @@
       </div>
       <div class="col-sm-6">
         <fieldset class="fieldset-company_price_from">
-          <label for="company_price_from">Price From </label>
+          <label for="company_price_from" class="price-from">Price From</label>
           <div class="field ">
             <input
               type="text"
@@ -87,7 +91,7 @@
       </div>
       <div class="col-sm-6">
         <fieldset class="fieldset-company_price_to">
-          <label for="company_price_to">Price To </label>
+          <label for="company_price_to" class="price-to">Price To</label>
           <div class="field ">
             <input
               type="text"
@@ -103,7 +107,7 @@
       </div>
       <div class="col-sm-12">
         <fieldset class="fieldset-job_amenities">
-          <label for="job_amenities">Listing Amenities </label>
+          <label for="job_amenities" class="listing-amenities">Listing Amenities</label>
           <div class="field">
             <ng-select
               [items]="cities2"

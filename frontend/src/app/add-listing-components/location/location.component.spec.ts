@@ -1,7 +1,8 @@
-import { Component, Input } from "@angular/core";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { Component, Input, NgZone } from "@angular/core";
+import { async, ComponentFixture, TestBed, inject } from "@angular/core/testing";
 import { LocationComponent } from "./location.component";
-import { AgmCoreModule, GoogleMapsAPIWrapper } from "@agm/core";
+import { AgmCoreModule, GoogleMapsAPIWrapper, MapsAPILoader } from "@agm/core";
+import { GeoLocationService } from "src/app/services/geo-location/geo-location.service";
 
 @Component({ selector: "app-map", template: "" })
 class MapComponent {
@@ -15,7 +16,7 @@ describe("LocationComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LocationComponent, MapComponent],
-      providers: [GoogleMapsAPIWrapper],
+      providers: [GoogleMapsAPIWrapper, GeoLocationService],
       imports: [
         AgmCoreModule.forRoot({
           apiKey: "AIzaSyAZfyL5pncodSyDVTP28vnyQep4SNeQDgY",

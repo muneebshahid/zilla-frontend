@@ -1335,8 +1335,11 @@
 
       // section item
       $("body").on("click", ".add-new-menu-price", function(e) {
+        console.log("nahi chalra");
         e.preventDefault();
         var parent = $(this).parent();
+        console.log(parent);
+        console.log(parent.find(".menu-prices-section-item-wrapper"));
         parent.find(".menu-prices-section-item-wrapper").append(
           $(".menu-prices-item", parent)
             .eq(0)
@@ -1464,7 +1467,6 @@ if (typeof google === "object" && typeof google.maps === "object") {
     autocomplete.addListener("place_changed", function() {
       var place = autocomplete.getPlace();
       place.toString();
-      console.log(place);
       if (!place.geometry) {
         window.alert("No details available for input: '" + place.name + "'");
         return;
