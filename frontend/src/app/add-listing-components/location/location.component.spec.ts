@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed, inject } from "@angular/core/testing"
 import { LocationComponent } from "./location.component";
 import { AgmCoreModule, GoogleMapsAPIWrapper, MapsAPILoader } from "@agm/core";
 import { GeoLocationService } from "src/app/services/geo-location/geo-location.service";
-import { By } from "@angular/platform-browser";
 
 @Component({ selector: "app-map", template: "" })
 class MapComponent {

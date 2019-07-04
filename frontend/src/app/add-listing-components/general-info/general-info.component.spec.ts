@@ -2,8 +2,6 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { GeneralInfoComponent } from "./general-info.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { By } from "@angular/platform-browser";
-import { DebugElement } from "@angular/core";
 
 describe("GeneralInfoComponent", () => {
   let component: GeneralInfoComponent;
