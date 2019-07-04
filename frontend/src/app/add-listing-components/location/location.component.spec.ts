@@ -36,17 +36,4 @@ describe("LocationComponent", () => {
   it("should create", () => {
     expect(component).toBeTruthy();
   });
-  it("should ensure that the labels are named correctly", () => {
-    const listingElementDe: DebugElement = fixture.debugElement;
-
-    const locationDe = listingElementDe.query(By.css(".location"));
-    const websiteDe = listingElementDe.query(By.css(".website"));
-    const phoneDe = listingElementDe.query(By.css(".phone"));
-    const emailDe = listingElementDe.query(By.css(".email"));
-
-    expect(locationDe.nativeElement.textContent).toEqual("Location");
-    expect(websiteDe.nativeElement.textContent).toEqual("Website");
-    expect(phoneDe.nativeElement.textContent).toEqual("Phone");
-    expect(emailDe.nativeElement.textContent).toEqual("Email");
-  });
 });

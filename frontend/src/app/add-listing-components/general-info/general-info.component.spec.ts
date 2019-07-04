@@ -25,31 +25,4 @@ describe("GeneralInfoComponent", () => {
   it("should create", () => {
     expect(component).toBeTruthy();
   });
-  it("should ensure all labels are named correctly", () => {
-    const listingElementDe: DebugElement = fixture.debugElement;
-
-    const listingNameDe = listingElementDe.query(By.css(".listing-name"));
-    const listingDescriptionDe = listingElementDe.query(By.css(".listing-description"));
-    const listingCategoryDe = listingElementDe.query(By.css(".listing-category"));
-    const listingPriceRangeDe = listingElementDe.query(By.css(".price-range"));
-    const listingPriceFromDe = listingElementDe.query(By.css(".price-from"));
-    const listingPriceToDe = listingElementDe.query(By.css(".price-to"));
-    const listingAmenitiesDe = listingElementDe.query(By.css(".listing-amenities"));
-
-    const listingName: HTMLElement = listingNameDe.nativeElement;
-    const listingDescription: HTMLElement = listingDescriptionDe.nativeElement;
-    const listingCategory: HTMLElement = listingCategoryDe.nativeElement;
-    const listingPriceRange = listingPriceRangeDe.nativeElement;
-    const listingPriceFrom: HTMLElement = listingPriceFromDe.nativeElement;
-    const listingPriceTo: HTMLElement = listingPriceToDe.nativeElement;
-    const listingAmenities: HTMLElement = listingAmenitiesDe.nativeElement;
-
-    expect(listingName.textContent).toEqual("Listing Name *");
-    expect(listingDescription.textContent).toEqual("Description");
-    expect(listingCategory.textContent).toEqual("Listing Category*");
-    expect(listingPriceRange.textContent).toEqual("Price Range");
-    expect(listingPriceFrom.textContent).toEqual("Price From");
-    expect(listingPriceTo.textContent).toEqual("Price To");
-    expect(listingAmenities.textContent).toEqual("Listing Amenities");
-  });
 });
