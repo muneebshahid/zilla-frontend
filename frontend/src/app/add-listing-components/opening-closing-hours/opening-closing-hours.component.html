@@ -9,17 +9,17 @@
       </div>
       <div class="col-xs-12">
         <fieldset class="fieldset-job_hours">
-          <label for="job_hours">Hours of Operation </label>
+          <label for="job_hours" class="job-hours">Hours of Operation</label>
           <div class="field ">
             <table>
               <tbody>
                 <tr>
                   <th width="40%" class="day-th">Day</th>
-                  <th align="left">Open</th>
-                  <th align="left">Close</th>
+                  <th align="left" class="day-open">Open</th>
+                  <th align="left" class="day-close">Close</th>
                 </tr>
                 <tr>
-                  <td align="left">Monday</td>
+                  <td align="left" class="monday">Monday</td>
                   <td align="left" class="hours">
                     <ng-select
                       [items]="cities"
@@ -42,7 +42,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td align="left">Tuesday</td>
+                  <td align="left" class="tuesday">Tuesday</td>
                   <td align="left">
                     <ng-select
                       [items]="cities"
@@ -65,7 +65,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td align="left">Wednesday</td>
+                  <td align="left" class="wednesday">Wednesday</td>
                   <td align="left" class="hours">
                     <ng-select
                       [items]="cities"
@@ -88,7 +88,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td align="left">Thursday</td>
+                  <td align="left" class="thursday">Thursday</td>
                   <td align="left" class="hours">
                     <ng-select
                       [items]="cities"
@@ -111,7 +111,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td align="left">Friday</td>
+                  <td align="left" class="friday">Friday</td>
                   <td align="left" class="hours">
                     <ng-select
                       name="friday_open"
@@ -134,7 +134,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td align="left">Saturday</td>
+                  <td align="left" class="saturday">Saturday</td>
                   <td align="left" class="hours">
                     <ng-select
                       [items]="cities"
@@ -157,7 +157,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td align="left">Sunday</td>
+                  <td align="left" class="sunday">Sunday</td>
                   <td align="left" class="hours">
                     <ng-select
                       [items]="cities"
