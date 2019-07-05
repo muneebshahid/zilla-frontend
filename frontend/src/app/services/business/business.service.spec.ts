@@ -4,6 +4,8 @@ import { BusinessService } from "./business.service";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { of, Observable } from "rxjs";
 import { empty } from "rxjs";
+import { StoreModule } from "@ngrx/store";
+import { appReducers } from "src/app/store/reducers/app.reducer";
 
 describe("BusinessService", () => {
   const emptyObs: IBusiness[] = [
@@ -27,7 +29,7 @@ describe("BusinessService", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule, StoreModule.forRoot(appReducers)]
     });
   });
 

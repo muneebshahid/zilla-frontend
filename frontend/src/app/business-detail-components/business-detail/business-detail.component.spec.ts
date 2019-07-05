@@ -5,7 +5,7 @@ import { Component, Input } from "@angular/core";
 import { IBusiness } from "src/app/models/business";
 import { StoreModule } from "@ngrx/store";
 import { RouterTestingModule } from "@angular/router/testing";
-import { provideMockStore, MockStore } from "@ngrx/store/testing";
+import { appReducers } from "src/app/store/reducers/app.reducer";
 
 @Component({ selector: "app-m-home-menu-drawer", template: "" })
 class MHomeMenuDrawerComponent {}
@@ -45,8 +45,6 @@ class FooterComponent {}
 describe("BusinessDetailComponent", () => {
   let component: BusinessDetailComponent;
   let fixture: ComponentFixture<BusinessDetailComponent>;
-  let store: MockStore<{ loggedIn: boolean }>;
-  const initialState = { loggedIn: false };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -60,8 +58,7 @@ describe("BusinessDetailComponent", () => {
         BusinessDetailContainerComponent,
         FooterComponent
       ],
-      imports: [RouterTestingModule],
-      providers: [provideMockStore({ initialState })]
+      imports: [RouterTestingModule, StoreModule.forRoot(appReducers)]
     }).compileComponents();
   }));
 

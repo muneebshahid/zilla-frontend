@@ -1,11 +1,11 @@
-import { IProduct } from "src/app/models/product";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { Component, Input } from "@angular/core";
 
 import { ProductDetailComponent } from "./product-detail.component";
 import { IImage } from "src/app/models/image";
-import { provideMockStore, MockStore } from "@ngrx/store/testing";
 import { RouterTestingModule } from "@angular/router/testing";
+import { StoreModule } from "@ngrx/store";
+import { appReducers } from "src/app/store/reducers/app.reducer";
 
 @Component({ selector: "app-m-home-menu-drawer", template: "" })
 class MHomeMenuDrawerComponent {}
@@ -43,8 +43,6 @@ class DetailHeaderComponent {
 describe("ProductDetailComponent", () => {
   let component: ProductDetailComponent;
   let fixture: ComponentFixture<ProductDetailComponent>;
-  let store: MockStore<{ product: IProduct[] }>;
-  const initialState = { product: null };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -57,8 +55,7 @@ describe("ProductDetailComponent", () => {
         DetailHeaderComponent,
         FooterComponent
       ],
-      providers: [provideMockStore({ initialState })],
-      imports: [RouterTestingModule]
+      imports: [RouterTestingModule, StoreModule.forRoot(appReducers)]
     }).compileComponents();
   }));
 
