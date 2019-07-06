@@ -1,10 +1,9 @@
 import { IImage } from "./image";
 import { IType } from "./type";
 import { ITimings } from "./timings";
-import { IProduct } from "./product";
 
 export interface IBusiness {
-  user: number;
+  id: number;
   images: Array<IImage>;
   business_type: IType;
   opening_timings: Array<ITimings>;

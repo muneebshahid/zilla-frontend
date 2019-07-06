@@ -19,10 +19,9 @@ export class BusinessEffects {
   @Effect()
   getExploreBusinesses$ = this.actions$.pipe(
     ofType<GetExploreBusiness>(EBusinessActions.GetExploreBusiness),
-    map(action => action.payload),
-    switchMap(payload => {
+    switchMap(() => {
       return this.businessService
-        .getExploreBusiness(payload)
+        .getExploreBusiness()
         .pipe(map(businesses => new GetExploreBusinessSuccess(businesses)));
     })
   );

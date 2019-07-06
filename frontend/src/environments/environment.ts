@@ -14,7 +14,7 @@ export const environment = {
     s/<query>/<lat>/<lng>
   */
 
-  exploreUrl: "e",
+  exploreUrl: "a",
   productUrl: "p",
   userUrl: "u"
 };

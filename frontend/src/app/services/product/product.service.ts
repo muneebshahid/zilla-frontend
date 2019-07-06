@@ -20,7 +20,7 @@ export class ProductService {
 
   /* businessObj business id to post */
   getProductsOfBusiness(businessId: any): Observable<IProduct[]> {
-    return this.httpService.get(`${environment.exploreUrl}/${businessId}`);
+    return this.httpService.get(`${environment.exploreUrl}/${businessId}/`);
   }
 
   updateProductDetails(object: any) {}

@@ -9,9 +9,6 @@ export enum EBusinessActions {
 
 export class GetExploreBusiness implements Action {
   public readonly type = EBusinessActions.GetExploreBusiness;
-
-  /* Send the lat lng for getting closeby businesses to explore */
-  constructor(public payload: any) {}
 }
 export class GetExploreBusinessSuccess implements Action {
   public readonly type = EBusinessActions.GetExploreBusinessSuccess;

@@ -1,5 +1,6 @@
 import { IBusiness } from "./business";
 
 export interface ITimings {
-  timings: string;
+  open: string;
+  close: string;
 }

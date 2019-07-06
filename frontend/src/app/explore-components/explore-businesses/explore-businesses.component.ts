@@ -31,7 +31,7 @@ export class ExploreBusinessesComponent implements OnInit, OnDestroy {
   constructor(private store: Store<IAppState>) {}
 
   ngOnInit() {
-    this.store.dispatch(new GetExploreBusiness({ lat: 20, lng: 20 }));
+    this.store.dispatch(new GetExploreBusiness());
     this.subscriptions();
   }
 
@@ -40,7 +40,7 @@ export class ExploreBusinessesComponent implements OnInit, OnDestroy {
       .pipe(
         tap(business => {
           if (business !== null && business.length !== 0) {
-            this.store.dispatch(new GetProductsOfBusiness(business[0].user));
+            this.store.dispatch(new GetProductsOfBusiness(business[0].id));
           }
         })
       )
@@ -57,7 +57,7 @@ export class ExploreBusinessesComponent implements OnInit, OnDestroy {
 
   public businessSelected(index) {
     if (index !== this.lastSelectedIndex) {
-      this.store.dispatch(new GetProductsOfBusiness(this.businesses[index].user));
+      this.store.dispatch(new GetProductsOfBusiness(this.businesses[index].id));
       this.enableProductLoadingSign.next();
       this.businessSelectionActive[this.lastSelectedIndex] = false;
       this.businessSelectionActive[index] = true;

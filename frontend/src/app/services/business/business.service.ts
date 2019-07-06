@@ -16,10 +16,10 @@ export class BusinessService {
 
   getBusinessFromProduct() {}
   getBusinessDetail(slugID: any): Observable<IBusiness> {
-    return this.httpService.get(`${environment.userUrl}/${slugID.slug}/${slugID.id}`);
+    return this.httpService.get(`${environment.userUrl}/${slugID.slug}/${slugID.id}/`);
   }
 
-  getExploreBusiness(latlng: any): Observable<IBusiness[]> {
-    return this.httpService.get(`${environment.exploreUrl}/${latlng.lat}/${latlng.lng}`);
+  getExploreBusiness(): Observable<IBusiness[]> {
+    return this.httpService.get(`${environment.exploreUrl}/`);
   }
 }
