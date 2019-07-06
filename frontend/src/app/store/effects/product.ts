@@ -1,31 +1,28 @@
-import { GetProductDetails, GetProductDetailsSuccess } from "./../actions/product";
-import { IAppState } from "./../state/app.state";
-import { Store } from "@ngrx/store";
+import {
+  GetProductDetails,
+  GetProductDetailsSuccess,
+  GetSearchProducts,
+  GetSearchProductsSuccess
+} from "./../actions/product";
 import { Injectable } from "@angular/core";
 import { Effect, ofType, Actions } from "@ngrx/effects";
 import { map, switchMap } from "rxjs/operators";
 
-import {
-  GetNearbyProducts,
-  GetNearbyProductsSuccess,
-  GetProductsOfBusiness,
-  GetProductsOfBusinessSuccess
-} from "../actions/product";
+import { GetProductsOfBusiness, GetProductsOfBusinessSuccess } from "../actions/product";
 
 import { ProductService } from "../../services/product/product.service";
 import { EProductActions } from "../actions/product";
-import { of } from "rxjs";
 
 @Injectable()
 export class ProductEffects {
   @Effect()
-  getNearbyProducts$ = this.actions$.pipe(
-    ofType<GetNearbyProducts>(EProductActions.GetNearbyProducts),
+  getSearchProducts$ = this.actions$.pipe(
+    ofType<GetSearchProducts>(EProductActions.GetSearchProducts),
     map(action => action.payload),
-    switchMap(payload => {
+    switchMap(params => {
       return this.productService
-        .getNearbyProducts(payload)
-        .pipe(map(products => new GetNearbyProductsSuccess(products)));
+        .getSearchProducts(params)
+        .pipe(map(products => new GetSearchProductsSuccess(products)));
     })
   );
   @Effect()
@@ -49,9 +46,5 @@ export class ProductEffects {
     })
   );
 
-  constructor(
-    private productService: ProductService,
-    private actions$: Actions,
-    private store: Store<IAppState>
-  ) {}
+  constructor(private productService: ProductService, private actions$: Actions) {}
 }

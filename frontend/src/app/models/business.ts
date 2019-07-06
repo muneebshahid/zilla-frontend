@@ -1,6 +1,8 @@
 import { IImage } from "./image";
 import { IType } from "./type";
 import { ITimings } from "./timings";
+import { IAmenities } from "./amenities";
+import { IProduct } from "./product";
 
 export interface IBusiness {
   id: number;
@@ -17,4 +19,6 @@ export interface IBusiness {
   phone: string;
   expensive: number;
   latlon: Array<number>;
+  amenities: Array<IAmenities>;
+  products: Array<IProduct>;
 }

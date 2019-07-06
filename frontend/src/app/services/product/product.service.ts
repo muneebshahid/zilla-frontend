@@ -11,16 +11,23 @@ export class ProductService {
   constructor(private httpService: HttpService) {}
 
   getProductDetails(productObj: any): Observable<IProduct> {
-    return this.httpService.get(`${environment.productUrl}/${productObj.slug}/${productObj.id}/`);
+    return this.httpService.get(
+      `${environment.productUrl}/${productObj.slug}/${productObj.id}/`,
+      {}
+    );
   }
 
-  getNearbyProducts(latlng: any): Observable<IProduct[]> {
-    return this.httpService.get("explore");
+  getNearbyProducts(latlon: any, params: any): Observable<IProduct[]> {
+    return null;
+  }
+
+  getSearchProducts(params: any) {
+    return this.httpService.get(`${environment.searchUrl}/${environment.productUrl}/`, params);
   }
 
   /* businessObj business id to post */
   getProductsOfBusiness(businessId: any): Observable<IProduct[]> {
-    return this.httpService.get(`${environment.exploreUrl}/${businessId}/`);
+    return this.httpService.get(`${environment.exploreUrl}/${businessId}/`, {});
   }
 
   updateProductDetails(object: any) {}

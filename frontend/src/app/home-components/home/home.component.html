@@ -26,7 +26,6 @@
                 <div class="row no-margin wrapper-half-map">
                   <app-home-listings
                     (setMobileMapView)="mapParent.initializeMarkersAndMapZoom()"
-                    [products]="products"
                   ></app-home-listings>
                   <div class="no-padding half-map xs-half-map">
                     <app-map #mapParent [mapClass]="mapClass"></app-map>

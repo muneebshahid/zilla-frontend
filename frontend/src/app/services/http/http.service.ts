@@ -16,7 +16,7 @@ export class HttpService {
     return this.httpclient.post(`${this.baseUrl}/${url}`, params);
   }
 
-  get(url: string): Observable<any> {
-    return this.httpclient.get(`${this.baseUrl}/${url}`);
+  get(url: string, params: any): Observable<any> {
+    return this.httpclient.get(`${this.baseUrl}/${url}`, { params: params });
   }
 }

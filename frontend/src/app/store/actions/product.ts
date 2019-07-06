@@ -4,8 +4,8 @@ export enum EProductActions {
   GetProductDetails = "[Product] Get Product Details",
   GetProductDetailsSuccess = "[Product] Get Product Details Success",
 
-  GetNearbyProducts = "[Product] Get Nearby Products",
-  GetNearbyProductsSuccess = "[Product] Get Nearby Products Success",
+  GetSearchProducts = "[Product] Get Search Products",
+  GetSearchProductsSuccess = "[Product] Get Search Products Success",
 
   GetProductsOfBusiness = "[Product] Get Products of Business",
   GetProductsOfBusinessSuccess = "[Product] Get Products of Business Success"
@@ -29,14 +29,14 @@ export class GetProductsOfBusinessSuccess implements Action {
   // products as payload
   constructor(public payload: any) {}
 }
-export class GetNearbyProducts implements Action {
-  public readonly type = EProductActions.GetNearbyProducts;
+export class GetSearchProducts implements Action {
+  public readonly type = EProductActions.GetSearchProducts;
 
   // latlng as payload
   constructor(public payload: any) {}
 }
-export class GetNearbyProductsSuccess implements Action {
-  public readonly type = EProductActions.GetNearbyProductsSuccess;
+export class GetSearchProductsSuccess implements Action {
+  public readonly type = EProductActions.GetSearchProductsSuccess;
 
   // products as payload
   constructor(public payload: any) {}
@@ -52,7 +52,7 @@ export class GetProductDetailsSuccess implements Action {
 export type ProductActions =
   | GetProductDetails
   | GetProductDetailsSuccess
-  | GetNearbyProducts
   | GetProductsOfBusiness
   | GetProductsOfBusinessSuccess
-  | GetNearbyProductsSuccess;
+  | GetSearchProducts
+  | GetSearchProductsSuccess;

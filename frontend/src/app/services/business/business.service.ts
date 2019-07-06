@@ -11,15 +11,15 @@ export class BusinessService {
   constructor(private httpService: HttpService) {}
 
   getNearbyBusinesses(latlng: any): Observable<IBusiness> {
-    return this.httpService.get("explore");
+    return this.httpService.get("explore", {});
   }
 
   getBusinessFromProduct() {}
   getBusinessDetail(slugID: any): Observable<IBusiness> {
-    return this.httpService.get(`${environment.businessUrl}/${slugID.slug}/${slugID.id}/`);
+    return this.httpService.get(`${environment.businessUrl}/${slugID.slug}/${slugID.id}/`, {});
   }
 
   getExploreBusiness(): Observable<IBusiness[]> {
-    return this.httpService.get(`${environment.exploreUrl}/`);
+    return this.httpService.get(`${environment.exploreUrl}/`, {});
   }
 }

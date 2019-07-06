@@ -1,6 +1,4 @@
 import { GetBusinessDetailSuccess } from "./../actions/business";
-import { IAppState } from "./../state/app.state";
-import { Store } from "@ngrx/store";
 import { Injectable } from "@angular/core";
 import { Effect, ofType, Actions } from "@ngrx/effects";
 import { map, switchMap } from "rxjs/operators";
@@ -36,9 +34,5 @@ export class BusinessEffects {
     })
   );
 
-  constructor(
-    private businessService: BusinessService,
-    private actions$: Actions,
-    private store: Store<IAppState>
-  ) {}
+  constructor(private businessService: BusinessService, private actions$: Actions) {}
 }

@@ -10,7 +10,7 @@ describe("HttpService", () => {
   let httpService: HttpService;
   const emptyObs: IBusiness[] = [
     {
-      user: 0,
+      id: 0,
       images: [],
       business_type: Object.assign({}),
       opening_timings: [],
@@ -23,7 +23,9 @@ describe("HttpService", () => {
       claimed: false,
       phone: "",
       expensive: 0,
-      latlng: []
+      latlon: [],
+      amenities: [],
+      products: []
     }
   ];
 

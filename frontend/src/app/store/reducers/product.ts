@@ -7,10 +7,11 @@ export const productReducers = (
   action: ProductActions
 ): IProductState => {
   switch (action.type) {
-    case EProductActions.GetNearbyProductsSuccess: {
+    case EProductActions.GetSearchProductsSuccess: {
       return {
         ...state,
-        products: action.payload
+        products: action.payload.products,
+        num_hits: action.payload.num_hits
       };
     }
     case EProductActions.GetProductsOfBusinessSuccess: {

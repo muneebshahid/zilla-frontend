@@ -14,3 +14,8 @@ export const selectProduct = createSelector(
   selectItems,
   (state: IProductState) => state.product
 );
+
+export const selectNumHits = createSelector(
+  selectItems,
+  (state: IProductState) => state.num_hits
+);
