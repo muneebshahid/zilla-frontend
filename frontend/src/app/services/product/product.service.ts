@@ -11,7 +11,7 @@ export class ProductService {
   constructor(private httpService: HttpService) {}
 
   getProductDetails(productObj: any): Observable<IProduct> {
-    return this.httpService.get(`${environment.productUrl}/${productObj.slug}/${productObj.id}`);
+    return this.httpService.get(`${environment.productUrl}/${productObj.slug}/${productObj.id}/`);
   }
 
   getNearbyProducts(latlng: any): Observable<IProduct[]> {
