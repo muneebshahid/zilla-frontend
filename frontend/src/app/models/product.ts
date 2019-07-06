@@ -6,7 +6,7 @@ export interface IProduct {
   product: number;
   tags: Array<ITags>;
   images: Array<IImage>;
-  latlng: Array<number>;
+  latlon: Array<number>;
   title: string;
   slug: string;
   description: string;

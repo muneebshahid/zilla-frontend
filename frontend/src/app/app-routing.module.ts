@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "add_listing", component: AddListingComponent },
   { path: "explore", component: ExploreComponent },
-  { path: "u/:business_slug/:business_id", component: BusinessDetailComponent },
+  { path: "b/:business_slug/:business_id", component: BusinessDetailComponent },
   {
     path: "p/:product_slug/:product_id",
     // path: "products",

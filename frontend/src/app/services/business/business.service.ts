@@ -16,7 +16,7 @@ export class BusinessService {
 
   getBusinessFromProduct() {}
   getBusinessDetail(slugID: any): Observable<IBusiness> {
-    return this.httpService.get(`${environment.userUrl}/${slugID.slug}/${slugID.id}/`);
+    return this.httpService.get(`${environment.businessUrl}/${slugID.slug}/${slugID.id}/`);
   }
 
   getExploreBusiness(): Observable<IBusiness[]> {

@@ -16,5 +16,5 @@ export interface IBusiness {
   claimed: boolean;
   phone: string;
   expensive: number;
-  latlng: Array<number>;
+  latlon: Array<number>;
 }

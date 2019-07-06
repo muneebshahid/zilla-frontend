@@ -9,7 +9,7 @@ import { MapComponent } from "src/app/general-components";
 export class BusinessDetailMapComponent implements OnInit, OnChanges {
   mapClass = "agm-map-detail";
   @ViewChild("mapComponent") mapComponent: MapComponent;
-  @Input() latlng = [10, 10];
+  @Input() latlon = [10, 10];
   @Input() address: string;
   @Input() phone: string;
   @Input() website: string;
@@ -18,8 +18,8 @@ export class BusinessDetailMapComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     // const name: SimpleChange = changes.name;
-    if (this.latlng !== null) {
-      this.mapComponent.setPageLocation(this.latlng[0], this.latlng[1], 8);
+    if (this.latlon !== null) {
+      this.mapComponent.setPageLocation(this.latlon[0], this.latlon[1], 8);
     }
   }
 
