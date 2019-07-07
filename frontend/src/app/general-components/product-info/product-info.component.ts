@@ -9,6 +9,8 @@ import { environment } from "src/environments/environment";
 })
 export class ProductInfoComponent implements OnInit {
   @Input() public products: IProduct[];
+  @Input() public homePage = false;
+
   public endpoint = environment.apiEndpoint;
 
   constructor() {}

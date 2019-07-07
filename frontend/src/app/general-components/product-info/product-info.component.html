@@ -77,30 +77,36 @@
               1 Rating
             </div> -->
 
-            <!-- <div class="listing-category">
+            <div class="listing-category" *ngIf="homePage == true">
               <a href="https://demoapus.com/findgo/listing-category/shops/"
-                ><i class="flaticon-shopping-cart"></i>Shops</a
+                ><i class="flaticon-shopping-cart"></i>{{ product.product_type.tag }}</a
               >
-            </div> -->
+            </div>
             <div class="p-relative">
               <div class="listing-price-range price">{{ product.price }} $</div>
             </div>
           </div>
         </div>
-        <div class="listing-content-bottom clearfix">
-          <div class="listing-review">
-            <span class="review-avg food-tag" *ngFor="let tag of product.tags">{{ tag.tag }}</span>
+        <div class="listing-content-custom clearfix" *ngIf="homePage == true">
+          <div class="listing-location">
+            <i class="flaticon-placeholder product-address-icon"></i
+            ><a href="https://demoapus.com/findgo/region/new-york/" class="product-address">{{
+              product.address
+            }}</a>
           </div>
-          <!-- <div class="pull-left">
+          <div class="listing-phone product-phone">
+            <i class="flaticon-phone-call"></i>
+            +491708265425
+          </div>
+        </div>
+        <div class="listing-content-bottom clearfix">
+          <div class="pull-left">
             <div class="listing-location">
-              <i class="flaticon-placeholder"></i
-              ><a href="https://demoapus.com/findgo/region/new-york/"></a>
+              <span class="review-avg food-tag" *ngFor="let tag of product.tags">{{
+                tag.tag
+              }}</span>
             </div>
           </div>
-          <div class="listing-phone pull-right">
-            <i class="flaticon-phone-call"></i>
-            +84 123 456
-          </div> -->
         </div>
       </div>
     </div>

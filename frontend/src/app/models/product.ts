@@ -14,5 +14,7 @@ export interface IProduct {
   available: boolean;
   product_type: IType;
   owner: number;
+  address: string;
+  phone: string;
   expensive: number;
 }

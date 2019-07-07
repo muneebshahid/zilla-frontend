@@ -20,3 +20,12 @@
   background: #28b8dc !important;
   margin-top: 2%;
 }
+
+.listing-content-custom {
+  border-top: 1px solid #ebebeb;
+}
+.product-address,
+.product-address-icon,
+.product-phone {
+  color: #8d8d8d !important;
+}

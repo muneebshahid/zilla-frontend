@@ -20,8 +20,7 @@ import {
   HomeFilterDrawerComponent,
   HomeListingsComponent,
   MHomeMenuDrawerComponent,
-  MFilterMapMenuComponent,
-  HomeProductInfoComponent
+  MFilterMapMenuComponent
 } from "./home-components";
 
 import {
@@ -89,7 +88,6 @@ import {
     ExploreComponent,
     ExploreBusinessesComponent,
     ExploreProductsComponent,
-    HomeProductInfoComponent,
     LoadingComponent,
     ProductDetailComponent,
     AddListingComponent,
