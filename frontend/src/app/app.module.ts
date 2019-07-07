@@ -20,7 +20,9 @@ import {
   HomeFilterDrawerComponent,
   HomeListingsComponent,
   MHomeMenuDrawerComponent,
-  MFilterMapMenuComponent
+  MFilterMapMenuComponent,
+  HomeDetailDrawerComponent,
+  HomeDrawersContainerComponent
 } from "./home-components";
 
 import {
@@ -98,7 +100,9 @@ import {
     AddMediaComponent,
     AddSocialLinksComponent,
     ListingTagsComponent,
-    ProductInfoComponent
+    ProductInfoComponent,
+    HomeDetailDrawerComponent,
+    HomeDrawersContainerComponent
   ],
   imports: [
     BrowserModule,

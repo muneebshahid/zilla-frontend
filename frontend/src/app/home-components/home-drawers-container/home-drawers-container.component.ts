@@ -1,0 +1,15 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-home-drawers-container',
+  templateUrl: './home-drawers-container.component.html',
+  styleUrls: ['./home-drawers-container.component.css']
+})
+export class HomeDrawersContainerComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}

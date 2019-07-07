@@ -424,15 +424,19 @@
         e.stopPropagation();
         $(".listings-filter-wrapper").toggleClass("active");
       });
+      $(".listings-detail-header, .mobile-groups-button .btn-filter").on("click", function(e) {
+        e.stopPropagation();
+        $(".listings-detail-wrapper").toggleClass("active");
+      });
       $(".close-filter").on("click", function(e) {
-        $(".listings-filter-wrapper").removeClass("active");
+        $(".listings-filter-wrapper, .listings-detail-wrapper").removeClass("active");
       });
       $("body").on("click", function() {
-        if ($(".listings-filter-wrapper").hasClass("active")) {
-          $(".listings-filter-wrapper").removeClass("active");
+        if ($(".listings-filter-wrapper, .listings-detail-wrapper").hasClass("active")) {
+          $(".listings-filter-wrapper, .listings-detail-wrapper").removeClass("active");
         }
       });
-      $(".listings-filter-wrapper").on("click", function(e) {
+      $(".listings-filter-wrapper, .listings-detail-wrapper").on("click", function(e) {
         e.stopPropagation();
       });
     },
@@ -656,6 +660,7 @@
           .addClass("active");
       });
       $(".wrapper-123-filter .listings-filter-wrapper").perfectScrollbar();
+      $(".wrapper-123-filter .listings-detail-wrapper").perfectScrollbar();
     },
     getLocation: function(position) {
       $("#search_lat").val(position.coords.latitude);
@@ -852,6 +857,9 @@
       // $("#apus-main-content").css({ "padding-top": header_h });
       $(".listings-filter-wrapper").css({ top: header_h });
       $(".listings-filter-wrapper").css({ height: "calc(100% - " + header_h + "px)" });
+
+      $(".listings-detail-wrapper").css({ top: header_h });
+      $(".listings-detail-wrapper").css({ height: "calc(100% - " + header_h + "px)" });
     },
     mapInit: function() {
       var self = this;

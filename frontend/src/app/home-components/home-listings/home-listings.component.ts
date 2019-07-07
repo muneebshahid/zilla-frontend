@@ -25,7 +25,6 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     const productSubscriber = this.productSelector.subscribe(products => {
-      console.log(products);
       this.products = products;
     });
     const numHitSubscriber = this.numHitSelector.subscribe(numHits => {

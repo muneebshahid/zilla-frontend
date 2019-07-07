@@ -88,11 +88,13 @@ function apusCore($, option) {
       if ($(window).width() < 1025) {
         var header_h = $("#apus-header-mobile").outerHeight();
         $("#apus-main-content").css({ "padding-top": header_h - 10 });
-        $(".listings-filter-wrapper").css({ top: header_h });
-        $(".listings-filter-wrapper").css({ height: "calc(100% - " + header_h + "px)" });
+        $(".listings-filter-wrapper,.listings-detail-wrapper").css({ top: header_h });
+        $(".listings-filter-wrapper,.listings-detail-wrapper").css({
+          height: "calc(100% - " + header_h + "px)"
+        });
       } else {
-        $(".listings-filter-wrapper").css({ top: "96px" });
-        $(".listings-filter-wrapper").css({ height: "calc(100% - 96px)" });
+        $(".listings-filter-wrapper,.listings-detail-wrapper").css({ top: "96px" });
+        $(".listings-filter-wrapper,.listings-detail-wrapper").css({ height: "calc(100% - 96px)" });
 
         if ($("#apus-listing-map").is(".fix-map")) {
           return false;
