@@ -3000,8 +3000,7 @@ option {
 .rtl .apus-half-map-layout-v3 .listings-filter-header,
 .rtl .apus-half-map-layout-v1 .listings-detail-header,
 .rtl .apus-half-map-layout-v2 .listings-detail-header,
-.rtl .apus-half-map-layout-v3 .listings-detail-header
- {
+.rtl .apus-half-map-layout-v3 .listings-detail-header {
   transform: rotate(-90deg) translateX(-120%);
   -webkit-transform: rotate(-90deg) translateX(-120%);
   -ms-transform: rotate(-90deg) translateX(-120%);
@@ -3012,7 +3011,7 @@ option {
 .rtl .apus-half-map-layout-v3 .listings-filter-header i,
 .rtl .apus-half-map-layout-v1 .listings-detail-header i,
 .rtl .apus-half-map-layout-v2 .listings-detail-header i,
-.rtl .apus-half-map-layout-v3 .listings-detail-header i{
+.rtl .apus-half-map-layout-v3 .listings-detail-header i {
   padding: 0 10px;
 }
 .rtl .listings-filter-wrapper {
@@ -17165,9 +17164,8 @@ body.author .apus-breadscrumb {
   transition: all 0.2s ease-in-out 0s;
 }
 .listings-detail-wrapper {
-  padding: 30px 35px;
   position: fixed;
-  width: 450px;
+  width: 1350px;
   height: 100%;
   top: 0;
   left: 0;
@@ -17175,10 +17173,10 @@ body.author .apus-breadscrumb {
   background-color: #fff;
   -webkit-box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.15);
   box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.15);
-  -webkit-transform: translateX(-450px);
-  -ms-transform: translateX(-450px);
-  -o-transform: translateX(-450px);
-  transform: translateX(-450px);
+  -webkit-transform: translateX(-1350px);
+  -ms-transform: translateX(-1350px);
+  -o-transform: translateX(-1350px);
+  transform: translateX(-1350px);
   opacity: 0;
   filter: alpha(opacity=0);
   -webkit-transition: all 0.2s ease-in-out 0s;

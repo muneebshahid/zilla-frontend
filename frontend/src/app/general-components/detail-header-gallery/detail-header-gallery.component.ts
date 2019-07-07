@@ -15,11 +15,14 @@ export class DetailHeaderGalleryComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {}
   ngAfterViewInit() {
-    this.galleryItems.changes.subscribe(t => {
-      this.ngForRendred();
-    });
+    // console.log("hogya");
+    // console.log(this.galleryItems);
+    // this.galleryItems.changes.subscribe(t => {
+    //   this.ngForRendred();
+    // });
   }
-  ngForRendred() {
-    apusCore(jQuery, 2);
-  }
+  // ngForRendred() {
+  //   console.log("chikna");
+  //   apusCore(jQuery, 2);
+  // }
 }

@@ -2,10 +2,31 @@
   class="listings-detail-wrapper ps-container ps-active-y"
   style="top: 96px; height: calc(100% - 96px);"
 >
-  <div class="filter-stick">
-    <h3 class="title-filter-2">What are you looking for?</h3>
-    <div class="desc">Search or select categories</div>
-    <span class="close-filter"><i class="flaticon-cross-out"></i></span>
+  <div id="wrapper-container" style="height: 90vh;" class="wrapper-container">
+    <div id="apus-main-content">
+      <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
+          <article
+            id="post-236"
+            class="detail-listing-v1 detail-listing-v5 post-236 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-fitness job_listing_type-full-time job_listing_amenity-accepts-credit-cards job_listing_amenity-bike-parking job_listing_amenity-coupons job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-reservations job_listing_amenity-smoking-allowed job_listing_amenity-wheelchair-accesible job_listing_amenity-wireless-internet job_listing_region-london job_listing_tag-card-payment job_listing_tag-daily-specials job_listing_tag-hotels job_listing_tag-listing job_listing_tag-restaurant job_listing_tag-smoking-allowed job_listing_tag-trips job-type-full-time"
+          >
+            <div class="header-gallery-wrapper header-top-job">
+              <app-detail-header-gallery [images]="images"></app-detail-header-gallery>
+              <app-detail-header
+                [type]="business?.business_type"
+                [description]="business?.description"
+                [title]="business?.title"
+                [phone]="business?.phone"
+                [address]="business?.address"
+                [expensive]="business?.expensive"
+                [is_open_or_available]="business?.is_open"
+                [open_or_available]="business?.is_open ? 'Open' : 'Closed'"
+              ></app-detail-header>
+            </div>
+            <app-business-detail-container [business]="business"></app-business-detail-container>
+          </article>
+        </main>
+      </div>
+    </div>
   </div>
-  muazzam
 </div>
