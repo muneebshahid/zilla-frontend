@@ -37,7 +37,7 @@
           />
         </a>
       </div>
-      <span class="price-range"> {{ product?.price }} </span>
+      <span class="price-range"> {{ product?.price }} $ </span>
       <div class="top-imformation">
         <div class="listing-preview-wrapper pull-left">
           <a href="#preview-636" class="listing-preview" data-id="636"
@@ -73,7 +73,7 @@
         </div> -->
         <div class="listing-category">
           <a href="https://demoapus.com/findgo/listing-category/nightlife/"
-            ><i class="flaticon-wine-glass"></i>{{ product?.product_type }}</a
+            ><i [class]="product?.product_type.icon"></i>{{ product?.product_type.tag }}</a
           >
         </div>
         <div class="listing-time closed">

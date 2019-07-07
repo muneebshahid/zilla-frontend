@@ -15,7 +15,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   public productSelector = this.store.pipe(select(selectProducts));
   public numHitSelector = this.store.pipe(select(selectNumHits));
   public products: IProduct[];
-  private hits: number = 0;
+  public hits: number = 0;
   private subscriptionsArr: Subscription[] = [];
 
   constructor(private store: Store<IAppState>) {}
@@ -25,10 +25,11 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     const productSubscriber = this.productSelector.subscribe(products => {
+      console.log(products);
       this.products = products;
     });
-    const numHitSubscriber = this.numHitSelector.subscribe(num_hit => {
-      this.hits = num_hit;
+    const numHitSubscriber = this.numHitSelector.subscribe(numHits => {
+      this.hits = numHits;
     });
 
     this.subscriptionsArr.push(productSubscriber);

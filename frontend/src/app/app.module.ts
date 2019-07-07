@@ -46,6 +46,7 @@ import {
   DetailHeaderComponent,
   FooterComponent,
   MMenuComponent,
+  ProductInfoComponent,
   LoadingComponent
 } from "./general-components";
 import { ProductDetailComponent } from "./product-detail-components";
@@ -98,7 +99,8 @@ import {
     AddMenuComponent,
     AddMediaComponent,
     AddSocialLinksComponent,
-    ListingTagsComponent
+    ListingTagsComponent,
+    ProductInfoComponent
   ],
   imports: [
     BrowserModule,
