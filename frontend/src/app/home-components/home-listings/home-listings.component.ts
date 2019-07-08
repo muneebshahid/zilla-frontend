@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from "@angular/core";
-import { IProduct } from "src/app/models/product";
 import { select, Store } from "@ngrx/store";
-import { selectProducts, selectNumHits } from "src/app/store/selectors/product";
 import { IAppState } from "src/app/store/state/app.state";
 import { Subscription } from "rxjs";
+import { selectNumHits, selectBusinesses } from "src/app/store/selectors/business";
+import { IBusiness } from "src/app/models/business";
 
 @Component({
   selector: "app-home-listings",
@@ -12,26 +12,26 @@ import { Subscription } from "rxjs";
 })
 export class HomeListingsComponent implements OnInit, OnDestroy {
   @Output() setMobileMapView = new EventEmitter<string>();
-  public productSelector = this.store.pipe(select(selectProducts));
+  public businessSelector = this.store.pipe(select(selectBusinesses));
   public numHitSelector = this.store.pipe(select(selectNumHits));
-  public products: IProduct[];
+  public businesses: IBusiness[];
+  public showingBusinesses = true;
   public hits: number = 0;
   private subscriptionsArr: Subscription[] = [];
 
   constructor(private store: Store<IAppState>) {}
 
-  baseUrl = "/api";
-  searchType = "Products";
+  searchType = "Business";
 
   ngOnInit() {
-    const productSubscriber = this.productSelector.subscribe(products => {
-      this.products = products;
+    const businessSubscriber = this.businessSelector.subscribe(businesses => {
+      this.businesses = businesses;
     });
     const numHitSubscriber = this.numHitSelector.subscribe(numHits => {
       this.hits = numHits;
     });
 
-    this.subscriptionsArr.push(productSubscriber);
+    this.subscriptionsArr.push(businessSubscriber);
     this.subscriptionsArr.push(numHitSubscriber);
   }
   ngOnDestroy() {

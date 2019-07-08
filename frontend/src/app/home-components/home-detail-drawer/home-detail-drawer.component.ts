@@ -15,19 +15,19 @@ import { GetBusinessDetail } from "src/app/store/actions/business";
 export class HomeDetailDrawerComponent implements OnInit {
   images = [
     {
-      file: "/media/product/443/b7eaa83b-ffb8-4fd2-aef9-4856927aca00.jpg"
+      file: "/media/product/1/55549b43-c877-407f-81e6-137e20949885.jpg"
     },
     {
-      file: "/media/product/443/b7eaa83b-ffb8-4fd2-aef9-4856927aca00.jpg"
+      file: "/media/product/1/55549b43-c877-407f-81e6-137e20949885.jpg"
     },
     {
-      file: "/media/product/443/b7eaa83b-ffb8-4fd2-aef9-4856927aca00.jpg"
+      file: "/media/product/1/55549b43-c877-407f-81e6-137e20949885.jpg"
     },
     {
-      file: "/media/product/443/b7eaa83b-ffb8-4fd2-aef9-4856927aca00.jpg"
+      file: "/media/product/1/55549b43-c877-407f-81e6-137e20949885.jpg"
     },
     {
-      file: "/media/product/443/b7eaa83b-ffb8-4fd2-aef9-4856927aca00.jpg"
+      file: "/media/product/1/55549b43-c877-407f-81e6-137e20949885.jpg"
     }
   ];
 
@@ -38,7 +38,7 @@ export class HomeDetailDrawerComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.store.dispatch(new GetBusinessDetail({ slug: "brown-nelson-and-ochoa", id: 31 }));
+      this.store.dispatch(new GetBusinessDetail({ slug: "williams-ltd", id: 1 }));
     });
     this.subscriptions();
   }

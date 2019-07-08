@@ -7,7 +7,7 @@ import { BusinessDetailComponent } from "./business-detail-components/business-d
 import { ProductDetailComponent } from "./product-detail-components/product-detail/product-detail.component";
 
 const routes: Routes = [
-  { path: "", redirectTo: "explore", pathMatch: "full" },
+  { path: "", redirectTo: "home", pathMatch: "full" },
   { path: "home", component: HomeComponent },
   { path: "add_listing", component: AddListingComponent },
   { path: "explore", component: ExploreComponent },

@@ -67,6 +67,7 @@ import {
   AddSocialLinksComponent,
   ListingTagsComponent
 } from "./add-listing-components";
+import { BusinessInfoComponent } from './general-components/business-info/business-info.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -102,7 +103,8 @@ import {
     ListingTagsComponent,
     ProductInfoComponent,
     HomeDetailDrawerComponent,
-    HomeDrawersContainerComponent
+    HomeDrawersContainerComponent,
+    BusinessInfoComponent
   ],
   imports: [
     BrowserModule,

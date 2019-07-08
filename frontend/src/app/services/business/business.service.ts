@@ -13,6 +13,9 @@ export class BusinessService {
   getNearbyBusinesses(latlng: any): Observable<IBusiness> {
     return this.httpService.get("explore", {});
   }
+  getSearchBusinesses(params: any) {
+    return this.httpService.get(`${environment.searchUrl}/${environment.businessUrl}/`, params);
+  }
 
   getBusinessFromProduct() {}
   getBusinessDetail(slugID: any): Observable<IBusiness> {

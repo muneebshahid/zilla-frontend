@@ -13,3 +13,8 @@ export const selectBusiness = createSelector(
   selectItems,
   (state: IBusinessState) => state.business
 );
+
+export const selectNumHits = createSelector(
+  selectItems,
+  (state: IBusinessState) => state.num_hits
+);

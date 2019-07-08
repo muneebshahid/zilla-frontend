@@ -12,6 +12,13 @@ export const businessReducers = (
         businesses: action.payload
       };
     }
+    case EBusinessActions.GetSearchBusinessSuccess: {
+      return {
+        ...state,
+        businesses: action.payload.businesses,
+        num_hits: action.payload.num_hits
+      };
+    }
     case EBusinessActions.GetBusinessDetailSuccess: {
       return {
         ...state,

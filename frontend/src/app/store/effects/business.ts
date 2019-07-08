@@ -1,4 +1,8 @@
-import { GetBusinessDetailSuccess } from "./../actions/business";
+import {
+  GetBusinessDetailSuccess,
+  GetSearchBusiness,
+  GetSearchBusinessSuccess
+} from "./../actions/business";
 import { Injectable } from "@angular/core";
 import { Effect, ofType, Actions } from "@ngrx/effects";
 import { map, switchMap } from "rxjs/operators";
@@ -31,6 +35,16 @@ export class BusinessEffects {
       return this.businessService
         .getBusinessDetail(payload)
         .pipe(map(businesses => new GetBusinessDetailSuccess(businesses)));
+    })
+  );
+  @Effect()
+  getSearchBusinesses$ = this.actions$.pipe(
+    ofType<GetSearchBusiness>(EBusinessActions.GetSearchBusiness),
+    map(action => action.payload),
+    switchMap(payload => {
+      return this.businessService
+        .getSearchBusinesses(payload)
+        .pipe(map(businesses => new GetSearchBusinessSuccess(businesses)));
     })
   );
 

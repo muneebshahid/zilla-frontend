@@ -1,9 +1,9 @@
-import { GetSearchProducts } from "./../../store/actions/product";
 import { GeoLocationService } from "./../../services/geo-location/geo-location.service";
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
 import { MapComponent } from "src/app/general-components";
+import { GetSearchBusiness } from "src/app/store/actions/business";
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
@@ -24,8 +24,8 @@ export class HomeComponent implements OnInit {
     this.geoLocationService.getPosition().subscribe((pos: Position) => {
       this.mapComponent.setPageLocation(+pos.coords.latitude, +pos.coords.longitude, 12);
       this.store.dispatch(
-        new GetSearchProducts({
-          query: "burger",
+        new GetSearchBusiness({
+          query: "williams",
           latlon: `${pos.coords.latitude},${pos.coords.longitude}`
         })
       );
