@@ -96,11 +96,14 @@
           </div>
         </div>
         <div class="listing-content-custom clearfix" *ngIf="homePage == true">
-          <div class="listing-location">
+          <div class="listing-location ellipsize-description">
             <i class="flaticon-placeholder product-address-icon"></i
-            ><a href="https://demoapus.com/findgo/region/new-york/" class="product-address">{{
-              business.address
-            }}</a>
+            ><a
+              href="https://demoapus.com/findgo/region/new-york/"
+              [title]="business.address"
+              class="product-address"
+              >{{ business.address }}</a
+            >
           </div>
           <div class="listing-phone product-phone">
             <i class="flaticon-phone-call"></i>

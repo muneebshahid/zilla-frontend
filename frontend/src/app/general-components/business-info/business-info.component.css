@@ -1,4 +1,4 @@
-.listing-tagline.ellipsize-description {
+.ellipsize-description {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
