@@ -1,9 +1,10 @@
 import { GeoLocationService } from "./../../services/geo-location/geo-location.service";
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { Store } from "@ngrx/store";
+import { Store, select } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
 import { MapComponent } from "src/app/general-components";
 import { GetSearchBusiness } from "src/app/store/actions/business";
+import { selectBusinessMarkers } from "src/app/store/selectors/business";
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
@@ -12,6 +13,7 @@ import { GetSearchBusiness } from "src/app/store/actions/business";
 export class HomeComponent implements OnInit {
   mapClass = "agm-map-home";
   @ViewChild("mapParent") mapComponent: MapComponent;
+  public businessMarkersSelector = this.store.pipe(select(selectBusinessMarkers));
 
   loading = false;
 
@@ -33,6 +35,11 @@ export class HomeComponent implements OnInit {
           latlon: `${pos.coords.latitude},${pos.coords.longitude}`
         })
       );
+    });
+
+    this.businessMarkersSelector.subscribe(markers => {
+      console.log("markers");
+      console.log(markers);
     });
   }
 

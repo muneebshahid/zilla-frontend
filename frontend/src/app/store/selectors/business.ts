@@ -18,3 +18,7 @@ export const selectNumHits = createSelector(
   selectItems,
   (state: IBusinessState) => state.num_hits
 );
+export const selectBusinessMarkers = createSelector(
+  selectItems,
+  (state: IBusinessState) => state.markers
+);
