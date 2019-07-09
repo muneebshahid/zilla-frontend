@@ -15,11 +15,14 @@
       class="agm-map"
     >
       <agm-marker
-        *ngFor="let marker of markers"
+        *ngFor="let marker of markers; index as i"
         [(latitude)]="marker.lat"
         [(longitude)]="marker.lng"
         [agmFitBounds]="true"
-        [iconUrl]=""
+        [iconUrl]="marker.icon"
+        (mouseOver)="highlightMarkerByIndex(i)"
+        (mouseOut)="highlightMarkerByIndex(i)"
+        (markerClick)="openDetailDrawer(marker)"
       >
         <div class="map-popup">
           <div class="icon-cat">

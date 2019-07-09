@@ -10,7 +10,10 @@ interface Marker {
   lng: number;
   label?: string;
   icon?: string;
+  highlighted?: boolean;
   draggable: boolean;
+  slug: string;
+  id: number;
 }
 
 interface Location {
@@ -51,14 +54,26 @@ export class MapComponent implements OnInit {
     this.initializeMarkersAndMapZoom();
   }
 
+  openDetailDrawer() {}
+
   /* is called from the detail page to set the pin on the location of the product or business */
   setPageLocation(lat, lng, zoom = 8) {
     this.markers.push(this.createMarker(lat, lng));
     this.setFocusLocation(lat, lng, zoom);
   }
-  public highlightMarker(obj: any) {
+  public highlightMarkerByID(obj: any) {
     console.log("highlight marker function called");
     console.log(obj);
+  }
+  public highlightMarkerByIndex(idx: any) {
+    if (this.markers[idx].highlighted) {
+      this.markers[idx].icon =
+        "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FF0000";
+    } else {
+      this.markers[idx].icon =
+        "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|4286f4";
+    }
+    this.markers[idx].highlighted = !this.markers[idx].highlighted;
   }
 
   setFocusLocation(lat, lng, zoom) {
@@ -71,7 +86,7 @@ export class MapComponent implements OnInit {
 
   initializeMarkersAndMapZoom() {
     // dummy markers
-    // this.markers.push(this.createMarker(48.1548894, 11.0716248));
+    this.markers.push(this.createMarker(48.1548894, 11.0716248));
     // this.markers.push(this.createMarker(48.2548894, 11.0716248));
     // this.markers.push(this.createMarker(48.3548894, 11.0716248));
     // this.markers.push(this.createMarker(48.4548894, 11.0716248));
@@ -85,8 +100,12 @@ export class MapComponent implements OnInit {
     return {
       lat: lat,
       lng: lng,
-      draggable: false
-      //icon: 'HTTP URL'
+      draggable: false,
+      highlighted: false,
+      slug: "",
+      id: -1,
+      icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FF0000"
+      // icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|4286f4"
     };
   }
 }
