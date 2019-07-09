@@ -13,7 +13,7 @@ import { GetBusinessDetail } from "src/app/store/actions/business";
 export class BusinessInfoComponent implements OnInit {
   @Input() public businesses: IBusiness[];
   @Input() public homePage = false;
-  @Output() public openDetailDrawerEvent = new EventEmitter<number>();
+  @Output() public highlightMarkerEvent = new EventEmitter<any>();
 
   public endpoint = environment.apiEndpoint;
 
@@ -23,5 +23,8 @@ export class BusinessInfoComponent implements OnInit {
 
   openDetailDrawer(id: number, slug: string) {
     this.store.dispatch(new GetBusinessDetail({ slug: slug, id: id }));
+  }
+  highlightMarker(id: number, highlight: boolean) {
+    this.highlightMarkerEvent.next({ id: id, highlight: highlight });
   }
 }

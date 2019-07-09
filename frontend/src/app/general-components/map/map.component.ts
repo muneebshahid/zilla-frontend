@@ -56,6 +56,10 @@ export class MapComponent implements OnInit {
     this.markers.push(this.createMarker(lat, lng));
     this.setFocusLocation(lat, lng, zoom);
   }
+  public highlightMarker(obj: any) {
+    console.log("highlight marker function called");
+    console.log(obj);
+  }
 
   setFocusLocation(lat, lng, zoom) {
     this.location = {

@@ -26,6 +26,7 @@
         *ngIf="showingBusinesses"
         [businesses]="businesses"
         [homePage]="true"
+        (highlightMarkerEvent)="highlightMarkerOnGridItemHover($event)"
       ></app-business-info>
       <!-- <a class="load_more_jobs" href="#" style="display: none;"
         ><strong>Load more listings</strong></a -->

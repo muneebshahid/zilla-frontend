@@ -11,7 +11,9 @@ import { IBusiness } from "src/app/models/business";
   styleUrls: ["./home-listings.component.css"]
 })
 export class HomeListingsComponent implements OnInit, OnDestroy {
-  @Output() setMobileMapView = new EventEmitter<string>();
+  @Output() public setMobileMapView = new EventEmitter<string>();
+  @Output() public highlightMarkerOnGridItemHoverEvent = new EventEmitter<any>();
+
   public businessSelector = this.store.pipe(select(selectBusinesses));
   public numHitSelector = this.store.pipe(select(selectNumHits));
   public businesses: IBusiness[];
@@ -38,6 +40,10 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     for (const subscriber of this.subscriptionsArr) {
       subscriber.unsubscribe();
     }
+  }
+
+  highlightMarkerOnGridItemHover(obj: any) {
+    this.highlightMarkerOnGridItemHoverEvent.next(obj);
   }
 
   updateMobileMapView() {
