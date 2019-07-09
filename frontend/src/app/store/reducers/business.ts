@@ -13,8 +13,8 @@ export const businessReducers = (
       };
     }
     case EBusinessActions.GetSearchBusinessSuccess: {
-      let markers = [];
-      for (let item of action.payload.businesses) {
+      const markers = [];
+      for (const item of action.payload.businesses) {
         markers.push({ latlon: item.latlon, slug: item.slug, id: item.id });
       }
 
