@@ -424,16 +424,16 @@
         e.stopPropagation();
         $(".listings-filter-wrapper").toggleClass("active");
       });
-      $(".listings-detail-header, .mobile-groups-button .btn-filter").on("click", function(e) {
-        e.stopPropagation();
-        $(".listings-detail-wrapper").toggleClass("active");
-      });
+      // $(".listings-detail-header, .mobile-groups-button .btn-filter").on("click", function(e) {
+      //   e.stopPropagation();
+      //   $(".listings-detail-wrapper").toggleClass("active");
+      // });
       $(".close-filter").on("click", function(e) {
         $(".listings-filter-wrapper, .listings-detail-wrapper").removeClass("active");
       });
       $("body").on("click", function() {
-        if ($(".listings-filter-wrapper, .listings-detail-wrapper").hasClass("active")) {
-          $(".listings-filter-wrapper, .listings-detail-wrapper").removeClass("active");
+        if ($(".listings-filter-wrapper").hasClass("active")) {
+          $(".listings-filter-wrapper").removeClass("active");
         }
       });
       $(".listings-filter-wrapper, .listings-detail-wrapper").on("click", function(e) {

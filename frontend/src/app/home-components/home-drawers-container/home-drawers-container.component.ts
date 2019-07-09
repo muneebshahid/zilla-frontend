@@ -12,8 +12,7 @@ export class HomeDrawersContainerComponent implements OnInit {
 
   ngOnInit() {}
 
-  work() {
-    console.log("worked");
-    apusCore(jQuery, 2);
-  }
+  // openDetailDrawer() {
+  //   apusCore(jQuery, 2);
+  // }
 }

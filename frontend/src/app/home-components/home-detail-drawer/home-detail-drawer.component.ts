@@ -1,11 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, AfterViewInit, HostListener } from "@angular/core";
 import { IBusiness } from "src/app/models/business";
 import { Subscription } from "rxjs";
 import { Store, select } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
 import { ActivatedRoute } from "@angular/router";
 import { selectBusiness } from "src/app/store/selectors/business";
-import { GetBusinessDetail } from "src/app/store/actions/business";
+declare var apusCore: any;
+declare var jQuery: any;
 
 @Component({
   selector: "app-home-detail-drawer",
@@ -35,19 +36,26 @@ export class HomeDetailDrawerComponent implements OnInit {
   private businessSelector = this.store.pipe(select(selectBusiness));
   private subscriptionsArr: Subscription[] = [];
   public business: IBusiness;
+  public isActive: boolean = false;
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      this.store.dispatch(new GetBusinessDetail({ slug: "williams-ltd", id: 1 }));
-    });
     this.subscriptions();
   }
   private subscriptions() {
     const subcriberBusiness = this.businessSelector.subscribe(business => {
       this.business = business;
+      if (business !== null) {
+        this.isActive = true;
+      }
+      // apusCore(jQuery, 2);
     });
 
     this.subscriptionsArr.push(subcriberBusiness);
+  }
+
+  @HostListener("document:click", ["$event"])
+  clickout(e) {
+    this.isActive = false;
   }
   ngOnDestroy() {
     for (const subscriber of this.subscriptionsArr) {

@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
       this.mapComponent.setPageLocation(+pos.coords.latitude, +pos.coords.longitude, 12);
       this.store.dispatch(
         new GetSearchBusiness({
-          query: "williams",
+          query: "brown",
           latlon: `${pos.coords.latitude},${pos.coords.longitude}`
         })
       );

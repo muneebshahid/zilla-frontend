@@ -1,6 +1,7 @@
 <div class="job_listings job_listings_cards clearfix row">
   <a
-    href="/p/{{ business.slug }}/{{ business.id }}"
+    href="javascript:void(0)"
+    (click)="openDetailDrawer(business.id, business.slug)"
     target="_blank"
     class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450"
     *ngFor="let business of businesses"
@@ -41,9 +42,9 @@
       <div class="listing-image">
         <div class="listing-image-inner">
           <div class="image-wrapper image-loaded">
-            <a [href]="endpoint + business.images[0].file">
+            <a [href]="endpoint + '/media/product/403/081f77ea-d5dc-4f4e-aa87-3faa5bd98867.jpg'">
               <img
-                [src]="endpoint + business.images[0].file"
+                [src]="endpoint + '/media/product/403/081f77ea-d5dc-4f4e-aa87-3faa5bd98867.jpg'"
                 [alt]="business.title"
                 class="unveil-image"
               />
