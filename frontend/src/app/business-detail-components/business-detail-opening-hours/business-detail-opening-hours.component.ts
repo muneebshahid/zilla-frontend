@@ -18,7 +18,10 @@ export class BusinessDetailOpeningHoursComponent implements OnInit, OnChanges {
   ngOnInit() {}
   ngOnChanges(changes: SimpleChanges) {
     // const name: SimpleChange = changes.name;
+
     if (this.opening_timings !== null) {
+      this.open_time = [];
+      this.close_time = [];
       for (let key in this.opening_timings) {
         this.open_time.push(this.opening_timings[key].open);
         this.close_time.push(this.opening_timings[key].close);

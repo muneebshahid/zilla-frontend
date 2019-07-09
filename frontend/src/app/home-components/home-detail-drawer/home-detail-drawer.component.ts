@@ -43,8 +43,9 @@ export class HomeDetailDrawerComponent implements OnInit {
   }
   private subscriptions() {
     const subcriberBusiness = this.businessSelector.subscribe(business => {
-      this.business = business;
       if (business !== null) {
+        console.log(business);
+        this.business = business;
         this.isActive = true;
       }
       // apusCore(jQuery, 2);
