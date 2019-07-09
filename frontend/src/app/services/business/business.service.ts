@@ -14,10 +14,6 @@ export class BusinessService {
     return this.httpService.get("explore", {});
   }
   getSearchBusinesses(params: any) {
-    console.log(params);
-    console.log(
-      this.httpService.get(`${environment.searchUrl}/${environment.businessUrl}/`, params)
-    );
     return this.httpService.get(`${environment.searchUrl}/${environment.businessUrl}/`, params);
   }
 

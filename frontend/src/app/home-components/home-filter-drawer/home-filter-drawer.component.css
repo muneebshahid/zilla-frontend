@@ -1,12 +1,15 @@
-@media (min-width:319px){
+@media (min-width: 319px) {
 }
 
-@media (min-width:1441px){
-    .listings-filter-wrapper{
-    }
+@media (min-width: 1441px) {
+  .listings-filter-wrapper {
+  }
 }
 #search_keywords,
-#search_location{
-    width: 100%!important;
+#search_location {
+  width: 100% !important;
 }
 
+.filter-stick .close-filter {
+  padding-right: 13%;
+}

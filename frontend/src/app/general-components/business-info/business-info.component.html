@@ -1,9 +1,8 @@
 <div class="job_listings job_listings_cards clearfix row">
-  <a
-    href="javascript:void(0)"
+  <div
     (click)="openDetailDrawer(business.id, business.slug)"
     target="_blank"
-    class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450"
+    class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450 business-info-grid-item"
     *ngFor="let business of businesses"
   >
     <div
@@ -42,7 +41,7 @@
       <div class="listing-image">
         <div class="listing-image-inner">
           <div class="image-wrapper image-loaded">
-            <a [href]="endpoint + '/media/product/403/081f77ea-d5dc-4f4e-aa87-3faa5bd98867.jpg'">
+            <a href="javascript:void(0)">
               <img
                 [src]="endpoint + '/media/product/403/081f77ea-d5dc-4f4e-aa87-3faa5bd98867.jpg'"
                 [alt]="business.title"
@@ -83,8 +82,16 @@
                 ><i class="flaticon-shopping-cart"></i>{{ business.business_type.tag }}</a
               >
             </div>
-            <div class="p-relative">
-              <div class="listing-price-range price">{{ business.price }} $</div>
+            <div
+              class="listing-price-range"
+              data-placement="top"
+              data-toggle="tooltip"
+              title=""
+              data-original-title="Moderate"
+            >
+              <span *ngFor="let dummy of ' '.repeat(business.expensive).split(''); let x = index"
+                >$</span
+              >
             </div>
           </div>
         </div>
@@ -102,5 +109,5 @@
         </div>
       </div>
     </div>
-  </a>
+  </div>
 </div>

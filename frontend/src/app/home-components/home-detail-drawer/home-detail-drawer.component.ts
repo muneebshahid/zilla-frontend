@@ -44,7 +44,6 @@ export class HomeDetailDrawerComponent implements OnInit {
   private subscriptions() {
     const subcriberBusiness = this.businessSelector.subscribe(business => {
       if (business !== null) {
-        console.log(business);
         this.business = business;
         this.isActive = true;
       }

@@ -11,3 +11,7 @@
 .product-phone {
   color: #8d8d8d !important;
 }
+
+.business-info-grid-item:hover {
+  cursor: pointer;
+}

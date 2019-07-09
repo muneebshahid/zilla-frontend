@@ -40,7 +40,6 @@ export class ExploreBusinessesComponent implements OnInit, OnDestroy {
       .pipe(
         tap(business => {
           if (business !== null && business.length !== 0) {
-            console.log(business[0]);
             this.store.dispatch(new GetProductsOfBusiness(business[0].id));
           }
         })

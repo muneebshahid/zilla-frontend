@@ -13,7 +13,6 @@ export const businessReducers = (
       };
     }
     case EBusinessActions.GetSearchBusinessSuccess: {
-      console.log(action);
       return {
         ...state,
         businesses: action.payload.businesses,
