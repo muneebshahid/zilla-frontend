@@ -44,8 +44,6 @@ export class HomeDetailDrawerComponent implements OnInit {
   private businessSelector = this.store.pipe(select(selectBusiness));
   private subscriptionsArr: Subscription[] = [];
   public business: IBusiness;
-  @ViewChild("businessDetailContainer")
-  public businessDetailContainer: BusinessDetailContainerComponent;
   public isActive: boolean = false;
 
   ngOnInit() {
@@ -54,7 +52,6 @@ export class HomeDetailDrawerComponent implements OnInit {
   private subscriptions() {
     const subcriberBusiness = this.businessSelector.subscribe(business => {
       if (business !== null) {
-        this.businessDetailContainer.ngOnInit();
         this.business = business;
         this.isActive = true;
       } else {
