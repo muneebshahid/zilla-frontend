@@ -20,8 +20,7 @@
         mapbox_token: "",
         mapbox_style: "",
         custom_style: "",
-        default_icon:
-          "///home/muazzam/mywork/findgo/wp-content/themes/findgo/images/default-icon.png",
+        default_icon: "",
         timeFormat: "g:i a",
         none_option_label: "Closed",
         none_option_value: "Closed"

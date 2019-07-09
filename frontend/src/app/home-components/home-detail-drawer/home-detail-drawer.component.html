@@ -25,7 +25,10 @@
                 [open_or_available]="business?.is_open ? 'Open' : 'Closed'"
               ></app-detail-header>
             </div>
-            <app-business-detail-container [business]="business"></app-business-detail-container>
+            <app-business-detail-container
+              #businessDetailContainer
+              [business]="business"
+            ></app-business-detail-container>
           </article>
         </main>
       </div>

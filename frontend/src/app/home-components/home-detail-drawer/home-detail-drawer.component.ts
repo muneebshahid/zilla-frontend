@@ -1,10 +1,18 @@
-import { Component, OnInit, AfterViewInit, HostListener } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  HostListener,
+  ViewChild,
+  ElementRef
+} from "@angular/core";
 import { IBusiness } from "src/app/models/business";
 import { Subscription } from "rxjs";
 import { Store, select } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
 import { ActivatedRoute } from "@angular/router";
 import { selectBusiness } from "src/app/store/selectors/business";
+import { BusinessDetailContainerComponent } from "src/app/business-detail-components";
 declare var apusCore: any;
 declare var jQuery: any;
 
@@ -16,19 +24,19 @@ declare var jQuery: any;
 export class HomeDetailDrawerComponent implements OnInit {
   images = [
     {
-      file: "/media/product/1/55549b43-c877-407f-81e6-137e20949885.jpg"
+      file: "/media/business/33/68ab0ad4-ea73-4e03-b13a-cb5007058dad.jpg"
     },
     {
-      file: "/media/product/1/55549b43-c877-407f-81e6-137e20949885.jpg"
+      file: "/media/business/33/68ab0ad4-ea73-4e03-b13a-cb5007058dad.jpg"
     },
     {
-      file: "/media/product/1/55549b43-c877-407f-81e6-137e20949885.jpg"
+      file: "/media/business/33/68ab0ad4-ea73-4e03-b13a-cb5007058dad.jpg"
     },
     {
-      file: "/media/product/1/55549b43-c877-407f-81e6-137e20949885.jpg"
+      file: "/media/business/33/68ab0ad4-ea73-4e03-b13a-cb5007058dad.jpg"
     },
     {
-      file: "/media/product/1/55549b43-c877-407f-81e6-137e20949885.jpg"
+      file: "/media/business/33/68ab0ad4-ea73-4e03-b13a-cb5007058dad.jpg"
     }
   ];
 
@@ -36,6 +44,8 @@ export class HomeDetailDrawerComponent implements OnInit {
   private businessSelector = this.store.pipe(select(selectBusiness));
   private subscriptionsArr: Subscription[] = [];
   public business: IBusiness;
+  @ViewChild("businessDetailContainer")
+  public businessDetailContainer: BusinessDetailContainerComponent;
   public isActive: boolean = false;
 
   ngOnInit() {
@@ -44,17 +54,19 @@ export class HomeDetailDrawerComponent implements OnInit {
   private subscriptions() {
     const subcriberBusiness = this.businessSelector.subscribe(business => {
       if (business !== null) {
+        this.businessDetailContainer.ngOnInit();
         this.business = business;
         this.isActive = true;
+      } else {
+        apusCore(jQuery, 2);
       }
-      // apusCore(jQuery, 2);
     });
 
     this.subscriptionsArr.push(subcriberBusiness);
   }
 
-  @HostListener("document:click", ["$event"])
-  clickout(e) {
+  @HostListener("document:click")
+  clickout() {
     this.isActive = false;
   }
   ngOnDestroy() {

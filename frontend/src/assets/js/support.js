@@ -6,6 +6,10 @@ var job_manager_ajax_filters = {
   lang: null
 };
 /* <![CDATA[ */
-  var job_manager_ajax_filters = {"ajax_url":"\/wordpress\/index.php\/jm-ajax\/%%endpoint%%\/","is_rtl":"0","i18n_load_prev_listings":"Load previous listings","lang":null};
-  /* ]]> */
-  
+var job_manager_ajax_filters = {
+  ajax_url: "",
+  is_rtl: "0",
+  i18n_load_prev_listings: "Load previous listings",
+  lang: null
+};
+/* ]]> */
