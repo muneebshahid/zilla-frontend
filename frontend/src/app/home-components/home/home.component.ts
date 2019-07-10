@@ -5,6 +5,7 @@ import { IAppState } from "src/app/store/state/app.state";
 import { MapComponent } from "src/app/general-components";
 import { GetSearchBusiness } from "src/app/store/actions/business";
 import { selectBusinessMarkers } from "src/app/store/selectors/business";
+import { Subscription } from "rxjs";
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
@@ -14,6 +15,7 @@ export class HomeComponent implements OnInit {
   mapClass = "agm-map-home";
   @ViewChild("mapParent") mapComponent: MapComponent;
   public businessMarkersSelector = this.store.pipe(select(selectBusinessMarkers));
+  private subscriptionsArr: Subscription[] = [];
 
   loading = false;
 
@@ -28,7 +30,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     /* for opening the map on the initial coordinates of the current coordinates of the user */
     this.geoLocationService.getPosition().subscribe((pos: Position) => {
-      this.addMarkerToMap(+pos.coords.latitude, +pos.coords.longitude, 2);
+      this.addMarkerToMap(+pos.coords.latitude, +pos.coords.longitude, 1);
       this.store.dispatch(
         new GetSearchBusiness({
           query: "brown",
@@ -37,10 +39,27 @@ export class HomeComponent implements OnInit {
       );
     });
 
-    this.businessMarkersSelector.subscribe(markers => {
-      console.log("markers");
-      console.log(markers);
+    const businessMarkers = this.businessMarkersSelector.subscribe(markers => {
+      if (markers !== null) {
+        for (const marker of markers) {
+          this.mapComponent.businessMarkers.push(
+            this.mapComponent.createMarker(
+              marker.latlon[0],
+              marker.latlon[1],
+              marker.slug,
+              marker.id
+            )
+          );
+        }
+      }
     });
+
+    this.subscriptionsArr.push(businessMarkers);
+  }
+  ngOnDestroy() {
+    for (const subscriber of this.subscriptionsArr) {
+      subscriber.unsubscribe();
+    }
   }
 
   updateMobileMapView() {}

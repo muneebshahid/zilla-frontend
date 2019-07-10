@@ -1,7 +1,14 @@
-import { Component, Input, ViewChild, NgZone, OnInit } from "@angular/core";
+import {
+  Component,
+  Input,
+  ViewChild,
+  NgZone,
+  OnInit,
+  SimpleChanges,
+  OnChanges
+} from "@angular/core";
 
-import { MapsAPILoader, AgmMap, AgmMarker } from "@agm/core";
-import { GoogleMapsAPIWrapper } from "@agm/core/services";
+import { MapsAPILoader, AgmMap } from "@agm/core";
 
 declare var google: any;
 
@@ -31,6 +38,8 @@ export class MapComponent implements OnInit {
   @Input() mapClass;
   private initialMapLocationLat = 48.17669;
   private initialMapLocationLng = 11.5726359;
+  public businessMarkers = [];
+
   private zoom = 8;
 
   geocoder: any;
@@ -40,14 +49,8 @@ export class MapComponent implements OnInit {
 
   @ViewChild(AgmMap) map: AgmMap;
 
-  constructor(
-    public mapsApiLoader: MapsAPILoader,
-    private zone: NgZone,
-    private wrapper: GoogleMapsAPIWrapper
-  ) {
+  constructor(public mapsApiLoader: MapsAPILoader) {
     this.mapsApiLoader = mapsApiLoader;
-    this.zone = zone;
-    this.wrapper = wrapper;
     this.mapsApiLoader.load().then(() => {});
   }
   ngOnInit() {
@@ -58,7 +61,7 @@ export class MapComponent implements OnInit {
 
   /* is called from the detail page to set the pin on the location of the product or business */
   setPageLocation(lat, lng, zoom = 8) {
-    this.markers.push(this.createMarker(lat, lng));
+    // this.markers.push(this.createMarker(lat, lng));
     this.setFocusLocation(lat, lng, zoom);
   }
   public highlightMarkerByID(obj: any) {
@@ -85,26 +88,24 @@ export class MapComponent implements OnInit {
   }
 
   initializeMarkersAndMapZoom() {
-    // dummy markers
-    this.markers.push(this.createMarker(48.1548894, 11.0716248));
-    // this.markers.push(this.createMarker(48.2548894, 11.0716248));
-    // this.markers.push(this.createMarker(48.3548894, 11.0716248));
-    // this.markers.push(this.createMarker(48.4548894, 11.0716248));
     this.setFocusLocation(this.initialMapLocationLat, this.initialMapLocationLng, this.zoom);
   }
-  tabClick(e) {
-    console.log(e);
-  }
 
-  createMarker(lat, lng) {
+  createMarker(
+    lat,
+    lng,
+    slug,
+    id,
+    icon = "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FF0000"
+  ) {
     return {
       lat: lat,
       lng: lng,
       draggable: false,
       highlighted: false,
-      slug: "",
-      id: -1,
-      icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FF0000"
+      slug: slug,
+      id: id,
+      icon: icon
       // icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|4286f4"
     };
   }

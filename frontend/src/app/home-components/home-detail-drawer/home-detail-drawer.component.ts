@@ -12,7 +12,6 @@ import { Store, select } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
 import { ActivatedRoute } from "@angular/router";
 import { selectBusiness } from "src/app/store/selectors/business";
-import { BusinessDetailContainerComponent } from "src/app/business-detail-components";
 declare var apusCore: any;
 declare var jQuery: any;
 
@@ -24,19 +23,19 @@ declare var jQuery: any;
 export class HomeDetailDrawerComponent implements OnInit {
   images = [
     {
-      file: "/media/business/33/68ab0ad4-ea73-4e03-b13a-cb5007058dad.jpg"
+      file: "/media/product/1/6ee601a1-3f1f-461b-a3a2-1f718e7cf55b.jpg"
     },
     {
-      file: "/media/business/33/68ab0ad4-ea73-4e03-b13a-cb5007058dad.jpg"
+      file: "/media/product/1/6ee601a1-3f1f-461b-a3a2-1f718e7cf55b.jpg"
     },
     {
-      file: "/media/business/33/68ab0ad4-ea73-4e03-b13a-cb5007058dad.jpg"
+      file: "/media/product/1/6ee601a1-3f1f-461b-a3a2-1f718e7cf55b.jpg"
     },
     {
-      file: "/media/business/33/68ab0ad4-ea73-4e03-b13a-cb5007058dad.jpg"
+      file: "/media/product/1/6ee601a1-3f1f-461b-a3a2-1f718e7cf55b.jpg"
     },
     {
-      file: "/media/business/33/68ab0ad4-ea73-4e03-b13a-cb5007058dad.jpg"
+      file: "/media/product/1/6ee601a1-3f1f-461b-a3a2-1f718e7cf55b.jpg"
     }
   ];
 

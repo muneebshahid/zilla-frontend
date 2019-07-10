@@ -15,7 +15,7 @@
       class="agm-map"
     >
       <agm-marker
-        *ngFor="let marker of markers; index as i"
+        *ngFor="let marker of businessMarkers; index as i"
         [(latitude)]="marker.lat"
         [(longitude)]="marker.lng"
         [agmFitBounds]="true"
