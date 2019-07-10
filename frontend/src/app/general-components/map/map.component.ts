@@ -38,15 +38,14 @@ export class MapComponent implements OnInit {
   @Input() mapClass;
   private initialMapLocationLat = 48.17669;
   private initialMapLocationLng = 11.5726359;
+  private initialZoom = 8;
+
   public normalMarkerIcon =
     "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FF0000";
   public highlightedMarkerIcon =
     "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|4286f4";
-
-  private initialZoom = 8;
-
-  location: Location;
-  markers: Array<Marker> = [];
+  public location: Location;
+  public markers: Array<Marker> = [];
 
   @ViewChild(AgmMap) map: AgmMap;
 
@@ -58,7 +57,9 @@ export class MapComponent implements OnInit {
     this.initializeMarkersAndMapZoom();
   }
 
-  openDetailDrawer() {}
+  openDetailDrawer(marker) {
+    console.log(marker);
+  }
 
   setPageLocation(lat, lng, zoom = 8) {
     this.setFocusLocation(lat, lng, zoom);

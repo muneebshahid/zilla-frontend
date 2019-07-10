@@ -20,8 +20,8 @@
         [(longitude)]="marker.lng"
         [agmFitBounds]="true"
         [iconUrl]="marker.icon"
-        (mouseOver)="highlightMarkerByIndex(i)"
-        (mouseOut)="highlightMarkerByIndex(i)"
+        (mouseOver)="highlightMarkeronHover(i)"
+        (mouseOut)="highlightMarkeronHover(i)"
         (markerClick)="openDetailDrawer(marker)"
       >
         <div class="map-popup">
