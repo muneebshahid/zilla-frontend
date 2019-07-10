@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { Store, select } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
 import { MapComponent } from "src/app/general-components";
-import { GetSearchBusiness } from "src/app/store/actions/business";
+import { GetSearchBusiness, GetBusinessDetail } from "src/app/store/actions/business";
 import { selectBusinessMarkers } from "src/app/store/selectors/business";
 import { Subscription } from "rxjs";
 @Component({
@@ -56,6 +56,11 @@ export class HomeComponent implements OnInit {
     });
 
     this.subscriptionsArr.push(businessMarkers);
+  }
+  openDetailDrawer(selectedMarkerObj: any) {
+    this.store.dispatch(
+      new GetBusinessDetail({ slug: selectedMarkerObj.slug, id: selectedMarkerObj.id })
+    );
   }
   ngOnDestroy() {
     for (const subscriber of this.subscriptionsArr) {

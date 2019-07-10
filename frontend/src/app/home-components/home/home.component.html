@@ -29,7 +29,11 @@
                     (highlightMarkerOnGridItemHoverEvent)="mapParent.highlightMarkerByID($event)"
                   ></app-home-listings>
                   <div class="no-padding half-map xs-half-map">
-                    <app-map #mapParent [mapClass]="mapClass"></app-map>
+                    <app-map
+                      #mapParent
+                      [mapClass]="mapClass"
+                      (openDrawer)="openDetailDrawer($event)"
+                    ></app-map>
                   </div>
                 </div>
               </div>

@@ -1,12 +1,4 @@
-import {
-  Component,
-  Input,
-  ViewChild,
-  NgZone,
-  OnInit,
-  SimpleChanges,
-  OnChanges
-} from "@angular/core";
+import { Component, Input, ViewChild, OnInit, EventEmitter, Output } from "@angular/core";
 
 import { MapsAPILoader, AgmMap } from "@agm/core";
 
@@ -36,6 +28,7 @@ interface Location {
 })
 export class MapComponent implements OnInit {
   @Input() mapClass;
+  @Output() openDrawer = new EventEmitter<number>();
   private initialMapLocationLat = 48.17669;
   private initialMapLocationLng = 11.5726359;
   private initialZoom = 8;
@@ -58,7 +51,7 @@ export class MapComponent implements OnInit {
   }
 
   openDetailDrawer(marker) {
-    console.log(marker);
+    this.openDrawer.next(marker);
   }
 
   setPageLocation(lat, lng, zoom = 8) {
