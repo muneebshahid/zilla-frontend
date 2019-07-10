@@ -38,7 +38,10 @@ export class MapComponent implements OnInit {
   @Input() mapClass;
   private initialMapLocationLat = 48.17669;
   private initialMapLocationLng = 11.5726359;
-  public businessMarkers = [];
+  public normalMarkerIcon =
+    "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FF0000";
+  public highlightedMarkerIcon =
+    "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|4286f4";
 
   private zoom = 8;
 
@@ -59,22 +62,26 @@ export class MapComponent implements OnInit {
 
   openDetailDrawer() {}
 
-  /* is called from the detail page to set the pin on the location of the product or business */
   setPageLocation(lat, lng, zoom = 8) {
-    // this.markers.push(this.createMarker(lat, lng));
     this.setFocusLocation(lat, lng, zoom);
   }
+
+  /* Highlights the marker which is being hovered in the left side on the grid */
   public highlightMarkerByID(obj: any) {
-    console.log("highlight marker function called");
-    console.log(obj);
+    for (const marker of this.markers) {
+      if (marker.id === obj.id && obj.highlight === true) {
+        marker.icon = this.highlightedMarkerIcon;
+      } else {
+        marker.icon = this.normalMarkerIcon;
+      }
+    }
   }
-  public highlightMarkerByIndex(idx: any) {
+  /* Highlights the marker which is being hovered */
+  public highlightMarkeronHover(idx: any) {
     if (this.markers[idx].highlighted) {
-      this.markers[idx].icon =
-        "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FF0000";
+      this.markers[idx].icon = this.normalMarkerIcon;
     } else {
-      this.markers[idx].icon =
-        "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|4286f4";
+      this.markers[idx].icon = this.highlightedMarkerIcon;
     }
     this.markers[idx].highlighted = !this.markers[idx].highlighted;
   }
@@ -91,13 +98,7 @@ export class MapComponent implements OnInit {
     this.setFocusLocation(this.initialMapLocationLat, this.initialMapLocationLng, this.zoom);
   }
 
-  createMarker(
-    lat,
-    lng,
-    slug,
-    id,
-    icon = "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FF0000"
-  ) {
+  createMarker(lat, lng, slug, id, icon) {
     return {
       lat: lat,
       lng: lng,
@@ -106,7 +107,6 @@ export class MapComponent implements OnInit {
       slug: slug,
       id: id,
       icon: icon
-      // icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|4286f4"
     };
   }
 }

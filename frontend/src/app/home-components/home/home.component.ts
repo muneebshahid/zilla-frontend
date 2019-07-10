@@ -42,12 +42,13 @@ export class HomeComponent implements OnInit {
     const businessMarkers = this.businessMarkersSelector.subscribe(markers => {
       if (markers !== null) {
         for (const marker of markers) {
-          this.mapComponent.businessMarkers.push(
+          this.mapComponent.markers.push(
             this.mapComponent.createMarker(
               marker.latlon[0],
               marker.latlon[1],
               marker.slug,
-              marker.id
+              marker.id,
+              this.mapComponent.normalMarkerIcon
             )
           );
         }
