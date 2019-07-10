@@ -43,12 +43,10 @@ export class MapComponent implements OnInit {
   public highlightedMarkerIcon =
     "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|4286f4";
 
-  private zoom = 8;
+  private initialZoom = 8;
 
-  geocoder: any;
   location: Location;
   markers: Array<Marker> = [];
-  showFiller = false;
 
   @ViewChild(AgmMap) map: AgmMap;
 
@@ -95,7 +93,7 @@ export class MapComponent implements OnInit {
   }
 
   initializeMarkersAndMapZoom() {
-    this.setFocusLocation(this.initialMapLocationLat, this.initialMapLocationLng, this.zoom);
+    this.setFocusLocation(this.initialMapLocationLat, this.initialMapLocationLng, this.initialZoom);
   }
 
   createMarker(lat, lng, slug, id, icon) {
