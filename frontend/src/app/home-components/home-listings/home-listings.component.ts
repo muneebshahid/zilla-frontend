@@ -51,7 +51,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
       }
     });
     this.geoLocationService.getPosition().subscribe((pos: Position) => {
-      this.getSearchBusinesses({
+      this.searchBusinesses({
         query: "brown",
         latlon: `${pos.coords.latitude},${pos.coords.longitude}`
       });
@@ -68,11 +68,11 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     this.subscriptionsArr.push(numHitSubscriber);
     this.subscriptionsArr.push(businessMarkers);
   }
-  getSearchProducts(params: any) {
+  searchProducts(params: any) {
     this.store.dispatch(new GetSearchProducts(params));
   }
 
-  getSearchBusinesses(params: any) {
+  searchBusinesses(params: any) {
     this.store.dispatch(new GetSearchBusiness(params));
   }
 
