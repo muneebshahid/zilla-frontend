@@ -15,12 +15,6 @@ export class BusinessDetailMenuComponent implements OnInit, OnChanges {
   public endpoint: string = environment.apiEndpoint;
   public businessMenus: IBusinessMenu[] = [];
 
-  chevronState = [
-    { collapsed: true, class: ".menu0" },
-    { collapsed: true, class: ".menu1" },
-    { collapsed: true, class: ".menu2" }
-  ];
-
   constructor() {}
 
   ngOnInit() {}
