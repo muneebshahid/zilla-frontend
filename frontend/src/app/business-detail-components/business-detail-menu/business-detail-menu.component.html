@@ -1,10 +1,10 @@
 <h3>Menu</h3>
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="panel panel-default">
+  <div class="panel panel-default" *ngFor="let businessMenu of businessMenus; let i = index">
     <div class="panel-heading" role="tab" id="headingOne">
       <h4 class="panel-title">
         <a
-          (click)="toggleCollapseIcon(0)"
+          (click)="toggleCollapseIcon(i)"
           role="button"
           class="collapsed"
           data-toggle="collapse"
@@ -13,19 +13,17 @@
           aria-expanded="true"
           aria-controls="collapseOne"
         >
-          Ice Cream
+          {{ businessMenu.menuCategory }}
           <i
             class="collapseIcon"
-            [ngClass]="
-              chevronState[0].collapsed ? 'flaticon-right-chevron' : 'flaticon-down-chevron'
-            "
+            [ngClass]="businessMenu.collapsed ? 'flaticon-right-chevron' : 'flaticon-down-chevron'"
           ></i>
         </a>
       </h4>
     </div>
     <div
       id="collapseOne"
-      class="panel-collapse collapse menu0"
+      class="panel-collapse collapse {{ businessMenu.name }}"
       role="tabpanel"
       aria-labelledby="headingOne"
     >
@@ -37,163 +35,23 @@
                 <!-- <h3 class="title-price">Donner</h3> -->
                 <div class="entry-featured-carousel gallery-listing3 gallery-listing">
                   <ul class="listing-menu-prices-list">
-                    <li *ngFor="let product of products">
+                    <li *ngFor="let product of businessMenu.menuItem">
                       <div class="wrapper">
                         <div class="thumbnail menu-thumbnail">
                           <div class="item">
                             <a
                               class="photo-item"
-                              [href]="endpoint + product.images[0].file"
+                              [href]="endpoint + product.image"
                               [title]="product.description"
                             >
                               <div class="image-wrapper">
                                 <img
                                   width="820"
                                   height="440"
-                                  [src]="endpoint + product.images[0].file"
+                                  [src]="endpoint + product.image"
                                   class="attachment-findgo-image-gallery4 size-findgo-image-gallery4 unveil-image"
                                   alt=""
-                                  [attr.data-src]="endpoint + product.images[0].file"
-                                />
-                              </div>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="information">
-                          <h5>
-                            {{ product.title }}<span class="price">${{ product.price }}</span>
-                          </h5>
-                          <div class="description">
-                            {{ product.description }}
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingTwo">
-      <h4 class="panel-title">
-        <a
-          class="collapsed"
-          role="button"
-          data-toggle="collapse"
-          data-parent="#accordion"
-          href="javascript:void(0)"
-          aria-expanded="false"
-          aria-controls="collapseTwo"
-        >
-          Drinks
-        </a>
-      </h4>
-    </div>
-    <div
-      id="collapseTwo"
-      class="panel-collapse collapse menu1"
-      role="tabpanel"
-      aria-labelledby="headingTwo"
-    >
-      <div class="panel-body">
-        <div class="box-inner">
-          <div class="row">
-            <div class="col-xs-12 col-sm-12">
-              <div class="menu-prices-wrapper">
-                <div class="entry-featured-carousel gallery-listing3 gallery-listing">
-                  <ul class="listing-menu-prices-list">
-                    <li *ngFor="let product of products">
-                      <div class="wrapper">
-                        <div class="thumbnail menu-thumbnail">
-                          <div class="item">
-                            <a
-                              class="photo-item"
-                              [href]="endpoint + product.images[0].file"
-                              [title]="product.description"
-                            >
-                              <div class="image-wrapper">
-                                <img
-                                  width="820"
-                                  height="440"
-                                  [src]="endpoint + product.images[0].file"
-                                  class="attachment-findgo-image-gallery4 size-findgo-image-gallery4 unveil-image"
-                                  alt=""
-                                  [attr.data-src]="endpoint + product.images[0].file"
-                                />
-                              </div>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="information">
-                          <h5>
-                            {{ product.title }}<span class="price">${{ product.price }}</span>
-                          </h5>
-                          <div class="description">
-                            {{ product.description }}
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
-      <h4 class="panel-title">
-        <a
-          class="collapsed"
-          role="button"
-          data-toggle="collapse"
-          data-parent="#accordion"
-          href="javascript:void(0)"
-          aria-expanded="false"
-          aria-controls="collapseThree"
-        >
-          Appetizer
-        </a>
-      </h4>
-    </div>
-    <div
-      id="collapseThree"
-      class="panel-collapse collapse menu2"
-      role="tabpanel"
-      aria-labelledby="headingThree"
-    >
-      <div class="panel-body">
-        <div class="box-inner">
-          <div class="row">
-            <div class="col-xs-12 col-sm-12">
-              <div class="menu-prices-wrapper">
-                <div class="entry-featured-carousel gallery-listing3 gallery-listing">
-                  <ul class="listing-menu-prices-list">
-                    <li *ngFor="let product of products">
-                      <div class="wrapper">
-                        <div class="thumbnail menu-thumbnail">
-                          <div class="item">
-                            <a
-                              class="photo-item"
-                              [href]="endpoint + product.images[0].file"
-                              [title]="product.description"
-                            >
-                              <div class="image-wrapper">
-                                <img
-                                  width="820"
-                                  height="440"
-                                  [src]="endpoint + product.images[0].file"
-                                  class="attachment-findgo-image-gallery4 size-findgo-image-gallery4 unveil-image"
-                                  alt=""
-                                  [attr.data-src]="endpoint + product.images[0].file"
+                                  [attr.data-src]="endpoint + product.image"
                                 />
                               </div>
                             </a>

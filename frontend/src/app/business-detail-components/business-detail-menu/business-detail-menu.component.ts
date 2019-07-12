@@ -1,6 +1,7 @@
 import { IProduct } from "src/app/models/product";
-import { Component, OnInit, Input, AfterViewInit } from "@angular/core";
+import { Component, OnInit, Input, AfterViewInit, SimpleChanges, OnChanges } from "@angular/core";
 import { environment } from "src/environments/environment";
+import { IBusinessMenu, MenuItem } from "src/app/models/business_menu";
 
 declare var jQuery: any;
 
@@ -9,9 +10,10 @@ declare var jQuery: any;
   templateUrl: "./business-detail-menu.component.html",
   styleUrls: ["./business-detail-menu.component.css"]
 })
-export class BusinessDetailMenuComponent implements OnInit {
+export class BusinessDetailMenuComponent implements OnInit, OnChanges {
   @Input() products: IProduct[];
   public endpoint: string = environment.apiEndpoint;
+  public businessMenus: IBusinessMenu[] = [];
 
   chevronState = [
     { collapsed: true, class: ".menu0" },
@@ -22,14 +24,52 @@ export class BusinessDetailMenuComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.products !== null) {
+      for (let i = 0; i < this.products.length; i++) {
+        let menuItem: MenuItem = {
+          description: this.products[i].description,
+          title: this.products[i].title,
+          image: this.products[i].images[0].file,
+          price: this.products[i].price
+        };
+
+        const categoryIndex = this.getBusinessMenuIndex(this.products[i].product_type.tag);
+        if (categoryIndex !== -1) {
+          /* we've already added this category. Add the product to the items of this category */
+          this.businessMenus[categoryIndex].menuItem.push(menuItem);
+        } else {
+          /* create a new category */
+          let businessM = {} as IBusinessMenu;
+
+          businessM.menuCategory = this.products[i].product_type.tag;
+          businessM.menuItem = [];
+          businessM.collapsed = true;
+
+          /* This gives us the opportunity to toggle the accordion by name */
+          businessM.name = this.products[i].product_type.tag.replace(/\s/g, "") + i;
+
+          businessM.menuItem.push(menuItem);
+          this.businessMenus.push(businessM);
+        }
+      }
+    }
+  }
+
+  /* if a menu category is already in the BusinessMenu array this function will return that index otherwise -1 */
+  getBusinessMenuIndex(category: string) {
+    for (let i = 0; i < this.businessMenus.length; i++) {
+      if (this.businessMenus[i].menuCategory === category) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
 
   toggleCollapseIcon(index) {
-    jQuery(this.chevronState[index].class).collapse("toggle");
-
-    if (this.chevronState[index].collapsed === false) {
-      this.chevronState[index].collapsed = true;
-    } else {
-      this.chevronState[index].collapsed = false;
-    }
+    jQuery("." + this.businessMenus[index].name).collapse("toggle");
+    this.businessMenus[index].collapsed = !this.businessMenus[index].collapsed;
+    console.log(this.businessMenus);
   }
 }

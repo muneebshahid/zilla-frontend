@@ -1,5 +1,6 @@
 import { IBusiness } from "./../../models/business";
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, ViewChild } from "@angular/core";
+import { MenuComponent } from "src/app/general-components";
 
 @Component({
   selector: "app-business-detail-container",
