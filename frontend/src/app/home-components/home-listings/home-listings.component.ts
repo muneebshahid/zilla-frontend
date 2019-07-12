@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from "@angular/core";
-import { select, Store } from "@ngrx/store";
+import { select, Store, defaultMemoize } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
 import { Subscription } from "rxjs";
 import {

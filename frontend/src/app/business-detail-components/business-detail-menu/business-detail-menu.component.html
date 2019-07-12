@@ -6,23 +6,26 @@
         <a
           (click)="toggleCollapseIcon(0)"
           role="button"
+          class="collapsed"
           data-toggle="collapse"
           data-parent="#accordion"
-          href="#collapseOne"
+          href="javascript:void(0)"
           aria-expanded="true"
           aria-controls="collapseOne"
         >
           Ice Cream
+          <i
+            class="collapseIcon"
+            [ngClass]="
+              chevronState[0].collapsed ? 'flaticon-right-chevron' : 'flaticon-down-chevron'
+            "
+          ></i>
         </a>
-        <i
-          class="collapseIcon"
-          [ngClass]="chevronState[0] ? 'flaticon-down-chevron' : 'flaticon-right-chevron'"
-        ></i>
       </h4>
     </div>
     <div
       id="collapseOne"
-      class="panel-collapse collapse in"
+      class="panel-collapse collapse menu0"
       role="tabpanel"
       aria-labelledby="headingOne"
     >
@@ -83,7 +86,7 @@
           role="button"
           data-toggle="collapse"
           data-parent="#accordion"
-          href="#collapseTwo"
+          href="javascript:void(0)"
           aria-expanded="false"
           aria-controls="collapseTwo"
         >
@@ -93,7 +96,7 @@
     </div>
     <div
       id="collapseTwo"
-      class="panel-collapse collapse"
+      class="panel-collapse collapse menu1"
       role="tabpanel"
       aria-labelledby="headingTwo"
     >
@@ -153,7 +156,7 @@
           role="button"
           data-toggle="collapse"
           data-parent="#accordion"
-          href="#collapseThree"
+          href="javascript:void(0)"
           aria-expanded="false"
           aria-controls="collapseThree"
         >
@@ -163,7 +166,7 @@
     </div>
     <div
       id="collapseThree"
-      class="panel-collapse collapse"
+      class="panel-collapse collapse menu2"
       role="tabpanel"
       aria-labelledby="headingThree"
     >
