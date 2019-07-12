@@ -19,8 +19,20 @@
             ></a>
           </div> -->
           <ul class="nav nav-pills">
-            <li role="presentation" class="active"><a href="#">Businesses</a></li>
-            <li role="presentation"><a href="#">Products</a></li>
+            <li
+              role="presentation"
+              (click)="searchBusinesses()"
+              [ngClass]="showingBusinesses ? 'active' : ''"
+            >
+              <a href="javascript:void(0)">Businesses</a>
+            </li>
+            <li
+              role="presentation"
+              (click)="searchProducts()"
+              [ngClass]="showingBusinesses ? '' : 'active'"
+            >
+              <a href="javascript:void(0)">Products</a>
+            </li>
           </ul>
         </div>
       </div>
