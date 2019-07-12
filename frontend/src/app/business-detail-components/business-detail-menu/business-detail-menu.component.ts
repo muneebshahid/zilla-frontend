@@ -62,7 +62,15 @@ export class BusinessDetailMenuComponent implements OnInit, OnChanges {
   }
 
   toggleCollapseIcon(index) {
+    /* close all other business menus */
+    for (let i = 0; i < this.businessMenus.length; i++) {
+      if (index !== i) {
+        jQuery("." + this.businessMenus[i].name).collapse("hide");
+      }
+    }
+
     jQuery("." + this.businessMenus[index].name).collapse("toggle");
+
     this.businessMenus[index].collapsed = !this.businessMenus[index].collapsed;
   }
 }
