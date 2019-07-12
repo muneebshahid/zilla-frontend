@@ -45,7 +45,7 @@
           <div class="image-wrapper image-loaded">
             <a href="javascript:void(0)">
               <img
-                [src]="endpoint + business.images[0].file"
+                [src]="getCoverImage(business.images)"
                 [alt]="business.title"
                 class="unveil-image"
               />
@@ -70,7 +70,7 @@
       <div class="bottom-grid">
         <div class="listing-content">
           <h3 class="listing-title">
-            <a href="https://demoapus.com/findgo/listings/shop-in-city2/">{{ business.title }}</a>
+            <a href="javascript:void(0)">{{ business.title }}</a>
           </h3>
           <div class="listing-tagline ellipsize-description">{{ business.description }}</div>
           <div class="listing-tags">
@@ -80,7 +80,7 @@
             </div> -->
 
             <div class="listing-category" *ngIf="homePage == true">
-              <a href="https://demoapus.com/findgo/listing-category/shops/"
+              <a href="javascript:void(0)"
                 ><i class="flaticon-shopping-cart"></i>{{ business.business_type.tag }}</a
               >
             </div>
@@ -100,12 +100,9 @@
         <div class="listing-content-custom clearfix" *ngIf="homePage == true">
           <div class="listing-location ellipsize-description">
             <i class="flaticon-placeholder product-address-icon"></i
-            ><a
-              href="https://demoapus.com/findgo/region/new-york/"
-              [title]="business.address"
-              class="product-address"
-              >{{ business.address }}</a
-            >
+            ><a href="javascript:void(0)" [title]="business.address" class="product-address">{{
+              business.address
+            }}</a>
           </div>
           <div class="listing-phone product-phone">
             <i class="flaticon-phone-call"></i>

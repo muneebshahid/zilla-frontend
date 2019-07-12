@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
   constructor(private store: Store<IAppState>) {}
 
   ngOnInit() {}
-  ngOnDestroy() {}
   openDetailDrawer(selectedMarkerObj: any) {
     this.store.dispatch(
       new GetBusinessDetail({ slug: selectedMarkerObj.slug, id: selectedMarkerObj.id })

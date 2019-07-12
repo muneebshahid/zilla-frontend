@@ -22,6 +22,8 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   @Output() public setMobileMapView = new EventEmitter<string>();
   @Output() public highlightMarkerOnGridItemHoverEvent = new EventEmitter<any>();
   @Input() public mapComponent: MapComponent;
+
+  public searchDistance = 1000000000;
   public businessMarkersSelector = this.store.pipe(select(selectBusinessMarkers));
   public businessSelector = this.store.pipe(select(selectBusinesses));
   public numHitSelector = this.store.pipe(select(selectNumHits));
@@ -53,12 +55,12 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     });
     this.geoLocationService.getPosition().subscribe((pos: Position) => {
       this.searchBusinesses({
-        query: "brown",
-        latlon: `${pos.coords.latitude},${pos.coords.longitude}`
+        latlondis: `${pos.coords.latitude},${pos.coords.longitude},${this.searchDistance}`
       });
     });
 
     const businessSubscriber = this.businessSelector.subscribe(businesses => {
+      console.log(businesses);
       this.businesses = businesses;
     });
     const numHitSubscriber = this.numHitSelector.subscribe(numHits => {
