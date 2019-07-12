@@ -29,6 +29,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   public showingBusinesses = true;
   public hits: number = 0;
   private subscriptionsArr: Subscription[] = [];
+  public filters: any;
 
   constructor(private store: Store<IAppState>, private geoLocationService: GeoLocationService) {}
 
@@ -69,15 +70,23 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     this.subscriptionsArr.push(businessMarkers);
   }
   searchProducts(params: any) {
-    console.log("mozi1");
     this.showingBusinesses = false;
-    // this.store.dispatch(new GetSearchProducts(params));
+    this.store.dispatch(new GetSearchProducts(params));
   }
 
   searchBusinesses(params: any) {
-    console.log("mozi2");
     this.showingBusinesses = true;
-    // this.store.dispatch(new GetSearchBusiness(params));
+    this.store.dispatch(new GetSearchBusiness(params));
+  }
+
+  accumulateFilters(showBusinesses: boolean) {
+    /* accumulate filters here */
+
+    if (showBusinesses) {
+      this.searchBusinesses({});
+    } else {
+      this.searchProducts({});
+    }
   }
 
   ngOnDestroy() {

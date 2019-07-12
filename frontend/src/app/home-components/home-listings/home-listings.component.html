@@ -21,14 +21,14 @@
           <ul class="nav nav-pills">
             <li
               role="presentation"
-              (click)="searchBusinesses()"
+              (click)="accumulateFilters(true)"
               [ngClass]="showingBusinesses ? 'active' : ''"
             >
               <a href="javascript:void(0)">Businesses</a>
             </li>
             <li
               role="presentation"
-              (click)="searchProducts()"
+              (click)="accumulateFilters(false)"
               [ngClass]="showingBusinesses ? '' : 'active'"
             >
               <a href="javascript:void(0)">Products</a>
