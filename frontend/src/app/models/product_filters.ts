@@ -2,6 +2,7 @@ export interface IPFilters {
   query: string;
   product_type: string;
   tags: Array<string>;
-  price: number;
+  latlondis: Array<number>;
   available: number;
+  price: number;
 }

@@ -31,6 +31,12 @@ export const businessReducers = (
         business: action.payload
       };
     }
+    case EBusinessActions.UpdateBusinessFilters: {
+      return {
+        ...state,
+        filters: action.payload
+      };
+    }
 
     default:
       return state;

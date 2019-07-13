@@ -13,6 +13,14 @@ export const selectBusiness = createSelector(
   selectItems,
   (state: IBusinessState) => state.business
 );
+export const selectBusinessFilter = createSelector(
+  selectItems,
+  (state: IBusinessState) => state.filters
+);
+export const selectBusinessFilterLatLonDis = createSelector(
+  selectItems,
+  (state: IBusinessState) => state.filters.latlondis
+);
 
 export const selectNumHits = createSelector(
   selectItems,

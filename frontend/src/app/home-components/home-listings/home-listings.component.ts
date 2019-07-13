@@ -1,3 +1,7 @@
+import {
+  selectBusinessFilter,
+  selectBusinessFilterLatLonDis
+} from "./../../store/selectors/business";
 import { UpdateSearchType } from "./../../store/actions/general";
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from "@angular/core";
 import { select, Store, defaultMemoize } from "@ngrx/store";
@@ -25,20 +29,20 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   @Output() public highlightMarkerOnGridItemHoverEvent = new EventEmitter<any>();
   @Input() public mapComponent: MapComponent;
 
-  public searchDistance = 1000000000;
   public businessMarkersSelector = this.store.pipe(select(selectBusinessMarkers));
   public businessSelector = this.store.pipe(select(selectBusinesses));
+  public businessFilterSelector = this.store.pipe(select(selectBusinessFilter));
   public numHitSelector = this.store.pipe(select(selectNumHits));
   public showingBusinessesSelector = this.store.pipe(select(selectShowingBusinesses));
+
+  public searchDistance = 0;
   public businesses: IBusiness[];
   public showingBusinesses = true;
   public hits: number = 0;
   private subscriptionsArr: Subscription[] = [];
   public filters: any;
 
-  constructor(private store: Store<IAppState>, private geoLocationService: GeoLocationService) {}
-
-  searchType = "Business";
+  constructor(private store: Store<IAppState>) {}
 
   ngOnInit() {
     const businessMarkers = this.businessMarkersSelector.subscribe(markers => {
@@ -56,11 +60,6 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
         }
       }
     });
-    this.geoLocationService.getPosition().subscribe((pos: Position) => {
-      this.searchBusinesses({
-        latlondis: `${pos.coords.latitude},${pos.coords.longitude},${this.searchDistance}`
-      });
-    });
 
     const businessSubscriber = this.businessSelector.subscribe(businesses => {
       this.businesses = businesses;
@@ -74,29 +73,27 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
       }
     );
 
+    const businessFilterSubscriber = this.businessFilterSelector.subscribe(filters => {
+      this.searchDistance = filters.latlondis[2];
+    });
+
+    this.subscriptionsArr.push(businessFilterSubscriber);
     this.subscriptionsArr.push(showingBusinessesSubscriber);
     this.subscriptionsArr.push(businessSubscriber);
     this.subscriptionsArr.push(numHitSubscriber);
     this.subscriptionsArr.push(businessMarkers);
   }
-  searchProducts(params: any) {
-    this.store.dispatch(new UpdateSearchType({ showingBusinesses: false }));
+
+  searchProducts() {
+    this.showingBusinesses = false;
+    this.store.dispatch(new UpdateSearchType({ showingBusinesses: this.showingBusinesses }));
     // this.store.dispatch(new GetSearchProducts(params));
   }
 
-  searchBusinesses(params: any) {
-    this.store.dispatch(new UpdateSearchType({ showingBusinesses: true }));
-    // this.store.dispatch(new GetSearchBusiness(params));
-  }
-
-  accumulateFilters(showingBusinesses: boolean) {
-    /* accumulate filters here */
-
-    if (showingBusinesses) {
-      this.searchBusinesses({});
-    } else {
-      this.searchProducts({});
-    }
+  searchBusinesses() {
+    this.showingBusinesses = true;
+    this.store.dispatch(new UpdateSearchType({ showingBusinesses: this.showingBusinesses }));
+    // this.store.dispatch(new GetSearchBusiness());
   }
 
   ngOnDestroy() {
