@@ -1,3 +1,4 @@
+import { UpdateSearchType } from "./../../store/actions/general";
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from "@angular/core";
 import { select, Store, defaultMemoize } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
@@ -12,6 +13,7 @@ import { MapComponent } from "src/app/general-components";
 import { GeoLocationService } from "src/app/services/geo-location/geo-location.service";
 import { GetSearchBusiness, GetBusinessDetail } from "src/app/store/actions/business";
 import { GetSearchProducts } from "src/app/store/actions/product";
+import { selectShowingBusinesses } from "src/app/store/selectors/general";
 
 @Component({
   selector: "app-home-listings",
@@ -27,6 +29,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   public businessMarkersSelector = this.store.pipe(select(selectBusinessMarkers));
   public businessSelector = this.store.pipe(select(selectBusinesses));
   public numHitSelector = this.store.pipe(select(selectNumHits));
+  public showingBusinessesSelector = this.store.pipe(select(selectShowingBusinesses));
   public businesses: IBusiness[];
   public showingBusinesses = true;
   public hits: number = 0;
@@ -60,31 +63,36 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     });
 
     const businessSubscriber = this.businessSelector.subscribe(businesses => {
-      console.log(businesses);
       this.businesses = businesses;
     });
     const numHitSubscriber = this.numHitSelector.subscribe(numHits => {
       this.hits = numHits;
     });
+    const showingBusinessesSubscriber = this.showingBusinessesSelector.subscribe(
+      showingBusinesses => {
+        this.showingBusinesses = showingBusinesses;
+      }
+    );
 
+    this.subscriptionsArr.push(showingBusinessesSubscriber);
     this.subscriptionsArr.push(businessSubscriber);
     this.subscriptionsArr.push(numHitSubscriber);
     this.subscriptionsArr.push(businessMarkers);
   }
   searchProducts(params: any) {
-    this.showingBusinesses = false;
-    this.store.dispatch(new GetSearchProducts(params));
+    this.store.dispatch(new UpdateSearchType({ showingBusinesses: false }));
+    // this.store.dispatch(new GetSearchProducts(params));
   }
 
   searchBusinesses(params: any) {
-    this.showingBusinesses = true;
-    this.store.dispatch(new GetSearchBusiness(params));
+    this.store.dispatch(new UpdateSearchType({ showingBusinesses: true }));
+    // this.store.dispatch(new GetSearchBusiness(params));
   }
 
-  accumulateFilters(showBusinesses: boolean) {
+  accumulateFilters(showingBusinesses: boolean) {
     /* accumulate filters here */
 
-    if (showBusinesses) {
+    if (showingBusinesses) {
       this.searchBusinesses({});
     } else {
       this.searchProducts({});
