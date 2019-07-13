@@ -88,6 +88,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     }
   ];
   public selectedTags;
+  public distanceControlShowing: boolean = true;
 
   ngOnInit() {
     const showingBusinessesSubscriber = this.showingBusinessesSelector.subscribe(
@@ -95,8 +96,10 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
         this.showingBusinesses = showingBusinesses;
         if (this.showingBusinesses) {
           this.setTags(this.businessTags);
+          this.distanceControlShowing = true;
         } else {
           this.setTags(this.productTags);
+          this.distanceControlShowing = false;
         }
       }
     );
