@@ -18,6 +18,7 @@ export class BusinessService {
   }
 
   getBusinessFromProduct() {}
+  cleanBusinessFilters(params) {}
   getBusinessDetail(slugID: any): Observable<IBusiness> {
     return this.httpService.get(`${environment.businessUrl}/${slugID.slug}/${slugID.id}/`, {});
   }

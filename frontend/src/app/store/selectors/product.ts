@@ -19,3 +19,7 @@ export const selectNumHits = createSelector(
   selectItems,
   (state: IProductState) => state.num_hits
 );
+export const selectProductFilter = createSelector(
+  selectItems,
+  (state: IProductState) => state.filters
+);

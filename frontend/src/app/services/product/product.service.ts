@@ -25,6 +25,8 @@ export class ProductService {
     return this.httpService.get(`${environment.searchUrl}/${environment.productUrl}/`, params);
   }
 
+  cleanProductFilters(params) {}
+
   /* businessObj business id to post */
   getProductsOfBusiness(businessId: any): Observable<IProduct[]> {
     return this.httpService.get(`${environment.exploreUrl}/${businessId}/`, {});

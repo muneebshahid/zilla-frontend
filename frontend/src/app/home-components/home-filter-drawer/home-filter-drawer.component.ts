@@ -4,10 +4,13 @@ import { Store, select } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
 import { selectShowingBusinesses } from "src/app/store/selectors/general";
 import { Subscription } from "rxjs";
-import { UpdateBusinessFilters, GetSearchBusiness } from "src/app/store/actions/business";
+import { GetSearchBusiness } from "src/app/store/actions/business";
 import { UpdateSearchType } from "src/app/store/actions/general";
 import { GeoLocationService } from "src/app/services/geo-location/geo-location.service";
 import { IPFilters } from "src/app/models/product_filters";
+import { selectProductFilter } from "src/app/store/selectors/product";
+import { selectBusinessFilter } from "src/app/store/selectors/business";
+import { GetSearchProducts } from "src/app/store/actions/product";
 
 @Component({
   selector: "app-home-filter-drawer",
@@ -18,6 +21,8 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   constructor(private store: Store<IAppState>, private geoLocationService: GeoLocationService) {}
   private subscriptionsArr: Subscription[] = [];
   public showingBusinessesSelector = this.store.pipe(select(selectShowingBusinesses));
+  public productsFilterSelector = this.store.pipe(select(selectProductFilter));
+  public businessesFilterSelector = this.store.pipe(select(selectBusinessFilter));
   public showingBusinesses = true;
 
   public businessFilters: IBFilters = {
@@ -89,6 +94,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   ];
   public selectedTags;
   public distanceControlShowing: boolean = true;
+  public abc = 200;
 
   ngOnInit() {
     const showingBusinessesSubscriber = this.showingBusinessesSelector.subscribe(
@@ -106,6 +112,13 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
 
     this.getInitialResults();
 
+    this.productsFilterSelector.subscribe(filter => {
+      this.productsFilters = filter;
+    });
+    this.businessesFilterSelector.subscribe(filter => {
+      this.businessFilters = filter;
+    });
+
     this.subscriptionsArr.push(showingBusinessesSubscriber);
   }
   ngAfterViewInit() {
@@ -113,7 +126,6 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   setTags(tags: any) {
-    console.log(tags);
     this.selectedTags = tags;
   }
 
@@ -127,12 +139,13 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     });
   }
   applyFilters() {
-    if (this.showingBusinesses) {
-      /* send business request  */
-      // this.store.dispatch(new GetSearchBusiness());
-    } else {
-      // this.store.dispatch(new GetSearchProducts(params));
-    }
+    // if (this.showingBusinesses) {
+    //   this.store.dispatch(new GetSearchBusiness(this.businessFilters));
+    // } else {
+    //   this.store.dispatch(new GetSearchProducts(this.productsFilters));
+    // }
+    console.log(this.abc);
+    this.abc = 99;
   }
   searchBusinesses(params: any) {
     this.store.dispatch(new UpdateSearchType({ showingBusinesses: true }));
