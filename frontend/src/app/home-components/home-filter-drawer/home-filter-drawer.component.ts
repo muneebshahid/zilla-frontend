@@ -1,5 +1,5 @@
 import { IBFilters } from "./../../models/business_filters";
-import { Component, OnInit, OnDestroy, AfterViewInit } from "@angular/core";
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef } from "@angular/core";
 import { Store, select } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
 import { selectShowingBusinesses } from "src/app/store/selectors/general";
@@ -11,6 +11,7 @@ import { IPFilters } from "src/app/models/product_filters";
 import { selectProductFilter } from "src/app/store/selectors/product";
 import { selectBusinessFilter } from "src/app/store/selectors/business";
 import { GetSearchProducts } from "src/app/store/actions/product";
+import { FormBuilder } from "@angular/forms";
 
 @Component({
   selector: "app-home-filter-drawer",
@@ -18,12 +19,12 @@ import { GetSearchProducts } from "src/app/store/actions/product";
   styleUrls: ["./home-filter-drawer.component.css"]
 })
 export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewInit {
-  constructor(private store: Store<IAppState>, private geoLocationService: GeoLocationService) {}
   private subscriptionsArr: Subscription[] = [];
   public showingBusinessesSelector = this.store.pipe(select(selectShowingBusinesses));
   public productsFilterSelector = this.store.pipe(select(selectProductFilter));
   public businessesFilterSelector = this.store.pipe(select(selectBusinessFilter));
   public showingBusinesses = true;
+  public abc = 10;
 
   public businessFilters: IBFilters = {
     latlondis: [10, 10, 100000],
@@ -94,7 +95,9 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   ];
   public selectedTags;
   public distanceControlShowing: boolean = true;
-  public abc = 200;
+  @ViewChild("searchDistance") searchDistance: ElementRef;
+
+  constructor(private store: Store<IAppState>, private geoLocationService: GeoLocationService) {}
 
   ngOnInit() {
     const showingBusinessesSubscriber = this.showingBusinessesSelector.subscribe(
@@ -139,13 +142,13 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     });
   }
   applyFilters() {
-    // if (this.showingBusinesses) {
-    //   this.store.dispatch(new GetSearchBusiness(this.businessFilters));
-    // } else {
-    //   this.store.dispatch(new GetSearchProducts(this.productsFilters));
-    // }
-    console.log(this.abc);
-    this.abc = 99;
+    if (this.showingBusinesses) {
+      this.businessFilters.latlondis[2] = this.searchDistance.nativeElement.value;
+      // this.store.dispatch(new GetSearchBusiness(this.businessFilters));
+    } else {
+      // this.store.dispatch(new GetSearchProducts(this.productsFilters));
+    }
+    console.log(this.businessFilters);
   }
   searchBusinesses(params: any) {
     this.store.dispatch(new UpdateSearchType({ showingBusinesses: true }));

@@ -43,10 +43,11 @@
               </div>
               <div class="search-distance-wrapper">
                 <input
+                  #searchDistance
                   type="hidden"
                   name="search_distance"
                   id="search_distance"
-                  [(ngModel)]="businessFilters.latlondis[2]"
+                  [(value)]="businessFilters.latlondis[2]"
                 />
                 <div
                   id="search-distance-slider"
@@ -72,13 +73,13 @@
               </a>
               <div class="tags-wrap active">
                 <ul class="row job_tags">
-                  <li class="col-xs-6" *ngFor="let tag of selectedTags">
-                    <label for="job_amenity_outdoor-seating" class="outdoor-seating"
+                  <li class="col-xs-6" *ngFor="let tag of selectedTags; let i = index">
+                    <label for="job_amenity_outdoor-seating{{ i }}" class="outdoor-seating{{ i }}"
                       ><input
                         type="checkbox"
-                        name="filter_job_amenity[]"
+                        name="filter_job_amenity"
                         [value]="tag.tag"
-                        id="job_amenity_outdoor-seating"
+                        id="job_amenity_outdoor-seating{{ i }}"
                       />
                       {{ tag.tag }}</label
                     >
