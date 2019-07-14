@@ -10,8 +10,6 @@ import { GeoLocationService } from "src/app/services/geo-location/geo-location.s
 import { IPFilters } from "src/app/models/product_filters";
 import { selectProductFilter } from "src/app/store/selectors/product";
 import { selectBusinessFilter } from "src/app/store/selectors/business";
-import { GetSearchProducts } from "src/app/store/actions/product";
-import { FormBuilder } from "@angular/forms";
 
 @Component({
   selector: "app-home-filter-drawer",
@@ -24,10 +22,9 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   public productsFilterSelector = this.store.pipe(select(selectProductFilter));
   public businessesFilterSelector = this.store.pipe(select(selectBusinessFilter));
   public showingBusinesses = true;
-  public abc = 10;
 
   public businessFilters: IBFilters = {
-    latlondis: [10, 10, 100000],
+    latlondis: [0, 0, 100000],
     query: "",
     amenities: [],
     business_type: ""
@@ -44,27 +41,33 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   public businessTags = [
     {
       id: 1,
-      tag: "tag1"
+      tag: "tag1",
+      checked: false
     },
     {
       id: 2,
-      tag: "tag2"
+      tag: "tag2",
+      checked: false
     },
     {
       id: 3,
-      tag: "tag3"
+      tag: "tag3",
+      checked: false
     },
     {
       id: 4,
-      tag: "tag4"
+      tag: "tag4",
+      checked: false
     },
     {
       id: 5,
-      tag: "tag5"
+      tag: "tag5",
+      checked: false
     },
     {
       id: 6,
-      tag: "tag6"
+      tag: "tag6",
+      checked: false
     }
   ];
   public productTags = [
@@ -93,6 +96,15 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       tag: "ptag6"
     }
   ];
+
+  cities4 = [
+    { id: 1, name: "Bar" },
+    { id: 2, name: "Club" },
+    { id: 3, name: "Pub" },
+    { id: 4, name: "Restaurant" },
+    { id: 5, name: "PlayZone" }
+  ];
+
   public selectedTags;
   public distanceControlShowing: boolean = true;
   @ViewChild("searchDistance") searchDistance: ElementRef;
@@ -141,14 +153,25 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       });
     });
   }
+
+  getIdsOfSelectedTags(tagsArray: any) {
+    const tags = [];
+    for (const tag of tagsArray) {
+      if (tag.checked) {
+        tags.push(tag.id);
+      }
+    }
+    return tags;
+  }
+
   applyFilters() {
     if (this.showingBusinesses) {
       this.businessFilters.latlondis[2] = this.searchDistance.nativeElement.value;
+      this.businessFilters.amenities = this.getIdsOfSelectedTags(this.businessTags);
       // this.store.dispatch(new GetSearchBusiness(this.businessFilters));
     } else {
       // this.store.dispatch(new GetSearchProducts(this.productsFilters));
     }
-    console.log(this.businessFilters);
   }
   searchBusinesses(params: any) {
     this.store.dispatch(new UpdateSearchType({ showingBusinesses: true }));

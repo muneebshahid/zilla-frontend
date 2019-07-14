@@ -48,7 +48,8 @@ import {
   FooterComponent,
   MMenuComponent,
   ProductInfoComponent,
-  LoadingComponent
+  LoadingComponent,
+  BusinessInfoComponent
 } from "./general-components";
 import { ProductDetailComponent } from "./product-detail-components";
 
@@ -67,7 +68,6 @@ import {
   AddSocialLinksComponent,
   ListingTagsComponent
 } from "./add-listing-components";
-import { BusinessInfoComponent } from './general-components/business-info/business-info.component';
 @NgModule({
   declarations: [
     AppComponent,

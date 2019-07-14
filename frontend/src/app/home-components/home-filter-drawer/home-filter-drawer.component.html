@@ -16,16 +16,16 @@
             <div class="filter-top">
               <div class="row filter-top-inner clearfix">
                 <div class="col-xs-12">
-                  <div class="listing-orderby">
-                    <select name="filter_order" autocomplete="off">
-                      <option value="default" selected="selected">Default Order</option>
-                      <option value="date-desc">Newest First</option>
-                      <option value="date-asc">Oldest First</option>
-                      <option value="rating-desc">Highest Rating</option>
-                      <option value="rating-asc">Lowest Rating</option>
-                      <option value="random">Random</option>
-                    </select>
-                  </div>
+                  <ng-select
+                    [items]="cities4"
+                    name="listing_category"
+                    bindLabel="name"
+                    bindValue="id"
+                    class="dropdowner"
+                    [multiple]="false"
+                    placeholder="Business Type"
+                  >
+                  </ng-select>
                 </div>
               </div>
             </div>
@@ -74,12 +74,18 @@
               <div class="tags-wrap active">
                 <ul class="row job_tags">
                   <li class="col-xs-6" *ngFor="let tag of selectedTags; let i = index">
-                    <label for="job_amenity_outdoor-seating{{ i }}" class="outdoor-seating{{ i }}"
-                      ><input
+                    <label for="tag_filter_{{ i }}" class="outdoor-seating{{ i }}">
+                      <!-- <input
                         type="checkbox"
                         name="filter_job_amenity"
                         [value]="tag.tag"
                         id="job_amenity_outdoor-seating{{ i }}"
+                      /> -->
+                      <input
+                        type="checkbox"
+                        [(ngModel)]="tag.checked"
+                        id="tag_filter_{{ i }}"
+                        [ngModelOptions]="{ standalone: true }"
                       />
                       {{ tag.tag }}</label
                     >

@@ -6,3 +6,4 @@ export * from "./loading/loading.component";
 export * from "./detail-header-gallery/detail-header-gallery.component";
 export * from "./detail-header/detail-header.component";
 export * from "./product-info/product-info.component";
+export * from "./business-info/business-info.component";
