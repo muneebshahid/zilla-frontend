@@ -143,11 +143,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     this.geoLocationService.getPosition().subscribe((pos: Position) => {
       this.businessFilters.latlondis[0] = pos.coords.latitude;
       this.businessFilters.latlondis[1] = pos.coords.longitude;
-      this.searchBusinesses({
-        latlondis: `${pos.coords.latitude},${pos.coords.longitude},${
-          this.businessFilters.latlondis[2]
-        }`
-      });
+      this.searchBusinesses(this.businessFilters);
     });
   }
   getIdsOfSelectedTags(tagsArray: any) {
@@ -171,6 +167,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     }
   }
   searchBusinesses(params: any) {
+    console.log("searchbusinesses called");
     this.store.dispatch(new UpdateSearchType({ showingBusinesses: true }));
     this.store.dispatch(new GetSearchBusiness(params));
   }
