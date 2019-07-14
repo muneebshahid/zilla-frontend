@@ -7,7 +7,11 @@ export enum EBusinessActions {
   GetSearchBusinessSuccess = "[Business] Get Search Business Success",
   GetBusinessDetail = "[Business] Get Business Detail",
   GetBusinessDetailSuccess = "[Business] Get Business Detail Success",
-  UpdateBusinessFilters = "[Business] Update Business Filters"
+  UpdateBusinessFilters = "[Business] Update Business Filters",
+  GetBusinessTypes = "[Business] Get Business Types",
+  GetBusinessTypesSuccess = "[Business] Get Business Types Success",
+  GetBusinessAmenities = "[Business] Get Business Amenities",
+  GetBusinessAmenitiesSuccess = "[Business] Get Business Amenities Success"
 }
 
 export class GetExploreBusiness implements Action {
@@ -15,6 +19,23 @@ export class GetExploreBusiness implements Action {
 }
 export class GetExploreBusinessSuccess implements Action {
   public readonly type = EBusinessActions.GetExploreBusinessSuccess;
+
+  constructor(public payload: any) {}
+}
+export class GetBusinessTypes implements Action {
+  public readonly type = EBusinessActions.GetBusinessTypes;
+}
+export class GetBusinessTypesSuccess implements Action {
+  public readonly type = EBusinessActions.GetBusinessTypesSuccess;
+
+  constructor(public payload: any) {}
+}
+
+export class GetBusinessAmenities implements Action {
+  public readonly type = EBusinessActions.GetBusinessAmenities;
+}
+export class GetBusinessAmenitiesSuccess implements Action {
+  public readonly type = EBusinessActions.GetBusinessAmenitiesSuccess;
 
   constructor(public payload: any) {}
 }
@@ -53,4 +74,8 @@ export type BusinessActions =
   | GetBusinessDetail
   | GetBusinessDetailSuccess
   | GetSearchBusiness
+  | GetBusinessAmenities
+  | GetBusinessAmenitiesSuccess
+  | GetBusinessTypes
+  | GetBusinessTypesSuccess
   | GetSearchBusinessSuccess;

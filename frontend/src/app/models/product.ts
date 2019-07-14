@@ -1,6 +1,6 @@
 import { IImage } from "./image";
 import { ITags } from "./tags";
-import { IType } from "./type";
+import { IPType } from "./ptype";
 
 export interface IProduct {
   product: number;
@@ -12,7 +12,7 @@ export interface IProduct {
   description: string;
   price: number;
   available: boolean;
-  product_type: IType;
+  product_type: IPType;
   owner: number;
   address: string;
   phone: string;

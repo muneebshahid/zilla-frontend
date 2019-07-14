@@ -23,6 +23,12 @@ export class BusinessService {
     return this.httpService.get(`${environment.businessUrl}/${businessID.id}/`, {});
   }
 
+  getBusinesstypes() {
+    return this.httpService.get(`${environment.businessTypeUrl}/`, {});
+  }
+  getBusinessAmenities() {
+    return this.httpService.get(`${environment.businessAmenitiesUrl}/`, {});
+  }
   getExploreBusiness(): Observable<IBusiness[]> {
     return this.httpService.get(`${environment.exploreUrl}/`, {});
   }

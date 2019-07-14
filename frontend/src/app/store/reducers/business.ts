@@ -37,6 +37,18 @@ export const businessReducers = (
         filters: action.payload
       };
     }
+    case EBusinessActions.GetBusinessAmenitiesSuccess: {
+      return {
+        ...state,
+        businessAmenities: action.payload
+      };
+    }
+    case EBusinessActions.GetBusinessTypesSuccess: {
+      return {
+        ...state,
+        businessTypes: action.payload
+      };
+    }
 
     default:
       return state;

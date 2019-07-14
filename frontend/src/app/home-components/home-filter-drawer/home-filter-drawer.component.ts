@@ -1,3 +1,4 @@
+import { GetBusinessAmenities, GetBusinessTypes } from "./../../store/actions/business";
 import { IBFilters } from "./../../models/business_filters";
 import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef } from "@angular/core";
 import { Store, select } from "@ngrx/store";
@@ -9,7 +10,11 @@ import { UpdateSearchType } from "src/app/store/actions/general";
 import { GeoLocationService } from "src/app/services/geo-location/geo-location.service";
 import { IPFilters } from "src/app/models/product_filters";
 import { selectProductFilter } from "src/app/store/selectors/product";
-import { selectBusinessFilter } from "src/app/store/selectors/business";
+import {
+  selectBusinessFilter,
+  selectBusinessAmenities,
+  selectBusinessTypes
+} from "src/app/store/selectors/business";
 
 @Component({
   selector: "app-home-filter-drawer",
@@ -21,6 +26,10 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   public showingBusinessesSelector = this.store.pipe(select(selectShowingBusinesses));
   public productsFilterSelector = this.store.pipe(select(selectProductFilter));
   public businessesFilterSelector = this.store.pipe(select(selectBusinessFilter));
+
+  public businessesTypesSelector = this.store.pipe(select(selectBusinessTypes));
+  public businessesAmenitiesSelector = this.store.pipe(select(selectBusinessAmenities));
+
   public showingBusinesses = true;
 
   public businessFilters: IBFilters = {
@@ -38,35 +47,25 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     price: 0
   };
 
-  public businessTags = [
+  public businessAmenities = [
     {
-      id: 1,
       tag: "tag1",
+      id: 1,
       checked: false
     },
     {
-      id: 2,
       tag: "tag2",
+      id: 2,
       checked: false
     },
     {
-      id: 3,
       tag: "tag3",
+      id: 3,
       checked: false
     },
     {
-      id: 4,
       tag: "tag4",
-      checked: false
-    },
-    {
-      id: 5,
-      tag: "tag5",
-      checked: false
-    },
-    {
-      id: 6,
-      tag: "tag6",
+      id: 4,
       checked: false
     }
   ];
@@ -97,14 +96,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     }
   ];
 
-  cities4 = [
-    { id: 1, name: "Bar" },
-    { id: 2, name: "Club" },
-    { id: 3, name: "Pub" },
-    { id: 4, name: "Restaurant" },
-    { id: 5, name: "PlayZone" }
-  ];
-
+  public businessTypes;
   public selectedBusinessType;
   public selectedTags;
   public distanceControlShowing: boolean = true;
@@ -117,10 +109,8 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       showingBusinesses => {
         this.showingBusinesses = showingBusinesses;
         if (this.showingBusinesses) {
-          this.setTags(this.businessTags);
           this.distanceControlShowing = true;
         } else {
-          this.setTags(this.productTags);
           this.distanceControlShowing = false;
         }
       }
@@ -134,15 +124,40 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     this.businessesFilterSelector.subscribe(filter => {
       this.businessFilters = filter;
     });
+    this.businessesAmenitiesSelector.subscribe(amenities => {
+      const amenitiesCheckbox = [];
 
+      for (const key in amenities) {
+        amenitiesCheckbox.push({
+          tag: amenities[key].tag,
+          id: amenities[key].id,
+          icon: amenities[key].icon,
+          checked: false
+        });
+      }
+      this.businessAmenities = amenitiesCheckbox;
+      this.selectedTags = amenitiesCheckbox;
+    });
+    this.businessesTypesSelector.subscribe(types => {
+      const businessTypesCheckbox = [];
+      for (const key in types) {
+        businessTypesCheckbox.push({
+          name: types[key].tag,
+          id: types[key].id,
+          icon: types[key].icon
+        });
+      }
+      this.businessTypes = businessTypesCheckbox;
+    });
+    this.selectedTags = this.businessAmenities;
+    this.dispatchActions();
     this.subscriptionsArr.push(showingBusinessesSubscriber);
   }
-  ngAfterViewInit() {
-    this.setTags(this.businessTags);
-  }
+  ngAfterViewInit() {}
 
-  setTags(tags: any) {
-    this.selectedTags = tags;
+  dispatchActions() {
+    this.store.dispatch(new GetBusinessAmenities());
+    this.store.dispatch(new GetBusinessTypes());
   }
 
   getInitialResults() {
@@ -156,7 +171,6 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       });
     });
   }
-
   getIdsOfSelectedTags(tagsArray: any) {
     const tags = [];
     for (const tag of tagsArray) {
@@ -170,8 +184,11 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   applyFilters() {
     if (this.showingBusinesses) {
       this.businessFilters.latlondis[2] = this.searchDistance.nativeElement.value;
-      this.businessFilters.amenities = this.getIdsOfSelectedTags(this.businessTags);
+      this.businessFilters.amenities = this.getIdsOfSelectedTags(this.businessAmenities);
       this.businessFilters.business_type = this.selectedBusinessType;
+
+      console.log(this.businessAmenities);
+      console.log(this.businessFilters);
       // this.store.dispatch(new GetSearchBusiness(this.businessFilters));
     } else {
       // this.store.dispatch(new GetSearchProducts(this.productsFilters));

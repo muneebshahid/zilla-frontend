@@ -1,5 +1,5 @@
 import { IImage } from "./image";
-import { IType } from "./type";
+import { IBType } from "./btype";
 import { ITimings } from "./timings";
 import { IAmenities } from "./amenities";
 import { IProduct } from "./product";
@@ -8,7 +8,7 @@ export interface IBusiness {
   business: {
     id: number;
     images: Array<IImage>;
-    business_type: IType;
+    business_type: IBType;
     opening_timings: Array<ITimings>;
     is_open: boolean;
     title: string;

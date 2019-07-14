@@ -35,8 +35,6 @@ export class HomeDetailDrawerComponent implements OnInit {
       if (business !== null && business !== undefined) {
         this.business = business;
         this.isActive = true;
-      } else {
-        apusCore(jQuery, 2);
       }
     });
 

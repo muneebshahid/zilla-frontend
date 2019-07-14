@@ -30,3 +30,12 @@ export const selectBusinessMarkers = createSelector(
   selectItems,
   (state: IBusinessState) => state.markers
 );
+export const selectBusinessTypes = createSelector(
+  selectItems,
+  (state: IBusinessState) => state.businessTypes
+);
+
+export const selectBusinessAmenities = createSelector(
+  selectItems,
+  (state: IBusinessState) => state.businessAmenities
+);

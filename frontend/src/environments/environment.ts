@@ -17,7 +17,11 @@ export const environment = {
   exploreUrl: "a",
   productUrl: "p",
   businessUrl: "b",
-  searchUrl: "s"
+  searchUrl: "s",
+  businessTypeUrl: "tag/btype",
+  businessAmenitiesUrl: "tag/amen",
+  productTypeUrl: "tag/ptype",
+  productTagsUrl: "tag/ptag"
 };
 
 /*
