@@ -51,7 +51,6 @@ import {
   LoadingComponent,
   BusinessInfoComponent
 } from "./general-components";
-import { ProductDetailComponent } from "./product-detail-components";
 
 import { HttpClientModule } from "@angular/common/http";
 import { AgmSnazzyInfoWindowModule } from "@agm/snazzy-info-window";
@@ -92,7 +91,6 @@ import {
     ExploreBusinessesComponent,
     ExploreProductsComponent,
     LoadingComponent,
-    ProductDetailComponent,
     AddListingComponent,
     LocationComponent,
     OpeningClosingHoursComponent,

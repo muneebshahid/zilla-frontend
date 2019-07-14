@@ -21,24 +21,6 @@ declare var jQuery: any;
   styleUrls: ["./home-detail-drawer.component.css"]
 })
 export class HomeDetailDrawerComponent implements OnInit {
-  images = [
-    {
-      file: "/media/product/1/6ee601a1-3f1f-461b-a3a2-1f718e7cf55b.jpg"
-    },
-    {
-      file: "/media/product/1/6ee601a1-3f1f-461b-a3a2-1f718e7cf55b.jpg"
-    },
-    {
-      file: "/media/product/1/6ee601a1-3f1f-461b-a3a2-1f718e7cf55b.jpg"
-    },
-    {
-      file: "/media/product/1/6ee601a1-3f1f-461b-a3a2-1f718e7cf55b.jpg"
-    },
-    {
-      file: "/media/product/1/6ee601a1-3f1f-461b-a3a2-1f718e7cf55b.jpg"
-    }
-  ];
-
   constructor(private store: Store<IAppState>, private route: ActivatedRoute) {}
   private businessSelector = this.store.pipe(select(selectBusiness));
   private subscriptionsArr: Subscription[] = [];

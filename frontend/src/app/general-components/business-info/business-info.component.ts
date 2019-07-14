@@ -21,8 +21,8 @@ export class BusinessInfoComponent implements OnInit {
 
   ngOnInit() {}
 
-  openDetailDrawer(id: number, slug: string) {
-    this.store.dispatch(new GetBusinessDetail({ slug: slug, id: id }));
+  openDetailDrawer(id: number) {
+    this.store.dispatch(new GetBusinessDetail({ id: id }));
   }
   highlightMarker(id: number, highlight: boolean) {
     this.highlightMarkerEvent.next({ id: id, highlight: highlight });

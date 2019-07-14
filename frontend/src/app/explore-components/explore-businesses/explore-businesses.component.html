@@ -23,7 +23,7 @@
             <i class="flaticon-shopping-cart"></i>
           </div>
 
-          <span class="listing-address hidden"> {{ business.address }} </span>
+          <span class="listing-address hidden"> {{ business.business.address }} </span>
           <div
             class="wrapper-list"
             (click)="businessSelected(i)"
@@ -32,10 +32,10 @@
             <div class="listing-image">
               <div class="listing-image-inner">
                 <div class="image-wrapper image-loaded">
-                  <a [href]="business.slug" *ngIf="business.images[0]">
+                  <a [href]="business.business.slug" *ngIf="business.business.images[0]">
                     <img
-                      [src]="endpoint + business.images[0].file"
-                      [alt]="business.title"
+                      [src]="endpoint + business.business.images[0].file"
+                      [alt]="business.business.title"
                       class="unveil-image"
                     />
                   </a>
@@ -60,9 +60,9 @@
               <div class="bottom-grid-inner">
                 <div class="listing-content">
                   <h3 class="listing-title">
-                    <a [href]="business.slug">{{ business.title }}</a>
+                    <a [href]="business.business.slug">{{ business.business.title }}</a>
                     <span
-                      *ngIf="business.claimed"
+                      *ngIf="business.business.claimed"
                       class="listing-claimed-icon"
                       data-toggle="tooltip"
                       title=""
@@ -71,7 +71,7 @@
                     ></span>
                   </h3>
                   <div class="listing-tagline ellipsize-description">
-                    {{ business.description }}
+                    {{ business.business.description }}
                   </div>
                   <div class="listing-tags">
                     <!-- <div class="listing-review">
@@ -80,13 +80,13 @@
                     </div> -->
                     <div class="listing-category">
                       <a href="https://demoapus.com/findgo/listing-category/shops/"
-                        ><i class="{{ business.business_type.icon }}"></i
-                        >{{ business.business_type.tag }}</a
+                        ><i class="{{ business.business.business_type.icon }}"></i
+                        >{{ business.business.business_type.tag }}</a
                       >
                     </div>
                     <div class="listing-time" [ngClass]="{ closed: !business.is_open }">
-                      <span *ngIf="!business.is_open">Closed</span>
-                      <span *ngIf="business.is_open">Open</span>
+                      <span *ngIf="!business.business.is_open">Closed</span>
+                      <span *ngIf="business.business.is_open">Open</span>
                     </div>
                     <div
                       class="listing-price-range"
@@ -97,14 +97,14 @@
                     >
                       <span
                         *ngFor="
-                          let dummy of ' '.repeat(business.expensive).split('');
+                          let dummy of ' '.repeat(business.business.expensive).split('');
                           let x = index
                         "
                         >$</span
                       >
                     </div>
                     <div class="listing-category ">
-                      <a href="/b/{{ business.slug }}/{{ business.user }}"
+                      <a href="/b/{{ business.business.slug }}/{{ business.business.user }}"
                         ><i class="fa fa-info-circle listing-detail-icon"></i>More Info</a
                       >
                     </div>
@@ -115,13 +115,13 @@
                     <div class="listing-location">
                       <i class="flaticon-placeholder"></i
                       ><a href="https://demoapus.com/findgo/region/new-york/">{{
-                        business.address
+                        business.business.address
                       }}</a>
                     </div>
                   </div>
                   <div class="listing-phone pull-left">
                     <i class="flaticon-phone-call"></i>
-                    {{ business.phone }}
+                    {{ business.business.phone }}
                   </div>
                 </div>
               </div>

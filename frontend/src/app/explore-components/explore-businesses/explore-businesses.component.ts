@@ -40,7 +40,7 @@ export class ExploreBusinessesComponent implements OnInit, OnDestroy {
       .pipe(
         tap(business => {
           if (business !== null && business.length !== 0) {
-            this.store.dispatch(new GetProductsOfBusiness(business[0].id));
+            this.store.dispatch(new GetProductsOfBusiness(business[0].business.id));
           }
         })
       )
@@ -57,7 +57,7 @@ export class ExploreBusinessesComponent implements OnInit, OnDestroy {
 
   public businessSelected(index) {
     if (index !== this.lastSelectedIndex) {
-      this.store.dispatch(new GetProductsOfBusiness(this.businesses[index].id));
+      this.store.dispatch(new GetProductsOfBusiness(this.businesses[index].business.id));
       this.enableProductLoadingSign.next();
       this.businessSelectionActive[this.lastSelectedIndex] = false;
       this.businessSelectionActive[index] = true;

@@ -1,8 +1,8 @@
 <div class="job_listings job_listings_cards clearfix row">
   <div
-    (click)="openDetailDrawer(business.id, business.slug)"
-    (mouseenter)="highlightMarker(business.id, true)"
-    (mouseleave)="highlightMarker(business.id, false)"
+    (click)="openDetailDrawer(business.business.id)"
+    (mouseenter)="highlightMarker(business.business.id, true)"
+    (mouseleave)="highlightMarker(business.business.id, false)"
     target="_blank"
     class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450 business-info-grid-item"
     *ngFor="let business of businesses"
@@ -45,8 +45,8 @@
           <div class="image-wrapper image-loaded">
             <a href="javascript:void(0)">
               <img
-                [src]="getCoverImage(business.images)"
-                [alt]="business.title"
+                [src]="getCoverImage(business.business.images)"
+                [alt]="business.business.title"
                 class="unveil-image"
               />
             </a>
@@ -70,9 +70,11 @@
       <div class="bottom-grid">
         <div class="listing-content">
           <h3 class="listing-title">
-            <a href="javascript:void(0)">{{ business.title }}</a>
+            <a href="javascript:void(0)">{{ business.business.title }}</a>
           </h3>
-          <div class="listing-tagline ellipsize-description">{{ business.description }}</div>
+          <div class="listing-tagline ellipsize-description">
+            {{ business.business.description }}
+          </div>
           <div class="listing-tags">
             <!-- <div class="listing-review">
               <span class="review-avg">5.0</span>
@@ -81,7 +83,7 @@
 
             <div class="listing-category" *ngIf="homePage == true">
               <a href="javascript:void(0)"
-                ><i class="flaticon-shopping-cart"></i>{{ business.business_type.tag }}</a
+                ><i class="flaticon-shopping-cart"></i>{{ business.business.business_type.tag }}</a
               >
             </div>
             <div
@@ -91,7 +93,11 @@
               title=""
               data-original-title="Moderate"
             >
-              <span *ngFor="let dummy of ' '.repeat(business.expensive).split(''); let x = index"
+              <span
+                *ngFor="
+                  let dummy of ' '.repeat(business.business.expensive).split('');
+                  let x = index
+                "
                 >$</span
               >
             </div>
@@ -100,13 +106,16 @@
         <div class="listing-content-custom clearfix" *ngIf="homePage == true">
           <div class="listing-location ellipsize-description">
             <i class="flaticon-placeholder product-address-icon"></i
-            ><a href="javascript:void(0)" [title]="business.address" class="product-address">{{
-              business.address
-            }}</a>
+            ><a
+              href="javascript:void(0)"
+              [title]="business.business.address"
+              class="product-address"
+              >{{ business.business.address }}</a
+            >
           </div>
           <div class="listing-phone product-phone">
             <i class="flaticon-phone-call"></i>
-            {{ business.phone }}
+            {{ business.business.phone }}
           </div>
         </div>
       </div>

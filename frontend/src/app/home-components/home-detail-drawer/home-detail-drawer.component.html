@@ -13,16 +13,18 @@
             class="detail-listing-v1 detail-listing-v5 post-236 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-fitness job_listing_type-full-time job_listing_amenity-accepts-credit-cards job_listing_amenity-bike-parking job_listing_amenity-coupons job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-reservations job_listing_amenity-smoking-allowed job_listing_amenity-wheelchair-accesible job_listing_amenity-wireless-internet job_listing_region-london job_listing_tag-card-payment job_listing_tag-daily-specials job_listing_tag-hotels job_listing_tag-listing job_listing_tag-restaurant job_listing_tag-smoking-allowed job_listing_tag-trips job-type-full-time"
           >
             <div class="header-gallery-wrapper header-top-job">
-              <app-detail-header-gallery [images]="images"></app-detail-header-gallery>
+              <app-detail-header-gallery
+                [images]="business?.business.images"
+              ></app-detail-header-gallery>
               <app-detail-header
-                [type]="business?.business_type"
-                [description]="business?.description"
-                [title]="business?.title"
-                [phone]="business?.phone"
-                [address]="business?.address"
-                [expensive]="business?.expensive"
-                [is_open_or_available]="business?.is_open"
-                [open_or_available]="business?.is_open ? 'Open' : 'Closed'"
+                [type]="business?.business.business_type"
+                [description]="business?.business.description"
+                [title]="business?.business.title"
+                [phone]="business?.business.phone"
+                [address]="business?.business.address"
+                [expensive]="business?.business.expensive"
+                [is_open_or_available]="business?.business.is_open"
+                [open_or_available]="business?.business.is_open ? 'Open' : 'Closed'"
               ></app-detail-header>
             </div>
             <app-business-detail-container
