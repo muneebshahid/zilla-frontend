@@ -87,14 +87,11 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   searchProducts() {
     this.showingBusinesses = false;
     this.store.dispatch(new UpdateSearchType({ showingBusinesses: this.showingBusinesses }));
-
-    // this.store.dispatch(new GetSearchProducts(params));
   }
 
   searchBusinesses() {
     this.showingBusinesses = true;
     this.store.dispatch(new UpdateSearchType({ showingBusinesses: this.showingBusinesses }));
-    // this.store.dispatch(new GetSearchBusiness());
   }
 
   ngOnDestroy() {

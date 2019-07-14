@@ -47,28 +47,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     price: 0
   };
 
-  public businessAmenities = [
-    {
-      tag: "tag1",
-      id: 1,
-      checked: false
-    },
-    {
-      tag: "tag2",
-      id: 2,
-      checked: false
-    },
-    {
-      tag: "tag3",
-      id: 3,
-      checked: false
-    },
-    {
-      tag: "tag4",
-      id: 4,
-      checked: false
-    }
-  ];
+  public businessAmenities = [];
   public productTags = [
     {
       id: 1,
@@ -186,10 +165,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       this.businessFilters.latlondis[2] = this.searchDistance.nativeElement.value;
       this.businessFilters.amenities = this.getIdsOfSelectedTags(this.businessAmenities);
       this.businessFilters.business_type = this.selectedBusinessType;
-
-      console.log(this.businessAmenities);
-      console.log(this.businessFilters);
-      // this.store.dispatch(new GetSearchBusiness(this.businessFilters));
+      this.searchBusinesses(this.businessFilters);
     } else {
       // this.store.dispatch(new GetSearchProducts(this.productsFilters));
     }
