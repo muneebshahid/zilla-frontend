@@ -105,6 +105,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     { id: 5, name: "PlayZone" }
   ];
 
+  public selectedBusinessType;
   public selectedTags;
   public distanceControlShowing: boolean = true;
   @ViewChild("searchDistance") searchDistance: ElementRef;
@@ -146,6 +147,9 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
 
   getInitialResults() {
     this.geoLocationService.getPosition().subscribe((pos: Position) => {
+      this.businessFilters.latlondis[0] = pos.coords.latitude;
+      this.businessFilters.latlondis[1] = pos.coords.longitude;
+
       this.searchBusinesses({
         latlondis: `${pos.coords.latitude},${pos.coords.longitude},${
           this.businessFilters.latlondis[2]
@@ -168,6 +172,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     if (this.showingBusinesses) {
       this.businessFilters.latlondis[2] = this.searchDistance.nativeElement.value;
       this.businessFilters.amenities = this.getIdsOfSelectedTags(this.businessTags);
+      this.businessFilters.business_type = this.selectedBusinessType;
       // this.store.dispatch(new GetSearchBusiness(this.businessFilters));
     } else {
       // this.store.dispatch(new GetSearchProducts(this.productsFilters));
