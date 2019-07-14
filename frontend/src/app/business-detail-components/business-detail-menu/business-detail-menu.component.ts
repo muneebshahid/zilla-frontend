@@ -20,6 +20,7 @@ export class BusinessDetailMenuComponent implements OnInit, OnChanges {
   ngOnInit() {}
   ngOnChanges(changes: SimpleChanges) {
     if (this.products !== null) {
+      this.businessMenus = [];
       for (let i = 0; i < this.products.length; i++) {
         let menuItem: MenuItem = {
           description: this.products[i].description,

@@ -15,43 +15,18 @@
       <div class="listing-cat-icon hidden">
         <i class="flaticon-shopping-cart"></i>
       </div>
-      <!--
-      <div class="hidden listing-review">
-        <div class="review-stars-rated-wrapper">
-            <div class="review-stars-rated">
-            <ul class="review-stars">
-              <li><span class="fa fa-star-o"></span></li>
-              <li><span class="fa fa-star-o"></span></li>
-              <li><span class="fa fa-star-o"></span></li>
-              <li><span class="fa fa-star-o"></span></li>
-              <li><span class="fa fa-star-o"></span></li>
-            </ul>
-
-            <ul class="review-stars filled" style="width: 100%">
-              <li><span class="fa fa-star"></span></li>
-              <li><span class="fa fa-star"></span></li>
-              <li><span class="fa fa-star"></span></li>
-              <li><span class="fa fa-star"></span></li>
-              <li><span class="fa fa-star"></span></li>
-            </ul>
-          </div>
-          <span class="nb-review">(1 Review)</span>
-        </div>
-        </div>
-          -->
 
       <div class="listing-image">
         <div class="listing-image-inner">
           <div class="image-wrapper image-loaded">
             <a href="javascript:void(0)">
               <img
-                [src]="getCoverImage(business.business.images)"
+                [src]="endpoint + business.business.images[0].file"
                 [alt]="business.business.title"
                 class="unveil-image"
               />
             </a>
           </div>
-          <!-- <span class="price-range"> $100 - $200 </span> -->
           <div class="top-imformation">
             <div class="listing-preview-wrapper pull-left">
               <a href="#preview-635" class="listing-preview" data-id="635"
@@ -76,11 +51,6 @@
             {{ business.business.description }}
           </div>
           <div class="listing-tags">
-            <!-- <div class="listing-review">
-              <span class="review-avg">5.0</span>
-              1 Rating
-            </div> -->
-
             <div class="listing-category" *ngIf="homePage == true">
               <a href="javascript:void(0)"
                 ><i class="flaticon-shopping-cart"></i>{{ business.business.business_type.tag }}</a

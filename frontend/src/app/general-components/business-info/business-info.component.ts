@@ -27,11 +27,4 @@ export class BusinessInfoComponent implements OnInit {
   highlightMarker(id: number, highlight: boolean) {
     this.highlightMarkerEvent.next({ id: id, highlight: highlight });
   }
-  getCoverImage(images: any) {
-    if (images.length === 0) {
-      return "/assets/images/default-images/cutlery.png";
-    } else {
-      return this.endpoint + images[0].file;
-    }
-  }
 }

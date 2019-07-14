@@ -21,7 +21,7 @@ declare var jQuery: any;
   styleUrls: ["./home-detail-drawer.component.css"]
 })
 export class HomeDetailDrawerComponent implements OnInit {
-  constructor(private store: Store<IAppState>, private route: ActivatedRoute) {}
+  constructor(private store: Store<IAppState>) {}
   private businessSelector = this.store.pipe(select(selectBusiness));
   private subscriptionsArr: Subscription[] = [];
   public business: IBusiness;
@@ -32,7 +32,7 @@ export class HomeDetailDrawerComponent implements OnInit {
   }
   private subscriptions() {
     const subcriberBusiness = this.businessSelector.subscribe(business => {
-      if (business !== null) {
+      if (business !== null && business !== undefined) {
         this.business = business;
         this.isActive = true;
       } else {

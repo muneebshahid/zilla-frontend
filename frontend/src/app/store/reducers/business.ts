@@ -15,7 +15,7 @@ export const businessReducers = (
     case EBusinessActions.GetSearchBusinessSuccess: {
       const markers = [];
       for (const item of action.payload.businesses) {
-        markers.push({ latlon: item.latlon, slug: item.slug, id: item.id });
+        markers.push({ latlon: item.business.latlon, id: item.business.id });
       }
 
       return {

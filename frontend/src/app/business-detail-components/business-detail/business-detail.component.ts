@@ -13,25 +13,8 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./business-detail.component.css"]
 })
 export class BusinessDetailComponent implements OnInit, OnDestroy {
-  constructor(private store: Store<IAppState>, private route: ActivatedRoute) {}
-  private businessSelector = this.store.pipe(select(selectBusiness));
-  private subscriptionsArr: Subscription[] = [];
-  public business: IBusiness;
+  constructor() {}
 
-  ngOnInit() {
-    this.subscriptions();
-  }
-  private subscriptions() {
-    const subcriberBusiness = this.businessSelector.subscribe(business => {
-      console.log(business);
-      this.business = business;
-    });
-
-    this.subscriptionsArr.push(subcriberBusiness);
-  }
-  ngOnDestroy() {
-    for (const subscriber of this.subscriptionsArr) {
-      subscriber.unsubscribe();
-    }
-  }
+  ngOnInit() {}
+  ngOnDestroy() {}
 }
