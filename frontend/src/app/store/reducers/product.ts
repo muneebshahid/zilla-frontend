@@ -26,6 +26,18 @@ export const productReducers = (
         product: action.payload
       };
     }
+    case EProductActions.GetProductTagsSuccess: {
+      return {
+        ...state,
+        product_tags: action.payload
+      };
+    }
+    case EProductActions.GetProductTypesSuccess: {
+      return {
+        ...state,
+        product_types: action.payload
+      };
+    }
 
     default:
       return state;

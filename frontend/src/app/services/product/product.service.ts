@@ -17,12 +17,15 @@ export class ProductService {
     );
   }
 
-  getNearbyProducts(latlon: any, params: any): Observable<IProduct[]> {
-    return null;
-  }
-
   getSearchProducts(params: any) {
     return this.httpService.get(`${environment.searchUrl}/${environment.productUrl}/`, params);
+  }
+
+  getProductTypes() {
+    return this.httpService.get(`${environment.productTypeUrl}/`, {});
+  }
+  getProductTags() {
+    return this.httpService.get(`${environment.productTagsUrl}/`, {});
   }
 
   cleanProductFilters(params) {}
@@ -31,10 +34,4 @@ export class ProductService {
   getProductsOfBusiness(businessId: any): Observable<IProduct[]> {
     return this.httpService.get(`${environment.exploreUrl}/${businessId}/`, {});
   }
-
-  updateProductDetails(object: any) {}
-
-  addProduct(object: any) {}
-
-  removeProduct(id: number) {}
 }

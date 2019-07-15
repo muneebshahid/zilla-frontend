@@ -2,7 +2,11 @@ import {
   GetProductDetails,
   GetProductDetailsSuccess,
   GetSearchProducts,
-  GetSearchProductsSuccess
+  GetSearchProductsSuccess,
+  GetProductTypes,
+  GetProductTypesSuccess,
+  GetProductTagsSuccess,
+  GetProductTags
 } from "./../actions/product";
 import { Injectable } from "@angular/core";
 import { Effect, ofType, Actions } from "@ngrx/effects";
@@ -43,6 +47,24 @@ export class ProductEffects {
       return this.productService
         .getProductDetails(payload)
         .pipe(map(products => new GetProductDetailsSuccess(products)));
+    })
+  );
+  @Effect()
+  getProductTypes$ = this.actions$.pipe(
+    ofType<GetProductTypes>(EProductActions.GetProductTypes),
+    switchMap(() => {
+      return this.productService
+        .getProductTypes()
+        .pipe(map(products => new GetProductTypesSuccess(products)));
+    })
+  );
+  @Effect()
+  getProductTags$ = this.actions$.pipe(
+    ofType<GetProductTags>(EProductActions.GetProductTags),
+    switchMap(() => {
+      return this.productService
+        .getProductTags()
+        .pipe(map(products => new GetProductTagsSuccess(products)));
     })
   );
 
