@@ -14,9 +14,6 @@ import {
 } from "src/app/store/selectors/business";
 import { IBusiness } from "src/app/models/business";
 import { MapComponent } from "src/app/general-components";
-import { GeoLocationService } from "src/app/services/geo-location/geo-location.service";
-import { GetSearchBusiness, GetBusinessDetail } from "src/app/store/actions/business";
-import { GetSearchProducts } from "src/app/store/actions/product";
 import { selectShowingBusinesses } from "src/app/store/selectors/general";
 
 @Component({

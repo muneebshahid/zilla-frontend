@@ -3,7 +3,6 @@ import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
 import { HttpService } from "../http/http.service";
 import { environment } from "./../../../environments/environment";
-import { filter } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
@@ -16,7 +15,6 @@ export class BusinessService {
   }
   getSearchBusinesses(params: any) {
     const filteredParams = this.cleanBusinessFilters(params);
-    console.log(filteredParams);
     return this.httpService.get(
       `${environment.searchUrl}/${environment.businessUrl}/`,
       filteredParams
