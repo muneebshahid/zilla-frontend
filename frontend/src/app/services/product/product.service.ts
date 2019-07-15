@@ -18,7 +18,11 @@ export class ProductService {
   }
 
   getSearchProducts(params: any) {
-    return this.httpService.get(`${environment.searchUrl}/${environment.productUrl}/`, params);
+    const filteredParams = this.cleanProductFilters(params);
+    return this.httpService.get(
+      `${environment.searchUrl}/${environment.productUrl}/`,
+      filteredParams
+    );
   }
 
   getProductTypes() {
@@ -28,7 +32,30 @@ export class ProductService {
     return this.httpService.get(`${environment.productTagsUrl}/`, {});
   }
 
-  cleanProductFilters(params) {}
+  cleanProductFilters(params) {
+    let filteredParam = {};
+    if (params.query !== "") {
+      filteredParam["query"] = params.query;
+    }
+    if (params.product_type !== -1) {
+      filteredParam["product_type"] = params.product_type;
+    }
+    if (params.tags.length !== 0) {
+      filteredParam["tags"] = params.tags.join();
+    }
+    if (params.latlondis[0] !== -1) {
+      filteredParam["latlondis"] = `${params.latlondis[0]},${params.latlondis[1]},${
+        params.latlondis[2]
+      }`;
+    }
+    if (params.price !== -1) {
+      filteredParam["price"] = params.price;
+    }
+    if (params.available !== -1) {
+      filteredParam["available"] = params.available;
+    }
+    return filteredParam;
+  }
 
   /* businessObj business id to post */
   getProductsOfBusiness(businessId: any): Observable<IProduct[]> {

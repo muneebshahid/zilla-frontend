@@ -57,6 +57,12 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   /* represents the id of the selected item in dropdown. */
   public selectedTypeID;
 
+  /* 
+    this will help us make http call the first time user selects the products tab. After that, 
+    the products will only be updated when user applies a filter or search on searchbox.
+  */
+  public productsRetrieved: boolean = false;
+
   public showingBusinesses: boolean = true;
   public filterTypeText: string;
   @ViewChild("searchDistance") searchDistance: ElementRef;
@@ -98,7 +104,11 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
           this.setBusinessDrawerFilters();
         } else {
           this.setProductDrawerFilters();
-          // this.searchProducts(this.productsFilters);
+
+          if (!this.productsRetrieved) {
+            this.productsRetrieved = !this.productsRetrieved;
+            this.searchProducts(this.productsFilters);
+          }
         }
       }
     );

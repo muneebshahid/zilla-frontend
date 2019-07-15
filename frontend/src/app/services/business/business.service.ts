@@ -10,9 +10,6 @@ import { environment } from "./../../../environments/environment";
 export class BusinessService {
   constructor(private httpService: HttpService) {}
 
-  getNearbyBusinesses(latlng: any): Observable<IBusiness> {
-    return this.httpService.get("explore", {});
-  }
   getSearchBusinesses(params: any) {
     const filteredParams = this.cleanBusinessFilters(params);
     return this.httpService.get(
@@ -21,7 +18,6 @@ export class BusinessService {
     );
   }
 
-  getBusinessFromProduct() {}
   cleanBusinessFilters(params) {
     let filteredParam = {};
     if (params.latlondis[0] !== -1) {
@@ -35,7 +31,7 @@ export class BusinessService {
     if (params.query !== "") {
       filteredParam["query"] = params.query;
     }
-    if (params.business_type !== "") {
+    if (params.business_type !== -1) {
       filteredParam["business_type"] = params.business_type;
     }
     return filteredParam;

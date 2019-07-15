@@ -24,6 +24,6 @@ export const initialBusinessState: IBusinessState = {
     latlondis: [10, 10, 100000],
     query: "",
     amenities: [],
-    business_type: ""
+    business_type: -1
   }
 };
