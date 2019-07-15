@@ -158,8 +158,9 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   applyFilters() {
     if (this.showingBusinesses) {
       this.businessFilters.latlondis[2] = this.searchDistance.nativeElement.value;
-      this.businessFilters.amenities = this.getIdsOfSelectedTags(this.businessAmenities);
-      this.businessFilters.business_type = this.selectedBusinessType;
+      console.log(this.businessFilters);
+      // this.businessFilters.amenities = this.getIdsOfSelectedTags(this.selectedTags);
+      // this.businessFilters.business_type = this.selectedBusinessType;
       this.searchBusinesses(this.businessFilters);
     } else {
       // this.store.dispatch(new GetSearchProducts(this.productsFilters));

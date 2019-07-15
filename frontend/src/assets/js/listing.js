@@ -515,7 +515,7 @@
           $("#search_distance").val(ui.value);
           $(".text-distance").text(ui.value);
           $("#distance-custom-handle").attr("data-value", ui.value);
-          $(".job_listings").triggerHandler("update_results", [1, false]);
+          // $(".job_listings").triggerHandler("update_results", [1, false]);
         },
         create: function() {
           $("#distance-custom-handle").attr("data-value", $(this).slider("value"));

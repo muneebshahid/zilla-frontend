@@ -30,7 +30,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   @Input() public mapComponent: MapComponent;
 
   public businessMarkersSelector = this.store.pipe(select(selectBusinessMarkers));
-  public businessSelector = this.store.pipe(select(selectBusinesses));
+  public businessesSelector = this.store.pipe(select(selectBusinesses));
   public businessFilterSelector = this.store.pipe(select(selectBusinessFilter));
   public numHitSelector = this.store.pipe(select(selectNumHits));
   public showingBusinessesSelector = this.store.pipe(select(selectShowingBusinesses));
@@ -61,8 +61,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
       }
     });
 
-    const businessSubscriber = this.businessSelector.subscribe(businesses => {
-      console.log(businesses);
+    const businessSubscriber = this.businessesSelector.subscribe(businesses => {
       this.businesses = businesses;
     });
     const numHitSubscriber = this.numHitSelector.subscribe(numHits => {
