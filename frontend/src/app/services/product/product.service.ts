@@ -37,7 +37,7 @@ export class ProductService {
     if (params.query !== "") {
       filteredParam["query"] = params.query;
     }
-    if (params.product_type !== -1) {
+    if (params.product_type !== null) {
       filteredParam["product_type"] = params.product_type;
     }
     if (params.tags.length !== 0) {

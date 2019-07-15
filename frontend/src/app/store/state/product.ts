@@ -18,7 +18,7 @@ export const initialProductState: IProductState = {
   num_hits: 0,
   filters: {
     query: "",
-    product_type: -1,
+    product_type: null,
     tags: [],
     latlondis: [10, 10, 100000],
     available: -1,

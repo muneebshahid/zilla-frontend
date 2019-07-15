@@ -31,7 +31,7 @@ export class BusinessService {
     if (params.query !== "") {
       filteredParam["query"] = params.query;
     }
-    if (params.business_type !== -1) {
+    if (params.business_type !== null) {
       filteredParam["business_type"] = params.business_type;
     }
     return filteredParam;

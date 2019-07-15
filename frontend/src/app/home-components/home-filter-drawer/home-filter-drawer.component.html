@@ -30,6 +30,23 @@
                 </div>
               </div>
             </div>
+            <!-- <div class="filter-top" *ngIf="!showingBusinesses">
+              <div class="row filter-top-inner clearfix">
+                <div class="col-xs-12">
+                  <ng-select
+                    [items]="selectedTypes"
+                    name="listing_category"
+                    bindLabel="name"
+                    bindValue="id"
+                    class="dropdowner"
+                    [multiple]="false"
+                    [placeholder]="filterTypeText"
+                    [(ngModel)]="selectedTypeID"
+                  >
+                  </ng-select>
+                </div>
+              </div>
+            </div> -->
             <div class="search_distance_wrapper clearfix" *ngIf="showingBusinesses">
               <div class="search-distance-label">
                 <label for="use_search_distance">

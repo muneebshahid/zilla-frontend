@@ -55,7 +55,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   public selectedProductTypeID = null;
 
   /* represents the id of the selected item in dropdown. */
-  public selectedTypeID;
+  public selectedTypeID = null;
 
   /* 
     this will help us make http call the first time user selects the products tab. After that, 
@@ -76,6 +76,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   setProductDrawerFilters() {
+    /* save business dropdown state before reseting the dropdown to previous state of products */
     this.selectedBusinessTypeID = this.selectedTypeID;
     this.selectedTypeID = this.selectedProductTypeID;
 
@@ -182,6 +183,8 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     this.geoLocationService.getPosition().subscribe((pos: Position) => {
       this.businessFilters.latlondis[0] = pos.coords.latitude;
       this.businessFilters.latlondis[1] = pos.coords.longitude;
+      this.productsFilters.latlondis[0] = pos.coords.latitude;
+      this.productsFilters.latlondis[1] = pos.coords.longitude;
       this.searchBusinesses(this.businessFilters);
     });
   }
