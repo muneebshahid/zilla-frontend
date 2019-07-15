@@ -48,13 +48,17 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   public businessAmenities: IAmenities[];
   public productTags: ITags[];
 
-  public selectedBusinessType;
-  public selectedProductType;
-
   public selectedTags;
   public selectedTypes;
 
+  public selectedBusinessTypeID = null;
+  public selectedProductTypeID = null;
+
+  /* represents the id of the selected item in dropdown. */
+  public selectedTypeID;
+
   public showingBusinesses: boolean = true;
+  public filterTypeText: string;
   @ViewChild("searchDistance") searchDistance: ElementRef;
 
   constructor(private store: Store<IAppState>, private geoLocationService: GeoLocationService) {}
@@ -66,13 +70,23 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   setProductDrawerFilters() {
+    this.selectedBusinessTypeID = this.selectedTypeID;
+    this.selectedTypeID = this.selectedProductTypeID;
+
     this.selectedTags = this.productTags;
     this.selectedTypes = this.productTypes;
+    this.selectedTypeID = this.selectedProductTypeID;
+    this.filterTypeText = "Product Type";
   }
 
   setBusinessDrawerFilters() {
+    this.selectedProductTypeID = this.selectedTypeID;
+    this.selectedTypeID = this.selectedBusinessTypeID;
+
     this.selectedTags = this.businessAmenities;
     this.selectedTypes = this.businessTypes;
+    this.selectedTypeID = this.selectedBusinessTypeID;
+    this.filterTypeText = "Business Type";
   }
 
   initializeSubscribers() {
@@ -175,7 +189,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     if (this.showingBusinesses) {
       this.businessFilters.latlondis[2] = this.searchDistance.nativeElement.value;
       this.businessFilters.amenities = this.getIdsOfSelectedTags(this.selectedTags);
-      this.businessFilters.business_type = this.selectedBusinessType;
+      this.businessFilters.business_type = this.selectedTypeID;
       this.searchBusinesses(this.businessFilters);
     } else {
       this.searchProducts(this.productsFilters);
