@@ -17,7 +17,7 @@
               <div class="row filter-top-inner clearfix">
                 <div class="col-xs-12">
                   <ng-select
-                    [items]="businessTypes"
+                    [items]="selectedTypes"
                     name="listing_category"
                     bindLabel="name"
                     bindValue="id"
@@ -30,7 +30,7 @@
                 </div>
               </div>
             </div>
-            <div class="search_distance_wrapper clearfix" *ngIf="distanceControlShowing">
+            <div class="search_distance_wrapper clearfix" *ngIf="showingBusinesses">
               <div class="search-distance-label">
                 <label for="use_search_distance">
                   <input
