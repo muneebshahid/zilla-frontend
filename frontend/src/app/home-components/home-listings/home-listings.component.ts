@@ -1,10 +1,7 @@
-import {
-  selectBusinessFilter,
-  selectBusinessFilterLatLonDis
-} from "./../../store/selectors/business";
+import { selectBusinessFilter } from "./../../store/selectors/business";
 import { UpdateSearchType } from "./../../store/actions/general";
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from "@angular/core";
-import { select, Store, defaultMemoize } from "@ngrx/store";
+import { select, Store } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
 import { Subscription } from "rxjs";
 import {
@@ -27,16 +24,15 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   @Input() public mapComponent: MapComponent;
 
   public businessMarkersSelector = this.store.pipe(select(selectBusinessMarkers));
-  public businessesSelector = this.store.pipe(select(selectBusinesses));
   public businessFilterSelector = this.store.pipe(select(selectBusinessFilter));
   public numHitSelector = this.store.pipe(select(selectNumHits));
   public showingBusinessesSelector = this.store.pipe(select(selectShowingBusinesses));
 
-  public searchDistance = 0;
-  public businesses: IBusiness[];
-  public showingBusinesses = true;
-  public hits: number = 0;
   private subscriptionsArr: Subscription[] = [];
+  public showingBusinesses = true;
+  public businesses: IBusiness[];
+  public searchDistance = 0;
+  public hits: number = 0;
   public filters: any;
 
   constructor(private store: Store<IAppState>) {}
@@ -58,9 +54,6 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
       }
     });
 
-    const businessSubscriber = this.businessesSelector.subscribe(businesses => {
-      this.businesses = businesses;
-    });
     const numHitSubscriber = this.numHitSelector.subscribe(numHits => {
       this.hits = numHits;
     });
@@ -69,14 +62,12 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
         this.showingBusinesses = showingBusinesses;
       }
     );
-
     const businessFilterSubscriber = this.businessFilterSelector.subscribe(filters => {
       this.searchDistance = filters.latlondis[2];
     });
 
     this.subscriptionsArr.push(businessFilterSubscriber);
     this.subscriptionsArr.push(showingBusinessesSubscriber);
-    this.subscriptionsArr.push(businessSubscriber);
     this.subscriptionsArr.push(numHitSubscriber);
     this.subscriptionsArr.push(businessMarkers);
   }

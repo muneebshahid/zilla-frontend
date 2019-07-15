@@ -19,6 +19,7 @@ export class ProductService {
 
   getSearchProducts(params: any) {
     const filteredParams = this.cleanProductFilters(params);
+    console.log(filteredParams);
     return this.httpService.get(
       `${environment.searchUrl}/${environment.productUrl}/`,
       filteredParams

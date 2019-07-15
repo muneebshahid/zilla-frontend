@@ -57,8 +57,8 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   /* represents the id of the selected item in dropdown. */
   public selectedTypeID = null;
 
-  /* 
-    this will help us make http call the first time user selects the products tab. After that, 
+  /*
+    this will help us make http call the first time user selects the products tab. After that,
     the products will only be updated when user applies a filter or search on searchbox.
   */
   public productsRetrieved: boolean = false;
@@ -125,16 +125,16 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       this.businessAmenities = this.getCheckboxVersionOfFilters(amenities);
       this.selectedTags = this.businessAmenities;
     });
-    const businessTypesSubscriber = this.businessesTypesSelector.subscribe(business_types => {
-      this.businessTypes = this.getDropDownVersionOfFilters(business_types);
+    const businessTypesSubscriber = this.businessesTypesSelector.subscribe(businessTypes => {
+      this.businessTypes = this.getDropDownVersionOfFilters(businessTypes);
       this.selectedTypes = this.businessTypes;
     });
 
-    const productTypesSubscriber = this.productTypesSelector.subscribe(product_types => {
-      this.productTypes = this.getDropDownVersionOfFilters(product_types);
+    const productTypesSubscriber = this.productTypesSelector.subscribe(productTypes => {
+      this.productTypes = this.getDropDownVersionOfFilters(productTypes);
     });
-    const productTagsSubscriber = this.productTagsSelector.subscribe(product_tags => {
-      this.productTags = this.getCheckboxVersionOfFilters(product_tags);
+    const productTagsSubscriber = this.productTagsSelector.subscribe(productTags => {
+      this.productTags = this.getCheckboxVersionOfFilters(productTags);
     });
     this.subscriptionsArr.push(showingBusinessesSubscriber);
     this.subscriptionsArr.push(productTagsSubscriber);
