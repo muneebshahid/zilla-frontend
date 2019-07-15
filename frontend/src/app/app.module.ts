@@ -35,12 +35,6 @@ import {
 } from "./business-detail-components";
 
 import {
-  ExploreComponent,
-  ExploreBusinessesComponent,
-  ExploreProductsComponent
-} from "./explore-components";
-
-import {
   MenuComponent,
   MapComponent,
   DetailHeaderGalleryComponent,
@@ -87,9 +81,6 @@ import {
     BusinessDetailAmenitiesComponent,
     BusinessDetailOpeningHoursComponent,
     BusinessDetailMapComponent,
-    ExploreComponent,
-    ExploreBusinessesComponent,
-    ExploreProductsComponent,
     LoadingComponent,
     AddListingComponent,
     LocationComponent,

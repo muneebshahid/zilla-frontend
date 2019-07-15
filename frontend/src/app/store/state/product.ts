@@ -2,9 +2,10 @@ import { IPFilters } from "./../../models/product_filters";
 import { IProduct } from "../../models/product";
 import { IPType } from "src/app/models/ptype";
 import { ITags } from "src/app/models/tags";
+import { IBusiness } from "src/app/models/business";
 
 export interface IProductState {
-  products?: IProduct[];
+  products?: IBusiness[];
   product?: IProduct;
   num_hits?: number;
   filters?: IPFilters;
