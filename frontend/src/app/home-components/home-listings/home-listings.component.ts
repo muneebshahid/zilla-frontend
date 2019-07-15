@@ -62,6 +62,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     });
 
     const businessSubscriber = this.businessSelector.subscribe(businesses => {
+      console.log(businesses);
       this.businesses = businesses;
     });
     const numHitSubscriber = this.numHitSelector.subscribe(numHits => {

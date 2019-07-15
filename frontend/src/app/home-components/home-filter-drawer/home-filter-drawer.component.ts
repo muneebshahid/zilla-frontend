@@ -128,7 +128,6 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       }
       this.businessTypes = businessTypesCheckbox;
     });
-    this.selectedTags = this.businessAmenities;
     this.dispatchActions();
     this.subscriptionsArr.push(showingBusinessesSubscriber);
   }
@@ -166,8 +165,12 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       // this.store.dispatch(new GetSearchProducts(this.productsFilters));
     }
   }
+
+  toggleCheckbox(idx: number) {
+    this.selectedTags[idx].checked = !this.selectedTags[idx].checked;
+  }
+
   searchBusinesses(params: any) {
-    console.log("searchbusinesses called");
     this.store.dispatch(new UpdateSearchType({ showingBusinesses: true }));
     this.store.dispatch(new GetSearchBusiness(params));
   }

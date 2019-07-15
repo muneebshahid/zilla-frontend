@@ -15,12 +15,10 @@ export class BusinessService {
     return this.httpService.get("explore", {});
   }
   getSearchBusinesses(params: any) {
-    console.log("wah");
-    console.log(params);
     const filteredParams = this.cleanBusinessFilters(params);
     return this.httpService.get(
-      `${environment.searchUrl}/${environment.businessUrl}/`,
-      filteredParams
+      `${environment.searchUrl}/${environment.businessUrl}/?latlondis=48,48,10000000`,
+      {}
     );
   }
 
