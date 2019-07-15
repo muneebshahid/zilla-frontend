@@ -9,12 +9,21 @@ import { GetSearchBusiness } from "src/app/store/actions/business";
 import { UpdateSearchType } from "src/app/store/actions/general";
 import { GeoLocationService } from "src/app/services/geo-location/geo-location.service";
 import { IPFilters } from "src/app/models/product_filters";
-import { selectProductFilter } from "src/app/store/selectors/product";
+import {
+  selectProductFilter,
+  selectProductTypes,
+  selectProductTags
+} from "src/app/store/selectors/product";
 import {
   selectBusinessFilter,
   selectBusinessAmenities,
   selectBusinessTypes
 } from "src/app/store/selectors/business";
+import { GetProductTypes, GetProductTags } from "src/app/store/actions/product";
+import { ITags } from "src/app/models/tags";
+import { IPType } from "src/app/models/ptype";
+import { IAmenities } from "src/app/models/amenities";
+import { IBType } from "src/app/models/btype";
 
 @Component({
   selector: "app-home-filter-drawer",
@@ -26,64 +35,37 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   public showingBusinessesSelector = this.store.pipe(select(selectShowingBusinesses));
   public productsFilterSelector = this.store.pipe(select(selectProductFilter));
   public businessesFilterSelector = this.store.pipe(select(selectBusinessFilter));
+  public productTypesSelector = this.store.pipe(select(selectProductTypes));
+  public productTagsSelector = this.store.pipe(select(selectProductTags));
 
   public businessesTypesSelector = this.store.pipe(select(selectBusinessTypes));
   public businessesAmenitiesSelector = this.store.pipe(select(selectBusinessAmenities));
 
-  public showingBusinesses = true;
+  public businessFilters: IBFilters;
+  public productsFilters: IPFilters;
+  public productTypes: IPType[];
+  public businessTypes: IBType[];
+  public businessAmenities: IAmenities[];
+  public productTags: ITags[];
 
-  public businessFilters: IBFilters = {
-    latlondis: [0, 0, 100000],
-    query: "",
-    amenities: [],
-    business_type: ""
-  };
-  public productsFilters: IPFilters = {
-    query: "",
-    product_type: "",
-    tags: [],
-    latlondis: [],
-    available: 0,
-    price: 0
-  };
-
-  public businessAmenities = [];
-  public productTags = [
-    {
-      id: 1,
-      tag: "ptag1"
-    },
-    {
-      id: 2,
-      tag: "ptag2"
-    },
-    {
-      id: 3,
-      tag: "ptag3"
-    },
-    {
-      id: 4,
-      tag: "ptag4"
-    },
-    {
-      id: 5,
-      tag: "ptag5"
-    },
-    {
-      id: 6,
-      tag: "ptag6"
-    }
-  ];
-
-  public businessTypes;
   public selectedBusinessType;
+  public selectedProductType;
+
   public selectedTags;
+
+  public showingBusinesses: boolean = true;
   public distanceControlShowing: boolean = true;
   @ViewChild("searchDistance") searchDistance: ElementRef;
 
   constructor(private store: Store<IAppState>, private geoLocationService: GeoLocationService) {}
 
   ngOnInit() {
+    this.getInitialResults();
+    this.initializeSubscribers();
+    this.dispatchActions();
+  }
+
+  initializeSubscribers() {
     const showingBusinessesSubscriber = this.showingBusinessesSelector.subscribe(
       showingBusinesses => {
         this.showingBusinesses = showingBusinesses;
@@ -95,15 +77,14 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       }
     );
 
-    this.getInitialResults();
-
-    this.productsFilterSelector.subscribe(filter => {
+    const productsFilterSubscriber = this.productsFilterSelector.subscribe(filter => {
       this.productsFilters = filter;
     });
-    this.businessesFilterSelector.subscribe(filter => {
+    const businessFilterSubscriber = this.businessesFilterSelector.subscribe(filter => {
       this.businessFilters = filter;
     });
-    this.businessesAmenitiesSelector.subscribe(amenities => {
+
+    const businessAmenitiesSubscriber = this.businessesAmenitiesSelector.subscribe(amenities => {
       const amenitiesCheckbox = [];
 
       for (const key in amenities) {
@@ -117,7 +98,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       this.businessAmenities = amenitiesCheckbox;
       this.selectedTags = amenitiesCheckbox;
     });
-    this.businessesTypesSelector.subscribe(types => {
+    const businessTypesSubscriber = this.businessesTypesSelector.subscribe(types => {
       const businessTypesCheckbox = [];
       for (const key in types) {
         businessTypesCheckbox.push({
@@ -128,14 +109,29 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       }
       this.businessTypes = businessTypesCheckbox;
     });
-    this.dispatchActions();
+
+    const productTypesSubscriber = this.productTypesSelector.subscribe(product_types => {
+      this.productTypes = product_types;
+    });
+    const productTagsSubscriber = this.productTagsSelector.subscribe(product_tags => {
+      this.productTags = product_tags;
+    });
     this.subscriptionsArr.push(showingBusinessesSubscriber);
+    this.subscriptionsArr.push(productTagsSubscriber);
+    this.subscriptionsArr.push(productTypesSubscriber);
+    this.subscriptionsArr.push(businessTypesSubscriber);
+    this.subscriptionsArr.push(businessAmenitiesSubscriber);
+    this.subscriptionsArr.push(businessFilterSubscriber);
+    this.subscriptionsArr.push(productsFilterSubscriber);
   }
+
   ngAfterViewInit() {}
 
   dispatchActions() {
     this.store.dispatch(new GetBusinessAmenities());
     this.store.dispatch(new GetBusinessTypes());
+    this.store.dispatch(new GetProductTypes());
+    this.store.dispatch(new GetProductTags());
   }
 
   getInitialResults() {

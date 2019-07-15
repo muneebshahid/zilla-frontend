@@ -23,3 +23,11 @@ export const selectProductFilter = createSelector(
   selectItems,
   (state: IProductState) => state.filters
 );
+export const selectProductTags = createSelector(
+  selectItems,
+  (state: IProductState) => state.product_tags
+);
+export const selectProductTypes = createSelector(
+  selectItems,
+  (state: IProductState) => state.product_types
+);

@@ -8,8 +8,8 @@ export interface IProductState {
   product?: IProduct;
   num_hits?: number;
   filters?: IPFilters;
-  product_types?: IPType;
-  product_tags?: ITags;
+  product_types?: IPType[];
+  product_tags?: ITags[];
 }
 
 export const initialProductState: IProductState = {
