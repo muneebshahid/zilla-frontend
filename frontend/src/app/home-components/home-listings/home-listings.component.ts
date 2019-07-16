@@ -9,6 +9,7 @@ import { IBusiness } from "src/app/models/business";
 import { MapComponent } from "src/app/general-components";
 import { selectShowingBusinesses } from "src/app/store/selectors/general";
 import { selectProductsNumHits, selectProductMarkers } from "src/app/store/selectors/product";
+import { take } from "rxjs/operators";
 
 @Component({
   selector: "app-home-listings",
@@ -48,14 +49,14 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
       if (markers !== null) {
         this.mapComponent.markers = [];
         this.businessMarkers = markers;
-        this.putMarkersOnMap(markers);
+        // this.putMarkersOnMap(markers);
       }
     });
     const productMarkersSubscriber = this.productMarkersSelector.subscribe(markers => {
       if (markers !== null) {
         this.mapComponent.markers = [];
         this.productMarkers = markers;
-        this.putMarkersOnMap(markers);
+        // this.putMarkersOnMap(markers);
       }
     });
 
@@ -71,14 +72,15 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
       showingBusinesses => {
         this.showingBusinesses = showingBusinesses;
         this.mapComponent.markers = [];
+
         if (this.showingBusinesses) {
           this.hits = this.businessHits;
           this.selectedCategory = "Businesses";
-          this.putMarkersOnMap(this.businessMarkers);
+          // this.putMarkersOnMap(this.businessMarkers);
         } else {
           this.hits = this.productHits;
           this.selectedCategory = "Products";
-          this.putMarkersOnMap(this.productMarkers);
+          // this.putMarkersOnMap(this.productMarkers);
         }
       }
     );
