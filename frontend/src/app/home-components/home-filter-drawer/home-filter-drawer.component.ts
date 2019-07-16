@@ -6,7 +6,6 @@ import { IAppState } from "src/app/store/state/app.state";
 import { selectShowingBusinesses } from "src/app/store/selectors/general";
 import { Subscription } from "rxjs";
 import { GetSearchBusiness } from "src/app/store/actions/business";
-import { UpdateSearchType } from "src/app/store/actions/general";
 import { GeoLocationService } from "src/app/services/geo-location/geo-location.service";
 import { IPFilters } from "src/app/models/product_filters";
 import {

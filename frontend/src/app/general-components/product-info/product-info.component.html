@@ -1,6 +1,8 @@
 <div class="job_listings job_listings_cards clearfix row">
   <a
     (click)="openDetailDrawer(business.business.id)"
+    (mouseenter)="highlightMarker(business.business.id, true)"
+    (mouseleave)="highlightMarker(business.business.id, false)"
     target="_blank"
     class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450"
     *ngFor="let business of businessProducts"

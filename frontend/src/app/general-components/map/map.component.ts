@@ -1,6 +1,9 @@
 import { Component, Input, ViewChild, OnInit, EventEmitter, Output } from "@angular/core";
 
 import { MapsAPILoader, AgmMap } from "@agm/core";
+import { IAppState } from "src/app/store/state/app.state";
+import { Store, select } from "@ngrx/store";
+import { selectMarkerHighlighting } from "src/app/store/selectors/general";
 
 declare var google: any;
 
@@ -28,9 +31,12 @@ interface Location {
 export class MapComponent implements OnInit {
   @Input() mapClass;
   @Output() openDrawer = new EventEmitter<number>();
+
+  public markerHighlightingSelector = this.store.pipe(select(selectMarkerHighlighting));
+
   private initialMapLocationLat = 48.17669;
   private initialMapLocationLng = 11.5726359;
-  private initialZoom = 8;
+  private initialZoom = 1;
 
   public normalMarkerIcon =
     "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FF0000";
@@ -41,12 +47,16 @@ export class MapComponent implements OnInit {
 
   @ViewChild(AgmMap) map: AgmMap;
 
-  constructor(public mapsApiLoader: MapsAPILoader) {
+  constructor(public mapsApiLoader: MapsAPILoader, private store: Store<IAppState>) {
     this.mapsApiLoader = mapsApiLoader;
     this.mapsApiLoader.load().then(() => {});
   }
   ngOnInit() {
     this.initializeMarkersAndMapZoom();
+
+    this.markerHighlightingSelector.subscribe(data => {
+      this.highlightMarkerByID(data);
+    });
   }
 
   openDetailDrawer(marker) {
@@ -60,7 +70,7 @@ export class MapComponent implements OnInit {
   /* Highlights the marker which is being hovered in the left side on the grid */
   public highlightMarkerByID(obj: any) {
     for (const marker of this.markers) {
-      if (marker.id === obj.id && obj.highlight === true) {
+      if (marker.id === obj.markerID && obj.highlighted === true) {
         marker.icon = this.highlightedMarkerIcon;
       } else {
         marker.icon = this.normalMarkerIcon;

@@ -12,6 +12,13 @@ export const generalReducers = (
         showingBusinesses: action.payload.showingBusinesses
       };
     }
+    case EGeneralActions.HighlightMapMarker: {
+      return {
+        ...state,
+        highlightedMarkerID: action.payload.highlightedMarkerID,
+        highlighted: action.payload.highlighted
+      };
+    }
 
     default:
       return state;

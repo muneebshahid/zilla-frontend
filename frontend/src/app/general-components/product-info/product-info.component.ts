@@ -6,6 +6,7 @@ import { select, Store } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
 import { Subscription } from "rxjs";
 import { GetBusinessDetail } from "src/app/store/actions/business";
+import { HighlightMapMarker } from "src/app/store/actions/general";
 
 @Component({
   selector: "app-product-info",
@@ -36,5 +37,10 @@ export class ProductInfoComponent implements OnInit {
     for (const subscriber of this.subscriptionsArr) {
       subscriber.unsubscribe();
     }
+  }
+  highlightMarker(id: number, highlight: boolean) {
+    this.store.dispatch(
+      new HighlightMapMarker({ highlightedMarkerID: id, highlighted: highlight })
+    );
   }
 }

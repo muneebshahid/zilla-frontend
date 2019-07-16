@@ -8,3 +8,9 @@ export const selectShowingBusinesses = createSelector(
   selectItems,
   (state: IGeneralState) => state.showingBusinesses
 );
+export const selectMarkerHighlighting = createSelector(
+  selectItems,
+  (state: IGeneralState) => {
+    return { highlighted: state.highlighted, markerID: state.highlightedMarkerID };
+  }
+);

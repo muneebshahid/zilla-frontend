@@ -50,8 +50,15 @@ export class BusinessService {
   /* This is called to extract the markers from the search results sent by server, to show on the map */
   getMarkersFromPayload(businesses: IBusiness[]) {
     const markers = [];
+
+    /* helps us not add the same marker twice, since calling products can send us multiple business with same id. */
+    const pushedIds = [];
+
     for (const item of businesses) {
-      markers.push({ latlon: item.business.latlon, id: item.business.id });
+      if (!pushedIds.includes(item.business.id)) {
+        markers.push({ latlon: item.business.latlon, id: item.business.id });
+      }
+      pushedIds.push(item.business.id);
     }
     return markers;
   }

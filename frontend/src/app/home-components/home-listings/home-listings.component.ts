@@ -49,14 +49,14 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
       if (markers !== null) {
         this.mapComponent.markers = [];
         this.businessMarkers = markers;
-        // this.putMarkersOnMap(markers);
+        this.putMarkersOnMap(markers);
       }
     });
     const productMarkersSubscriber = this.productMarkersSelector.subscribe(markers => {
       if (markers !== null) {
         this.mapComponent.markers = [];
         this.productMarkers = markers;
-        // this.putMarkersOnMap(markers);
+        this.putMarkersOnMap(markers);
       }
     });
 
