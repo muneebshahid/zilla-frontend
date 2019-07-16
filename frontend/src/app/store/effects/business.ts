@@ -23,15 +23,6 @@ import { EBusinessActions } from "../actions/business";
 @Injectable()
 export class BusinessEffects {
   @Effect()
-  getExploreBusinesses$ = this.actions$.pipe(
-    ofType<GetExploreBusiness>(EBusinessActions.GetExploreBusiness),
-    switchMap(() => {
-      return this.businessService
-        .getExploreBusiness()
-        .pipe(map(businesses => new GetExploreBusinessSuccess(businesses)));
-    })
-  );
-  @Effect()
   getBusinessesDetail$ = this.actions$.pipe(
     ofType<GetBusinessDetail>(EBusinessActions.GetBusinessDetail),
     map(action => action.payload),
@@ -46,9 +37,15 @@ export class BusinessEffects {
     ofType<GetSearchBusiness>(EBusinessActions.GetSearchBusiness),
     map(action => action.payload),
     switchMap(payload => {
-      return this.businessService
-        .getSearchBusinesses(payload)
-        .pipe(map(businesses => new GetSearchBusinessSuccess(businesses)));
+      return this.businessService.getSearchBusinesses(payload).pipe(
+        map(
+          businesses =>
+            new GetSearchBusinessSuccess({
+              businesses: businesses,
+              markers: this.businessService.getMarkersFromPayload(businesses.businesses)
+            })
+        )
+      );
     })
   );
   @Effect()

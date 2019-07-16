@@ -16,6 +16,7 @@ import { GetProductsOfBusiness, GetProductsOfBusinessSuccess } from "../actions/
 
 import { ProductService } from "../../services/product/product.service";
 import { EProductActions } from "../actions/product";
+import { BusinessService } from "src/app/services/business/business.service";
 
 @Injectable()
 export class ProductEffects {
@@ -24,9 +25,15 @@ export class ProductEffects {
     ofType<GetSearchProducts>(EProductActions.GetSearchProducts),
     map(action => action.payload),
     switchMap(params => {
-      return this.productService
-        .getSearchProducts(params)
-        .pipe(map(products => new GetSearchProductsSuccess(products)));
+      return this.productService.getSearchProducts(params).pipe(
+        map(
+          products =>
+            new GetSearchProductsSuccess({
+              products: products,
+              markers: this.businessService.getMarkersFromPayload(products.products)
+            })
+        )
+      );
     })
   );
   @Effect()
@@ -68,5 +75,9 @@ export class ProductEffects {
     })
   );
 
-  constructor(private productService: ProductService, private actions$: Actions) {}
+  constructor(
+    private businessService: BusinessService,
+    private productService: ProductService,
+    private actions$: Actions
+  ) {}
 }

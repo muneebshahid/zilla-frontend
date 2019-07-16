@@ -46,7 +46,15 @@ export class BusinessService {
   getBusinessAmenities() {
     return this.httpService.get(`${environment.businessAmenitiesUrl}/`, {});
   }
-  getExploreBusiness(): Observable<IBusiness[]> {
-    return this.httpService.get(`${environment.exploreUrl}/`, {});
+
+  /* This is called to extract the markers from the search results sent by server, to show on the map */
+  getMarkersFromPayload(businesses: IBusiness[]) {
+    console.log("chikna");
+    console.log(businesses);
+    const markers = [];
+    for (const item of businesses) {
+      markers.push({ latlon: item.business.latlon, id: item.business.id });
+    }
+    return markers;
   }
 }

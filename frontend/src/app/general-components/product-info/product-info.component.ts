@@ -5,6 +5,7 @@ import { selectProducts } from "src/app/store/selectors/product";
 import { select, Store } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
 import { Subscription } from "rxjs";
+import { GetBusinessDetail } from "src/app/store/actions/business";
 
 @Component({
   selector: "app-product-info",
@@ -13,7 +14,7 @@ import { Subscription } from "rxjs";
 })
 export class ProductInfoComponent implements OnInit {
   private subscriptionsArr: Subscription[] = [];
-  @Input() public businessProducts: IBusiness[];
+  public businessProducts: IBusiness[];
   @Input() public homePage = false;
 
   public productsSelector = this.store.pipe(select(selectProducts));
@@ -23,11 +24,13 @@ export class ProductInfoComponent implements OnInit {
 
   ngOnInit() {
     const businessProductsSubscriber = this.productsSelector.subscribe(businessProducts => {
-      console.log(businessProducts);
       this.businessProducts = businessProducts;
     });
 
     this.subscriptionsArr.push(businessProductsSubscriber);
+  }
+  openDetailDrawer(id: number) {
+    this.store.dispatch(new GetBusinessDetail({ id: id }));
   }
   ngOnDestroy() {
     for (const subscriber of this.subscriptionsArr) {

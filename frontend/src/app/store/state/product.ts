@@ -11,12 +11,14 @@ export interface IProductState {
   filters?: IPFilters;
   product_types?: IPType[];
   product_tags?: ITags[];
+  markers?: any;
 }
 
 export const initialProductState: IProductState = {
   products: [],
   product: Object.assign({}),
   num_hits: 0,
+  markers: null,
   filters: {
     query: "",
     product_type: null,

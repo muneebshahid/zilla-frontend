@@ -13,16 +13,11 @@ export const businessReducers = (
       };
     }
     case EBusinessActions.GetSearchBusinessSuccess: {
-      const markers = [];
-      for (const item of action.payload.businesses) {
-        markers.push({ latlon: item.business.latlon, id: item.business.id });
-      }
-
       return {
         ...state,
-        businesses: action.payload.businesses,
+        businesses: action.payload.businesses.businesses,
         num_hits: action.payload.num_hits,
-        markers: markers
+        markers: action.payload.markers
       };
     }
     case EBusinessActions.GetBusinessDetailSuccess: {

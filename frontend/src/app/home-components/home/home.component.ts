@@ -12,14 +12,7 @@ export class HomeComponent implements OnInit {
 
   loading = false;
 
-  constructor(private store: Store<IAppState>) {}
+  constructor() {}
 
   ngOnInit() {}
-  openDetailDrawer(selectedMarkerObj: any) {
-    this.store.dispatch(
-      new GetBusinessDetail({ slug: selectedMarkerObj.slug, id: selectedMarkerObj.id })
-    );
-  }
-
-  updateMobileMapView() {}
 }

@@ -28,7 +28,6 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
 
   private subscriptionsArr: Subscription[] = [];
   public showingBusinesses = true;
-  public businesses: IBusiness[];
   public searchDistance = 0;
 
   public businessHits = 0;
