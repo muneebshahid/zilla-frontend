@@ -11,7 +11,7 @@ export const productReducers = (
       return {
         ...state,
         products: action.payload.products.products,
-        num_hits: action.payload.num_hits,
+        num_hits: action.payload.products.num_hits,
         markers: action.payload.markers
       };
     }

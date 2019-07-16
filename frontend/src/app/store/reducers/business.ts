@@ -10,7 +10,7 @@ export const businessReducers = (
       return {
         ...state,
         businesses: action.payload.businesses.businesses,
-        num_hits: action.payload.num_hits,
+        num_hits: action.payload.businesses.num_hits,
         markers: action.payload.markers
       };
     }
