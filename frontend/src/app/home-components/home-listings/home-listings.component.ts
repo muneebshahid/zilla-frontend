@@ -5,11 +5,9 @@ import { select, Store } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
 import { Subscription } from "rxjs";
 import { selectBusinessMarkers } from "src/app/store/selectors/business";
-import { IBusiness } from "src/app/models/business";
 import { MapComponent } from "src/app/general-components";
 import { selectShowingBusinesses } from "src/app/store/selectors/general";
 import { selectProductsNumHits, selectProductMarkers } from "src/app/store/selectors/product";
-import { take } from "rxjs/operators";
 
 @Component({
   selector: "app-home-listings",
