@@ -76,11 +76,16 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
         if (this.showingBusinesses) {
           this.hits = this.businessHits;
           this.selectedCategory = "Businesses";
-          // this.putMarkersOnMap(this.businessMarkers);
+
+          if (this.businessMarkers !== null) {
+            this.putMarkersOnMap(this.businessMarkers);
+          }
         } else {
           this.hits = this.productHits;
           this.selectedCategory = "Products";
-          // this.putMarkersOnMap(this.productMarkers);
+          if (this.productMarkers !== null) {
+            this.putMarkersOnMap(this.productMarkers);
+          }
         }
       }
     );
