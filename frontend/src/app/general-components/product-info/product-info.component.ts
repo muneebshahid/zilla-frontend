@@ -1,6 +1,5 @@
 import { IBusiness } from "./../../models/business";
 import { Component, OnInit, Input } from "@angular/core";
-import { IProduct } from "src/app/models/product";
 import { environment } from "src/environments/environment";
 import { selectProducts } from "src/app/store/selectors/product";
 import { select, Store } from "@ngrx/store";
@@ -13,8 +12,8 @@ import { Subscription } from "rxjs";
   styleUrls: ["./product-info.component.css"]
 })
 export class ProductInfoComponent implements OnInit {
-  @Input() public businessProducts: IBusiness[];
   private subscriptionsArr: Subscription[] = [];
+  @Input() public businessProducts: IBusiness[];
   @Input() public homePage = false;
 
   public productsSelector = this.store.pipe(select(selectProducts));
@@ -24,6 +23,7 @@ export class ProductInfoComponent implements OnInit {
 
   ngOnInit() {
     const businessProductsSubscriber = this.productsSelector.subscribe(businessProducts => {
+      console.log(businessProducts);
       this.businessProducts = businessProducts;
     });
 

@@ -22,7 +22,7 @@ export const selectBusinessFilterLatLonDis = createSelector(
   (state: IBusinessState) => state.filters.latlondis
 );
 
-export const selectNumHits = createSelector(
+export const selectBusinessNumHits = createSelector(
   selectItems,
   (state: IBusinessState) => state.num_hits
 );
