@@ -30,11 +30,7 @@
       </div>
       <app-product-info *ngIf="!showingBusinesses" [homePage]="true"></app-product-info>
 
-      <app-business-info
-        *ngIf="showingBusinesses"
-        [homePage]="true"
-        (highlightMarkerEvent)="highlightMarkerOnGridItemHover($event)"
-      ></app-business-info>
+      <app-business-info *ngIf="showingBusinesses" [homePage]="true"></app-business-info>
       <!-- <a class="load_more_jobs" href="#" style="display: none;"
         ><strong>Load more listings</strong></a -->
     </div>

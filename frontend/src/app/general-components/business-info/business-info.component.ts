@@ -6,6 +6,7 @@ import { Store, select } from "@ngrx/store";
 import { GetBusinessDetail } from "src/app/store/actions/business";
 import { Subscription } from "rxjs";
 import { selectBusinesses } from "src/app/store/selectors/business";
+import { HighlightMapMarker } from "src/app/store/actions/general";
 
 @Component({
   selector: "app-business-info",
@@ -17,7 +18,6 @@ export class BusinessInfoComponent implements OnInit, OnDestroy {
   public businessesSelector = this.store.pipe(select(selectBusinesses));
   public businesses: IBusiness[];
   @Input() public homePage = false;
-  @Output() public highlightMarkerEvent = new EventEmitter<any>();
 
   public endpoint = environment.apiEndpoint;
 
@@ -40,6 +40,8 @@ export class BusinessInfoComponent implements OnInit, OnDestroy {
     this.store.dispatch(new GetBusinessDetail({ id: id }));
   }
   highlightMarker(id: number, highlight: boolean) {
-    this.highlightMarkerEvent.next({ id: id, highlight: highlight });
+    this.store.dispatch(
+      new HighlightMapMarker({ highlightedMarkerID: id, highlighted: highlight })
+    );
   }
 }

@@ -125,10 +125,6 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     }
   }
 
-  highlightMarkerOnGridItemHover(obj: any) {
-    this.highlightMarkerOnGridItemHoverEvent.next(obj);
-  }
-
   updateMobileMapView() {
     this.setMobileMapView.next("setMobileMapView");
   }
