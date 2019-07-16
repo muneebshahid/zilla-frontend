@@ -11,11 +11,7 @@ import { Injectable } from "@angular/core";
 import { Effect, ofType, Actions } from "@ngrx/effects";
 import { map, switchMap } from "rxjs/operators";
 
-import {
-  GetExploreBusiness,
-  GetExploreBusinessSuccess,
-  GetBusinessDetail
-} from "../actions/business";
+import { GetBusinessDetail } from "../actions/business";
 
 import { BusinessService } from "../../services/business/business.service";
 import { EBusinessActions } from "../actions/business";

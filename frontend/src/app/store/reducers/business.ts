@@ -6,12 +6,6 @@ export const businessReducers = (
   action: BusinessActions
 ): IBusinessState => {
   switch (action.type) {
-    case EBusinessActions.GetExploreBusinessSuccess: {
-      return {
-        ...state,
-        businesses: action.payload
-      };
-    }
     case EBusinessActions.GetSearchBusinessSuccess: {
       return {
         ...state,
