@@ -8,7 +8,7 @@ import { selectBusinessMarkers } from "src/app/store/selectors/business";
 import { IBusiness } from "src/app/models/business";
 import { MapComponent } from "src/app/general-components";
 import { selectShowingBusinesses } from "src/app/store/selectors/general";
-import { selectProductsNumHits } from "src/app/store/selectors/product";
+import { selectProductsNumHits, selectProductMarkers } from "src/app/store/selectors/product";
 
 @Component({
   selector: "app-home-listings",
@@ -21,6 +21,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   @Input() public mapComponent: MapComponent;
 
   public businessMarkersSelector = this.store.pipe(select(selectBusinessMarkers));
+  public productMarkersSelector = this.store.pipe(select(selectProductMarkers));
   public businessFilterSelector = this.store.pipe(select(selectBusinessFilter));
   public businessNumHitSelector = this.store.pipe(select(selectBusinessNumHits));
   public productsNumHitSelector = this.store.pipe(select(selectProductsNumHits));
@@ -34,24 +35,27 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   public productHits = 0;
   public selectedCategory = "Business";
 
+  public businessMarkers: any = null;
+  public productMarkers: any = null;
+
   public hits: number = 0;
   public filters: any;
 
   constructor(private store: Store<IAppState>) {}
 
   ngOnInit() {
-    const businessMarkers = this.businessMarkersSelector.subscribe(markers => {
+    const businessMarkersSubscriber = this.businessMarkersSelector.subscribe(markers => {
       if (markers !== null) {
-        for (const marker of markers) {
-          this.mapComponent.markers.push(
-            this.mapComponent.createMarker(
-              marker.latlon[0],
-              marker.latlon[1],
-              marker.id,
-              this.mapComponent.normalMarkerIcon
-            )
-          );
-        }
+        this.mapComponent.markers = [];
+        this.businessMarkers = markers;
+        this.putMarkersOnMap(markers);
+      }
+    });
+    const productMarkersSubscriber = this.productMarkersSelector.subscribe(markers => {
+      if (markers !== null) {
+        this.mapComponent.markers = [];
+        this.productMarkers = markers;
+        this.putMarkersOnMap(markers);
       }
     });
 
@@ -66,13 +70,15 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     const showingBusinessesSubscriber = this.showingBusinessesSelector.subscribe(
       showingBusinesses => {
         this.showingBusinesses = showingBusinesses;
-
+        this.mapComponent.markers = [];
         if (this.showingBusinesses) {
           this.hits = this.businessHits;
           this.selectedCategory = "Businesses";
+          this.putMarkersOnMap(this.businessMarkers);
         } else {
           this.hits = this.productHits;
           this.selectedCategory = "Products";
+          this.putMarkersOnMap(this.productMarkers);
         }
       }
     );
@@ -83,8 +89,22 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     this.subscriptionsArr.push(businessFilterSubscriber);
     this.subscriptionsArr.push(showingBusinessesSubscriber);
     this.subscriptionsArr.push(businessNumHitSubscriber);
-    this.subscriptionsArr.push(businessMarkers);
+    this.subscriptionsArr.push(businessMarkersSubscriber);
     this.subscriptionsArr.push(productsNumHitSubscriber);
+    this.subscriptionsArr.push(productMarkersSubscriber);
+  }
+
+  putMarkersOnMap(markers: any) {
+    for (const marker of markers) {
+      this.mapComponent.markers.push(
+        this.mapComponent.createMarker(
+          marker.latlon[0],
+          marker.latlon[1],
+          marker.id,
+          this.mapComponent.normalMarkerIcon
+        )
+      );
+    }
   }
 
   searchProducts() {
