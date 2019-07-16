@@ -11,7 +11,6 @@ interface Marker {
   icon?: string;
   highlighted?: boolean;
   draggable: boolean;
-  slug: string;
   id: number;
 }
 
@@ -90,13 +89,12 @@ export class MapComponent implements OnInit {
     this.setFocusLocation(this.initialMapLocationLat, this.initialMapLocationLng, this.initialZoom);
   }
 
-  createMarker(lat, lng, slug, id, icon) {
+  createMarker(lat, lng, id, icon) {
     return {
       lat: lat,
       lng: lng,
       draggable: false,
       highlighted: false,
-      slug: slug,
       id: id,
       icon: icon
     };

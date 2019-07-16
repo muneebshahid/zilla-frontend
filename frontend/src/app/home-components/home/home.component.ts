@@ -1,7 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { GetBusinessDetail } from "src/app/store/actions/business";
-import { Store } from "@ngrx/store";
-import { IAppState } from "src/app/store/state/app.state";
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",

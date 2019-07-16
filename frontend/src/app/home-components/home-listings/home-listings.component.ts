@@ -47,7 +47,6 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
             this.mapComponent.createMarker(
               marker.latlon[0],
               marker.latlon[1],
-              marker.slug,
               marker.id,
               this.mapComponent.normalMarkerIcon
             )
