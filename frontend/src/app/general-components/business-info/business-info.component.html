@@ -52,23 +52,10 @@
           </div>
           <div class="listing-tags">
             <div class="listing-category" *ngIf="homePage == true">
-              <a href="javascript:void(0)"
+              <a
+                (click)="searchByTag(business.business.business_type.id); $event.stopPropagation()"
+                href="javascript:void(0)"
                 ><i class="flaticon-shopping-cart"></i>{{ business.business.business_type.tag }}</a
-              >
-            </div>
-            <div
-              class="listing-price-range"
-              data-placement="top"
-              data-toggle="tooltip"
-              title=""
-              data-original-title="Moderate"
-            >
-              <span
-                *ngFor="
-                  let dummy of ' '.repeat(business.business.expensive).split('');
-                  let x = index
-                "
-                >$</span
               >
             </div>
           </div>

@@ -13,7 +13,8 @@ export enum EProductActions {
   GetProductTypes = "[Product] Get Product types",
   GetProductTypesSuccess = "[Product] Get Product types Success",
   GetProductTags = "[Product] Get Product tags",
-  GetProductTagsSuccess = "[Product] Get Product tags Success"
+  GetProductTagsSuccess = "[Product] Get Product tags Success",
+  UpdateProductFilters = "[Product] Update Product Filters"
 }
 
 export class GetProductTypes implements Action {
@@ -68,6 +69,11 @@ export class GetProductDetailsSuccess implements Action {
   // product details as payload
   constructor(public payload: any) {}
 }
+export class UpdateProductFilters implements Action {
+  public readonly type = EProductActions.UpdateProductFilters;
+
+  constructor(public payload: any) {}
+}
 
 export type ProductActions =
   | GetProductDetails
@@ -79,4 +85,5 @@ export type ProductActions =
   | GetProductTagsSuccess
   | GetProductTypes
   | GetProductTypesSuccess
-  | GetSearchProductsSuccess;
+  | GetSearchProductsSuccess
+  | UpdateProductFilters;

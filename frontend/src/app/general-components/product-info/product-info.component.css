@@ -29,3 +29,7 @@
 .product-phone {
   color: #8d8d8d !important;
 }
+
+.food-tag:hover {
+  cursor: pointer;
+}

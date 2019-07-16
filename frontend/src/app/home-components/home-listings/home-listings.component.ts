@@ -88,7 +88,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
       }
     );
     const businessFilterSubscriber = this.businessFilterSelector.subscribe(filters => {
-      this.searchDistance = filters.latlondis[2];
+      /* set chips for filters */
     });
 
     this.subscriptionsArr.push(businessFilterSubscriber);

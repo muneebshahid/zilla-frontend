@@ -45,7 +45,7 @@
         <div class="bottom-grid">
           <div class="listing-content">
             <h3 class="listing-title">
-              <a href="https://demoapus.com/findgo/listings/shop-in-city2/">{{ product.title }}</a>
+              <a href="javascript:void(0)">{{ product.title }}</a>
             </h3>
             <div class="listing-tagline ellipsize-description">{{ product.description }}</div>
             <div class="listing-tags">
@@ -55,7 +55,9 @@
             </div> -->
 
               <div class="listing-category" *ngIf="homePage == true">
-                <a href="javascript:void(0)"
+                <a
+                  href="javascript:void(0)"
+                  (click)="searchByProductType(product.product_type.id); $event.stopPropagation()"
                   ><i class="flaticon-shopping-cart"></i>{{ product.product_type.tag }}</a
                 >
               </div>
@@ -67,7 +69,7 @@
           <div class="listing-content-custom clearfix" *ngIf="homePage == true">
             <div class="listing-location">
               <i class="flaticon-placeholder product-address-icon"></i
-              ><a href="https://demoapus.com/findgo/region/new-york/" class="product-address">{{
+              ><a href="javascript:void(0)" class="product-address">{{
                 business.business.address
               }}</a>
             </div>
@@ -79,9 +81,12 @@
           <div class="listing-content-bottom clearfix">
             <div class="pull-left">
               <div class="listing-location">
-                <span class="review-avg food-tag" *ngFor="let tag of product.tags">{{
-                  tag.tag
-                }}</span>
+                <span
+                  class="review-avg food-tag"
+                  (click)="searchByTag(tag.id); $event.stopPropagation()"
+                  *ngFor="let tag of product.tags"
+                  >{{ tag.tag }}</span
+                >
               </div>
             </div>
           </div>

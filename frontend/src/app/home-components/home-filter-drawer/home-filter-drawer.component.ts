@@ -1,4 +1,8 @@
-import { GetBusinessAmenities, GetBusinessTypes } from "./../../store/actions/business";
+import {
+  GetBusinessAmenities,
+  GetBusinessTypes,
+  UpdateBusinessFilters
+} from "./../../store/actions/business";
 import { IBFilters } from "./../../models/business_filters";
 import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef } from "@angular/core";
 import { Store, select } from "@ngrx/store";
@@ -69,7 +73,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   constructor(private store: Store<IAppState>, private geoLocationService: GeoLocationService) {}
 
   ngOnInit() {
-    this.getInitialResults();
+    this.setInitialLatLon();
     this.initializeSubscribers();
     this.dispatchActions();
   }
@@ -178,7 +182,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     this.store.dispatch(new GetProductTags());
   }
 
-  getInitialResults() {
+  setInitialLatLon() {
     this.geoLocationService.getPosition().subscribe((pos: Position) => {
       this.businessFilters.latlondis[0] = pos.coords.latitude;
       this.businessFilters.latlondis[1] = pos.coords.longitude;
@@ -213,6 +217,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   searchBusinesses(params: any) {
+    this.store.dispatch(new UpdateBusinessFilters(params));
     this.store.dispatch(new GetSearchBusiness(params));
   }
   searchProducts(params: any) {

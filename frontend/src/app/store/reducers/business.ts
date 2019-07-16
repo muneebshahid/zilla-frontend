@@ -1,4 +1,4 @@
-import { BusinessActions, EBusinessActions } from "../actions/business";
+import { BusinessActions, EBusinessActions, UpdateBusinessFilters } from "../actions/business";
 import { IBusinessState, initialBusinessState } from "../state/business";
 
 export const businessReducers = (
