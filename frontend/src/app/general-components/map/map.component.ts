@@ -4,6 +4,7 @@ import { MapsAPILoader, AgmMap } from "@agm/core";
 import { IAppState } from "src/app/store/state/app.state";
 import { Store, select } from "@ngrx/store";
 import { selectMarkerHighlighting } from "src/app/store/selectors/general";
+import { GetBusinessDetail } from "src/app/store/actions/business";
 
 declare var google: any;
 
@@ -60,7 +61,7 @@ export class MapComponent implements OnInit {
   }
 
   openDetailDrawer(marker) {
-    this.openDrawer.next(marker);
+    this.store.dispatch(new GetBusinessDetail({ id: marker.id }));
   }
 
   setPageLocation(lat, lng, zoom = 8) {

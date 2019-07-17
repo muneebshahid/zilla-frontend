@@ -60,13 +60,13 @@ export class BusinessService {
 
     /* helps us not add the same marker twice, since calling products can send us multiple business with same id. */
     const pushedIds = [];
-
     for (const item of businesses) {
       if (!pushedIds.includes(item.business.id)) {
         markers.push({ latlon: item.business.latlon, id: item.business.id });
       }
       pushedIds.push(item.business.id);
     }
+    console.log(markers);
     return markers;
   }
 }
