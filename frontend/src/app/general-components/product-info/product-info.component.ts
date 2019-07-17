@@ -46,8 +46,20 @@ export class ProductInfoComponent implements OnInit {
       subscriber.unsubscribe();
     }
   }
+
+  updateProductTypeSelection(id: number) {
+    for (let i = 0; i < this.filters.product_types.length; i++) {
+      if (this.filters.product_types[i].id === id) {
+        this.filters.product_types[i].selected = true;
+        break;
+      } else {
+        this.filters.product_types[i].selected = false;
+      }
+    }
+  }
+
   searchByProductType(productTypeID: number) {
-    this.filters.product_type = productTypeID;
+    this.updateProductTypeSelection(productTypeID);
     this.sendRequest();
   }
   searchByTag(tagId: number) {

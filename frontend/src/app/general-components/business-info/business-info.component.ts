@@ -49,8 +49,20 @@ export class BusinessInfoComponent implements OnInit, OnDestroy {
   openDetailDrawer(id: number) {
     this.store.dispatch(new GetBusinessDetail({ id: id }));
   }
+
+  updateBusinessTypeSelection(id: number) {
+    for (let i = 0; i < this.filters.business_types.length; i++) {
+      if (this.filters.business_types[i].id === id) {
+        this.filters.business_types[i].selected = true;
+        break;
+      } else {
+        this.filters.business_types[i].selected = false;
+      }
+    }
+  }
+
   searchByTag(id: number) {
-    this.filters.business_type = id;
+    this.updateBusinessTypeSelection(id);
     this.store.dispatch(new UpdateBusinessFilters(Object.assign({}, this.filters)));
     this.store.dispatch(new GetSearchBusiness(this.filters));
   }

@@ -1,6 +1,6 @@
 export interface IPFilters {
   query: string;
-  product_type: number;
+  product_types: Array<any>;
   tags: Array<number>;
   latlondis: Array<number>;
   available: number;

@@ -3,15 +3,17 @@ import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
 import { HttpService } from "../http/http.service";
 import { environment } from "./../../../environments/environment";
+import { FiltersService } from "../filters/filters.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class BusinessService {
-  constructor(private httpService: HttpService) {}
+  constructor(private httpService: HttpService, private filterService: FiltersService) {}
 
   getSearchBusinesses(params: any) {
     const filteredParams = this.cleanBusinessFilters(params);
+    console.log(filteredParams);
     return this.httpService.get(
       `${environment.searchUrl}/${environment.businessUrl}/`,
       filteredParams
@@ -26,13 +28,16 @@ export class BusinessService {
       }`;
     }
     if (params.amenities.length !== 0) {
-      filteredParam["amenities"] = params.amenities.join();
+      filteredParam["amenities"] = this.filterService.getSelectedTagsCSVs(params.amenities);
     }
     if (params.query !== "") {
       filteredParam["query"] = params.query;
     }
-    if (params.business_type !== null) {
-      filteredParam["business_type"] = params.business_type;
+    if (params.business_types.length !== 0) {
+      let businessTypeID = this.filterService.getSelectedTypeID(params.business_types);
+      if (businessTypeID !== undefined) {
+        filteredParam["business_type"] = this.filterService.getSelectedTypeID(businessTypeID);
+      }
     }
     return filteredParam;
   }

@@ -3,12 +3,13 @@ import { Injectable } from "@angular/core";
 import { HttpService } from "../http/http.service";
 import { Observable } from "rxjs";
 import { IProduct } from "src/app/models/product";
+import { FiltersService } from "../filters/filters.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class ProductService {
-  constructor(private httpService: HttpService) {}
+  constructor(private httpService: HttpService, private filterService: FiltersService) {}
 
   getProductDetails(productObj: any): Observable<IProduct> {
     return this.httpService.get(
@@ -37,11 +38,14 @@ export class ProductService {
     if (params.query !== "") {
       filteredParam["query"] = params.query;
     }
-    if (params.product_type !== null) {
-      filteredParam["product_type"] = params.product_type;
+    if (params.product_types.length !== 0) {
+      let productID = this.filterService.getSelectedTypeID(params.product_types);
+      if (productID !== undefined) {
+        filteredParam["product_type"] = productID;
+      }
     }
     if (params.tags.length !== 0) {
-      filteredParam["tags"] = params.tags.join();
+      filteredParam["tags"] = this.filterService.getSelectedTagsCSVs(params.tags);
     }
     if (params.latlondis[0] !== -1) {
       filteredParam["latlondis"] = `${params.latlondis[0]},${params.latlondis[1]},${

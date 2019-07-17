@@ -21,12 +21,10 @@ export const initialProductState: IProductState = {
   markers: null,
   filters: {
     query: "",
-    product_type: null,
+    product_types: [],
     tags: [],
     latlondis: [10, 10, 100000],
     available: -1,
     price: -1
-  },
-  product_tags: null,
-  product_types: null
+  }
 };

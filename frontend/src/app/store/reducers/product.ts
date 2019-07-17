@@ -33,6 +33,12 @@ export const productReducers = (
         product_tags: action.payload
       };
     }
+    case EProductActions.UpdateProductFilters: {
+      return {
+        ...state,
+        filters: action.payload
+      };
+    }
     case EProductActions.GetProductTypesSuccess: {
       return {
         ...state,

@@ -23,10 +23,7 @@ import {
   selectBusinessTypes
 } from "src/app/store/selectors/business";
 import { GetProductTypes, GetProductTags, GetSearchProducts } from "src/app/store/actions/product";
-import { ITags } from "src/app/models/tags";
-import { IPType } from "src/app/models/ptype";
-import { IAmenities } from "src/app/models/amenities";
-import { IBType } from "src/app/models/btype";
+import { FiltersService } from "src/app/services/filters/filters.service";
 
 @Component({
   selector: "app-home-filter-drawer",
@@ -44,18 +41,11 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   public businessesTypesSelector = this.store.pipe(select(selectBusinessTypes));
   public businessesAmenitiesSelector = this.store.pipe(select(selectBusinessAmenities));
 
-  public businessFilters: IBFilters;
-  public productsFilters: IPFilters;
-  public productTypes: IPType[];
-  public businessTypes: IBType[];
-  public businessAmenities: IAmenities[];
-  public productTags: ITags[];
+  public businessFilters: IBFilters = null;
+  public productsFilters: IPFilters = null;
 
   public selectedTags;
   public selectedTypes;
-
-  public selectedBusinessTypeID = null;
-  public selectedProductTypeID = null;
 
   /* represents the id of the selected item in dropdown. */
   public selectedTypeID = null;
@@ -70,7 +60,11 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   public filterTypeText: string;
   @ViewChild("searchDistance") searchDistance: ElementRef;
 
-  constructor(private store: Store<IAppState>, private geoLocationService: GeoLocationService) {}
+  constructor(
+    private store: Store<IAppState>,
+    private geoLocationService: GeoLocationService,
+    private filterService: FiltersService
+  ) {}
 
   ngOnInit() {
     this.setInitialLatLon();
@@ -78,28 +72,50 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     this.dispatchActions();
   }
 
-  setProductDrawerFilters() {
-    /* save business dropdown state before reseting the dropdown to previous state of products */
-    this.selectedBusinessTypeID = this.selectedTypeID;
-    this.selectedTypeID = this.selectedProductTypeID;
+  saveBusinessFiltersState() {
+    this.businessFilters.business_types = this.filterService.selectTypeInFilter(
+      this.businessFilters.business_types,
+      this.selectedTypeID
+    );
+    this.businessFilters.amenities = this.selectedTags;
+  }
 
-    this.selectedTags = this.productTags;
-    this.selectedTypes = this.productTypes;
-    this.selectedTypeID = this.selectedProductTypeID;
-    this.filterTypeText = "Product Type";
+  setProductDrawerFilters() {
+    if (this.businessFilters !== null && this.productsFilters !== null) {
+      this.saveBusinessFiltersState();
+
+      this.selectedTags = this.productsFilters.tags;
+      this.selectedTypes = this.productsFilters.product_types;
+      this.selectedTypeID = this.productsFilters.product_types.forEach(
+        item => item.selected == true
+      );
+      this.filterTypeText = "Product Type";
+    }
   }
 
   setBusinessDrawerFilters() {
-    this.selectedProductTypeID = this.selectedTypeID;
-    this.selectedTypeID = this.selectedBusinessTypeID;
+    if (this.productsFilters !== null && this.businessFilters !== null) {
+      this.productsFilters.product_types = this.selectedTypeID;
 
-    this.selectedTags = this.businessAmenities;
-    this.selectedTypes = this.businessTypes;
-    this.selectedTypeID = this.selectedBusinessTypeID;
-    this.filterTypeText = "Business Type";
+      this.selectedTags = this.businessFilters.amenities;
+      this.selectedTypes = this.businessFilters.business_types;
+      this.selectedTypeID = this.businessFilters.business_types.forEach(
+        item => item.selected == true
+      );
+
+      this.filterTypeText = "Business Type";
+    }
   }
 
   initializeSubscribers() {
+    const businessFilterSubscriber = this.businessesFilterSelector.subscribe(filter => {
+      this.businessFilters = filter;
+      this.setBusinessDrawerFilters();
+    });
+    const productsFilterSubscriber = this.productsFilterSelector.subscribe(filter => {
+      this.productsFilters = filter;
+      this.setProductDrawerFilters();
+    });
     /* this subscribe will be called whenever we switch tabs b/w business and products */
     const showingBusinessesSubscriber = this.showingBusinessesSelector.subscribe(
       showingBusinesses => {
@@ -108,7 +124,6 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
           this.setBusinessDrawerFilters();
         } else {
           this.setProductDrawerFilters();
-
           if (!this.productsRetrieved) {
             this.productsRetrieved = !this.productsRetrieved;
             this.searchProducts(this.productsFilters);
@@ -117,27 +132,20 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       }
     );
 
-    const productsFilterSubscriber = this.productsFilterSelector.subscribe(filter => {
-      this.productsFilters = filter;
-    });
-    const businessFilterSubscriber = this.businessesFilterSelector.subscribe(filter => {
-      this.businessFilters = filter;
-    });
-
     const businessAmenitiesSubscriber = this.businessesAmenitiesSelector.subscribe(amenities => {
-      this.businessAmenities = this.getCheckboxVersionOfFilters(amenities);
-      this.selectedTags = this.businessAmenities;
+      this.businessFilters.amenities = this.getCheckboxVersionOfFilters(amenities);
+      this.selectedTags = this.businessFilters.amenities;
     });
     const businessTypesSubscriber = this.businessesTypesSelector.subscribe(businessTypes => {
-      this.businessTypes = this.getDropDownVersionOfFilters(businessTypes);
-      this.selectedTypes = this.businessTypes;
+      this.businessFilters.business_types = this.getDropDownVersionOfFilters(businessTypes);
+      this.selectedTypes = this.businessFilters.business_types;
     });
 
     const productTypesSubscriber = this.productTypesSelector.subscribe(productTypes => {
-      this.productTypes = this.getDropDownVersionOfFilters(productTypes);
+      this.productsFilters.product_types = this.getDropDownVersionOfFilters(productTypes);
     });
     const productTagsSubscriber = this.productTagsSelector.subscribe(productTags => {
-      this.productTags = this.getCheckboxVersionOfFilters(productTags);
+      this.productsFilters.tags = this.getCheckboxVersionOfFilters(productTags);
     });
     this.subscriptionsArr.push(showingBusinessesSubscriber);
     this.subscriptionsArr.push(productTagsSubscriber);
@@ -167,7 +175,8 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     for (const key in items) {
       itemsDropdown.push({
         name: items[key].tag,
-        id: items[key].id
+        id: items[key].id,
+        selected: false
       });
     }
     return itemsDropdown;
@@ -205,7 +214,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     if (this.showingBusinesses) {
       this.businessFilters.latlondis[2] = this.searchDistance.nativeElement.value;
       this.businessFilters.amenities = this.getIdsOfSelectedTags(this.selectedTags);
-      this.businessFilters.business_type = this.selectedTypeID;
+      this.businessFilters.business_types = this.selectedTypeID;
       this.searchBusinesses(this.businessFilters);
     } else {
       this.searchProducts(this.productsFilters);
