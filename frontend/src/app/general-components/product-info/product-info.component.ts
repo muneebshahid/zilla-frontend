@@ -9,6 +9,7 @@ import { GetBusinessDetail } from "src/app/store/actions/business";
 import { HighlightMapMarker } from "src/app/store/actions/general";
 import { IPFilters } from "src/app/models/product_filters";
 import { GetSearchProducts, UpdateProductFilters } from "src/app/store/actions/product";
+import { FiltersService } from "src/app/services/filters/filters.service";
 
 @Component({
   selector: "app-product-info",
@@ -25,7 +26,7 @@ export class ProductInfoComponent implements OnInit {
   public endpoint = environment.apiEndpoint;
   public filters: IPFilters = null;
 
-  constructor(private store: Store<IAppState>) {}
+  constructor(private store: Store<IAppState>, private filterService: FiltersService) {}
 
   ngOnInit() {
     const businessProductsSubscriber = this.productsSelector.subscribe(businessProducts => {
@@ -48,14 +49,10 @@ export class ProductInfoComponent implements OnInit {
   }
 
   updateProductTypeSelection(id: number) {
-    for (let i = 0; i < this.filters.product_types.length; i++) {
-      if (this.filters.product_types[i].id === id) {
-        this.filters.product_types[i].selected = true;
-        break;
-      } else {
-        this.filters.product_types[i].selected = false;
-      }
-    }
+    this.filters.product_types = this.filterService.selectTypeInFilter(
+      this.filters.product_types,
+      id
+    );
   }
 
   searchByProductType(productTypeID: number) {
@@ -63,7 +60,7 @@ export class ProductInfoComponent implements OnInit {
     this.sendRequest();
   }
   searchByTag(tagId: number) {
-    this.filters.tags = [tagId];
+    this.filters.tags = this.filterService.selectTagInFilter(this.filters.tags, tagId);
     this.sendRequest();
   }
 

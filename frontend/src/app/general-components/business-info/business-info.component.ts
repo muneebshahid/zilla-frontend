@@ -12,6 +12,7 @@ import { Subscription } from "rxjs";
 import { selectBusinesses, selectBusinessFilter } from "src/app/store/selectors/business";
 import { HighlightMapMarker } from "src/app/store/actions/general";
 import { IBFilters } from "src/app/models/business_filters";
+import { FiltersService } from "src/app/services/filters/filters.service";
 
 @Component({
   selector: "app-business-info",
@@ -28,7 +29,7 @@ export class BusinessInfoComponent implements OnInit, OnDestroy {
   public endpoint = environment.apiEndpoint;
   public filters: IBFilters = null;
 
-  constructor(private store: Store<IAppState>) {}
+  constructor(private store: Store<IAppState>, private filterService: FiltersService) {}
 
   ngOnInit() {
     const businessSubscriber = this.businessesSelector.subscribe(businesses => {
@@ -51,14 +52,10 @@ export class BusinessInfoComponent implements OnInit, OnDestroy {
   }
 
   updateBusinessTypeSelection(id: number) {
-    for (let i = 0; i < this.filters.business_types.length; i++) {
-      if (this.filters.business_types[i].id === id) {
-        this.filters.business_types[i].selected = true;
-        break;
-      } else {
-        this.filters.business_types[i].selected = false;
-      }
-    }
+    this.filters.business_types = this.filterService.selectTypeInFilter(
+      this.filters.business_types,
+      id
+    );
   }
 
   searchByTag(id: number) {

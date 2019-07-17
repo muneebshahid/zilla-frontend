@@ -45,7 +45,10 @@ export class ProductService {
       }
     }
     if (params.tags.length !== 0) {
-      filteredParam["tags"] = this.filterService.getSelectedTagsCSVs(params.tags);
+      let tags = this.filterService.getSelectedTagsCSVs(params.tags);
+      if (tags !== "") {
+        filteredParam["tags"] = tags;
+      }
     }
     if (params.latlondis[0] !== -1) {
       filteredParam["latlondis"] = `${params.latlondis[0]},${params.latlondis[1]},${

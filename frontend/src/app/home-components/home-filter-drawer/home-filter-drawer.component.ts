@@ -22,7 +22,12 @@ import {
   selectBusinessAmenities,
   selectBusinessTypes
 } from "src/app/store/selectors/business";
-import { GetProductTypes, GetProductTags, GetSearchProducts } from "src/app/store/actions/product";
+import {
+  GetProductTypes,
+  GetProductTags,
+  GetSearchProducts,
+  UpdateProductFilters
+} from "src/app/store/actions/product";
 import { FiltersService } from "src/app/services/filters/filters.service";
 
 @Component({
@@ -223,11 +228,12 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
 
   applyFilters() {
     if (this.showingBusinesses) {
-      this.businessFilters.latlondis[2] = this.searchDistance.nativeElement.value;
-      this.businessFilters.amenities = this.getIdsOfSelectedTags(this.selectedTags);
-      this.businessFilters.business_types = this.selectedTypeID;
+      this.saveBusinessFiltersState();
+      console.log(this.businessFilters);
       this.searchBusinesses(this.businessFilters);
     } else {
+      this.saveProductFilterState();
+      console.log(this.productsFilters);
       this.searchProducts(this.productsFilters);
     }
   }
@@ -241,6 +247,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     this.store.dispatch(new GetSearchBusiness(params));
   }
   searchProducts(params: any) {
+    this.store.dispatch(new UpdateProductFilters(params));
     this.store.dispatch(new GetSearchProducts(params));
   }
 

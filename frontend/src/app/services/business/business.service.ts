@@ -27,7 +27,10 @@ export class BusinessService {
       }`;
     }
     if (params.amenities.length !== 0) {
-      filteredParam["amenities"] = this.filterService.getSelectedTagsCSVs(params.amenities);
+      let amenities = this.filterService.getSelectedTagsCSVs(params.amenities);
+      if (amenities !== "") {
+        filteredParam["amenities"] = amenities;
+      }
     }
     if (params.query !== "") {
       filteredParam["query"] = params.query;
@@ -35,7 +38,7 @@ export class BusinessService {
     if (params.business_types.length !== 0) {
       let businessTypeID = this.filterService.getSelectedTypeID(params.business_types);
       if (businessTypeID !== undefined) {
-        filteredParam["business_type"] = this.filterService.getSelectedTypeID(businessTypeID);
+        filteredParam["business_type"] = businessTypeID;
       }
     }
     return filteredParam;
