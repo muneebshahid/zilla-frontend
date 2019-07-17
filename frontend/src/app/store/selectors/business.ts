@@ -17,10 +17,6 @@ export const selectBusinessFilter = createSelector(
   selectItems,
   (state: IBusinessState) => state.filters
 );
-export const selectBusinessFilterLatLonDis = createSelector(
-  selectItems,
-  (state: IBusinessState) => state.filters.latlondis
-);
 
 export const selectBusinessNumHits = createSelector(
   selectItems,

@@ -56,7 +56,7 @@ export class ProductInfoComponent implements OnInit {
   }
 
   sendRequest() {
-    this.store.dispatch(new UpdateProductFilters(this.filters));
+    this.store.dispatch(new UpdateProductFilters(Object.assign({}, this.filters)));
     this.store.dispatch(new GetSearchProducts(this.filters));
   }
 

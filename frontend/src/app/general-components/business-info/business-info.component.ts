@@ -51,7 +51,7 @@ export class BusinessInfoComponent implements OnInit, OnDestroy {
   }
   searchByTag(id: number) {
     this.filters.business_type = id;
-    this.store.dispatch(new UpdateBusinessFilters(this.filters));
+    this.store.dispatch(new UpdateBusinessFilters(Object.assign({}, this.filters)));
     this.store.dispatch(new GetSearchBusiness(this.filters));
   }
 
