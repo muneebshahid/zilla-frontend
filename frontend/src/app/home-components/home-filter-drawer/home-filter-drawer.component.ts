@@ -216,15 +216,6 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       this.searchBusinesses(this.businessFilters);
     });
   }
-  getIdsOfSelectedTags(tagsArray: any) {
-    const tags = [];
-    for (const tag of tagsArray) {
-      if (tag.checked) {
-        tags.push(tag.id);
-      }
-    }
-    return tags;
-  }
 
   applyFilters() {
     if (this.showingBusinesses) {
