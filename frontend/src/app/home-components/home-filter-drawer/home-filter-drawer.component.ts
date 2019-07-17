@@ -229,11 +229,9 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   applyFilters() {
     if (this.showingBusinesses) {
       this.saveBusinessFiltersState();
-      console.log(this.businessFilters);
       this.searchBusinesses(this.businessFilters);
     } else {
       this.saveProductFilterState();
-      console.log(this.productsFilters);
       this.searchProducts(this.productsFilters);
     }
   }
