@@ -78,6 +78,17 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       this.selectedTypeID
     );
     this.businessFilters.amenities = this.selectedTags;
+
+    if (this.searchDistance !== undefined) {
+      this.businessFilters.latlondis[2] = this.searchDistance.nativeElement.value;
+    }
+  }
+  saveProductFilterState() {
+    this.productsFilters.product_types = this.filterService.selectTypeInFilter(
+      this.productsFilters.product_types,
+      this.selectedTypeID
+    );
+    this.productsFilters.tags = this.selectedTags;
   }
 
   setProductDrawerFilters() {
@@ -86,8 +97,8 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
 
       this.selectedTags = this.productsFilters.tags;
       this.selectedTypes = this.productsFilters.product_types;
-      this.selectedTypeID = this.productsFilters.product_types.forEach(
-        item => item.selected == true
+      this.selectedTypeID = this.filterService.getSelectedTypeID(
+        this.productsFilters.product_types
       );
       this.filterTypeText = "Product Type";
     }
@@ -95,12 +106,12 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
 
   setBusinessDrawerFilters() {
     if (this.productsFilters !== null && this.businessFilters !== null) {
-      this.productsFilters.product_types = this.selectedTypeID;
+      this.saveProductFilterState();
 
       this.selectedTags = this.businessFilters.amenities;
       this.selectedTypes = this.businessFilters.business_types;
-      this.selectedTypeID = this.businessFilters.business_types.forEach(
-        item => item.selected == true
+      this.selectedTypeID = this.filterService.getSelectedTypeID(
+        this.businessFilters.business_types
       );
 
       this.filterTypeText = "Business Type";
