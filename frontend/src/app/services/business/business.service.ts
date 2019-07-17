@@ -66,7 +66,6 @@ export class BusinessService {
       }
       pushedIds.push(item.business.id);
     }
-    console.log(markers);
     return markers;
   }
 }

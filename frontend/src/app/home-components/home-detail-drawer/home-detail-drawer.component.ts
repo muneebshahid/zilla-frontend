@@ -27,6 +27,15 @@ export class HomeDetailDrawerComponent implements OnInit {
   public business: IBusiness;
   public isActive: boolean = false;
 
+  images = [
+    { file: "/media/business/3/6eaa5b88-5487-4979-a9aa-572f4f6fd1ff.jpg" },
+    { file: "/media/business/3/6eaa5b88-5487-4979-a9aa-572f4f6fd1ff.jpg" },
+    { file: "/media/business/3/6eaa5b88-5487-4979-a9aa-572f4f6fd1ff.jpg" },
+    { file: "/media/business/3/6eaa5b88-5487-4979-a9aa-572f4f6fd1ff.jpg" },
+    { file: "/media/business/3/6eaa5b88-5487-4979-a9aa-572f4f6fd1ff.jpg" },
+    { file: "/media/business/3/6eaa5b88-5487-4979-a9aa-572f4f6fd1ff.jpg" }
+  ];
+
   ngOnInit() {
     this.subscriptions();
   }
@@ -35,6 +44,8 @@ export class HomeDetailDrawerComponent implements OnInit {
       if (business !== null && business !== undefined) {
         this.business = business;
         this.isActive = true;
+      } else {
+        // apusCore(jQuery, 2);
       }
     });
 
