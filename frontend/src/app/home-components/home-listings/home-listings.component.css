@@ -7,7 +7,7 @@
 }
 
 .filters {
-  margin-top: 4%;
+  margin-top: 2%;
   overflow: hidden;
 }
 
@@ -15,7 +15,9 @@
   z-index: 9;
   display: inline-block;
   -webkit-border-radius: 50px;
+  border-radius: 50px;
   background-color: #fb3640;
   color: #fff;
   padding: 2px 14px;
+  margin-left: 1%;
 }
