@@ -20,4 +20,9 @@
   color: #fff;
   padding: 2px 14px;
   margin-left: 1%;
+  margin-top: 1%;
+}
+
+.search-tag:hover {
+  cursor: pointer;
 }
