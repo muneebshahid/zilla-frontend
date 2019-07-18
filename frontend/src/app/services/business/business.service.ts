@@ -21,25 +21,23 @@ export class BusinessService {
 
   cleanBusinessFilters(params) {
     let filteredParam = {};
+    let amenities = this.filterService.getSelectedTagsCSVs(params.amenities);
+    let businessTypeID = this.filterService.getSelectedTypeID(params.business_types);
+
     if (params.latlondis[0] !== -1) {
       filteredParam["latlondis"] = `${params.latlondis[0]},${params.latlondis[1]},${
         params.latlondis[2]
       }`;
     }
-    if (params.amenities.length !== 0) {
-      let amenities = this.filterService.getSelectedTagsCSVs(params.amenities);
-      if (amenities !== "") {
-        filteredParam["amenities"] = amenities;
-      }
+    if (amenities !== "") {
+      filteredParam["amenities"] = amenities;
     }
     if (params.query !== "") {
       filteredParam["query"] = params.query;
     }
-    if (params.business_types.length !== 0) {
-      let businessTypeID = this.filterService.getSelectedTypeID(params.business_types);
-      if (businessTypeID !== undefined) {
-        filteredParam["business_type"] = businessTypeID;
-      }
+
+    if (businessTypeID !== null) {
+      filteredParam["business_type"] = businessTypeID;
     }
     return filteredParam;
   }

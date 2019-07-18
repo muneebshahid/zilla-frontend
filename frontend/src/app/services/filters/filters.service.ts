@@ -14,14 +14,6 @@ export class FiltersService {
     }
     return filterTags;
   }
-  public deselectTagInFilter(filterTags: any, selectedtagId) {
-    for (let i = 0; i < filterTags.length; i++) {
-      if (filterTags[i].id === selectedtagId) {
-        filterTags[i].checked = false;
-      }
-    }
-    return filterTags;
-  }
   public getSelectedTagsCSVs(filterTags: any) {
     let tags = [];
     for (let i = 0; i < filterTags.length; i++) {
@@ -37,6 +29,7 @@ export class FiltersService {
         return filterTags[i].id;
       }
     }
+    return null;
   }
 
   public selectTypeInFilter(filterTypes: any, selectedtypeId) {

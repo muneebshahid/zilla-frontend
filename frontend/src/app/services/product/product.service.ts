@@ -35,20 +35,11 @@ export class ProductService {
 
   cleanProductFilters(params) {
     let filteredParam = {};
+    let product_type = this.filterService.getSelectedTypeID(params.product_types);
+    let tags = this.filterService.getSelectedTagsCSVs(params.tags);
+
     if (params.query !== "") {
       filteredParam["query"] = params.query;
-    }
-    if (params.product_types.length !== 0) {
-      let productID = this.filterService.getSelectedTypeID(params.product_types);
-      if (productID !== undefined) {
-        filteredParam["product_type"] = productID;
-      }
-    }
-    if (params.tags.length !== 0) {
-      let tags = this.filterService.getSelectedTagsCSVs(params.tags);
-      if (tags !== "") {
-        filteredParam["tags"] = tags;
-      }
     }
     if (params.latlondis[0] !== -1) {
       filteredParam["latlondis"] = `${params.latlondis[0]},${params.latlondis[1]},${
@@ -61,6 +52,15 @@ export class ProductService {
     if (params.available !== -1) {
       filteredParam["available"] = params.available;
     }
+
+    if (product_type !== null) {
+      filteredParam["product_type"] = product_type;
+    }
+
+    if (tags !== "") {
+      filteredParam["tags"] = tags;
+    }
+
     return filteredParam;
   }
 

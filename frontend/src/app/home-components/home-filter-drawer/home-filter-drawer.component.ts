@@ -63,7 +63,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
 
   public showingBusinesses: boolean = true;
   public filterTypeText: string;
-  @ViewChild("searchDistance") searchDistance: ElementRef;
+  @ViewChild("searchDistance") searchDistanceControl: ElementRef;
 
   constructor(
     private store: Store<IAppState>,
@@ -77,49 +77,32 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     this.dispatchActions();
   }
 
-  saveBusinessFiltersState() {
-    this.businessFilters.business_types = this.filterService.selectTypeInFilter(
-      this.businessFilters.business_types,
-      this.selectedTypeID
-    );
-    this.businessFilters.amenities = this.selectedTags;
-
-    if (this.searchDistance !== undefined) {
-      this.businessFilters.latlondis[2] = this.searchDistance.nativeElement.value;
-    }
+  setBusinessDrawerFilters() {
+    this.selectedTags = this.businessFilters.amenities;
+    this.selectedTypes = this.businessFilters.business_types;
+    this.selectedTypeID = this.filterService.getSelectedTypeID(this.businessFilters.business_types);
+    this.filterTypeText = "Business Type";
   }
-  saveProductFilterState() {
-    this.productsFilters.product_types = this.filterService.selectTypeInFilter(
-      this.productsFilters.product_types,
-      this.selectedTypeID
-    );
-    this.productsFilters.tags = this.selectedTags;
+
+  saveBusinessFiltersState() {
+    this.businessFilters.amenities = this.selectedTags;
+    this.businessFilters.business_types = this.selectedTypes;
+    this.businessFilters.latlondis[2] = this.searchDistanceControl.nativeElement.value;
   }
 
   setProductDrawerFilters() {
-    if (this.businessFilters !== null && this.productsFilters !== null) {
-      this.saveBusinessFiltersState();
-
-      this.selectedTags = this.productsFilters.tags;
-      this.selectedTypes = this.productsFilters.product_types;
-      this.selectedTypeID = this.filterService.getSelectedTypeID(
-        this.productsFilters.product_types
-      );
-      this.filterTypeText = "Product Type";
-    }
+    this.selectedTags = this.productsFilters.tags;
+    this.selectedTypes = this.productsFilters.product_types;
+    this.selectedTypeID = this.filterService.getSelectedTypeID(this.productsFilters.product_types);
+    this.filterTypeText = "Product Type";
   }
 
-  setBusinessDrawerFilters() {
-    if (this.productsFilters !== null && this.businessFilters !== null) {
-      this.saveProductFilterState();
+  saveProductFiltersState() {
+    this.productsFilters.tags = this.selectedTags;
+    this.productsFilters.product_types = this.selectedTypes;
 
-      this.selectedTags = this.businessFilters.amenities;
-      this.selectedTypes = this.businessFilters.business_types;
-      this.selectedTypeID = this.filterService.getSelectedTypeID(
-        this.businessFilters.business_types
-      );
-
-      this.filterTypeText = "Business Type";
+    if (this.searchDistanceControl !== undefined) {
+      this.productsFilters.latlondis[2] = this.searchDistanceControl.nativeElement.value;
     }
   }
 
@@ -137,9 +120,12 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       showingBusinesses => {
         this.showingBusinesses = showingBusinesses;
         if (this.showingBusinesses) {
+          this.saveProductFiltersState();
           this.setBusinessDrawerFilters();
         } else {
+          this.saveBusinessFiltersState();
           this.setProductDrawerFilters();
+
           if (!this.productsRetrieved) {
             this.productsRetrieved = !this.productsRetrieved;
             this.searchProducts(this.productsFilters);
@@ -222,13 +208,22 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       this.saveBusinessFiltersState();
       this.searchBusinesses(this.businessFilters);
     } else {
-      this.saveProductFilterState();
+      this.saveProductFiltersState();
       this.searchProducts(this.productsFilters);
     }
   }
 
   toggleCheckbox(idx: number) {
     this.selectedTags[idx].checked = !this.selectedTags[idx].checked;
+  }
+  dropDownChanged(selectedType: any) {
+    let typeID = null;
+
+    if (selectedType !== undefined) {
+      typeID = selectedType.id;
+    }
+
+    this.selectedTypes = this.filterService.selectTypeInFilter(this.selectedTypes, typeID);
   }
 
   searchBusinesses(params: any) {

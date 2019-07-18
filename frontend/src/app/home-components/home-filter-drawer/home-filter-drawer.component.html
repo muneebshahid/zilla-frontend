@@ -22,6 +22,7 @@
                     bindLabel="name"
                     bindValue="id"
                     class="dropdowner"
+                    (change)="dropDownChanged($event)"
                     [multiple]="false"
                     [placeholder]="filterTypeText"
                     [(ngModel)]="selectedTypeID"
