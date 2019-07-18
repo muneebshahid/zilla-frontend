@@ -42,7 +42,6 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy {
   public businessesFilterSelector = this.store.pipe(select(selectBusinessFilter));
   public productTypesSelector = this.store.pipe(select(selectProductTypes));
   public productTagsSelector = this.store.pipe(select(selectProductTags));
-
   public businessesTypesSelector = this.store.pipe(select(selectBusinessTypes));
   public businessesAmenitiesSelector = this.store.pipe(select(selectBusinessAmenities));
 
@@ -60,7 +59,6 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy {
     the products will only be updated when user applies a filter or search on searchbox.
   */
   public productsRetrieved: boolean = false;
-
   public showingBusinesses: boolean = true;
   public filterTypeText: string;
   @ViewChild("searchDistance") searchDistanceControl: ElementRef;
@@ -225,11 +223,11 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy {
   }
 
   searchBusinesses(params: any) {
-    this.store.dispatch(new UpdateBusinessFilters(params));
+    this.store.dispatch(new UpdateBusinessFilters(Object.assign({}, params)));
     this.store.dispatch(new GetSearchBusiness(params));
   }
   searchProducts(params: any) {
-    this.store.dispatch(new UpdateProductFilters(params));
+    this.store.dispatch(new UpdateProductFilters(Object.assign({}, params)));
     this.store.dispatch(new GetSearchProducts(params));
   }
 

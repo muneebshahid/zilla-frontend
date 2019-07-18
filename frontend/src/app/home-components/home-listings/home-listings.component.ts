@@ -1,3 +1,5 @@
+import { IBFilters } from "src/app/models/business_filters";
+import { filter } from "rxjs/operators";
 import { selectBusinessFilter, selectBusinessNumHits } from "./../../store/selectors/business";
 import { UpdateSearchType } from "./../../store/actions/general";
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from "@angular/core";
@@ -89,6 +91,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     );
     const businessFilterSubscriber = this.businessFilterSelector.subscribe(filters => {
       /* set chips for filters */
+      this.getChipsFromBusinessFilters(filters);
     });
 
     this.subscriptionsArr.push(businessFilterSubscriber);
@@ -98,6 +101,12 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     this.subscriptionsArr.push(productsNumHitSubscriber);
     this.subscriptionsArr.push(productMarkersSubscriber);
   }
+
+  getChipsFromBusinessFilters(filter: IBFilters) {
+    console.log("creating chips");
+    console.log(filter);
+  }
+  getChipsFromProductFilters(filter: IBFilters) {}
 
   putMarkersOnMap(markers: any) {
     for (const marker of markers) {
