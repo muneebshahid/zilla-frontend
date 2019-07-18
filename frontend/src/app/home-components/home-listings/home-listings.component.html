@@ -2,7 +2,8 @@
   <div class="list-content clearfix">
     <app-home-drawers-container #drawerContainer></app-home-drawers-container>
     <app-m-filter-map-menu (setMobileMapView)="updateMobileMapView()"></app-m-filter-map-menu>
-    <div class=" main-results">
+
+    <div class="main-results">
       <div class="listing-action clearfix">
         <div class="listing-search-result">
           <div class="results">
@@ -26,6 +27,13 @@
               <a href="javascript:void(0)">Products</a>
             </li>
           </ul>
+        </div>
+      </div>
+      <div class="listing-action filters">
+        <div class="listing-search-result">
+          <div class="results">
+            <span class="results-no">{{ hits }}</span> {{ selectedCategory }} Found (Showing 1 - 14)
+          </div>
         </div>
       </div>
       <app-product-info *ngIf="!showingBusinesses" [homePage]="true"></app-product-info>
