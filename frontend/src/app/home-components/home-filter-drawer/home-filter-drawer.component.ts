@@ -35,7 +35,7 @@ import { FiltersService } from "src/app/services/filters/filters.service";
   templateUrl: "./home-filter-drawer.component.html",
   styleUrls: ["./home-filter-drawer.component.css"]
 })
-export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewInit {
+export class HomeFilterDrawerComponent implements OnInit, OnDestroy {
   private subscriptionsArr: Subscription[] = [];
   public showingBusinessesSelector = this.store.pipe(select(selectShowingBusinesses));
   public productsFilterSelector = this.store.pipe(select(selectProductFilter));
@@ -183,8 +183,6 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     }
     return itemsDropdown;
   }
-
-  ngAfterViewInit() {}
 
   dispatchActions() {
     this.store.dispatch(new GetBusinessAmenities());
