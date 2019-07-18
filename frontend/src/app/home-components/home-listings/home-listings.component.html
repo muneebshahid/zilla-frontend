@@ -9,6 +9,9 @@
           <div class="results">
             <span class="results-no">{{ hits }}</span> {{ selectedCategory }} Found (Showing 1 - 14)
           </div>
+          <div class="listing-search-result filters">
+            <div class="results"><span class="search-tag"> Vehicle Boy </span></div>
+          </div>
         </div>
         <div class="listing-display-mode">
           <ul class="nav nav-pills">
@@ -27,13 +30,6 @@
               <a href="javascript:void(0)">Products</a>
             </li>
           </ul>
-        </div>
-      </div>
-      <div class="listing-action filters">
-        <div class="listing-search-result">
-          <div class="results">
-            <span class="results-no">{{ hits }}</span> {{ selectedCategory }} Found (Showing 1 - 14)
-          </div>
         </div>
       </div>
       <app-product-info *ngIf="!showingBusinesses" [homePage]="true"></app-product-info>
