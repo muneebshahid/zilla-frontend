@@ -1,3 +1,4 @@
+import { FiltersService } from "src/app/services/filters/filters.service";
 import { IBFilters } from "src/app/models/business_filters";
 import { filter } from "rxjs/operators";
 import { selectBusinessFilter, selectBusinessNumHits } from "./../../store/selectors/business";
@@ -10,6 +11,7 @@ import { selectBusinessMarkers } from "src/app/store/selectors/business";
 import { MapComponent } from "src/app/general-components";
 import { selectShowingBusinesses } from "src/app/store/selectors/general";
 import { selectProductsNumHits, selectProductMarkers } from "src/app/store/selectors/product";
+import { BusinessService } from "src/app/services/business/business.service";
 
 @Component({
   selector: "app-home-listings",
@@ -42,7 +44,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   public hits: number = 0;
   public filters: any;
 
-  constructor(private store: Store<IAppState>) {}
+  constructor(private store: Store<IAppState>, private businessService: BusinessService) {}
 
   ngOnInit() {
     const businessMarkersSubscriber = this.businessMarkersSelector.subscribe(markers => {
@@ -91,7 +93,8 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     );
     const businessFilterSubscriber = this.businessFilterSelector.subscribe(filters => {
       /* set chips for filters */
-      this.getChipsFromBusinessFilters(filters);
+      console.log("chips");
+      console.log(this.businessService.cleanBusinessFilters(filters));
     });
 
     this.subscriptionsArr.push(businessFilterSubscriber);
