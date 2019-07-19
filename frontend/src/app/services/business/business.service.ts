@@ -4,6 +4,7 @@ import { Injectable } from "@angular/core";
 import { HttpService } from "../http/http.service";
 import { environment } from "./../../../environments/environment";
 import { FiltersService } from "../filters/filters.service";
+import { IBFilters } from "src/app/models/business_filters";
 
 @Injectable({
   providedIn: "root"
@@ -65,5 +66,37 @@ export class BusinessService {
       pushedIds.push(item.business.id);
     }
     return markers;
+  }
+
+  getFilterTags(businessFilter: IBFilters) {
+    let selectedFilters = [];
+    let selectedTypeIDObject = this.filterService.getSelectedTypeIDObject(
+      businessFilter.business_types
+    );
+
+    let selectedTags = this.filterService.getSelectedTagsObjs(businessFilter.amenities);
+
+    if (businessFilter.latlondis[2] != 5) {
+      selectedFilters.push({ key: "range", id: null, value: businessFilter.latlondis[2] });
+    }
+
+    if (selectedTypeIDObject !== null) {
+      selectedFilters.push({
+        key: "type",
+        value: selectedTypeIDObject.tag,
+        id: selectedTypeIDObject.id
+      });
+    }
+
+    if (selectedTags.length != 0) {
+      for (let item of selectedTags) {
+        selectedFilters.push({
+          key: "tags",
+          value: item.tag,
+          id: item.id
+        });
+      }
+    }
+    return selectedFilters;
   }
 }

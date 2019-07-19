@@ -23,10 +23,28 @@ export class FiltersService {
     }
     return tags.join();
   }
+  public getSelectedTagsObjs(filterTags: any) {
+    let tags = [];
+    for (let i = 0; i < filterTags.length; i++) {
+      if (filterTags[i].checked) {
+        tags.push(filterTags[i]);
+      }
+    }
+    return tags;
+  }
   public getSelectedTypeID(filterTags: any) {
     for (let i = 0; i < filterTags.length; i++) {
       if (filterTags[i].selected) {
         return filterTags[i].id;
+      }
+    }
+    return null;
+  }
+
+  public getSelectedTypeIDObject(filterTags: any) {
+    for (let i = 0; i < filterTags.length; i++) {
+      if (filterTags[i].selected) {
+        return filterTags[i];
       }
     }
     return null;

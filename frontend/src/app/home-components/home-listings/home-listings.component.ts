@@ -33,6 +33,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   private subscriptionsArr: Subscription[] = [];
   public showingBusinesses = true;
   public searchDistance = 0;
+  public selectedFilters = [];
 
   public businessHits = 0;
   public productHits = 0;
@@ -93,8 +94,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     );
     const businessFilterSubscriber = this.businessFilterSelector.subscribe(filters => {
       /* set chips for filters */
-      console.log("chips");
-      console.log(this.businessService.cleanBusinessFilters(filters));
+      this.selectedFilters = this.businessService.getFilterTags(filters);
     });
 
     this.subscriptionsArr.push(businessFilterSubscriber);
