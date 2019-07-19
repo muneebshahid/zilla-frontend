@@ -19,6 +19,12 @@ export const generalReducers = (
         highlighted: action.payload.highlighted
       };
     }
+    case EGeneralActions.UpdateGeneralFilters: {
+      return {
+        ...state,
+        generalFilters: action.payload
+      };
+    }
 
     default:
       return state;

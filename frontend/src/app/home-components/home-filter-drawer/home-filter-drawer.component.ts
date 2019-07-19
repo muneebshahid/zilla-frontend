@@ -233,6 +233,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       this.saveProductFiltersState();
       this.searchProducts(this.productsFilters, this.generalFilters);
     }
+    this.store.dispatch(new UpdateGeneralFilters(Object.assign({}, this.generalFilters)));
   }
 
   toggleCheckbox(idx: number) {
