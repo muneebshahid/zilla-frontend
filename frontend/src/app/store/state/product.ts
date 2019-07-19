@@ -20,10 +20,8 @@ export const initialProductState: IProductState = {
   num_hits: 0,
   markers: null,
   filters: {
-    query: "",
     product_types: [],
     tags: [],
-    latlondis: [10, 10, 100000],
     available: -1,
     price: -1
   }

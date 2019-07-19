@@ -7,7 +7,7 @@ import { IBFilters } from "./../../models/business_filters";
 import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef } from "@angular/core";
 import { Store, select } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
-import { selectShowingBusinesses } from "src/app/store/selectors/general";
+import { selectShowingBusinesses, selectGeneralFilters } from "src/app/store/selectors/general";
 import { Subscription } from "rxjs";
 import { GetSearchBusiness } from "src/app/store/actions/business";
 import { GeoLocationService } from "src/app/services/geo-location/geo-location.service";
@@ -29,13 +29,17 @@ import {
   UpdateProductFilters
 } from "src/app/store/actions/product";
 import { FiltersService } from "src/app/services/filters/filters.service";
+import { IGFilters } from "src/app/models/general_filters";
+import { UpdateGeneralFilters } from "src/app/store/actions/general";
+
+declare var jQuery: any;
 
 @Component({
   selector: "app-home-filter-drawer",
   templateUrl: "./home-filter-drawer.component.html",
   styleUrls: ["./home-filter-drawer.component.css"]
 })
-export class HomeFilterDrawerComponent implements OnInit, OnDestroy {
+export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewInit {
   private subscriptionsArr: Subscription[] = [];
   public showingBusinessesSelector = this.store.pipe(select(selectShowingBusinesses));
   public productsFilterSelector = this.store.pipe(select(selectProductFilter));
@@ -44,9 +48,11 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy {
   public productTagsSelector = this.store.pipe(select(selectProductTags));
   public businessesTypesSelector = this.store.pipe(select(selectBusinessTypes));
   public businessesAmenitiesSelector = this.store.pipe(select(selectBusinessAmenities));
+  public generalFiltersSelector = this.store.pipe(select(selectGeneralFilters));
 
   public businessFilters: IBFilters = null;
   public productsFilters: IPFilters = null;
+  public generalFilters: IGFilters = null;
 
   public selectedTags;
   public selectedTypes;
@@ -61,8 +67,11 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy {
   public productsRetrieved: boolean = false;
   public showingBusinesses: boolean = true;
   public filterTypeText: string;
+  public abc;
   @ViewChild("searchDistance") searchDistanceControl: ElementRef;
-
+  @ViewChild("searchDistanceSlider") searchDistanceSliderControl: ElementRef;
+  @ViewChild("textDistance") searchDistanceTextDistanceControl: ElementRef;
+  @ViewChild("distanceCustomHandle") searchDistanceCustomHandle: ElementRef;
   constructor(
     private store: Store<IAppState>,
     private geoLocationService: GeoLocationService,
@@ -70,7 +79,6 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.setInitialLatLon();
     this.initializeSubscribers();
     this.dispatchActions();
   }
@@ -85,7 +93,6 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy {
   saveBusinessFiltersState() {
     this.businessFilters.amenities = this.selectedTags;
     this.businessFilters.business_types = this.selectedTypes;
-    this.businessFilters.latlondis[2] = this.searchDistanceControl.nativeElement.value;
   }
 
   setProductDrawerFilters() {
@@ -98,10 +105,6 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy {
   saveProductFiltersState() {
     this.productsFilters.tags = this.selectedTags;
     this.productsFilters.product_types = this.selectedTypes;
-
-    if (this.searchDistanceControl !== undefined) {
-      this.productsFilters.latlondis[2] = this.searchDistanceControl.nativeElement.value;
-    }
   }
 
   initializeSubscribers() {
@@ -109,6 +112,12 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy {
       this.businessFilters = filter;
       this.setBusinessDrawerFilters();
     });
+
+    const generalFiltersSubscriber = this.generalFiltersSelector.subscribe(filter => {
+      this.generalFilters = filter;
+      this.setInitialLatLon();
+    });
+
     const productsFilterSubscriber = this.productsFilterSelector.subscribe(filter => {
       this.productsFilters = filter;
       this.setProductDrawerFilters();
@@ -126,7 +135,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy {
 
           if (!this.productsRetrieved) {
             this.productsRetrieved = !this.productsRetrieved;
-            this.searchProducts(this.productsFilters);
+            this.searchProducts(this.productsFilters, this.generalFilters);
           }
         }
       }
@@ -154,6 +163,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy {
     this.subscriptionsArr.push(businessAmenitiesSubscriber);
     this.subscriptionsArr.push(businessFilterSubscriber);
     this.subscriptionsArr.push(productsFilterSubscriber);
+    this.subscriptionsArr.push(generalFiltersSubscriber);
   }
 
   getCheckboxVersionOfFilters(items: any) {
@@ -167,6 +177,25 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy {
       });
     }
     return itemsCheckbox;
+  }
+
+  ngAfterViewInit() {
+    let self = this;
+
+    jQuery(self.searchDistanceSliderControl.nativeElement).slider({
+      range: "min",
+      value: jQuery(self.searchDistanceControl.nativeElement).val(),
+      min: 0,
+      max: 100,
+      slide: function(event, ui) {
+        self.generalFilters.latlondis[2] = ui.value;
+
+        jQuery(self.searchDistanceControl.nativeElement).val(ui.value);
+        jQuery(self.searchDistanceTextDistanceControl.nativeElement).text(ui.value);
+        jQuery(self.searchDistanceCustomHandle.nativeElement).attr("data-value", ui.value);
+      },
+      create: function() {}
+    });
   }
 
   getDropDownVersionOfFilters(items: any) {
@@ -191,21 +220,19 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy {
 
   setInitialLatLon() {
     this.geoLocationService.getPosition().subscribe((pos: Position) => {
-      this.businessFilters.latlondis[0] = pos.coords.latitude;
-      this.businessFilters.latlondis[1] = pos.coords.longitude;
-      this.productsFilters.latlondis[0] = pos.coords.latitude;
-      this.productsFilters.latlondis[1] = pos.coords.longitude;
-      this.searchBusinesses(this.businessFilters);
+      this.generalFilters.latlondis[0] = pos.coords.latitude;
+      this.generalFilters.latlondis[1] = pos.coords.longitude;
+      this.searchBusinesses(this.businessFilters, this.generalFilters);
     });
   }
 
   applyFilters() {
     if (this.showingBusinesses) {
       this.saveBusinessFiltersState();
-      this.searchBusinesses(this.businessFilters);
+      this.searchBusinesses(this.businessFilters, this.generalFilters);
     } else {
       this.saveProductFiltersState();
-      this.searchProducts(this.productsFilters);
+      this.searchProducts(this.productsFilters, this.generalFilters);
     }
   }
 
@@ -222,13 +249,19 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy {
     this.selectedTypes = this.filterService.selectTypeInFilter(this.selectedTypes, typeID);
   }
 
-  searchBusinesses(params: any) {
-    this.store.dispatch(new UpdateBusinessFilters(Object.assign({}, params)));
-    this.store.dispatch(new GetSearchBusiness(params));
+  searchBusinesses(businessParams: any, generalParams: any) {
+    this.store.dispatch(new UpdateBusinessFilters(Object.assign({}, businessParams)));
+    this.store.dispatch(new UpdateGeneralFilters(Object.assign({}, generalParams)));
+    this.store.dispatch(
+      new GetSearchBusiness({ businessParams: businessParams, generalParams: generalParams })
+    );
   }
-  searchProducts(params: any) {
-    this.store.dispatch(new UpdateProductFilters(Object.assign({}, params)));
-    this.store.dispatch(new GetSearchProducts(params));
+  searchProducts(productsParams: any, generalParams: any) {
+    this.store.dispatch(new UpdateProductFilters(Object.assign({}, productsParams)));
+    this.store.dispatch(new UpdateGeneralFilters(Object.assign({}, generalParams)));
+    this.store.dispatch(
+      new GetSearchProducts({ productParams: productsParams, generalParams: generalParams })
+    );
   }
 
   ngOnDestroy() {

@@ -48,7 +48,7 @@
                 </div>
               </div>
             </div> -->
-            <div class="search_distance_wrapper clearfix" *ngIf="showingBusinesses">
+            <div class="search_distance_wrapper clearfix">
               <div class="search-distance-label">
                 <label for="use_search_distance">
                   <input
@@ -57,7 +57,9 @@
                     checked="checked"
                     type="checkbox"
                   />
-                  Radius: <span class="text-distance">{{ businessFilters.latlondis[2] }}</span> km
+                  Radius:
+                  <span class="text-distance" #textDistance>{{ generalFilters.latlondis[2] }}</span>
+                  km
                 </label>
               </div>
               <div class="search-distance-wrapper">
@@ -66,13 +68,15 @@
                   type="hidden"
                   name="search_distance"
                   id="search_distance"
-                  [(value)]="businessFilters.latlondis[2]"
+                  [value]="generalFilters.latlondis[2]"
                 />
                 <div
+                  #searchDistanceSlider
                   id="search-distance-slider"
                   class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
                 >
                   <div
+                    #distanceCustomHandle
                     id="distance-custom-handle"
                     class="ui-slider-handle ui-state-default ui-corner-all"
                     data-value="50"

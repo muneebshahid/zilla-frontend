@@ -21,8 +21,6 @@ export const initialBusinessState: IBusinessState = {
   businessTypes: null,
   businessAmenities: null,
   filters: {
-    latlondis: [10, 10, 100000],
-    query: "",
     amenities: [],
     business_types: []
   }

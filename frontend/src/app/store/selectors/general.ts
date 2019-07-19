@@ -14,3 +14,9 @@ export const selectMarkerHighlighting = createSelector(
     return { highlighted: state.highlighted, markerID: state.highlightedMarkerID };
   }
 );
+export const selectGeneralFilters = createSelector(
+  selectItems,
+  (state: IGeneralState) => {
+    return state.generalFilters;
+  }
+);

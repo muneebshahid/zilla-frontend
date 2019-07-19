@@ -5,6 +5,7 @@ import { HttpService } from "../http/http.service";
 import { environment } from "./../../../environments/environment";
 import { FiltersService } from "../filters/filters.service";
 import { IBFilters } from "src/app/models/business_filters";
+import { filter } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
@@ -13,28 +14,29 @@ export class BusinessService {
   constructor(private httpService: HttpService, private filterService: FiltersService) {}
 
   getSearchBusinesses(params: any) {
-    const filteredParams = this.cleanBusinessFilters(params);
+    const filteredParams = this.cleanBusinessFilters(params.businessParams, params.generalParams);
+    console.log(filteredParams);
     return this.httpService.get(
       `${environment.searchUrl}/${environment.businessUrl}/`,
       filteredParams
     );
   }
 
-  cleanBusinessFilters(params) {
+  cleanBusinessFilters(bparams: any, gparams: any) {
     let filteredParam = {};
-    let amenities = this.filterService.getSelectedTagsCSVs(params.amenities);
-    let businessTypeID = this.filterService.getSelectedTypeID(params.business_types);
+    let amenities = this.filterService.getSelectedTagsCSVs(bparams.amenities);
+    let businessTypeID = this.filterService.getSelectedTypeID(bparams.business_types);
 
-    if (params.latlondis[0] !== -1) {
-      filteredParam["latlondis"] = `${params.latlondis[0]},${params.latlondis[1]},${
-        params.latlondis[2]
+    if (gparams.latlondis[0] !== -1) {
+      filteredParam["latlondis"] = `${gparams.latlondis[0]},${gparams.latlondis[1]},${
+        gparams.latlondis[2]
       }`;
     }
     if (amenities !== "") {
       filteredParam["amenities"] = amenities;
     }
-    if (params.query !== "") {
-      filteredParam["query"] = params.query;
+    if (gparams.query !== "") {
+      filteredParam["query"] = gparams.query;
     }
 
     if (businessTypeID !== null) {
@@ -75,10 +77,6 @@ export class BusinessService {
     );
 
     let selectedTags = this.filterService.getSelectedTagsObjs(businessFilter.amenities);
-
-    if (businessFilter.latlondis[2] != 5) {
-      selectedFilters.push({ key: "range", id: null, value: businessFilter.latlondis[2] });
-    }
 
     if (selectedTypeIDObject !== null) {
       selectedFilters.push({

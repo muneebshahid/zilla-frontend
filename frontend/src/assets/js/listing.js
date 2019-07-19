@@ -506,21 +506,21 @@
         };
       updateDisplayMode();
 
-      $("#search-distance-slider").slider({
-        range: "min",
-        value: $("#search_distance").val(),
-        min: 0,
-        max: 100,
-        slide: function(event, ui) {
-          $("#search_distance").val(ui.value);
-          $(".text-distance").text(ui.value);
-          $("#distance-custom-handle").attr("data-value", ui.value);
-          // $(".job_listings").triggerHandler("update_results", [1, false]);
-        },
-        create: function() {
-          $("#distance-custom-handle").attr("data-value", $(this).slider("value"));
-        }
-      });
+      // $("#search-distance-slider").slider({
+      //   range: "min",
+      //   value: $("#search_distance").val(),
+      //   min: 0,
+      //   max: 100,
+      //   slide: function(event, ui) {
+      //     $("#search_distance").val(ui.value);
+      //     $(".text-distance").text(ui.value);
+      //     $("#distance-custom-handle").attr("data-value", ui.value);
+      //     // $(".job_listings").triggerHandler("update_results", [1, false]);
+      //   },
+      //   create: function() {
+      //     $("#distance-custom-handle").attr("data-value", $(this).slider("value"));
+      //   }
+      // });
 
       $.fn.bindFirst = function(name, selector, fn) {
         // bind as you normally would

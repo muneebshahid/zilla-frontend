@@ -19,7 +19,7 @@ export class ProductService {
   }
 
   getSearchProducts(params: any) {
-    const filteredParams = this.cleanProductFilters(params);
+    const filteredParams = this.cleanProductFilters(params.productParams, params.generalParams);
     return this.httpService.get(
       `${environment.searchUrl}/${environment.productUrl}/`,
       filteredParams
@@ -33,24 +33,24 @@ export class ProductService {
     return this.httpService.get(`${environment.productTagsUrl}/`, {});
   }
 
-  cleanProductFilters(params) {
+  cleanProductFilters(pparams: any, gparams: any) {
     let filteredParam = {};
-    let product_type = this.filterService.getSelectedTypeID(params.product_types);
-    let tags = this.filterService.getSelectedTagsCSVs(params.tags);
+    let product_type = this.filterService.getSelectedTypeID(pparams.product_types);
+    let tags = this.filterService.getSelectedTagsCSVs(pparams.tags);
 
-    if (params.query !== "") {
-      filteredParam["query"] = params.query;
+    if (gparams.query !== "") {
+      filteredParam["query"] = gparams.query;
     }
-    if (params.latlondis[0] !== -1) {
-      filteredParam["latlondis"] = `${params.latlondis[0]},${params.latlondis[1]},${
-        params.latlondis[2]
+    if (gparams.latlondis[0] !== -1) {
+      filteredParam["latlondis"] = `${gparams.latlondis[0]},${gparams.latlondis[1]},${
+        gparams.latlondis[2]
       }`;
     }
-    if (params.price !== -1) {
-      filteredParam["price"] = params.price;
+    if (pparams.price !== -1) {
+      filteredParam["price"] = pparams.price;
     }
-    if (params.available !== -1) {
-      filteredParam["available"] = params.available;
+    if (pparams.available !== -1) {
+      filteredParam["available"] = pparams.available;
     }
 
     if (product_type !== null) {
