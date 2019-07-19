@@ -124,17 +124,18 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     );
     const businessFilterSubscriber = this.businessFilterSelector.subscribe(filters => {
       this.businessFilterChips = [];
+      this.selectedFilterChips = [];
       this.businessFilterChips = this.businessService.getFilterChips(filters);
-      this.selectedFilterChips = this.businessFilterChips;
+      this.selectedFilterChips = Object.assign([], this.businessFilterChips);
       this.originalBusinessFilter = filters;
-      console.log(filters);
+      console.log(this.selectedFilterChips);
     });
     const productFilterSubscriber = this.productFilterSelector.subscribe(filters => {
       this.productFilterChips = [];
+      this.selectedFilterChips = [];
       this.productFilterChips = this.productService.getFilterChips(filters);
-      this.selectedFilterChips = this.productFilterChips;
+      this.selectedFilterChips = Object.assign([], this.productFilterChips);
       this.originalProductFilter = filters;
-      console.log(filters);
     });
     const generalFilterSubscriber = this.generalFilterSelector.subscribe(filters => {
       this.generalFilterChips = [];
@@ -163,7 +164,6 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
 
   /* remove filter from the originalFilter so that we can update it in store for other components to know. */
   removeFilter(key, id) {
-    let newFilterChips = [];
     for (let i = 0; i < this.selectedFilterChips.length; i++) {
       if (this.selectedFilterChips[i].key === key && this.selectedFilterChips[i].id === id) {
         if (this.showingBusinesses) {
@@ -197,18 +197,8 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
             })
           );
         }
-      } else {
-        newFilterChips.push(this.selectedFilterChips[i]);
       }
     }
-
-    if (this.showingBusinesses) {
-      this.businessFilterChips = newFilterChips;
-    } else {
-      this.productFilterChips = newFilterChips;
-    }
-
-    this.selectedFilterChips = newFilterChips;
   }
   removeGeneralFilter(type) {
     this.generalFilterChips = this.generalFilterChips.filter(function(value, index, arr) {

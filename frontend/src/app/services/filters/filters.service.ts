@@ -24,7 +24,7 @@ export class FiltersService {
   }
   public deSelectTagFilter(filterTags: any, deselectedTagID) {
     for (let i = 0; i < filterTags.length; i++) {
-      if (filterTags[i].id == deselectedTagID) {
+      if (filterTags[i].id === deselectedTagID) {
         filterTags[i].checked = false;
       }
     }
