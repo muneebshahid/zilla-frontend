@@ -13,6 +13,8 @@ import { selectBusinesses, selectBusinessFilter } from "src/app/store/selectors/
 import { HighlightMapMarker } from "src/app/store/actions/general";
 import { IBFilters } from "src/app/models/business_filters";
 import { FiltersService } from "src/app/services/filters/filters.service";
+import { selectGeneralFilters } from "src/app/store/selectors/general";
+import { IGFilters } from "src/app/models/general_filters";
 
 @Component({
   selector: "app-business-info",
@@ -23,11 +25,13 @@ export class BusinessInfoComponent implements OnInit, OnDestroy {
   @Input() public homePage = false;
   private subscriptionsArr: Subscription[] = [];
   public businessesSelector = this.store.pipe(select(selectBusinesses));
-  public businesses: IBusiness[];
   public businessFilterSelector = this.store.pipe(select(selectBusinessFilter));
+  public generalFiltersSelector = this.store.pipe(select(selectGeneralFilters));
+  public businesses: IBusiness[];
 
   public endpoint = environment.apiEndpoint;
-  public filters: IBFilters = null;
+  public bfilters: IBFilters = null;
+  public gfilters: IGFilters = null;
 
   constructor(private store: Store<IAppState>, private filterService: FiltersService) {}
 
@@ -36,11 +40,15 @@ export class BusinessInfoComponent implements OnInit, OnDestroy {
       this.businesses = businesses;
     });
     const businessFilterSubscriber = this.businessFilterSelector.subscribe(filters => {
-      this.filters = filters;
+      this.bfilters = filters;
+    });
+    const generalFiltersSubscriber = this.generalFiltersSelector.subscribe(filters => {
+      this.gfilters = filters;
     });
 
     this.subscriptionsArr.push(businessSubscriber);
     this.subscriptionsArr.push(businessFilterSubscriber);
+    this.subscriptionsArr.push(generalFiltersSubscriber);
   }
   ngOnDestroy() {
     for (const subscriber of this.subscriptionsArr) {
@@ -52,16 +60,18 @@ export class BusinessInfoComponent implements OnInit, OnDestroy {
   }
 
   updateBusinessTypeSelection(id: number) {
-    this.filters.business_types = this.filterService.selectTypeInFilter(
-      this.filters.business_types,
+    this.bfilters.business_types = this.filterService.selectTypeInFilter(
+      this.bfilters.business_types,
       id
     );
   }
 
   searchByTag(id: number) {
     this.updateBusinessTypeSelection(id);
-    this.store.dispatch(new UpdateBusinessFilters(Object.assign({}, this.filters)));
-    this.store.dispatch(new GetSearchBusiness(this.filters));
+    this.store.dispatch(new UpdateBusinessFilters(Object.assign({}, this.bfilters)));
+    this.store.dispatch(
+      new GetSearchBusiness({ businessParams: this.bfilters, generalParams: this.gfilters })
+    );
   }
 
   highlightMarker(id: number, highlight: boolean) {

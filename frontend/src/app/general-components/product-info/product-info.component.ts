@@ -10,6 +10,8 @@ import { HighlightMapMarker } from "src/app/store/actions/general";
 import { IPFilters } from "src/app/models/product_filters";
 import { GetSearchProducts, UpdateProductFilters } from "src/app/store/actions/product";
 import { FiltersService } from "src/app/services/filters/filters.service";
+import { IGFilters } from "src/app/models/general_filters";
+import { selectGeneralFilters } from "src/app/store/selectors/general";
 
 @Component({
   selector: "app-product-info",
@@ -23,8 +25,10 @@ export class ProductInfoComponent implements OnInit {
 
   public productsFilterSelector = this.store.pipe(select(selectProductFilter));
   public productsSelector = this.store.pipe(select(selectProducts));
+  public generalFiltersSelector = this.store.pipe(select(selectGeneralFilters));
   public endpoint = environment.apiEndpoint;
-  public filters: IPFilters = null;
+  public pfilters: IPFilters = null;
+  public gfilters: IGFilters = null;
 
   constructor(private store: Store<IAppState>, private filterService: FiltersService) {}
 
@@ -33,11 +37,15 @@ export class ProductInfoComponent implements OnInit {
       this.businessProducts = businessProducts;
     });
     const productFilterSubscriber = this.productsFilterSelector.subscribe(filters => {
-      this.filters = filters;
+      this.pfilters = filters;
+    });
+    const generalFiltersSubscriber = this.generalFiltersSelector.subscribe(filters => {
+      this.gfilters = filters;
     });
 
     this.subscriptionsArr.push(businessProductsSubscriber);
     this.subscriptionsArr.push(productFilterSubscriber);
+    this.subscriptionsArr.push(generalFiltersSubscriber);
   }
   openDetailDrawer(id: number) {
     this.store.dispatch(new GetBusinessDetail({ id: id }));
@@ -49,8 +57,8 @@ export class ProductInfoComponent implements OnInit {
   }
 
   updateProductTypeSelection(id: number) {
-    this.filters.product_types = this.filterService.selectTypeInFilter(
-      this.filters.product_types,
+    this.pfilters.product_types = this.filterService.selectTypeInFilter(
+      this.pfilters.product_types,
       id
     );
   }
@@ -60,13 +68,15 @@ export class ProductInfoComponent implements OnInit {
     this.sendRequest();
   }
   searchByTag(tagId: number) {
-    this.filters.tags = this.filterService.selectTagInFilter(this.filters.tags, tagId);
+    this.pfilters.tags = this.filterService.selectTagInFilter(this.pfilters.tags, tagId);
     this.sendRequest();
   }
 
   sendRequest() {
-    this.store.dispatch(new UpdateProductFilters(Object.assign({}, this.filters)));
-    this.store.dispatch(new GetSearchProducts(this.filters));
+    this.store.dispatch(new UpdateProductFilters(Object.assign({}, this.pfilters)));
+    this.store.dispatch(
+      new GetSearchProducts({ productParams: this.pfilters, generalParams: this.gfilters })
+    );
   }
 
   highlightMarker(id: number, highlight: boolean) {

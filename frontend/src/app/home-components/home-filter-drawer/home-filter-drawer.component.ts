@@ -67,7 +67,6 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   public productsRetrieved: boolean = false;
   public showingBusinesses: boolean = true;
   public filterTypeText: string;
-  public abc;
   @ViewChild("searchDistance") searchDistanceControl: ElementRef;
   @ViewChild("searchDistanceSlider") searchDistanceSliderControl: ElementRef;
   @ViewChild("textDistance") searchDistanceTextDistanceControl: ElementRef;
