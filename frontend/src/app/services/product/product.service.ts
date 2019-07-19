@@ -4,6 +4,8 @@ import { HttpService } from "../http/http.service";
 import { Observable } from "rxjs";
 import { IProduct } from "src/app/models/product";
 import { FiltersService } from "../filters/filters.service";
+import { IPFilters } from "src/app/models/product_filters";
+import { IFilterChips } from "src/app/models/filterchips";
 
 @Injectable({
   providedIn: "root"
@@ -67,5 +69,33 @@ export class ProductService {
   /* businessObj business id to post */
   getProductsOfBusiness(businessId: any): Observable<IProduct[]> {
     return this.httpService.get(`${environment.exploreUrl}/${businessId}/`, {});
+  }
+
+  getFilterChips(productFilter: IPFilters) {
+    let selectedFilters: IFilterChips[] = [];
+    let selectedTypeIDObject = this.filterService.getSelectedTypeIDObject(
+      productFilter.product_types
+    );
+
+    let selectedTags = this.filterService.getSelectedTagsObjs(productFilter.tags);
+
+    if (selectedTypeIDObject !== null) {
+      selectedFilters.push({
+        key: "type",
+        value: selectedTypeIDObject.name,
+        id: selectedTypeIDObject.id
+      });
+    }
+
+    if (selectedTags.length != 0) {
+      for (let item of selectedTags) {
+        selectedFilters.push({
+          key: "tags",
+          value: item.tag,
+          id: item.id
+        });
+      }
+    }
+    return selectedFilters;
   }
 }

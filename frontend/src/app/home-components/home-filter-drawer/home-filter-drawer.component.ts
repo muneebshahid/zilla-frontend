@@ -188,7 +188,6 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       max: 100,
       slide: function(event, ui) {
         self.generalFilters.latlondis[2] = ui.value;
-
         jQuery(self.searchDistanceControl.nativeElement).val(ui.value);
         jQuery(self.searchDistanceTextDistanceControl.nativeElement).text(ui.value);
         jQuery(self.searchDistanceCustomHandle.nativeElement).attr("data-value", ui.value);
@@ -233,7 +232,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       this.saveProductFiltersState();
       this.searchProducts(this.productsFilters, this.generalFilters);
     }
-    this.store.dispatch(new UpdateGeneralFilters(Object.assign({}, this.generalFilters)));
+    this.updateGeneralFilters(this.generalFilters);
   }
 
   toggleCheckbox(idx: number) {
@@ -249,15 +248,25 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     this.selectedTypes = this.filterService.selectTypeInFilter(this.selectedTypes, typeID);
   }
 
+  updateGeneralFilters(params: any) {
+    this.store.dispatch(new UpdateGeneralFilters(Object.assign({}, params)));
+  }
+  updateProductFilters(params: any) {
+    this.store.dispatch(new UpdateProductFilters(Object.assign({}, params)));
+  }
+  updateBusinessFilters(params: any) {
+    this.store.dispatch(new UpdateBusinessFilters(Object.assign({}, params)));
+  }
+
   searchBusinesses(businessParams: any, generalParams: any) {
-    this.store.dispatch(new UpdateBusinessFilters(Object.assign({}, businessParams)));
+    this.updateBusinessFilters(businessParams);
     this.store.dispatch(new UpdateGeneralFilters(Object.assign({}, generalParams)));
     this.store.dispatch(
       new GetSearchBusiness({ businessParams: businessParams, generalParams: generalParams })
     );
   }
   searchProducts(productsParams: any, generalParams: any) {
-    this.store.dispatch(new UpdateProductFilters(Object.assign({}, productsParams)));
+    this.updateProductFilters(productsParams);
     this.store.dispatch(new UpdateGeneralFilters(Object.assign({}, generalParams)));
     this.store.dispatch(
       new GetSearchProducts({ productParams: productsParams, generalParams: generalParams })

@@ -10,29 +10,18 @@
             <span class="results-no">{{ hits }}</span> {{ selectedCategory }} Found (Showing 1 - 14)
           </div>
           <div class="filters">
-            <div class="results">
-              <span class="search-tag"> Vehicle Boy <i class="fa fa-remove"></i></span>
-              <span class="search-tag"> Vehicle Boy <i class="fa fa-remove"></i></span>
-              <span class="search-tag"> Vehicle Boy <i class="fa fa-remove"></i></span>
-              <span class="search-tag"> Vehicle Boy <i class="fa fa-remove"></i></span>
-              <span class="search-tag"> Vehicle Boy <i class="fa fa-remove"></i></span>
-              <span class="search-tag"> Vehicle Boy <i class="fa fa-remove"></i></span>
-              <span class="search-tag"> Vehicle Boy <i class="fa fa-remove"></i></span>
-              <span class="search-tag"> Vehicle Boy <i class="fa fa-remove"></i></span>
-              <span class="search-tag"> Vehicle Boy <i class="fa fa-remove"></i></span>
-              <span class="search-tag"> Vehicle Boy <i class="fa fa-remove"></i></span>
-              <span class="search-tag"> Vehicle Boy <i class="fa fa-remove"></i></span>
-              <span class="search-tag"> Vehicle Boy <i class="fa fa-remove"></i></span>
-              <span class="search-tag"> Vehicle Boy <i class="fa fa-remove"></i></span>
-              <span class="search-tag"> Vehicle Boy <i class="fa fa-remove"></i></span>
-              <span class="search-tag"> Vehicle Boy <i class="fa fa-remove"></i></span>
-              <span class="search-tag"> Vehicle Boy <i class="fa fa-remove"></i></span>
-              <span class="search-tag"> Vehicle Boy <i class="fa fa-remove"></i></span>
-              <span class="search-tag"> Vehicle Boy <i class="fa fa-remove"></i></span>
-              <span class="search-tag"> Vehicle Boy <i class="fa fa-remove"></i></span>
-              <span class="search-tag"> Vehicle Boy <i class="fa fa-remove"></i></span>
-              <span class="search-tag"> Vehicle Boy <i class="fa fa-remove"></i></span>
-              <span class="search-tag"> Vehicle Boy <i class="fa fa-remove"></i></span>
+            <div
+              class="results"
+              *ngIf="selectedFilterChips.length > 0 || generalFilterChips.length > 0"
+            >
+              <span class="search-tag" *ngFor="let chip of selectedFilterChips">
+                {{ chip.value }}
+                <i class="fa fa-remove" (click)="removeFilter(chip.key, chip.id)"></i
+              ></span>
+              <span class="search-tag" *ngFor="let chip of generalFilterChips">
+                {{ chip.value }}
+                <i class="fa fa-remove" (click)="removeGeneralFilter(chip.key)"></i
+              ></span>
             </div>
           </div>
         </div>

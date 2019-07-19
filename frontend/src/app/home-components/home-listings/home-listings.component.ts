@@ -9,9 +9,18 @@ import { IAppState } from "src/app/store/state/app.state";
 import { Subscription } from "rxjs";
 import { selectBusinessMarkers } from "src/app/store/selectors/business";
 import { MapComponent } from "src/app/general-components";
-import { selectShowingBusinesses } from "src/app/store/selectors/general";
-import { selectProductsNumHits, selectProductMarkers } from "src/app/store/selectors/product";
+import { selectShowingBusinesses, selectGeneralFilters } from "src/app/store/selectors/general";
+import {
+  selectProductsNumHits,
+  selectProductMarkers,
+  selectProductFilter
+} from "src/app/store/selectors/product";
 import { BusinessService } from "src/app/services/business/business.service";
+import { IPFilters } from "src/app/models/product_filters";
+import { IGFilters } from "src/app/models/general_filters";
+import { ProductService } from "src/app/services/product/product.service";
+import { GeneralService } from "src/app/services/general/general.service";
+import { IFilterChips } from "src/app/models/filterchips";
 
 @Component({
   selector: "app-home-listings",
@@ -25,10 +34,12 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
 
   public businessMarkersSelector = this.store.pipe(select(selectBusinessMarkers));
   public productMarkersSelector = this.store.pipe(select(selectProductMarkers));
-  public businessFilterSelector = this.store.pipe(select(selectBusinessFilter));
   public businessNumHitSelector = this.store.pipe(select(selectBusinessNumHits));
   public productsNumHitSelector = this.store.pipe(select(selectProductsNumHits));
   public showingBusinessesSelector = this.store.pipe(select(selectShowingBusinesses));
+  public businessFilterSelector = this.store.pipe(select(selectBusinessFilter));
+  public productFilterSelector = this.store.pipe(select(selectProductFilter));
+  public generalFilterSelector = this.store.pipe(select(selectGeneralFilters));
 
   private subscriptionsArr: Subscription[] = [];
   public showingBusinesses = true;
@@ -42,10 +53,22 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   public businessMarkers: any = null;
   public productMarkers: any = null;
 
+  public selectedFilterChips: IFilterChips[] = [];
+
+  public businessFilterChips: IFilterChips[] = [];
+  public productFilterChips: IFilterChips[] = [];
+
+  public generalFilterChips: IFilterChips[] = [];
+
   public hits: number = 0;
   public filters: any;
 
-  constructor(private store: Store<IAppState>, private businessService: BusinessService) {}
+  constructor(
+    private store: Store<IAppState>,
+    private businessService: BusinessService,
+    private generalService: GeneralService,
+    private productService: ProductService
+  ) {}
 
   ngOnInit() {
     const businessMarkersSubscriber = this.businessMarkersSelector.subscribe(markers => {
@@ -77,6 +100,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
         this.mapComponent.markers = [];
 
         if (this.showingBusinesses) {
+          this.selectedFilterChips = this.businessFilterChips;
           this.hits = this.businessHits;
           this.selectedCategory = "Businesses";
 
@@ -84,6 +108,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
             this.putMarkersOnMap(this.businessMarkers);
           }
         } else {
+          this.selectedFilterChips = this.productFilterChips;
           this.hits = this.productHits;
           this.selectedCategory = "Products";
           if (this.productMarkers !== null) {
@@ -93,8 +118,17 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
       }
     );
     const businessFilterSubscriber = this.businessFilterSelector.subscribe(filters => {
-      /* set chips for filters */
-      this.selectedFilters = this.businessService.getFilterTags(filters);
+      this.businessFilterChips = [];
+      this.businessFilterChips = this.businessService.getFilterChips(filters);
+      this.selectedFilterChips = this.businessFilterChips;
+    });
+    const productFilterSubscriber = this.productFilterSelector.subscribe(filters => {
+      this.productFilterChips = [];
+      this.productFilterChips = this.productService.getFilterChips(filters);
+      this.selectedFilterChips = this.productFilterChips;
+    });
+    const generalFilterSubscriber = this.generalFilterSelector.subscribe(filters => {
+      this.generalFilterChips = this.generalService.getFilterChips(filters);
     });
 
     this.subscriptionsArr.push(businessFilterSubscriber);
@@ -103,13 +137,34 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     this.subscriptionsArr.push(businessMarkersSubscriber);
     this.subscriptionsArr.push(productsNumHitSubscriber);
     this.subscriptionsArr.push(productMarkersSubscriber);
+    this.subscriptionsArr.push(generalFilterSubscriber);
+    this.subscriptionsArr.push(productFilterSubscriber);
   }
 
-  getChipsFromBusinessFilters(filter: IBFilters) {
-    console.log("creating chips");
-    console.log(filter);
+  removeFilter(type, id) {
+    this.selectedFilterChips = this.selectedFilterChips.filter(function(value, index, arr) {
+      if (value.key === type) {
+        if (value.id === id) {
+          return false;
+        }
+      }
+      return true;
+    });
+
+    if (this.showingBusinesses) {
+      this.businessFilterChips = this.selectedFilterChips;
+    } else {
+      this.productFilterChips = this.selectedFilterChips;
+    }
   }
-  getChipsFromProductFilters(filter: IBFilters) {}
+  removeGeneralFilter(type) {
+    this.generalFilterChips = this.generalFilterChips.filter(function(value, index, arr) {
+      if (value.key === type) {
+        return false;
+      }
+      return true;
+    });
+  }
 
   putMarkersOnMap(markers: any) {
     for (const marker of markers) {

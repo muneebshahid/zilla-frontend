@@ -6,6 +6,7 @@ import { environment } from "./../../../environments/environment";
 import { FiltersService } from "../filters/filters.service";
 import { IBFilters } from "src/app/models/business_filters";
 import { filter } from "rxjs/operators";
+import { IFilterChips } from "src/app/models/filterchips";
 
 @Injectable({
   providedIn: "root"
@@ -70,8 +71,8 @@ export class BusinessService {
     return markers;
   }
 
-  getFilterTags(businessFilter: IBFilters) {
-    let selectedFilters = [];
+  getFilterChips(businessFilter: IBFilters) {
+    let selectedFilters: IFilterChips[] = [];
     let selectedTypeIDObject = this.filterService.getSelectedTypeIDObject(
       businessFilter.business_types
     );
@@ -81,7 +82,7 @@ export class BusinessService {
     if (selectedTypeIDObject !== null) {
       selectedFilters.push({
         key: "type",
-        value: selectedTypeIDObject.tag,
+        value: selectedTypeIDObject.name,
         id: selectedTypeIDObject.id
       });
     }
