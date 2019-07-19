@@ -73,6 +73,7 @@ export class BusinessService {
 
   getFilterChips(businessFilter: IBFilters) {
     let selectedFilters: IFilterChips[] = [];
+    let objectKeys = Object.keys(businessFilter);
     let selectedTypeIDObject = this.filterService.getSelectedTypeIDObject(
       businessFilter.business_types
     );
@@ -81,7 +82,7 @@ export class BusinessService {
 
     if (selectedTypeIDObject !== null) {
       selectedFilters.push({
-        key: "type",
+        key: objectKeys[1],
         value: selectedTypeIDObject.name,
         id: selectedTypeIDObject.id
       });
@@ -90,7 +91,7 @@ export class BusinessService {
     if (selectedTags.length != 0) {
       for (let item of selectedTags) {
         selectedFilters.push({
-          key: "tags",
+          key: objectKeys[0],
           value: item.tag,
           id: item.id
         });

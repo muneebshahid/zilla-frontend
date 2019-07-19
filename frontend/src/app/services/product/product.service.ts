@@ -73,6 +73,8 @@ export class ProductService {
 
   getFilterChips(productFilter: IPFilters) {
     let selectedFilters: IFilterChips[] = [];
+    let objectKeys = Object.keys(productFilter);
+
     let selectedTypeIDObject = this.filterService.getSelectedTypeIDObject(
       productFilter.product_types
     );
@@ -81,7 +83,7 @@ export class ProductService {
 
     if (selectedTypeIDObject !== null) {
       selectedFilters.push({
-        key: "type",
+        key: objectKeys[0],
         value: selectedTypeIDObject.name,
         id: selectedTypeIDObject.id
       });
@@ -90,7 +92,7 @@ export class ProductService {
     if (selectedTags.length != 0) {
       for (let item of selectedTags) {
         selectedFilters.push({
-          key: "tags",
+          key: objectKeys[1],
           value: item.tag,
           id: item.id
         });

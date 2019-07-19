@@ -21,6 +21,8 @@ import { IGFilters } from "src/app/models/general_filters";
 import { ProductService } from "src/app/services/product/product.service";
 import { GeneralService } from "src/app/services/general/general.service";
 import { IFilterChips } from "src/app/models/filterchips";
+import { UpdateBusinessFilters, GetSearchBusiness } from "src/app/store/actions/business";
+import { UpdateProductFilters, GetSearchProducts } from "src/app/store/actions/product";
 
 @Component({
   selector: "app-home-listings",
@@ -54,11 +56,13 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   public productMarkers: any = null;
 
   public selectedFilterChips: IFilterChips[] = [];
-
   public businessFilterChips: IFilterChips[] = [];
   public productFilterChips: IFilterChips[] = [];
-
   public generalFilterChips: IFilterChips[] = [];
+
+  public originalBusinessFilter: IBFilters;
+  public originalProductFilter: IPFilters;
+  public originalGeneralFilter: IGFilters;
 
   public hits: number = 0;
   public filters: any;
@@ -67,7 +71,8 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     private store: Store<IAppState>,
     private businessService: BusinessService,
     private generalService: GeneralService,
-    private productService: ProductService
+    private productService: ProductService,
+    private filterService: FiltersService
   ) {}
 
   ngOnInit() {
@@ -121,14 +126,20 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
       this.businessFilterChips = [];
       this.businessFilterChips = this.businessService.getFilterChips(filters);
       this.selectedFilterChips = this.businessFilterChips;
+      this.originalBusinessFilter = filters;
+      console.log(filters);
     });
     const productFilterSubscriber = this.productFilterSelector.subscribe(filters => {
       this.productFilterChips = [];
       this.productFilterChips = this.productService.getFilterChips(filters);
       this.selectedFilterChips = this.productFilterChips;
+      this.originalProductFilter = filters;
+      console.log(filters);
     });
     const generalFilterSubscriber = this.generalFilterSelector.subscribe(filters => {
+      this.generalFilterChips = [];
       this.generalFilterChips = this.generalService.getFilterChips(filters);
+      this.originalGeneralFilter = filters;
     });
 
     this.subscriptionsArr.push(businessFilterSubscriber);
@@ -141,21 +152,63 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     this.subscriptionsArr.push(productFilterSubscriber);
   }
 
-  removeFilter(type, id) {
-    this.selectedFilterChips = this.selectedFilterChips.filter(function(value, index, arr) {
-      if (value.key === type) {
-        if (value.id === id) {
-          return false;
+  deSelectFilterFromOriginal(key, id, original) {
+    if (key === "amenities" || key === "tags") {
+      original[key] = this.filterService.deSelectTagFilter(original[key], id);
+    } else if (key === "business_types" || key === "product_types") {
+      original[key] = this.filterService.deSelectTypeInFilter(original[key], id);
+    }
+    return original;
+  }
+
+  /* remove filter from the originalFilter so that we can update it in store for other components to know. */
+  removeFilter(key, id) {
+    let newFilterChips = [];
+    for (let i = 0; i < this.selectedFilterChips.length; i++) {
+      if (this.selectedFilterChips[i].key === key && this.selectedFilterChips[i].id === id) {
+        if (this.showingBusinesses) {
+          this.originalBusinessFilter = this.deSelectFilterFromOriginal(
+            key,
+            id,
+            this.originalBusinessFilter
+          );
+          this.store.dispatch(
+            new UpdateBusinessFilters(Object.assign({}, this.originalBusinessFilter))
+          );
+          this.store.dispatch(
+            new GetSearchBusiness({
+              businessParams: this.originalBusinessFilter,
+              generalParams: this.originalGeneralFilter
+            })
+          );
+        } else {
+          this.originalProductFilter = this.deSelectFilterFromOriginal(
+            key,
+            id,
+            this.originalProductFilter
+          );
+          this.store.dispatch(
+            new UpdateProductFilters(Object.assign({}, this.originalProductFilter))
+          );
+          this.store.dispatch(
+            new GetSearchProducts({
+              productParams: this.originalProductFilter,
+              generalParams: this.originalGeneralFilter
+            })
+          );
         }
+      } else {
+        newFilterChips.push(this.selectedFilterChips[i]);
       }
-      return true;
-    });
+    }
 
     if (this.showingBusinesses) {
-      this.businessFilterChips = this.selectedFilterChips;
+      this.businessFilterChips = newFilterChips;
     } else {
-      this.productFilterChips = this.selectedFilterChips;
+      this.productFilterChips = newFilterChips;
     }
+
+    this.selectedFilterChips = newFilterChips;
   }
   removeGeneralFilter(type) {
     this.generalFilterChips = this.generalFilterChips.filter(function(value, index, arr) {
