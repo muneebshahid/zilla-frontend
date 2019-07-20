@@ -22,11 +22,13 @@ export class MenuComponent implements OnInit, OnDestroy {
   public showingBusinessesSelector = this.store.pipe(select(selectShowingBusinesses));
   public productsFilterSelector = this.store.pipe(select(selectProductFilter));
   public businessesFilterSelector = this.store.pipe(select(selectBusinessFilter));
-  private subscriptionsArr: Subscription[] = [];
   public generalFilters: IGFilters = null;
-  public showingBusinesses: boolean = true;
   public businessFilters: IBFilters = null;
   public productsFilters: IPFilters = null;
+  public showingBusinesses = true;
+
+  private subscriptionsArr: Subscription[] = [];
+  private searchText: string;
 
   constructor(private store: Store<IAppState>) {}
 
@@ -54,6 +56,8 @@ export class MenuComponent implements OnInit, OnDestroy {
   }
 
   searchResults() {
+    this.generalFilters.query = this.searchText;
+
     this.store.dispatch(new UpdateGeneralFilters(Object.assign({}, this.generalFilters)));
     if (this.showingBusinesses) {
       this.store.dispatch(

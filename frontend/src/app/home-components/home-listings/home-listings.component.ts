@@ -24,7 +24,6 @@ import { GeneralService } from "src/app/services/general/general.service";
 import { IFilterChips } from "src/app/models/filterchips";
 import { UpdateBusinessFilters, GetSearchBusiness } from "src/app/store/actions/business";
 import { UpdateProductFilters, GetSearchProducts } from "src/app/store/actions/product";
-
 @Component({
   selector: "app-home-listings",
   templateUrl: "./home-listings.component.html",
