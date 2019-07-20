@@ -26,15 +26,6 @@ export class HomeDetailDrawerComponent implements OnInit {
   public business: IBusiness;
   public isActive: boolean = false;
 
-  images = [
-    { file: "/media/business/3/696e99a2-93e7-41f4-8e0c-c2bd1bab8ac6.jpg" },
-    { file: "/media/business/3/696e99a2-93e7-41f4-8e0c-c2bd1bab8ac6.jpg" },
-    { file: "/media/business/3/696e99a2-93e7-41f4-8e0c-c2bd1bab8ac6.jpg" },
-    { file: "/media/business/3/696e99a2-93e7-41f4-8e0c-c2bd1bab8ac6.jpg" },
-    { file: "/media/business/3/696e99a2-93e7-41f4-8e0c-c2bd1bab8ac6.jpg" },
-    { file: "/media/business/3/696e99a2-93e7-41f4-8e0c-c2bd1bab8ac6.jpg" }
-  ];
-
   ngOnInit() {
     this.subscriptions();
   }
