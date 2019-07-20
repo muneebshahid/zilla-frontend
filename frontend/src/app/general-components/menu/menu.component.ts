@@ -56,6 +56,10 @@ export class MenuComponent implements OnInit, OnDestroy {
   }
 
   searchResults() {
+    if (this.searchText === "" || this.searchText === this.generalFilters.query) {
+      return;
+    }
+
     this.generalFilters.query = this.searchText;
 
     this.store.dispatch(new UpdateGeneralFilters(Object.assign({}, this.generalFilters)));
