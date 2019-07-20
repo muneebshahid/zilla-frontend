@@ -1,10 +1,13 @@
 import { IGFilters } from "src/app/models/general_filters";
 
+let defaultLatlonDis = [1, 1, 100000];
+
 export interface IGeneralState {
   showingBusinesses?: boolean;
   highlightedMarkerID?: number;
   highlighted?: boolean;
   generalFilters?: IGFilters;
+  defaultLatlondis: Array<number>;
 }
 
 export const initialGeneralState: IGeneralState = {
@@ -12,7 +15,8 @@ export const initialGeneralState: IGeneralState = {
   highlightedMarkerID: null,
   highlighted: false,
   generalFilters: {
-    latlondis: [10, 10, 100000],
+    latlondis: defaultLatlonDis,
     query: ""
-  }
+  },
+  defaultLatlondis: defaultLatlonDis
 };

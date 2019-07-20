@@ -20,3 +20,9 @@ export const selectGeneralFilters = createSelector(
     return state.generalFilters;
   }
 );
+export const selectDefaultLatLonDis = createSelector(
+  selectItems,
+  (state: IGeneralState) => {
+    return state.defaultLatlondis;
+  }
+);
