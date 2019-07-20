@@ -26,6 +26,9 @@ function apusCore($, option) {
         previous: "Previous"
       };
       self.initSlick($("[data-carousel=slick]"));
+      setTimeout(function() {
+        self.layzyLoadImage();
+      }, 500);
     },
 
     init: function() {
@@ -42,9 +45,6 @@ function apusCore($, option) {
       // self.initSlick($("[data-carousel=slick]"));
 
       // Unveil init
-      setTimeout(function() {
-        self.layzyLoadImage();
-      }, 500);
 
       // isoto
       self.initIsotope();

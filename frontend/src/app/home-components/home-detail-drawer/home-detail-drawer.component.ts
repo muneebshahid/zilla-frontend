@@ -10,7 +10,6 @@ import { IBusiness } from "src/app/models/business";
 import { Subscription } from "rxjs";
 import { Store, select } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
-import { ActivatedRoute } from "@angular/router";
 import { selectBusiness } from "src/app/store/selectors/business";
 declare var apusCore: any;
 declare var jQuery: any;
@@ -28,12 +27,12 @@ export class HomeDetailDrawerComponent implements OnInit {
   public isActive: boolean = false;
 
   images = [
-    { file: "/media/business/3/6eaa5b88-5487-4979-a9aa-572f4f6fd1ff.jpg" },
-    { file: "/media/business/3/6eaa5b88-5487-4979-a9aa-572f4f6fd1ff.jpg" },
-    { file: "/media/business/3/6eaa5b88-5487-4979-a9aa-572f4f6fd1ff.jpg" },
-    { file: "/media/business/3/6eaa5b88-5487-4979-a9aa-572f4f6fd1ff.jpg" },
-    { file: "/media/business/3/6eaa5b88-5487-4979-a9aa-572f4f6fd1ff.jpg" },
-    { file: "/media/business/3/6eaa5b88-5487-4979-a9aa-572f4f6fd1ff.jpg" }
+    { file: "/media/business/3/696e99a2-93e7-41f4-8e0c-c2bd1bab8ac6.jpg" },
+    { file: "/media/business/3/696e99a2-93e7-41f4-8e0c-c2bd1bab8ac6.jpg" },
+    { file: "/media/business/3/696e99a2-93e7-41f4-8e0c-c2bd1bab8ac6.jpg" },
+    { file: "/media/business/3/696e99a2-93e7-41f4-8e0c-c2bd1bab8ac6.jpg" },
+    { file: "/media/business/3/696e99a2-93e7-41f4-8e0c-c2bd1bab8ac6.jpg" },
+    { file: "/media/business/3/696e99a2-93e7-41f4-8e0c-c2bd1bab8ac6.jpg" }
   ];
 
   ngOnInit() {
@@ -44,8 +43,6 @@ export class HomeDetailDrawerComponent implements OnInit {
       if (business !== null && business !== undefined) {
         this.business = business;
         this.isActive = true;
-      } else {
-        // apusCore(jQuery, 2);
       }
     });
 
