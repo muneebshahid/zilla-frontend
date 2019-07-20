@@ -27,12 +27,13 @@
                       <div class="search_keywords ">
                         <div class="col-md-12">
                           <input
+                            (keydown.enter)="searchResults()"
                             type="text"
                             name="search_keywords"
                             id="search_keywords"
                             class="search-input"
                             placeholder="Search: nearest pizza places"
-                            value=""
+                            [(ngModel)]="generalFilters.query"
                           />
                         </div>
                       </div>
