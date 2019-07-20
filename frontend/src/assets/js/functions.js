@@ -259,19 +259,20 @@ function apusCore($, option) {
     layzyLoadImage: function() {
       $(window).off("scroll.unveil resize.unveil lookup.unveil");
       var $images = $(".image-wrapper:not(.image-loaded) .unveil-image"); // Get un-loaded images only
-      if ($images.length) {
-        $images.unveil(1, function() {
-          $(this).load(function() {
-            $(this)
-              .parents(".image-wrapper")
-              .first()
-              .addClass("image-loaded");
-            $(this).removeAttr("data-src");
-            $(this).removeAttr("data-srcset");
-            $(this).removeAttr("data-sizes");
-          });
-        });
-      }
+      // if ($images.length) {
+      //   $images.unveil(1, function() {
+      //     console.log("mozi");
+      //     $(this).load(function() {
+      //       $(this)
+      //         .parents(".image-wrapper")
+      //         .first()
+      //         .addClass("image-loaded");
+      //       $(this).removeAttr("data-src");
+      //       $(this).removeAttr("data-srcset");
+      //       $(this).removeAttr("data-sizes");
+      //     });
+      //   });
+      // }
 
       var $images = $(".product-image:not(.image-loaded) .unveil-image"); // Get un-loaded images only
       if ($images.length) {

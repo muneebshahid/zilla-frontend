@@ -1,6 +1,10 @@
 <h3>Menu</h3>
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="panel panel-default" *ngFor="let businessMenu of businessMenus; let i = index">
+  <div
+    class="panel panel-default"
+    *ngFor="let businessMenu of businessMenus; let i = index"
+    #galleryItem
+  >
     <div class="panel-heading" role="tab" id="headingOne">
       <h4 class="panel-title">
         <a
@@ -23,7 +27,7 @@
     </div>
     <div
       id="collapseOne"
-      class="panel-collapse collapse {{ businessMenu.name }}"
+      class="panel-collapse {{ businessMenu.name }}"
       role="tabpanel"
       aria-labelledby="headingOne"
     >
@@ -44,12 +48,12 @@
                               [href]="endpoint + product.image"
                               [title]="product.description"
                             >
-                              <div class="image-wrapper">
+                              <div class="image-wrapper2" #imageWrapperMenu>
                                 <img
                                   width="820"
                                   height="440"
                                   [src]="endpoint + product.image"
-                                  class="attachment-findgo-image-gallery4 size-findgo-image-gallery4 unveil-image"
+                                  class="attachment-findgo-image-gallery4 size-findgo-image-gallery4 unveil-image2"
                                   alt=""
                                   [attr.data-src]="endpoint + product.image"
                                 />

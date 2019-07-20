@@ -12,7 +12,7 @@
   >
     <div class="item" *ngFor="let image of images" #galleryItem>
       <a class="photo-item" [href]="endpoint + image.file" [title]="">
-        <div class="image-wrapper">
+        <div class="image-wrapper" #imageWrapper>
           <img
             width="820"
             height="440"

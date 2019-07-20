@@ -1,19 +1,30 @@
 import { IProduct } from "src/app/models/product";
-import { Component, OnInit, Input, AfterViewInit, SimpleChanges, OnChanges } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  SimpleChanges,
+  OnChanges,
+  AfterViewInit,
+  ViewChildren,
+  QueryList
+} from "@angular/core";
 import { environment } from "src/environments/environment";
 import { IBusinessMenu, MenuItem } from "src/app/models/business_menu";
 
 declare var jQuery: any;
+declare var apusCore: any;
 
 @Component({
   selector: "app-business-detail-menu",
   templateUrl: "./business-detail-menu.component.html",
   styleUrls: ["./business-detail-menu.component.css"]
 })
-export class BusinessDetailMenuComponent implements OnInit, OnChanges {
+export class BusinessDetailMenuComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() products: IProduct[];
   public endpoint: string = environment.apiEndpoint;
   public businessMenus: IBusinessMenu[] = [];
+  @ViewChildren("imageWrapperMenu") imageWrapperMenu: QueryList<any>;
 
   constructor() {}
 
@@ -73,5 +84,26 @@ export class BusinessDetailMenuComponent implements OnInit, OnChanges {
     jQuery("." + this.businessMenus[index].name).collapse("toggle");
 
     this.businessMenus[index].collapsed = !this.businessMenus[index].collapsed;
+  }
+  ngForRendred() {
+    var $images2 = jQuery(".image-wrapper:not(.image-loaded) .unveil-image"); // Get un-loaded images only
+    if ($images2.length) {
+      $images2.unveil(1, function() {
+        jQuery(this).load(function() {
+          jQuery(this)
+            .parents(".image-wrapper")
+            .first()
+            .addClass("image-loaded");
+          jQuery(this).removeAttr("data-src");
+          jQuery(this).removeAttr("data-srcset");
+          jQuery(this).removeAttr("data-sizes");
+        });
+      });
+    }
+  }
+  ngAfterViewInit() {
+    this.imageWrapperMenu.changes.subscribe(t => {
+      this.ngForRendred();
+    });
   }
 }
