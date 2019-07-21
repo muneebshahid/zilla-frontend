@@ -26,3 +26,9 @@ export const selectDefaultLatLonDis = createSelector(
     return state.defaultLatlondis;
   }
 );
+export const selectCloseDetailDrawer = createSelector(
+  selectItems,
+  (state: IGeneralState) => {
+    return state.closeDetailDrawer;
+  }
+);

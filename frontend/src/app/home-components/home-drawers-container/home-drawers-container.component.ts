@@ -1,3 +1,5 @@
+import { UpdateCloseDetailDrawer } from "./../../store/actions/general";
+import { selectCloseDetailDrawer } from "./../../store/selectors/general";
 import {
   Component,
   OnInit,
@@ -21,6 +23,7 @@ import { HomeDetailDrawerComponent } from "../home-detail-drawer/home-detail-dra
 export class HomeDrawersContainerComponent implements OnInit, OnDestroy {
   constructor(private store: Store<IAppState>, private resolver: ComponentFactoryResolver) {}
   private businessSelector = this.store.pipe(select(selectBusiness));
+  private closeDrawerSelector = this.store.pipe(select(selectCloseDetailDrawer));
   private subscriptionsArr: Subscription[] = [];
   public business: IBusiness;
 
@@ -37,8 +40,14 @@ export class HomeDrawersContainerComponent implements OnInit, OnDestroy {
         this.createComponent(business);
       }
     });
+    const closeDrawerSubcriber = this.closeDrawerSelector.subscribe(close => {
+      if (close) {
+        this.destroyComponent();
+      }
+    });
 
     this.subscriptionsArr.push(subcriberBusiness);
+    this.subscriptionsArr.push(closeDrawerSubcriber);
   }
   createComponent(business) {
     this.entry.clear();
@@ -46,6 +55,7 @@ export class HomeDrawersContainerComponent implements OnInit, OnDestroy {
     this.componentRef = this.entry.createComponent(factory);
     this.componentRef.instance.business = business;
     this.componentRef.instance.isActive = true;
+    this.store.dispatch(new UpdateCloseDetailDrawer(false));
   }
   ngOnDestroy() {
     for (const subscriber of this.subscriptionsArr) {
@@ -53,6 +63,7 @@ export class HomeDrawersContainerComponent implements OnInit, OnDestroy {
     }
   }
   destroyComponent() {
+    console.log("destory");
     this.componentRef.destroy();
   }
 }

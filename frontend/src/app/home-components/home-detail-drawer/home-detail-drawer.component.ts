@@ -10,6 +10,9 @@ import {
 } from "@angular/core";
 import { IBusiness } from "src/app/models/business";
 import { DOCUMENT } from "@angular/platform-browser";
+import { UpdateCloseDetailDrawer } from "src/app/store/actions/general";
+import { IAppState } from "src/app/store/state/app.state";
+import { Store } from "@ngrx/store";
 
 declare var jQuery: any;
 @Component({
@@ -20,9 +23,13 @@ declare var jQuery: any;
 export class HomeDetailDrawerComponent implements OnInit {
   @Input() public business: IBusiness;
   @Input() public isActive: boolean = false;
-  // @Output() closeDetailDrawer = new EventEmitter<boolean>();
+  @Output() closeDetailDrawer = new EventEmitter<boolean>();
 
-  constructor(@Inject(DOCUMENT) private document: any, private eRef: ElementRef) {}
+  constructor(
+    @Inject(DOCUMENT) private document: any,
+    private eRef: ElementRef,
+    private store: Store<IAppState>
+  ) {}
 
   lastState = "pop up was not open";
   ngOnInit() {}
@@ -44,7 +51,11 @@ export class HomeDetailDrawerComponent implements OnInit {
       }
     } else {
       if (this.lastState !== "popup was open") {
-        console.log("close drawer");
+        this.isActive = false;
+
+        setTimeout(function() {
+          self.store.dispatch(new UpdateCloseDetailDrawer(true));
+        }, 100);
       } else {
         this.lastState = "pop up was not open";
       }

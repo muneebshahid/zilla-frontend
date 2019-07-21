@@ -8,6 +8,7 @@ export interface IGeneralState {
   highlighted?: boolean;
   generalFilters?: IGFilters;
   defaultLatlondis: Array<number>;
+  closeDetailDrawer: boolean;
 }
 
 export const initialGeneralState: IGeneralState = {
@@ -18,5 +19,6 @@ export const initialGeneralState: IGeneralState = {
     latlondis: defaultLatlonDis,
     query: ""
   },
-  defaultLatlondis: defaultLatlonDis
+  defaultLatlondis: defaultLatlonDis,
+  closeDetailDrawer: false
 };

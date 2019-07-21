@@ -25,6 +25,12 @@ export const generalReducers = (
         generalFilters: action.payload
       };
     }
+    case EGeneralActions.UpdateCloseDetailDrawer: {
+      return {
+        ...state,
+        closeDetailDrawer: action.payload
+      };
+    }
 
     default:
       return state;
