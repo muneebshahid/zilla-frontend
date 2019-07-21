@@ -1,14 +1,5 @@
 import { IProduct } from "src/app/models/product";
-import {
-  Component,
-  OnInit,
-  Input,
-  SimpleChanges,
-  OnChanges,
-  AfterViewInit,
-  ViewChildren,
-  QueryList
-} from "@angular/core";
+import { Component, OnInit, Input, SimpleChanges, OnChanges } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { IBusinessMenu, MenuItem } from "src/app/models/business_menu";
 
@@ -20,11 +11,10 @@ declare var apusCore: any;
   templateUrl: "./business-detail-menu.component.html",
   styleUrls: ["./business-detail-menu.component.css"]
 })
-export class BusinessDetailMenuComponent implements OnInit, OnChanges, AfterViewInit {
+export class BusinessDetailMenuComponent implements OnInit, OnChanges {
   @Input() products: IProduct[];
   public endpoint: string = environment.apiEndpoint;
   public businessMenus: IBusinessMenu[] = [];
-  @ViewChildren("imageWrapperMenu") imageWrapperMenu: QueryList<any>;
 
   constructor() {}
 
@@ -84,15 +74,5 @@ export class BusinessDetailMenuComponent implements OnInit, OnChanges, AfterView
     jQuery("." + this.businessMenus[index].name).collapse("toggle");
 
     this.businessMenus[index].collapsed = !this.businessMenus[index].collapsed;
-  }
-  ngForRendred() {
-    jQuery(".menu-item").magnificPopup({
-      type: "image"
-    });
-  }
-  ngAfterViewInit() {
-    this.imageWrapperMenu.changes.subscribe(t => {
-      this.ngForRendred();
-    });
   }
 }
