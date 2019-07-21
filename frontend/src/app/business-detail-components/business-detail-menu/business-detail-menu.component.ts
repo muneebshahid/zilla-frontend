@@ -86,20 +86,9 @@ export class BusinessDetailMenuComponent implements OnInit, OnChanges, AfterView
     this.businessMenus[index].collapsed = !this.businessMenus[index].collapsed;
   }
   ngForRendred() {
-    var $images2 = jQuery(".image-wrapper:not(.image-loaded) .unveil-image"); // Get un-loaded images only
-    if ($images2.length) {
-      $images2.unveil(1, function() {
-        jQuery(this).load(function() {
-          jQuery(this)
-            .parents(".image-wrapper")
-            .first()
-            .addClass("image-loaded");
-          jQuery(this).removeAttr("data-src");
-          jQuery(this).removeAttr("data-srcset");
-          jQuery(this).removeAttr("data-sizes");
-        });
-      });
-    }
+    jQuery(".menu-item").magnificPopup({
+      type: "image"
+    });
   }
   ngAfterViewInit() {
     this.imageWrapperMenu.changes.subscribe(t => {
