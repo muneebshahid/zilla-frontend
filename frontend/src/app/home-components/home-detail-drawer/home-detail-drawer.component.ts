@@ -1,6 +1,17 @@
-import { Component, OnInit, HostListener, Input, Output, EventEmitter } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  HostListener,
+  Input,
+  Output,
+  EventEmitter,
+  Inject,
+  ElementRef
+} from "@angular/core";
 import { IBusiness } from "src/app/models/business";
+import { DOCUMENT } from "@angular/platform-browser";
 
+declare var jQuery: any;
 @Component({
   selector: "app-home-detail-drawer",
   templateUrl: "./home-detail-drawer.component.html",
@@ -11,11 +22,32 @@ export class HomeDetailDrawerComponent implements OnInit {
   @Input() public isActive: boolean = false;
   // @Output() closeDetailDrawer = new EventEmitter<boolean>();
 
+  constructor(@Inject(DOCUMENT) private document: any, private eRef: ElementRef) {}
+
+  lastState = "pop up was not open";
   ngOnInit() {}
 
   @HostListener("document:click")
   clickout() {
-    // this.closeDetailDrawer.next(true);
-    console.log("wah");
+    var self = this;
+
+    if (this.eRef.nativeElement.contains(event.target)) {
+      let classList = jQuery(this.document.body)
+        .attr("class")
+        .split(/\s+/);
+
+      for (var i = 0; i < classList.length; i++) {
+        if (classList[i] === "mfp-zoom-out-cur") {
+          self.lastState = "popup was open";
+          break;
+        }
+      }
+    } else {
+      if (this.lastState !== "popup was open") {
+        console.log("close drawer");
+      } else {
+        this.lastState = "pop up was not open";
+      }
+    }
   }
 }
