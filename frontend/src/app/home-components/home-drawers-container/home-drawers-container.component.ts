@@ -63,7 +63,6 @@ export class HomeDrawersContainerComponent implements OnInit, OnDestroy {
     }
   }
   destroyComponent() {
-    console.log("destory");
     this.componentRef.destroy();
   }
 }
