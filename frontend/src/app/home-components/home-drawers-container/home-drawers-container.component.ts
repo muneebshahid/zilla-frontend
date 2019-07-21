@@ -1,12 +1,58 @@
-import { Component, OnInit } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewContainerRef,
+  ViewChild,
+  ComponentFactoryResolver,
+  OnDestroy
+} from "@angular/core";
+import { IBusiness } from "src/app/models/business";
+import { Subscription } from "rxjs";
+import { IAppState } from "src/app/store/state/app.state";
+import { Store, select } from "@ngrx/store";
+import { selectBusiness } from "src/app/store/selectors/business";
+import { HomeDetailDrawerComponent } from "../home-detail-drawer/home-detail-drawer.component";
 
 @Component({
   selector: "app-home-drawers-container",
   templateUrl: "./home-drawers-container.component.html",
   styleUrls: ["./home-drawers-container.component.css"]
 })
-export class HomeDrawersContainerComponent implements OnInit {
-  constructor() {}
+export class HomeDrawersContainerComponent implements OnInit, OnDestroy {
+  constructor(private store: Store<IAppState>, private resolver: ComponentFactoryResolver) {}
+  private businessSelector = this.store.pipe(select(selectBusiness));
+  private subscriptionsArr: Subscription[] = [];
+  public business: IBusiness;
 
-  ngOnInit() {}
+  componentRef: any;
+  @ViewChild("homeDetailDrawer", { read: ViewContainerRef }) entry: ViewContainerRef;
+
+  ngOnInit() {
+    this.subscriptions();
+  }
+  private subscriptions() {
+    const subcriberBusiness = this.businessSelector.subscribe(business => {
+      if (business !== null && business !== undefined) {
+        this.business = business;
+        this.createComponent(business);
+      }
+    });
+
+    this.subscriptionsArr.push(subcriberBusiness);
+  }
+  createComponent(business) {
+    this.entry.clear();
+    const factory = this.resolver.resolveComponentFactory(HomeDetailDrawerComponent);
+    this.componentRef = this.entry.createComponent(factory);
+    this.componentRef.instance.business = business;
+    this.componentRef.instance.isActive = true;
+  }
+  ngOnDestroy() {
+    for (const subscriber of this.subscriptionsArr) {
+      subscriber.unsubscribe();
+    }
+  }
+  destroyComponent() {
+    this.componentRef.destroy();
+  }
 }

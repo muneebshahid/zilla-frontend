@@ -11,18 +11,10 @@ export class DetailHeaderGalleryComponent implements OnInit, AfterViewInit {
   @Input() images: Array<string>;
 
   public endpoint: string = environment.apiEndpoint;
-  @ViewChildren("galleryItem") galleryItems: QueryList<any>;
-  @ViewChildren("imageWrapper") imageWrapper: QueryList<any>;
 
   constructor() {}
 
   ngAfterViewInit() {
-    this.imageWrapper.changes.subscribe(t => {
-      this.ngForRendred();
-    });
-  }
-
-  ngForRendred() {
     apusCore(jQuery, 2);
     var $images = jQuery(".image-wrapper:not(.image-loaded) .unveil-image"); // Get un-loaded images only
     $images.unveil(1, function() {
@@ -36,7 +28,17 @@ export class DetailHeaderGalleryComponent implements OnInit, AfterViewInit {
         jQuery(this).removeAttr("data-sizes");
       });
     });
+
+    jQuery(".photo-item").magnificPopup({
+      type: "image",
+      gallery: {
+        // options for gallery
+        enabled: true
+      }
+    });
   }
+
+  ngForRendred() {}
 
   ngOnInit() {}
 }

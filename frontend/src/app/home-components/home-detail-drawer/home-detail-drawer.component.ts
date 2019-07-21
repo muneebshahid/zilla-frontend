@@ -1,18 +1,5 @@
-import {
-  Component,
-  OnInit,
-  AfterViewInit,
-  HostListener,
-  ViewChild,
-  ElementRef
-} from "@angular/core";
+import { Component, OnInit, HostListener, Input, Output, EventEmitter } from "@angular/core";
 import { IBusiness } from "src/app/models/business";
-import { Subscription } from "rxjs";
-import { Store, select } from "@ngrx/store";
-import { IAppState } from "src/app/store/state/app.state";
-import { selectBusiness } from "src/app/store/selectors/business";
-declare var apusCore: any;
-declare var jQuery: any;
 
 @Component({
   selector: "app-home-detail-drawer",
@@ -20,33 +7,15 @@ declare var jQuery: any;
   styleUrls: ["./home-detail-drawer.component.css"]
 })
 export class HomeDetailDrawerComponent implements OnInit {
-  constructor(private store: Store<IAppState>) {}
-  private businessSelector = this.store.pipe(select(selectBusiness));
-  private subscriptionsArr: Subscription[] = [];
-  public business: IBusiness;
-  public isActive: boolean = false;
+  @Input() public business: IBusiness;
+  @Input() public isActive: boolean = false;
+  // @Output() closeDetailDrawer = new EventEmitter<boolean>();
 
-  ngOnInit() {
-    this.subscriptions();
-  }
-  private subscriptions() {
-    const subcriberBusiness = this.businessSelector.subscribe(business => {
-      if (business !== null && business !== undefined) {
-        this.business = business;
-        this.isActive = true;
-      }
-    });
-
-    this.subscriptionsArr.push(subcriberBusiness);
-  }
+  ngOnInit() {}
 
   @HostListener("document:click")
   clickout() {
-    this.isActive = false;
-  }
-  ngOnDestroy() {
-    for (const subscriber of this.subscriptionsArr) {
-      subscriber.unsubscribe();
-    }
+    // this.closeDetailDrawer.next(true);
+    console.log("wah");
   }
 }

@@ -115,6 +115,7 @@ import {
     BrowserAnimationsModule
   ],
   providers: [GoogleMapsAPIWrapper, GeoLocationService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [HomeDetailDrawerComponent]
 })
 export class AppModule {}
