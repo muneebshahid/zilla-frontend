@@ -118,6 +118,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
 
           this.generalFilters.latlondis[0] = place.geometry.location.lat();
           this.generalFilters.latlondis[1] = place.geometry.location.lng();
+          this.generalFilters.city = place.formatted_address;
         });
       });
     });
