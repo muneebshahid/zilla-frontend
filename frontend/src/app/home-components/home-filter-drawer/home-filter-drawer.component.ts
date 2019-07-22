@@ -228,6 +228,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
         this.generalFilters.latlondis[0] = pos.coords.latitude;
         this.generalFilters.latlondis[1] = pos.coords.longitude;
       }
+
       this.searchBusinesses(this.businessFilters, this.generalFilters);
     });
   }
@@ -267,17 +268,15 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   searchBusinesses(businessParams: any, generalParams: any) {
-    console.log(businessParams);
-    console.log(generalParams);
     this.updateBusinessFilters(businessParams);
-    this.store.dispatch(new UpdateGeneralFilters(Object.assign({}, generalParams)));
+    this.updateGeneralFilters(generalParams);
     this.store.dispatch(
       new GetSearchBusiness({ businessParams: businessParams, generalParams: generalParams })
     );
   }
   searchProducts(productsParams: any, generalParams: any) {
     this.updateProductFilters(productsParams);
-    this.store.dispatch(new UpdateGeneralFilters(Object.assign({}, generalParams)));
+    this.updateGeneralFilters(generalParams);
     this.store.dispatch(
       new GetSearchProducts({ productParams: productsParams, generalParams: generalParams })
     );
