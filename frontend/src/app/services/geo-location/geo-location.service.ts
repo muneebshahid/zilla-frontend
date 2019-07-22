@@ -32,7 +32,8 @@ export class GeoLocationService {
             default:
               observer.next(error);
           }
-        }
+        },
+        { timeout: 2000 }
       );
       // navigator.geolocation.getCurrentPosition(this.displayLocationInfo, this.handleLocationError, {
       //   timeout: 5000
