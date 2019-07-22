@@ -2,16 +2,12 @@ import { IGFilters } from "./../../models/general_filters";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { IAppState } from "src/app/store/state/app.state";
-import { Store } from "@ngrx/store";
-import { UpdateGeneralFilters } from "src/app/store/actions/general";
-import { GetSearchBusiness } from "src/app/store/actions/business";
-import { IBFilters } from "src/app/models/business_filters";
 
 @Injectable()
 export class GeoLocationService {
   coordinates: any;
 
-  constructor(private store: Store<IAppState>) {}
+  constructor() {}
 
   public getPosition(): Observable<Position> {
     return Observable.create(observer => {
@@ -40,4 +36,8 @@ export class GeoLocationService {
       // });
     });
   }
+
+
+
+  
 }
