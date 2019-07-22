@@ -64,6 +64,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     this will help us make http call the first time user selects the products tab. After that,
     the products will only be updated when user applies a filter or search on searchbox.
   */
+  public initialLoad = true;
   public productsRetrieved: boolean = false;
   public showingBusinesses: boolean = true;
   public filterTypeText: string;
@@ -114,7 +115,11 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
 
     const generalFiltersSubscriber = this.generalFiltersSelector.subscribe(filter => {
       this.generalFilters = filter;
-      this.setInitialLatLon();
+
+      if (this.initialLoad) {
+        this.initialLoad = !this.initialLoad;
+        this.setInitialLatLon();
+      }
     });
 
     const productsFilterSubscriber = this.productsFilterSelector.subscribe(filter => {
@@ -217,9 +222,12 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   setInitialLatLon() {
-    this.geoLocationService.getPosition().subscribe((pos: Position) => {
-      this.generalFilters.latlondis[0] = pos.coords.latitude;
-      this.generalFilters.latlondis[1] = pos.coords.longitude;
+    this.geoLocationService.getPosition().subscribe((pos: any) => {
+      /* if we get the user position, update the default latlon of user, otherwise call with default latlon. */
+      if (pos.coords) {
+        this.generalFilters.latlondis[0] = pos.coords.latitude;
+        this.generalFilters.latlondis[1] = pos.coords.longitude;
+      }
       this.searchBusinesses(this.businessFilters, this.generalFilters);
     });
   }
@@ -259,6 +267,8 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   searchBusinesses(businessParams: any, generalParams: any) {
+    console.log(businessParams);
+    console.log(generalParams);
     this.updateBusinessFilters(businessParams);
     this.store.dispatch(new UpdateGeneralFilters(Object.assign({}, generalParams)));
     this.store.dispatch(
