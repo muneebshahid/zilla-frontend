@@ -3,6 +3,7 @@ import { FormControl } from "@angular/forms";
 import { MapsAPILoader } from "@agm/core";
 import {} from "googlemaps";
 import { MapComponent } from "src/app/general-components";
+import { GeoLocationService } from "src/app/services/geo-location/geo-location.service";
 
 @Component({
   selector: "app-location",
@@ -20,30 +21,15 @@ export class LocationComponent implements OnInit {
   @ViewChild("mapParent")
   public mapParent: MapComponent;
 
-  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {}
+  constructor(private geoLocationService: GeoLocationService) {}
   ngOnInit() {
-    this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["address"]
-      });
-      autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-          //get the place result
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-
-          //verify result
-          if (place.geometry === undefined || place.geometry === null) {
-            return;
-          }
-
-          //set latitude, longitude and zoom
-          this.mapParent.setPageLocation(
-            place.geometry.location.lat(),
-            place.geometry.location.lng(),
-            13
-          );
-        });
-      });
+    this.geoLocationService.getSearchCities(this.searchElementRef, ["address"]).subscribe(place => {
+      //set latitude, longitude and zoom
+      this.mapParent.setPageLocation(
+        place.geometry.location.lat(),
+        place.geometry.location.lng(),
+        13
+      );
     });
   }
 }
