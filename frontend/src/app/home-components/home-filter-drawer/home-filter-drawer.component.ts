@@ -4,15 +4,7 @@ import {
   UpdateBusinessFilters
 } from "./../../store/actions/business";
 import { IBFilters } from "./../../models/business_filters";
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  AfterViewInit,
-  ViewChild,
-  ElementRef,
-  NgZone
-} from "@angular/core";
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef } from "@angular/core";
 import { Store, select } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
 import { selectShowingBusinesses, selectGeneralFilters } from "src/app/store/selectors/general";
@@ -40,7 +32,6 @@ import {
 import { FiltersService } from "src/app/services/filters/filters.service";
 import { IGFilters } from "src/app/models/general_filters";
 import { UpdateGeneralFilters } from "src/app/store/actions/general";
-import { MapsAPILoader } from "@agm/core";
 
 declare var jQuery: any;
 
@@ -87,9 +78,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   constructor(
     private store: Store<IAppState>,
     private geoLocationService: GeoLocationService,
-    private filterService: FiltersService,
-    private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
+    private filterService: FiltersService
   ) {}
 
   ngOnInit() {
@@ -99,29 +88,13 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   getLocationLatLon() {
-    this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(
-        this.locationElementRef.nativeElement,
-        {
-          types: ["(cities)"]
-        }
-      );
-      autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-          //get the place result
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-
-          //verify result
-          if (place.geometry === undefined || place.geometry === null) {
-            return;
-          }
-
-          this.generalFilters.latlondis[0] = place.geometry.location.lat();
-          this.generalFilters.latlondis[1] = place.geometry.location.lng();
-          this.generalFilters.city = place.formatted_address;
-        });
+    this.geoLocationService
+      .getSearchCities(this.locationElementRef, ["(cities)"])
+      .subscribe(place => {
+        this.generalFilters.latlondis[0] = place.geometry.location.lat();
+        this.generalFilters.latlondis[1] = place.geometry.location.lng();
+        this.generalFilters.city = place.formatted_address;
       });
-    });
   }
 
   setBusinessDrawerFilters() {

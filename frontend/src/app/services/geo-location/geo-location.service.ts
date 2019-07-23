@@ -1,13 +1,14 @@
 import { IGFilters } from "./../../models/general_filters";
-import { Injectable } from "@angular/core";
+import { Injectable, NgZone, ElementRef } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { IAppState } from "src/app/store/state/app.state";
+import { MapsAPILoader } from "@agm/core";
 
 @Injectable()
 export class GeoLocationService {
   coordinates: any;
 
-  constructor() {}
+  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {}
 
   public getPosition(): Observable<Position> {
     return Observable.create(observer => {
@@ -37,7 +38,26 @@ export class GeoLocationService {
     });
   }
 
+  getSearchCities(locationElementRef: ElementRef, types: any): Observable<any> {
+    return Observable.create(observer => {
+      this.mapsAPILoader.load().then(() => {
+        let autocomplete = new google.maps.places.Autocomplete(locationElementRef.nativeElement, {
+          types: types
+        });
+        autocomplete.addListener("place_changed", () => {
+          this.ngZone.run(() => {
+            //get the place result
+            let place: google.maps.places.PlaceResult = autocomplete.getPlace();
 
+            //verify result
+            if (place.geometry === undefined || place.geometry === null) {
+              return;
+            }
 
-  
+            observer.next(place);
+          });
+        });
+      });
+    });
+  }
 }
