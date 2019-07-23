@@ -31,6 +31,12 @@ export const generalReducers = (
         closeDetailDrawer: action.payload
       };
     }
+    case EGeneralActions.UpdateDefaultCity: {
+      return {
+        ...state,
+        defaultCity: action.payload
+      };
+    }
 
     default:
       return state;

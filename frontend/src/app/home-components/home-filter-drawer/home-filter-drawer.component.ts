@@ -31,7 +31,10 @@ import {
 } from "src/app/store/actions/product";
 import { FiltersService } from "src/app/services/filters/filters.service";
 import { IGFilters } from "src/app/models/general_filters";
-import { UpdateGeneralFilters } from "src/app/store/actions/general";
+import { UpdateGeneralFilters, UpdateDefaultCity } from "src/app/store/actions/general";
+import { GeneralService } from "src/app/services/general/general.service";
+import { BusinessService } from "src/app/services/business/business.service";
+import { ProductService } from "src/app/services/product/product.service";
 
 declare var jQuery: any;
 
@@ -78,7 +81,10 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   constructor(
     private store: Store<IAppState>,
     private geoLocationService: GeoLocationService,
-    private filterService: FiltersService
+    private filterService: FiltersService,
+    private generalService: GeneralService,
+    private businessService: BusinessService,
+    private productService: ProductService
   ) {}
 
   ngOnInit() {
@@ -241,9 +247,20 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       if (pos.coords) {
         this.generalFilters.latlondis[0] = pos.coords.latitude;
         this.generalFilters.latlondis[1] = pos.coords.longitude;
-      }
 
-      this.searchBusinesses(this.businessFilters, this.generalFilters);
+        // set map center to this latlng
+
+        this.geoLocationService
+          .getCityFromLatLng(this.generalFilters.latlondis)
+          .subscribe(place => {
+            this.generalFilters.city = place;
+            this.store.dispatch(new UpdateDefaultCity(place));
+            this.searchBusinesses(this.businessFilters, this.generalFilters);
+          });
+      } else {
+        // set map center to default latlng
+        this.searchBusinesses(this.businessFilters, this.generalFilters);
+      }
     });
   }
 
@@ -255,7 +272,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       this.saveProductFiltersState();
       this.searchProducts(this.productsFilters, this.generalFilters);
     }
-    this.updateGeneralFilters(this.generalFilters);
+    this.generalService.updateGeneralFilters(this.generalFilters);
   }
 
   toggleCheckbox(idx: number) {
@@ -271,26 +288,16 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     this.selectedTypes = this.filterService.selectTypeInFilter(this.selectedTypes, typeID);
   }
 
-  updateGeneralFilters(params: any) {
-    this.store.dispatch(new UpdateGeneralFilters(Object.assign({}, params)));
-  }
-  updateProductFilters(params: any) {
-    this.store.dispatch(new UpdateProductFilters(Object.assign({}, params)));
-  }
-  updateBusinessFilters(params: any) {
-    this.store.dispatch(new UpdateBusinessFilters(Object.assign({}, params)));
-  }
-
   searchBusinesses(businessParams: any, generalParams: any) {
-    this.updateBusinessFilters(businessParams);
-    this.updateGeneralFilters(generalParams);
+    this.businessService.updateBusinessFilters(businessParams);
+    this.generalService.updateGeneralFilters(generalParams);
     this.store.dispatch(
       new GetSearchBusiness({ businessParams: businessParams, generalParams: generalParams })
     );
   }
   searchProducts(productsParams: any, generalParams: any) {
-    this.updateProductFilters(productsParams);
-    this.updateGeneralFilters(generalParams);
+    this.productService.updateProductFilters(productsParams);
+    this.generalService.updateGeneralFilters(generalParams);
     this.store.dispatch(
       new GetSearchProducts({ productParams: productsParams, generalParams: generalParams })
     );

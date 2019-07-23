@@ -108,8 +108,8 @@ import {
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
     AgmCoreModule.forRoot({
-      apiKey: "AIzaSyAZfyL5pncodSyDVTP28vnyQep4SNeQDgY",
-      libraries: ["places"]
+      apiKey: "AIzaSyAS9PrkmHZ1IKqOfWJ2sEqhKzGlv4_Eojg",
+      libraries: ["places", "geometry"]
     }),
     AgmSnazzyInfoWindowModule,
     BrowserAnimationsModule

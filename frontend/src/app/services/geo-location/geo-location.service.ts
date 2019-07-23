@@ -7,9 +7,9 @@ import { MapsAPILoader } from "@agm/core";
 @Injectable()
 export class GeoLocationService {
   coordinates: any;
+  loadedMap: any;
 
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {}
-
   public getPosition(): Observable<Position> {
     return Observable.create(observer => {
       navigator.geolocation.getCurrentPosition(
@@ -30,7 +30,7 @@ export class GeoLocationService {
               observer.next(error);
           }
         },
-        { timeout: 2000 }
+        { timeout: 1000 }
       );
       // navigator.geolocation.getCurrentPosition(this.displayLocationInfo, this.handleLocationError, {
       //   timeout: 5000
@@ -40,7 +40,9 @@ export class GeoLocationService {
 
   getSearchCities(locationElementRef: ElementRef, types: any): Observable<any> {
     return Observable.create(observer => {
-      this.mapsAPILoader.load().then(() => {
+      this.loadedMap = this.mapsAPILoader.load();
+
+      this.loadedMap.then(() => {
         let autocomplete = new google.maps.places.Autocomplete(locationElementRef.nativeElement, {
           types: types
         });
@@ -56,6 +58,28 @@ export class GeoLocationService {
 
             observer.next(place);
           });
+        });
+      });
+    });
+  }
+
+  getCityFromLatLng(latlng: Array<number>) {
+    return Observable.create(observer => {
+      this.loadedMap.then(() => {
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ location: { lat: latlng[0], lng: latlng[1] } }, function(
+          results,
+          status
+        ) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            var result;
+            if (results.length > 1) {
+              result = results[1];
+            } else {
+              result = results[0];
+            }
+            observer.next(result.address_components[3].long_name);
+          }
         });
       });
     });

@@ -7,12 +7,32 @@ import { FiltersService } from "../filters/filters.service";
 import { IBFilters } from "src/app/models/business_filters";
 import { filter } from "rxjs/operators";
 import { IFilterChips } from "src/app/models/filterchips";
+import { IAppState } from "src/app/store/state/app.state";
+import { Store } from "@ngrx/store";
+import { UpdateBusinessFilters } from "src/app/store/actions/business";
 
 @Injectable({
   providedIn: "root"
 })
 export class BusinessService {
-  constructor(private httpService: HttpService, private filterService: FiltersService) {}
+  constructor(
+    private httpService: HttpService,
+    private filterService: FiltersService,
+    private store: Store<IAppState>
+  ) {}
+
+  public originalBusinessFilter: IBFilters;
+
+  updateBusinessFilters(params: any) {
+    this.store.dispatch(new UpdateBusinessFilters(Object.assign({}, params)));
+  }
+
+  setOriginalBusinessFilter(originalBusinessFilter: IBFilters) {
+    this.originalBusinessFilter = originalBusinessFilter;
+  }
+  getOriginalBusinessFilter() {
+    return this.originalBusinessFilter;
+  }
 
   getSearchBusinesses(params: any) {
     const filteredParams = this.cleanBusinessFilters(params.businessParams, params.generalParams);

@@ -6,12 +6,31 @@ import { IProduct } from "src/app/models/product";
 import { FiltersService } from "../filters/filters.service";
 import { IPFilters } from "src/app/models/product_filters";
 import { IFilterChips } from "src/app/models/filterchips";
+import { UpdateProductFilters } from "src/app/store/actions/product";
+import { IAppState } from "src/app/store/state/app.state";
+import { Store } from "@ngrx/store";
 
 @Injectable({
   providedIn: "root"
 })
 export class ProductService {
-  constructor(private httpService: HttpService, private filterService: FiltersService) {}
+  constructor(
+    private httpService: HttpService,
+    private filterService: FiltersService,
+    private store: Store<IAppState>
+  ) {}
+
+  private originalProductFilter: IPFilters;
+
+  setOriginalProductFilter(originalProductFilter: IPFilters) {
+    this.originalProductFilter = originalProductFilter;
+  }
+  getOriginalProductFilter() {
+    return this.originalProductFilter;
+  }
+  updateProductFilters(params: any) {
+    this.store.dispatch(new UpdateProductFilters(Object.assign({}, params)));
+  }
 
   getProductDetails(productObj: any): Observable<IProduct> {
     return this.httpService.get(

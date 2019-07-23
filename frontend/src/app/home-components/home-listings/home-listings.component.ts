@@ -1,4 +1,4 @@
-import { selectDefaultLatLonDis } from "./../../store/selectors/general";
+import { selectDefaultLatLonDis, selectDefaultCity } from "./../../store/selectors/general";
 import { UpdateGeneralFilters } from "src/app/store/actions/general";
 import { FiltersService } from "src/app/services/filters/filters.service";
 import { IBFilters } from "src/app/models/business_filters";
@@ -40,6 +40,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   public productsNumHitSelector = this.store.pipe(select(selectProductsNumHits));
   public showingBusinessesSelector = this.store.pipe(select(selectShowingBusinesses));
   public defaultLatLonDisSelector = this.store.pipe(select(selectDefaultLatLonDis));
+  public defaultCitySelector = this.store.pipe(select(selectDefaultCity));
   public businessFilterSelector = this.store.pipe(select(selectBusinessFilter));
   public productFilterSelector = this.store.pipe(select(selectProductFilter));
   public generalFilterSelector = this.store.pipe(select(selectGeneralFilters));
@@ -61,11 +62,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   public productFilterChips: IFilterChips[] = [];
   public generalFilterChips: IFilterChips[] = [];
 
-  public originalBusinessFilter: IBFilters;
-  public originalProductFilter: IPFilters;
-  public originalGeneralFilter: IGFilters;
-
-  private defaultLatLonDis: Array<number>;
+  public defaultCity: string;
 
   public hits: number = 0;
   public filters: any;
@@ -79,6 +76,10 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    const defaultCitySubscriber = this.defaultCitySelector.subscribe(city => {
+      this.generalService.setDefaultCity(city);
+    });
+
     const businessMarkersSubscriber = this.businessMarkersSelector.subscribe(markers => {
       if (markers !== null) {
         this.mapComponent.markers = [];
@@ -128,20 +129,19 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     const businessFilterSubscriber = this.businessFilterSelector.subscribe(filters => {
       this.businessFilterChips = this.businessService.getFilterChips(filters);
       this.selectedFilterChips = Object.assign([], this.businessFilterChips);
-      this.originalBusinessFilter = filters;
+      this.businessService.setOriginalBusinessFilter(filters);
     });
     const productFilterSubscriber = this.productFilterSelector.subscribe(filters => {
       this.productFilterChips = this.productService.getFilterChips(filters);
       this.selectedFilterChips = Object.assign([], this.productFilterChips);
-      this.originalProductFilter = filters;
-    });
-    const generalFilterSubscriber = this.generalFilterSelector.subscribe(filters => {
-      this.generalFilterChips = [];
-      this.generalFilterChips = this.generalService.getFilterChips(filters);
-      this.originalGeneralFilter = filters;
+      this.productService.setOriginalProductFilter(filters);
     });
     const defaultLatLonDisSubscriber = this.defaultLatLonDisSelector.subscribe(defaultLatLonDis => {
-      this.defaultLatLonDis = defaultLatLonDis;
+      this.generalService.setDefaultLatLonDis(defaultLatLonDis);
+    });
+    const generalFilterSubscriber = this.generalFilterSelector.subscribe(filters => {
+      this.generalFilterChips = this.generalService.getFilterChips(filters);
+      this.generalService.setOriginalFilter(filters);
     });
 
     this.subscriptionsArr.push(businessFilterSubscriber);
@@ -153,6 +153,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     this.subscriptionsArr.push(productMarkersSubscriber);
     this.subscriptionsArr.push(generalFilterSubscriber);
     this.subscriptionsArr.push(productFilterSubscriber);
+    this.subscriptionsArr.push(defaultCitySubscriber);
   }
 
   deSelectFilterFromOriginal(key, id, original) {
@@ -169,40 +170,30 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     for (let i = 0; i < this.selectedFilterChips.length; i++) {
       if (this.selectedFilterChips[i].key === key && this.selectedFilterChips[i].id === id) {
         if (this.showingBusinesses) {
-          this.originalBusinessFilter = this.deSelectFilterFromOriginal(
+          let originalBusinessFilter = this.deSelectFilterFromOriginal(
             key,
             id,
-            this.originalBusinessFilter
+            this.businessService.getOriginalBusinessFilter()
           );
-          this.updateBusinessFilters(this.originalBusinessFilter);
+          this.businessService.updateBusinessFilters(originalBusinessFilter);
           this.getSearchBusinesses({
-            businessParams: this.originalBusinessFilter,
-            generalParams: this.originalGeneralFilter
+            businessParams: originalBusinessFilter,
+            generalParams: this.generalService.getOriginalFilter()
           });
         } else {
-          this.originalProductFilter = this.deSelectFilterFromOriginal(
+          let originalProductFilter = this.deSelectFilterFromOriginal(
             key,
             id,
-            this.originalProductFilter
+            this.productService.getOriginalProductFilter()
           );
-          this.updateProductFilters(this.originalProductFilter);
+          this.productService.updateProductFilters(originalProductFilter);
           this.getSearchProducts({
-            productParams: this.originalProductFilter,
-            generalParams: this.originalGeneralFilter
+            productParams: originalProductFilter,
+            generalParams: this.generalService.getOriginalFilter()
           });
         }
       }
     }
-  }
-
-  updateGeneralFilters(params: any) {
-    this.store.dispatch(new UpdateGeneralFilters(Object.assign({}, params)));
-  }
-  updateProductFilters(params: any) {
-    this.store.dispatch(new UpdateProductFilters(Object.assign({}, params)));
-  }
-  updateBusinessFilters(params: any) {
-    this.store.dispatch(new UpdateBusinessFilters(Object.assign({}, params)));
   }
 
   getSearchProducts(params: any) {
@@ -213,23 +204,21 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   }
 
   removeGeneralFilter(type) {
-    for (let i = 0; i < this.generalFilterChips.length; i++) {
-      if (type === "query") {
-        this.originalGeneralFilter.query = "";
-      } else if (type === "latlondis") {
-        this.originalGeneralFilter.latlondis = this.defaultLatLonDis;
-      }
-    }
+    let originalGeneralFilter = this.generalService.removeGeneralFilter(
+      this.generalFilterChips,
+      type
+    );
 
-    this.updateGeneralFilters(this.originalGeneralFilter);
+    this.generalService.updateGeneralFilters(originalGeneralFilter);
+
     this.showingBusinesses
       ? this.getSearchBusinesses({
-          businessParams: this.originalBusinessFilter,
-          generalParams: this.originalGeneralFilter
+          businessParams: this.businessService.getOriginalBusinessFilter(),
+          generalParams: originalGeneralFilter
         })
       : this.getSearchProducts({
-          productParams: this.originalProductFilter,
-          generalParams: this.originalGeneralFilter
+          productParams: this.productService.getOriginalProductFilter(),
+          generalParams: originalGeneralFilter
         });
   }
 

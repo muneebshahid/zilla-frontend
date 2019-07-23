@@ -32,3 +32,9 @@ export const selectCloseDetailDrawer = createSelector(
     return state.closeDetailDrawer;
   }
 );
+export const selectDefaultCity = createSelector(
+  selectItems,
+  (state: IGeneralState) => {
+    return state.defaultCity;
+  }
+);
