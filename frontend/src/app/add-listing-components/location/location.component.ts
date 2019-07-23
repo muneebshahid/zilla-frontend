@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { MapsAPILoader } from "@agm/core";
 import {} from "googlemaps";
 import { MapComponent } from "src/app/general-components";
 import { GeoLocationService } from "src/app/services/geo-location/geo-location.service";
