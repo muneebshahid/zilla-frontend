@@ -3,8 +3,10 @@ import { Component, Input, ViewChild, OnInit, EventEmitter, Output } from "@angu
 import { MapsAPILoader, AgmMap } from "@agm/core";
 import { IAppState } from "src/app/store/state/app.state";
 import { Store, select } from "@ngrx/store";
-import { selectMarkerHighlighting } from "src/app/store/selectors/general";
+import { selectMarkerHighlighting, selectGeneralFilters } from "src/app/store/selectors/general";
 import { GetBusinessDetail } from "src/app/store/actions/business";
+import { Subscription } from "rxjs";
+import { IGFilters } from "src/app/models/general_filters";
 
 declare var google: any;
 
@@ -32,8 +34,10 @@ interface Location {
 export class MapComponent implements OnInit {
   @Input() mapClass;
   @Output() openDrawer = new EventEmitter<number>();
+  private subscriptionsArr: Subscription[] = [];
 
   public markerHighlightingSelector = this.store.pipe(select(selectMarkerHighlighting));
+  public generalFilterSelector = this.store.pipe(select(selectGeneralFilters));
 
   private initialMapLocationLat = 48.17669;
   private initialMapLocationLng = 11.5726359;
@@ -48,6 +52,8 @@ export class MapComponent implements OnInit {
 
   @ViewChild(AgmMap) map: AgmMap;
 
+  private lastLatLonDis = [1, 2, 3];
+
   constructor(public mapsApiLoader: MapsAPILoader, private store: Store<IAppState>) {
     this.mapsApiLoader = mapsApiLoader;
     this.mapsApiLoader.load().then(() => {});
@@ -55,17 +61,31 @@ export class MapComponent implements OnInit {
   ngOnInit() {
     this.initializeMarkersAndMapZoom();
 
-    this.markerHighlightingSelector.subscribe(data => {
+    const generalFilterSubscriber = this.generalFilterSelector.subscribe(latlondis => {
+      if (
+        latlondis.latlondis[0] !== this.lastLatLonDis[0] ||
+        latlondis.latlondis[1] !== this.lastLatLonDis[1] ||
+        latlondis.latlondis[2] !== this.lastLatLonDis[2]
+      ) {
+        this.setFocusLocation(
+          latlondis.latlondis[0],
+          latlondis.latlondis[1],
+          latlondis.latlondis[2] * -1
+        );
+        this.lastLatLonDis = latlondis.latlondis;
+      }
+    });
+
+    const markerHighlightingSubscriber = this.markerHighlightingSelector.subscribe(data => {
       this.highlightMarkerByID(data);
     });
+
+    this.subscriptionsArr.push(markerHighlightingSubscriber);
+    this.subscriptionsArr.push(generalFilterSubscriber);
   }
 
   openDetailDrawer(marker) {
     this.store.dispatch(new GetBusinessDetail({ id: marker.id }));
-  }
-
-  setPageLocation(lat, lng, zoom = 8) {
-    this.setFocusLocation(lat, lng, zoom);
   }
 
   /* Highlights the marker which is being hovered in the left side on the grid */
@@ -109,5 +129,10 @@ export class MapComponent implements OnInit {
       id: id,
       icon: icon
     };
+  }
+  ngOnDestroy() {
+    for (const subscriber of this.subscriptionsArr) {
+      subscriber.unsubscribe();
+    }
   }
 }

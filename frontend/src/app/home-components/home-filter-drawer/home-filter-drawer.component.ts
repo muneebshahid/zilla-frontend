@@ -31,7 +31,7 @@ import {
 } from "src/app/store/actions/product";
 import { FiltersService } from "src/app/services/filters/filters.service";
 import { IGFilters } from "src/app/models/general_filters";
-import { UpdateGeneralFilters, UpdateDefaultCity } from "src/app/store/actions/general";
+import { UpdateDefaultCity } from "src/app/store/actions/general";
 import { GeneralService } from "src/app/services/general/general.service";
 import { BusinessService } from "src/app/services/business/business.service";
 import { ProductService } from "src/app/services/product/product.service";
@@ -272,6 +272,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       this.saveProductFiltersState();
       this.searchProducts(this.productsFilters, this.generalFilters);
     }
+    /* if the city is different than default city, set the map to that city and that radius. */
     this.generalService.updateGeneralFilters(this.generalFilters);
   }
 

@@ -19,7 +19,7 @@ export class BusinessDetailMapComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     // const name: SimpleChange = changes.name;
     if (this.latlon !== null) {
-      this.mapComponent.setPageLocation(this.latlon[0], this.latlon[1], 8);
+      this.mapComponent.setFocusLocation(this.latlon[0], this.latlon[1], 8);
     }
   }
 

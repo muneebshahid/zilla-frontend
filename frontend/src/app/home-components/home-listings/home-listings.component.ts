@@ -1,7 +1,5 @@
 import { selectDefaultLatLonDis, selectDefaultCity } from "./../../store/selectors/general";
-import { UpdateGeneralFilters } from "src/app/store/actions/general";
 import { FiltersService } from "src/app/services/filters/filters.service";
-import { IBFilters } from "src/app/models/business_filters";
 import { selectBusinessFilter, selectBusinessNumHits } from "./../../store/selectors/business";
 import { UpdateSearchType } from "./../../store/actions/general";
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from "@angular/core";
@@ -17,13 +15,11 @@ import {
   selectProductFilter
 } from "src/app/store/selectors/product";
 import { BusinessService } from "src/app/services/business/business.service";
-import { IPFilters } from "src/app/models/product_filters";
-import { IGFilters } from "src/app/models/general_filters";
 import { ProductService } from "src/app/services/product/product.service";
 import { GeneralService } from "src/app/services/general/general.service";
 import { IFilterChips } from "src/app/models/filterchips";
-import { UpdateBusinessFilters, GetSearchBusiness } from "src/app/store/actions/business";
-import { UpdateProductFilters, GetSearchProducts } from "src/app/store/actions/product";
+import { GetSearchBusiness } from "src/app/store/actions/business";
+import { GetSearchProducts } from "src/app/store/actions/product";
 @Component({
   selector: "app-home-listings",
   templateUrl: "./home-listings.component.html",

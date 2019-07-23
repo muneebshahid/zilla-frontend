@@ -20,17 +20,21 @@ export class GeoLocationService {
           switch (error.code) {
             case 3:
               // ...deal with timeout
+              observer.next(error);
               break;
             case 2:
+              observer.next(error);
               // ...device can't get data
               break;
             case 1:
+              observer.next(error);
+              break;
             // ...user said no ☹️
             default:
               observer.next(error);
           }
         },
-        { timeout: 1000 }
+        { timeout: 1000, enableHighAccuracy: true }
       );
       // navigator.geolocation.getCurrentPosition(this.displayLocationInfo, this.handleLocationError, {
       //   timeout: 5000

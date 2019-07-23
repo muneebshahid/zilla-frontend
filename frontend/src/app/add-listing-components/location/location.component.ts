@@ -24,7 +24,7 @@ export class LocationComponent implements OnInit {
   ngOnInit() {
     this.geoLocationService.getSearchCities(this.searchElementRef, ["address"]).subscribe(place => {
       //set latitude, longitude and zoom
-      this.mapParent.setPageLocation(
+      this.mapParent.setFocusLocation(
         place.geometry.location.lat(),
         place.geometry.location.lng(),
         13
