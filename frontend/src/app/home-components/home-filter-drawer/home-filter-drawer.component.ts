@@ -23,12 +23,7 @@ import {
   selectBusinessAmenities,
   selectBusinessTypes
 } from "src/app/store/selectors/business";
-import {
-  GetProductTypes,
-  GetProductTags,
-  GetSearchProducts,
-  UpdateProductFilters
-} from "src/app/store/actions/product";
+import { GetProductTypes, GetProductTags, GetSearchProducts } from "src/app/store/actions/product";
 import { FiltersService } from "src/app/services/filters/filters.service";
 import { IGFilters } from "src/app/models/general_filters";
 import { UpdateDefaultCity } from "src/app/store/actions/general";
@@ -99,7 +94,9 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       .subscribe(place => {
         this.generalFilters.latlondis[0] = place.geometry.location.lat();
         this.generalFilters.latlondis[1] = place.geometry.location.lng();
-        this.generalFilters.city = place.formatted_address;
+        this.generalFilters.city = place.formatted_address.split(",")[0];
+
+        console.log(this.generalFilters);
       });
   }
 
@@ -272,8 +269,6 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       this.saveProductFiltersState();
       this.searchProducts(this.productsFilters, this.generalFilters);
     }
-    /* if the city is different than default city, set the map to that city and that radius. */
-    this.generalService.updateGeneralFilters(this.generalFilters);
   }
 
   toggleCheckbox(idx: number) {

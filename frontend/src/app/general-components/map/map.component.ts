@@ -70,9 +70,9 @@ export class MapComponent implements OnInit {
         this.setFocusLocation(
           latlondis.latlondis[0],
           latlondis.latlondis[1],
-          latlondis.latlondis[2] * -1
+          latlondis.latlondis[2]
         );
-        this.lastLatLonDis = latlondis.latlondis;
+        this.lastLatLonDis = Object.assign({}, latlondis.latlondis);
       }
     });
 

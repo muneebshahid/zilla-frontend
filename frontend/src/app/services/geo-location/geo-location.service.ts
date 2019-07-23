@@ -1,7 +1,5 @@
-import { IGFilters } from "./../../models/general_filters";
 import { Injectable, NgZone, ElementRef } from "@angular/core";
 import { Observable } from "rxjs/Observable";
-import { IAppState } from "src/app/store/state/app.state";
 import { MapsAPILoader } from "@agm/core";
 
 @Injectable()
@@ -82,7 +80,7 @@ export class GeoLocationService {
             } else {
               result = results[0];
             }
-            observer.next(result.address_components[3].long_name);
+            observer.next(result.address_components[3].short_name);
           }
         });
       });

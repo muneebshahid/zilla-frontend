@@ -44,6 +44,7 @@ export class GeneralService {
       if (type === "query") {
         this.originalGeneralFilters.query = "";
       } else if (type === "latlondis") {
+        console.log("canceledlatlondis");
         this.originalGeneralFilters.latlondis = this.defaultLatLonDis;
         this.originalGeneralFilters.city = this.defaultCity;
       } else if (type === "radius") {
