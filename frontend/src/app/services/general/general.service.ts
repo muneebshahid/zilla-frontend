@@ -17,7 +17,7 @@ export class GeneralService {
   originalGeneralFilters: IGFilters;
 
   setDefaultLatLonDis(defaultLatLonDis: Array<number>) {
-    this.defaultLatLonDis = defaultLatLonDis;
+    this.defaultLatLonDis = Object.assign({}, defaultLatLonDis);
   }
   setDefaultCity(defaultCity: string) {
     this.defaultCity = defaultCity;
@@ -43,12 +43,9 @@ export class GeneralService {
     for (let i = 0; i < generalFilterChips.length; i++) {
       if (type === "query") {
         this.originalGeneralFilters.query = "";
-      } else if (type === "latlondis") {
-        console.log("canceledlatlondis");
-        this.originalGeneralFilters.latlondis = this.defaultLatLonDis;
-        this.originalGeneralFilters.city = this.defaultCity;
       } else if (type === "radius") {
-        this.originalGeneralFilters.latlondis[2] = this.defaultLatLonDis[2];
+        this.originalGeneralFilters.latlondis = Object.assign([], this.defaultLatLonDis);
+        this.originalGeneralFilters.city = this.defaultCity;
       }
     }
 
@@ -65,19 +62,15 @@ export class GeneralService {
       });
     }
 
-    if (generalFilter.latlondis[2] != this.defaultLatLonDis[2]) {
+    if (
+      generalFilter.latlondis[2] != this.defaultLatLonDis[2] ||
+      generalFilter.latlondis[0] != this.defaultLatLonDis[0] ||
+      generalFilter.latlondis[1] != this.defaultLatLonDis[1]
+    ) {
       selectedFilters.push({
         key: "radius",
         id: null,
-        value: generalFilter.latlondis[2]
-      });
-    }
-
-    if (generalFilter.city != this.defaultCity) {
-      selectedFilters.push({
-        key: "latlondis",
-        id: null,
-        value: generalFilter.city
+        value: `Search Radius: ${generalFilter.latlondis[2]} Km, ${generalFilter.city}`
       });
     }
 

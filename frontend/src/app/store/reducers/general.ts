@@ -31,10 +31,10 @@ export const generalReducers = (
         closeDetailDrawer: action.payload
       };
     }
-    case EGeneralActions.UpdateDefaultCity: {
+    case EGeneralActions.UpdateDefaultLatLonDis: {
       return {
         ...state,
-        defaultCity: action.payload
+        defaultGeneralFilter: action.payload
       };
     }
 

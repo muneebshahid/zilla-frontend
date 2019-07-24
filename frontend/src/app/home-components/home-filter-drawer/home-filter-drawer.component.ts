@@ -26,7 +26,7 @@ import {
 import { GetProductTypes, GetProductTags, GetSearchProducts } from "src/app/store/actions/product";
 import { FiltersService } from "src/app/services/filters/filters.service";
 import { IGFilters } from "src/app/models/general_filters";
-import { UpdateDefaultCity } from "src/app/store/actions/general";
+import { UpdateDefaultLatLonDis } from "src/app/store/actions/general";
 import { GeneralService } from "src/app/services/general/general.service";
 import { BusinessService } from "src/app/services/business/business.service";
 import { ProductService } from "src/app/services/product/product.service";
@@ -248,7 +248,9 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
           .getCityFromLatLng(this.generalFilters.latlondis)
           .subscribe(place => {
             this.generalFilters.city = place;
-            this.store.dispatch(new UpdateDefaultCity(place));
+
+            this.store.dispatch(new UpdateDefaultLatLonDis(Object.assign({}, this.generalFilters)));
+
             this.searchBusinesses(this.businessFilters, this.generalFilters);
           });
       } else {

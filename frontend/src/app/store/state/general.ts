@@ -9,9 +9,8 @@ export interface IGeneralState {
   highlightedMarkerID?: number;
   highlighted?: boolean;
   generalFilters?: IGFilters;
-  defaultLatlondis: Array<number>;
+  defaultGeneralFilter: IGFilters;
   closeDetailDrawer: boolean;
-  defaultCity: string;
 }
 
 export const initialGeneralState: IGeneralState = {
@@ -23,7 +22,10 @@ export const initialGeneralState: IGeneralState = {
     query: "",
     city: defaultCity
   },
-  defaultLatlondis: defaultLatlonDis,
-  defaultCity: defaultCity,
+  defaultGeneralFilter: {
+    latlondis: defaultLatlonDis,
+    query: "",
+    city: defaultCity
+  },
   closeDetailDrawer: false
 };

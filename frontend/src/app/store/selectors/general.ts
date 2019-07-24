@@ -20,21 +20,15 @@ export const selectGeneralFilters = createSelector(
     return state.generalFilters;
   }
 );
-export const selectDefaultLatLonDis = createSelector(
+export const selectdefaultGeneralFilter = createSelector(
   selectItems,
   (state: IGeneralState) => {
-    return state.defaultLatlondis;
+    return state.defaultGeneralFilter;
   }
 );
 export const selectCloseDetailDrawer = createSelector(
   selectItems,
   (state: IGeneralState) => {
     return state.closeDetailDrawer;
-  }
-);
-export const selectDefaultCity = createSelector(
-  selectItems,
-  (state: IGeneralState) => {
-    return state.defaultCity;
   }
 );

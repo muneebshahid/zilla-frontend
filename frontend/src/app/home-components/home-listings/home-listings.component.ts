@@ -1,4 +1,4 @@
-import { selectDefaultLatLonDis, selectDefaultCity } from "./../../store/selectors/general";
+import { selectdefaultGeneralFilter } from "./../../store/selectors/general";
 import { FiltersService } from "src/app/services/filters/filters.service";
 import { selectBusinessFilter, selectBusinessNumHits } from "./../../store/selectors/business";
 import { UpdateSearchType } from "./../../store/actions/general";
@@ -35,8 +35,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   public businessNumHitSelector = this.store.pipe(select(selectBusinessNumHits));
   public productsNumHitSelector = this.store.pipe(select(selectProductsNumHits));
   public showingBusinessesSelector = this.store.pipe(select(selectShowingBusinesses));
-  public defaultLatLonDisSelector = this.store.pipe(select(selectDefaultLatLonDis));
-  public defaultCitySelector = this.store.pipe(select(selectDefaultCity));
+  public defaultGeneralFilterSelector = this.store.pipe(select(selectdefaultGeneralFilter));
   public businessFilterSelector = this.store.pipe(select(selectBusinessFilter));
   public productFilterSelector = this.store.pipe(select(selectProductFilter));
   public generalFilterSelector = this.store.pipe(select(selectGeneralFilters));
@@ -72,9 +71,12 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    const defaultCitySubscriber = this.defaultCitySelector.subscribe(city => {
-      this.generalService.setDefaultCity(city);
-    });
+    const defaultLatLonDisSubscriber = this.defaultGeneralFilterSelector.subscribe(
+      defaultLatLonDis => {
+        this.generalService.setDefaultLatLonDis(defaultLatLonDis.latlondis);
+        this.generalService.setDefaultCity(defaultLatLonDis.city);
+      }
+    );
 
     const businessMarkersSubscriber = this.businessMarkersSelector.subscribe(markers => {
       if (markers !== null) {
@@ -132,9 +134,6 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
       this.selectedFilterChips = Object.assign([], this.productFilterChips);
       this.productService.setOriginalProductFilter(filters);
     });
-    const defaultLatLonDisSubscriber = this.defaultLatLonDisSelector.subscribe(defaultLatLonDis => {
-      this.generalService.setDefaultLatLonDis(defaultLatLonDis);
-    });
     const generalFilterSubscriber = this.generalFilterSelector.subscribe(filters => {
       this.generalFilterChips = this.generalService.getFilterChips(filters);
       this.generalService.setOriginalFilter(filters);
@@ -149,7 +148,6 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     this.subscriptionsArr.push(productMarkersSubscriber);
     this.subscriptionsArr.push(generalFilterSubscriber);
     this.subscriptionsArr.push(productFilterSubscriber);
-    this.subscriptionsArr.push(defaultCitySubscriber);
   }
 
   deSelectFilterFromOriginal(key, id, original) {
