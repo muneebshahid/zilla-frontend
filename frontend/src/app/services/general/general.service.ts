@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { IGFilters } from "src/app/models/general_filters";
 import { IFilterChips } from "src/app/models/filterchips";
-import { UpdateGeneralFilters } from "src/app/store/actions/general";
+import { UpdateGeneralFilters, UpdateDefaultLatLonDis } from "src/app/store/actions/general";
 import { Store } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
 
@@ -14,7 +14,7 @@ export class GeneralService {
   defaultLatLonDis: Array<number>;
   defaultCity: string;
 
-  originalGeneralFilters: IGFilters;
+  generalFilters: IGFilters;
 
   setDefaultLatLonDis(defaultLatLonDis: Array<number>) {
     this.defaultLatLonDis = Object.assign({}, defaultLatLonDis);
@@ -22,8 +22,18 @@ export class GeneralService {
   setDefaultCity(defaultCity: string) {
     this.defaultCity = defaultCity;
   }
-  setOriginalFilter(originalFilter: IGFilters) {
-    this.originalGeneralFilters = originalFilter;
+  setGeneralFilters(generalFilters: IGFilters) {
+    this.generalFilters = generalFilters;
+  }
+  setGeneralFiltersLatLon(lat, lng) {
+    this.generalFilters.latlondis[0] = lat;
+    this.generalFilters.latlondis[1] = lng;
+  }
+  setGeneralFiltersRadius(radius) {
+    this.generalFilters.latlondis[2] = radius;
+  }
+  setGeneralFiltersCity(city) {
+    this.generalFilters.city = city;
   }
 
   getDefaultLatLonDis() {
@@ -32,24 +42,31 @@ export class GeneralService {
   getDefaultCity() {
     return this.defaultCity;
   }
-  getOriginalFilter() {
-    return this.originalGeneralFilters;
+  getGeneralFilters() {
+    return this.generalFilters;
   }
-  updateGeneralFilters(params: any) {
-    this.store.dispatch(new UpdateGeneralFilters(Object.assign({}, params)));
+  getGeneralFiltersLatLonDis() {
+    return this.generalFilters.latlondis;
+  }
+
+  updateGeneralFilters() {
+    this.store.dispatch(new UpdateGeneralFilters(Object.assign({}, this.generalFilters)));
+  }
+  updateDefaultLatLonDis() {
+    this.store.dispatch(new UpdateDefaultLatLonDis(Object.assign({}, this.generalFilters)));
   }
 
   removeGeneralFilter(generalFilterChips: IFilterChips[], type: string) {
     for (let i = 0; i < generalFilterChips.length; i++) {
       if (type === "query") {
-        this.originalGeneralFilters.query = "";
+        this.generalFilters.query = "";
       } else if (type === "radius") {
-        this.originalGeneralFilters.latlondis = Object.assign([], this.defaultLatLonDis);
-        this.originalGeneralFilters.city = this.defaultCity;
+        this.generalFilters.latlondis = Object.assign([], this.defaultLatLonDis);
+        this.generalFilters.city = this.defaultCity;
       }
     }
 
-    return this.originalGeneralFilters;
+    return this.generalFilters;
   }
 
   getFilterChips(generalFilter: IGFilters) {

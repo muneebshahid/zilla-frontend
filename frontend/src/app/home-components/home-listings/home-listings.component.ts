@@ -127,16 +127,16 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     const businessFilterSubscriber = this.businessFilterSelector.subscribe(filters => {
       this.businessFilterChips = this.businessService.getFilterChips(filters);
       this.selectedFilterChips = Object.assign([], this.businessFilterChips);
-      this.businessService.setOriginalBusinessFilter(filters);
+      this.businessService.setBusinessFilter(filters);
     });
     const productFilterSubscriber = this.productFilterSelector.subscribe(filters => {
       this.productFilterChips = this.productService.getFilterChips(filters);
       this.selectedFilterChips = Object.assign([], this.productFilterChips);
-      this.productService.setOriginalProductFilter(filters);
+      this.productService.setProductFilters(filters);
     });
     const generalFilterSubscriber = this.generalFilterSelector.subscribe(filters => {
       this.generalFilterChips = this.generalService.getFilterChips(filters);
-      this.generalService.setOriginalFilter(filters);
+      this.generalService.setGeneralFilters(filters);
     });
 
     this.subscriptionsArr.push(businessFilterSubscriber);
@@ -167,23 +167,23 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
           let originalBusinessFilter = this.deSelectFilterFromOriginal(
             key,
             id,
-            this.businessService.getOriginalBusinessFilter()
+            this.businessService.getBusinessFilter()
           );
           this.businessService.updateBusinessFilters(originalBusinessFilter);
           this.getSearchBusinesses({
             businessParams: originalBusinessFilter,
-            generalParams: this.generalService.getOriginalFilter()
+            generalParams: this.generalService.getGeneralFilters()
           });
         } else {
           let originalProductFilter = this.deSelectFilterFromOriginal(
             key,
             id,
-            this.productService.getOriginalProductFilter()
+            this.productService.getProductFilters()
           );
           this.productService.updateProductFilters(originalProductFilter);
           this.getSearchProducts({
             productParams: originalProductFilter,
-            generalParams: this.generalService.getOriginalFilter()
+            generalParams: this.generalService.getGeneralFilters()
           });
         }
       }
@@ -203,15 +203,16 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
       type
     );
 
-    this.generalService.updateGeneralFilters(originalGeneralFilter);
+    this.generalService.setGeneralFilters(originalGeneralFilter);
+    this.generalService.updateGeneralFilters();
 
     this.showingBusinesses
       ? this.getSearchBusinesses({
-          businessParams: this.businessService.getOriginalBusinessFilter(),
+          businessParams: this.businessService.getBusinessFilter(),
           generalParams: originalGeneralFilter
         })
       : this.getSearchProducts({
-          productParams: this.productService.getOriginalProductFilter(),
+          productParams: this.productService.getProductFilters(),
           generalParams: originalGeneralFilter
         });
   }

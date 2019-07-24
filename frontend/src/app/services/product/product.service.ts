@@ -6,7 +6,11 @@ import { IProduct } from "src/app/models/product";
 import { FiltersService } from "../filters/filters.service";
 import { IPFilters } from "src/app/models/product_filters";
 import { IFilterChips } from "src/app/models/filterchips";
-import { UpdateProductFilters } from "src/app/store/actions/product";
+import {
+  UpdateProductFilters,
+  GetProductTypes,
+  GetProductTags
+} from "src/app/store/actions/product";
 import { IAppState } from "src/app/store/state/app.state";
 import { Store } from "@ngrx/store";
 
@@ -20,39 +24,7 @@ export class ProductService {
     private store: Store<IAppState>
   ) {}
 
-  private originalProductFilter: IPFilters;
-
-  setOriginalProductFilter(originalProductFilter: IPFilters) {
-    this.originalProductFilter = originalProductFilter;
-  }
-  getOriginalProductFilter() {
-    return this.originalProductFilter;
-  }
-  updateProductFilters(params: any) {
-    this.store.dispatch(new UpdateProductFilters(Object.assign({}, params)));
-  }
-
-  getProductDetails(productObj: any): Observable<IProduct> {
-    return this.httpService.get(
-      `${environment.productUrl}/${productObj.slug}/${productObj.id}/`,
-      {}
-    );
-  }
-
-  getSearchProducts(params: any) {
-    const filteredParams = this.cleanProductFilters(params.productParams, params.generalParams);
-    return this.httpService.get(
-      `${environment.searchUrl}/${environment.productUrl}/`,
-      filteredParams
-    );
-  }
-
-  getProductTypes() {
-    return this.httpService.get(`${environment.productTypeUrl}/`, {});
-  }
-  getProductTags() {
-    return this.httpService.get(`${environment.productTagsUrl}/`, {});
-  }
+  private productFilter: IPFilters;
 
   cleanProductFilters(pparams: any, gparams: any) {
     let filteredParam = {};
@@ -118,5 +90,60 @@ export class ProductService {
       }
     }
     return selectedFilters;
+  }
+
+  updateProductFilters(params: any) {
+    this.store.dispatch(new UpdateProductFilters(Object.assign({}, params)));
+  }
+  getProductFilterData() {
+    this.store.dispatch(new GetProductTypes());
+    this.store.dispatch(new GetProductTags());
+  }
+
+  setProductFilters(filters) {
+    this.productFilter = filters;
+  }
+  setProductFilterTypes(types) {
+    this.productFilter.product_types = types;
+  }
+  setProductFilterTags(tags) {
+    this.productFilter.tags = tags;
+  }
+  setProductFilterPrice(price) {
+    this.productFilter.price = price;
+  }
+  getProductFilterTypes() {
+    return this.productFilter.product_types;
+  }
+  getProductFilterTags() {
+    return this.productFilter.tags;
+  }
+  getProductFilterPrice() {
+    return this.productFilter.price;
+  }
+  getProductFilters() {
+    return this.productFilter;
+  }
+
+  getProductDetails(productObj: any): Observable<IProduct> {
+    return this.httpService.get(
+      `${environment.productUrl}/${productObj.slug}/${productObj.id}/`,
+      {}
+    );
+  }
+
+  getSearchProducts(params: any) {
+    const filteredParams = this.cleanProductFilters(params.productParams, params.generalParams);
+    return this.httpService.get(
+      `${environment.searchUrl}/${environment.productUrl}/`,
+      filteredParams
+    );
+  }
+
+  getProductTypes() {
+    return this.httpService.get(`${environment.productTypeUrl}/`, {});
+  }
+  getProductTags() {
+    return this.httpService.get(`${environment.productTagsUrl}/`, {});
   }
 }

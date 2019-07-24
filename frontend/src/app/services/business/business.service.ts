@@ -26,14 +26,6 @@ export class BusinessService {
     private store: Store<IAppState>
   ) {}
 
-  getSearchBusinesses(params: any) {
-    const filteredParams = this.cleanBusinessFilters(params.businessParams, params.generalParams);
-    return this.httpService.get(
-      `${environment.searchUrl}/${environment.businessUrl}/`,
-      filteredParams
-    );
-  }
-
   cleanBusinessFilters(bparams: any, gparams: any) {
     let filteredParam = {};
     let amenities = this.filterService.getSelectedTagsCSVs(bparams.amenities);
@@ -105,11 +97,25 @@ export class BusinessService {
     this.businessFilters.business_types = selectedTypes;
   }
 
-  setOriginalBusinessFilter(originalBusinessFilter: IBFilters) {
-    this.businessFilters = originalBusinessFilter;
+  /* GETTERS AND SETTERS */
+  setBusinessFilter(businessFilter: IBFilters) {
+    this.businessFilters = businessFilter;
   }
-  getOriginalBusinessFilter() {
+  setBusinessFilterAmenities(amenities) {
+    this.businessFilters.amenities = amenities;
+  }
+  setBusinessFilterTypes(types) {
+    this.businessFilters.business_types = types;
+  }
+
+  getBusinessFilter() {
     return this.businessFilters;
+  }
+  getBusinessFilterAmenities() {
+    return this.businessFilters.amenities;
+  }
+  getBusinessFilterTypes() {
+    return this.businessFilters.business_types;
   }
 
   getBusinessFilterData() {
@@ -119,6 +125,15 @@ export class BusinessService {
 
   updateBusinessFilters(params: any) {
     this.store.dispatch(new UpdateBusinessFilters(Object.assign({}, params)));
+  }
+
+  /* HTTP CALLS */
+  getSearchBusinesses(params: any) {
+    const filteredParams = this.cleanBusinessFilters(params.businessParams, params.generalParams);
+    return this.httpService.get(
+      `${environment.searchUrl}/${environment.businessUrl}/`,
+      filteredParams
+    );
   }
 
   getBusinessDetail(businessID: any): Observable<IBusiness> {
