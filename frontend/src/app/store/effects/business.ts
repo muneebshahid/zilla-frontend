@@ -64,11 +64,5 @@ export class BusinessEffects {
     })
   );
 
-  constructor(
-    private businessService: BusinessService,
-    private generalService: GeneralService,
-    private actions$: Actions
-  ) {
-    this.businessService.setGeneralService(this.generalService);
-  }
+  constructor(private businessService: BusinessService, private actions$: Actions) {}
 }

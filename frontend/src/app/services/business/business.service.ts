@@ -24,10 +24,6 @@ import { GeneralService } from "../general/general.service";
 export class BusinessService {
   public businessFilters: IBFilters;
   public businesses: IBusiness[];
-  private generalService: GeneralService;
-
-  /* since defaultLatLonDis === gparams.latlondis when the page loads 1st time. We use this to let the call go through. */
-  private firstCall: boolean = false;
 
   constructor(
     private httpService: HttpService,
@@ -35,28 +31,14 @@ export class BusinessService {
     private store: Store<IAppState>
   ) {}
 
-  setGeneralService(generalService: GeneralService) {
-    this.generalService = generalService;
-  }
-
   cleanBusinessFilters(bparams: any, gparams: any) {
     let filteredParam = {};
     let amenities = this.filterService.getSelectedTagsCSVs(bparams.amenities);
     let businessTypeID = this.filterService.getSelectedTypeID(bparams.business_types);
 
-    if (
-      gparams.latlondis[0] !== this.generalService.getDefaultLatLonDis()[0] ||
-      gparams.latlondis[1] !== this.generalService.getDefaultLatLonDis()[1] ||
-      gparams.latlondis[2] !== this.generalService.getDefaultLatLonDis()[2] ||
-      !this.firstCall
-    ) {
-      if (!this.firstCall) {
-        this.firstCall = !this.firstCall;
-      }
-      filteredParam["latlondis"] = `${gparams.latlondis[0]},${gparams.latlondis[1]},${
-        gparams.latlondis[2]
-      }`;
-    }
+    filteredParam["latlondis"] = `${gparams.latlondis[0]},${gparams.latlondis[1]},${
+      gparams.latlondis[2]
+    }`;
     if (amenities !== "") {
       filteredParam["amenities"] = amenities;
     }

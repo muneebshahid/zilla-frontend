@@ -79,9 +79,6 @@ export class ProductEffects {
   constructor(
     private businessService: BusinessService,
     private productService: ProductService,
-    private generalService: GeneralService,
     private actions$: Actions
-  ) {
-    this.productService.setGeneralService(this.generalService);
-  }
+  ) {}
 }
