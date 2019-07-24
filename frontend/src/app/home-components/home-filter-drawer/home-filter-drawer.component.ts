@@ -71,7 +71,10 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     private generalService: GeneralService,
     private businessService: BusinessService,
     private productService: ProductService
-  ) {}
+  ) {
+    this.businessService.setGeneralService(this.generalService);
+    this.productService.setGeneralService(this.generalService);
+  }
 
   ngOnInit() {
     this.businessService.getBusinessFilterData();

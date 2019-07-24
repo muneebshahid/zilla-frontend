@@ -19,7 +19,6 @@ export class GeneralService {
   constructor(private store: Store<IAppState>) {
     // take 2 because first time it will be called with default state value and next time with set value.
     this.defaultGeneralFilterSelector.pipe(take(2)).subscribe(data => {
-      console.log(data);
       this.setDefaultLatLonDis(data.latlondis);
       this.setDefaultCity(data.city);
     });

@@ -63,7 +63,10 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     private productService: ProductService,
     private filterService: FiltersService,
     private ngZone: NgZone
-  ) {}
+  ) {
+    this.businessService.setGeneralService(this.generalService);
+    this.productService.setGeneralService(this.generalService);
+  }
 
   ngOnInit() {
     const businessMarkersSubscriber = this.businessMarkersSelector.subscribe(markers => {

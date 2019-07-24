@@ -26,6 +26,9 @@ export class BusinessService {
   public businesses: IBusiness[];
   private generalService: GeneralService;
 
+  /* since defaultLatLonDis === gparams.latlondis when the page loads 1st time. We use this to let the call go through. */
+  private firstCall: boolean = false;
+
   constructor(
     private httpService: HttpService,
     private filterService: FiltersService,
@@ -44,8 +47,12 @@ export class BusinessService {
     if (
       gparams.latlondis[0] !== this.generalService.getDefaultLatLonDis()[0] ||
       gparams.latlondis[1] !== this.generalService.getDefaultLatLonDis()[1] ||
-      gparams.latlondis[2] !== this.generalService.getDefaultLatLonDis()[2]
+      gparams.latlondis[2] !== this.generalService.getDefaultLatLonDis()[2] ||
+      !this.firstCall
     ) {
+      if (!this.firstCall) {
+        this.firstCall = !this.firstCall;
+      }
       filteredParam["latlondis"] = `${gparams.latlondis[0]},${gparams.latlondis[1]},${
         gparams.latlondis[2]
       }`;
