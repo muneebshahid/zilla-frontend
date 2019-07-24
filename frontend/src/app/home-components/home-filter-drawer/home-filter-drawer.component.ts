@@ -1,13 +1,9 @@
-import { GetBusinessAmenities, GetBusinessTypes } from "./../../store/actions/business";
-import { IBFilters } from "./../../models/business_filters";
 import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef } from "@angular/core";
 import { Store, select } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
 import { selectShowingBusinesses, selectGeneralFilters } from "src/app/store/selectors/general";
 import { Subscription } from "rxjs";
-import { GetSearchBusiness } from "src/app/store/actions/business";
 import { GeoLocationService } from "src/app/services/geo-location/geo-location.service";
-import { IPFilters } from "src/app/models/product_filters";
 import {
   selectProductFilter,
   selectProductTypes,
@@ -19,10 +15,7 @@ import {
   selectBusinessAmenities,
   selectBusinessTypes
 } from "src/app/store/selectors/business";
-import { GetProductTypes, GetProductTags, GetSearchProducts } from "src/app/store/actions/product";
 import { FiltersService } from "src/app/services/filters/filters.service";
-import { IGFilters } from "src/app/models/general_filters";
-import { UpdateDefaultLatLonDis } from "src/app/store/actions/general";
 import { GeneralService } from "src/app/services/general/general.service";
 import { BusinessService } from "src/app/services/business/business.service";
 import { ProductService } from "src/app/services/product/product.service";
@@ -61,10 +54,11 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     this will help us make http call the first time user selects the products tab. After that,
     the products will only be updated when user applies a filter or search on searchbox.
   */
-  public initialLoad = true;
+  public defaultLocationLoaded = false;
   public productsRetrieved: boolean = false;
   public showingBusinesses: boolean = true;
   public filterTypeText: string;
+
   @ViewChild("location") locationElementRef: ElementRef;
   @ViewChild("searchDistance") searchDistanceControl: ElementRef;
   @ViewChild("searchDistanceSlider") searchDistanceSliderControl: ElementRef;
@@ -134,8 +128,8 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     const generalFiltersSubscriber = this.generalFiltersSelector.subscribe(filter => {
       this.generalService.setGeneralFilters(filter);
 
-      if (this.initialLoad) {
-        this.initialLoad = !this.initialLoad;
+      if (!this.defaultLocationLoaded) {
+        this.defaultLocationLoaded = !this.defaultLocationLoaded;
         this.setInitialLatLon();
       }
     });
