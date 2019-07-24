@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from "@angular/core";
-import { IBusiness } from "src/app/models/business";
+import { Component, OnInit, Input, OnDestroy, AfterViewInit, NgZone } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { IAppState } from "src/app/store/state/app.state";
 import { Store, select } from "@ngrx/store";
@@ -15,29 +14,41 @@ import { IBFilters } from "src/app/models/business_filters";
 import { FiltersService } from "src/app/services/filters/filters.service";
 import { selectGeneralFilters } from "src/app/store/selectors/general";
 import { IGFilters } from "src/app/models/general_filters";
+import { IBusiness } from "src/app/models/business";
 
 @Component({
   selector: "app-business-info",
   templateUrl: "./business-info.component.html",
   styleUrls: ["./business-info.component.css"]
 })
-export class BusinessInfoComponent implements OnInit, OnDestroy {
+export class BusinessInfoComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() public homePage = false;
   private subscriptionsArr: Subscription[] = [];
   public businessesSelector = this.store.pipe(select(selectBusinesses));
   public businessFilterSelector = this.store.pipe(select(selectBusinessFilter));
   public generalFiltersSelector = this.store.pipe(select(selectGeneralFilters));
-  public businesses: IBusiness[];
 
+  public businesses: IBusiness[];
   public endpoint = environment.apiEndpoint;
   public bfilters: IBFilters = null;
   public gfilters: IGFilters = null;
 
-  constructor(private store: Store<IAppState>, private filterService: FiltersService) {}
+  constructor(
+    private store: Store<IAppState>,
+    private filterService: FiltersService,
+    private zone: NgZone
+  ) {}
+  ngAfterViewInit() {}
 
   ngOnInit() {
-    const businessSubscriber = this.businessesSelector.subscribe(businesses => {
-      this.businesses = businesses;
+    this.subscriptions();
+  }
+
+  subscriptions() {
+    const businessSelectorSubscriber = this.businessesSelector.subscribe(business => {
+      this.zone.run(() => {
+        this.businesses = business;
+      });
     });
     const businessFilterSubscriber = this.businessFilterSelector.subscribe(filters => {
       this.bfilters = filters;
@@ -46,7 +57,7 @@ export class BusinessInfoComponent implements OnInit, OnDestroy {
       this.gfilters = filters;
     });
 
-    this.subscriptionsArr.push(businessSubscriber);
+    this.subscriptionsArr.push(businessSelectorSubscriber);
     this.subscriptionsArr.push(businessFilterSubscriber);
     this.subscriptionsArr.push(generalFiltersSubscriber);
   }

@@ -20,7 +20,6 @@ import { selectGeneralFilters } from "src/app/store/selectors/general";
 })
 export class ProductInfoComponent implements OnInit {
   private subscriptionsArr: Subscription[] = [];
-  public businessProducts: IBusiness[];
   @Input() public homePage = false;
 
   public productsFilterSelector = this.store.pipe(select(selectProductFilter));
@@ -33,9 +32,6 @@ export class ProductInfoComponent implements OnInit {
   constructor(private store: Store<IAppState>, private filterService: FiltersService) {}
 
   ngOnInit() {
-    const businessProductsSubscriber = this.productsSelector.subscribe(businessProducts => {
-      this.businessProducts = businessProducts;
-    });
     const productFilterSubscriber = this.productsFilterSelector.subscribe(filters => {
       this.pfilters = filters;
     });
@@ -43,7 +39,6 @@ export class ProductInfoComponent implements OnInit {
       this.gfilters = filters;
     });
 
-    this.subscriptionsArr.push(businessProductsSubscriber);
     this.subscriptionsArr.push(productFilterSubscriber);
     this.subscriptionsArr.push(generalFiltersSubscriber);
   }

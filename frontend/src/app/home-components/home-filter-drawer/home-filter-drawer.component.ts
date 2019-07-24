@@ -95,8 +95,6 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
         this.generalFilters.latlondis[0] = place.geometry.location.lat();
         this.generalFilters.latlondis[1] = place.geometry.location.lng();
         this.generalFilters.city = place.formatted_address.split(",")[0];
-
-        console.log(this.generalFilters);
       });
   }
 
@@ -246,7 +244,6 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
         this.generalFilters.latlondis[1] = pos.coords.longitude;
 
         // set map center to this latlng
-
         this.geoLocationService
           .getCityFromLatLng(this.generalFilters.latlondis)
           .subscribe(place => {

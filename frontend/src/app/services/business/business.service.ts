@@ -36,6 +36,7 @@ export class BusinessService {
 
   getSearchBusinesses(params: any) {
     const filteredParams = this.cleanBusinessFilters(params.businessParams, params.generalParams);
+    console.log(filteredParams);
     return this.httpService.get(
       `${environment.searchUrl}/${environment.businessUrl}/`,
       filteredParams

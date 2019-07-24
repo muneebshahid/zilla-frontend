@@ -64,14 +64,9 @@ export class MapComponent implements OnInit {
     const generalFilterSubscriber = this.generalFilterSelector.subscribe(latlondis => {
       if (
         latlondis.latlondis[0] !== this.lastLatLonDis[0] ||
-        latlondis.latlondis[1] !== this.lastLatLonDis[1] ||
-        latlondis.latlondis[2] !== this.lastLatLonDis[2]
+        latlondis.latlondis[1] !== this.lastLatLonDis[1]
       ) {
-        this.setFocusLocation(
-          latlondis.latlondis[0],
-          latlondis.latlondis[1],
-          latlondis.latlondis[2]
-        );
+        this.setFocusLocation(latlondis.latlondis[0], latlondis.latlondis[1]);
         this.lastLatLonDis = Object.assign({}, latlondis.latlondis);
       }
     });
@@ -108,7 +103,7 @@ export class MapComponent implements OnInit {
     this.markers[idx].highlighted = !this.markers[idx].highlighted;
   }
 
-  setFocusLocation(lat, lng, zoom) {
+  setFocusLocation(lat, lng, zoom = 12) {
     this.location = {
       lng: +lng,
       lat: +lat,
