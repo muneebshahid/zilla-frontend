@@ -9,10 +9,12 @@ import { IFilterChips } from "src/app/models/filterchips";
 import {
   UpdateProductFilters,
   GetProductTypes,
-  GetProductTags
+  GetProductTags,
+  GetSearchProducts
 } from "src/app/store/actions/product";
 import { IAppState } from "src/app/store/state/app.state";
 import { Store } from "@ngrx/store";
+import { IGFilters } from "src/app/models/general_filters";
 
 @Injectable({
   providedIn: "root"
@@ -95,6 +97,12 @@ export class ProductService {
   updateProductFilters(params: any) {
     this.store.dispatch(new UpdateProductFilters(Object.assign({}, params)));
   }
+  dispatchSearchProducts(generalParams: IGFilters) {
+    this.store.dispatch(
+      new GetSearchProducts({ businessParams: this.productFilter, generalParams: generalParams })
+    );
+  }
+
   getProductFilterData() {
     this.store.dispatch(new GetProductTypes());
     this.store.dispatch(new GetProductTags());

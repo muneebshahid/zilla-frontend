@@ -299,15 +299,11 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
 
   searchBusinesses(businessParams: any, generalParams: any) {
     this.businessService.updateBusinessFilters(businessParams);
-    this.store.dispatch(
-      new GetSearchBusiness({ businessParams: businessParams, generalParams: generalParams })
-    );
+    this.businessService.dispatchSearchBusinesses(generalParams);
   }
   searchProducts(productsParams: any, generalParams: any) {
     this.productService.updateProductFilters(productsParams);
-    this.store.dispatch(
-      new GetSearchProducts({ productParams: productsParams, generalParams: generalParams })
-    );
+    this.productService.dispatchSearchProducts(generalParams);
   }
 
   ngOnDestroy() {

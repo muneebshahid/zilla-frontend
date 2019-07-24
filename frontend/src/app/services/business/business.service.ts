@@ -11,8 +11,10 @@ import { Store, select } from "@ngrx/store";
 import {
   UpdateBusinessFilters,
   GetBusinessAmenities,
-  GetBusinessTypes
+  GetBusinessTypes,
+  GetSearchBusiness
 } from "src/app/store/actions/business";
+import { IGFilters } from "src/app/models/general_filters";
 
 @Injectable({
   providedIn: "root"
@@ -123,10 +125,14 @@ export class BusinessService {
     this.store.dispatch(new GetBusinessTypes());
   }
 
+  dispatchSearchBusinesses(generalParams: IGFilters) {
+    this.store.dispatch(
+      new GetSearchBusiness({ businessParams: this.businessFilters, generalParams: generalParams })
+    );
+  }
   updateBusinessFilters(params: any) {
     this.store.dispatch(new UpdateBusinessFilters(Object.assign({}, params)));
   }
-
   /* HTTP CALLS */
   getSearchBusinesses(params: any) {
     const filteredParams = this.cleanBusinessFilters(params.businessParams, params.generalParams);
