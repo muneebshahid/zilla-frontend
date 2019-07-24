@@ -5,11 +5,11 @@ import { HttpService } from "../http/http.service";
 import { environment } from "./../../../environments/environment";
 import { FiltersService } from "../filters/filters.service";
 import { IBFilters } from "src/app/models/business_filters";
-import { filter } from "rxjs/operators";
 import { IFilterChips } from "src/app/models/filterchips";
 import { IAppState } from "src/app/store/state/app.state";
 import { Store } from "@ngrx/store";
 import { UpdateBusinessFilters } from "src/app/store/actions/business";
+import { IGFilters } from "src/app/models/general_filters";
 
 @Injectable({
   providedIn: "root"
@@ -22,11 +22,15 @@ export class BusinessService {
   ) {}
 
   public originalBusinessFilter: IBFilters;
+  public defaultGFilter: IGFilters;
 
   updateBusinessFilters(params: any) {
     this.store.dispatch(new UpdateBusinessFilters(Object.assign({}, params)));
   }
 
+  setDefaultLatLonDis(params: IGFilters) {
+    this.defaultGFilter = params;
+  }
   setOriginalBusinessFilter(originalBusinessFilter: IBFilters) {
     this.originalBusinessFilter = originalBusinessFilter;
   }

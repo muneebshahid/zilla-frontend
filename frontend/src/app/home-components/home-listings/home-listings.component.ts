@@ -198,16 +198,12 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   }
 
   removeGeneralFilter(type) {
-    console.log("bcancel");
-    console.log(this.generalService.getOriginalFilter());
     let originalGeneralFilter = this.generalService.removeGeneralFilter(
       this.generalFilterChips,
       type
     );
 
     this.generalService.updateGeneralFilters(originalGeneralFilter);
-    console.log("cancel");
-    console.log(originalGeneralFilter);
 
     this.showingBusinesses
       ? this.getSearchBusinesses({

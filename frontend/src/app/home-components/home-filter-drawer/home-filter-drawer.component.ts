@@ -251,6 +251,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
 
             this.store.dispatch(new UpdateDefaultLatLonDis(Object.assign({}, this.generalFilters)));
 
+            this.generalService.updateGeneralFilters(this.generalFilters);
             this.searchBusinesses(this.businessFilters, this.generalFilters);
           });
       } else {
@@ -268,6 +269,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       this.saveProductFiltersState();
       this.searchProducts(this.productsFilters, this.generalFilters);
     }
+    this.generalService.updateGeneralFilters(this.generalFilters);
   }
 
   toggleCheckbox(idx: number) {
@@ -285,14 +287,12 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
 
   searchBusinesses(businessParams: any, generalParams: any) {
     this.businessService.updateBusinessFilters(businessParams);
-    this.generalService.updateGeneralFilters(generalParams);
     this.store.dispatch(
       new GetSearchBusiness({ businessParams: businessParams, generalParams: generalParams })
     );
   }
   searchProducts(productsParams: any, generalParams: any) {
     this.productService.updateProductFilters(productsParams);
-    this.generalService.updateGeneralFilters(generalParams);
     this.store.dispatch(
       new GetSearchProducts({ productParams: productsParams, generalParams: generalParams })
     );
