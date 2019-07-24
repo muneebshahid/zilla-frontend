@@ -7,7 +7,7 @@ import { FiltersService } from "../filters/filters.service";
 import { IBFilters } from "src/app/models/business_filters";
 import { IFilterChips } from "src/app/models/filterchips";
 import { IAppState } from "src/app/store/state/app.state";
-import { Store, select } from "@ngrx/store";
+import { Store } from "@ngrx/store";
 import {
   UpdateBusinessFilters,
   GetBusinessAmenities,
@@ -16,6 +16,7 @@ import {
   GetBusinessDetail
 } from "src/app/store/actions/business";
 import { IGFilters } from "src/app/models/general_filters";
+import { GeneralService } from "../general/general.service";
 
 @Injectable({
   providedIn: "root"
@@ -23,6 +24,7 @@ import { IGFilters } from "src/app/models/general_filters";
 export class BusinessService {
   public businessFilters: IBFilters;
   public businesses: IBusiness[];
+  private generalService: GeneralService;
 
   constructor(
     private httpService: HttpService,
@@ -30,12 +32,20 @@ export class BusinessService {
     private store: Store<IAppState>
   ) {}
 
+  setGeneralService(generalService: GeneralService) {
+    this.generalService = generalService;
+  }
+
   cleanBusinessFilters(bparams: any, gparams: any) {
     let filteredParam = {};
     let amenities = this.filterService.getSelectedTagsCSVs(bparams.amenities);
     let businessTypeID = this.filterService.getSelectedTypeID(bparams.business_types);
 
-    if (gparams.latlondis[0] !== -1) {
+    if (
+      gparams.latlondis[0] !== this.generalService.getDefaultLatLonDis()[0] ||
+      gparams.latlondis[1] !== this.generalService.getDefaultLatLonDis()[1] ||
+      gparams.latlondis[2] !== this.generalService.getDefaultLatLonDis()[2]
+    ) {
       filteredParam["latlondis"] = `${gparams.latlondis[0]},${gparams.latlondis[1]},${
         gparams.latlondis[2]
       }`;

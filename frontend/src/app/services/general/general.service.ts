@@ -6,14 +6,24 @@ import {
   UpdateDefaultLatLonDis,
   UpdateSearchType
 } from "src/app/store/actions/general";
-import { Store } from "@ngrx/store";
+import { Store, select } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
+import { selectdefaultGeneralFilter } from "src/app/store/selectors/general";
+import { take } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
 })
 export class GeneralService {
-  constructor(private store: Store<IAppState>) {}
+  public defaultGeneralFilterSelector = this.store.pipe(select(selectdefaultGeneralFilter));
+  constructor(private store: Store<IAppState>) {
+    // take 2 because first time it will be called with default state value and next time with set value.
+    this.defaultGeneralFilterSelector.pipe(take(2)).subscribe(data => {
+      console.log(data);
+      this.setDefaultLatLonDis(data.latlondis);
+      this.setDefaultCity(data.city);
+    });
+  }
 
   public showingBusinesses = true;
   defaultLatLonDis: Array<number>;

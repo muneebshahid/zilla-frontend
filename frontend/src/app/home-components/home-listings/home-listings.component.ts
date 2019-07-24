@@ -1,7 +1,5 @@
-import { selectdefaultGeneralFilter } from "./../../store/selectors/general";
 import { FiltersService } from "src/app/services/filters/filters.service";
 import { selectBusinessFilter, selectBusinessNumHits } from "./../../store/selectors/business";
-import { UpdateSearchType } from "./../../store/actions/general";
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, NgZone } from "@angular/core";
 import { select, Store } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
@@ -33,7 +31,6 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   public businessNumHitSelector = this.store.pipe(select(selectBusinessNumHits));
   public productsNumHitSelector = this.store.pipe(select(selectProductsNumHits));
   public showingBusinessesSelector = this.store.pipe(select(selectShowingBusinesses));
-  public defaultGeneralFilterSelector = this.store.pipe(select(selectdefaultGeneralFilter));
   public businessFilterSelector = this.store.pipe(select(selectBusinessFilter));
   public productFilterSelector = this.store.pipe(select(selectProductFilter));
   public generalFilterSelector = this.store.pipe(select(selectGeneralFilters));
@@ -69,13 +66,6 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    const defaultLatLonDisSubscriber = this.defaultGeneralFilterSelector.subscribe(
-      defaultLatLonDis => {
-        this.generalService.setDefaultLatLonDis(defaultLatLonDis.latlondis);
-        this.generalService.setDefaultCity(defaultLatLonDis.city);
-      }
-    );
-
     const businessMarkersSubscriber = this.businessMarkersSelector.subscribe(markers => {
       if (markers !== null) {
         this.mapComponent.markers = [];
@@ -143,7 +133,6 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     this.subscriptionsArr.push(businessFilterSubscriber);
     this.subscriptionsArr.push(showingBusinessesSubscriber);
     this.subscriptionsArr.push(businessNumHitSubscriber);
-    this.subscriptionsArr.push(defaultLatLonDisSubscriber);
     this.subscriptionsArr.push(businessMarkersSubscriber);
     this.subscriptionsArr.push(productsNumHitSubscriber);
     this.subscriptionsArr.push(productMarkersSubscriber);

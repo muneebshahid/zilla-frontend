@@ -17,6 +17,7 @@ import { GetProductsOfBusiness, GetProductsOfBusinessSuccess } from "../actions/
 import { ProductService } from "../../services/product/product.service";
 import { EProductActions } from "../actions/product";
 import { BusinessService } from "src/app/services/business/business.service";
+import { GeneralService } from "src/app/services/general/general.service";
 
 @Injectable()
 export class ProductEffects {
@@ -78,6 +79,9 @@ export class ProductEffects {
   constructor(
     private businessService: BusinessService,
     private productService: ProductService,
+    private generalService: GeneralService,
     private actions$: Actions
-  ) {}
+  ) {
+    this.productService.setGeneralService(this.generalService);
+  }
 }

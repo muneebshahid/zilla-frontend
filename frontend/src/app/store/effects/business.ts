@@ -9,12 +9,13 @@ import {
 } from "./../actions/business";
 import { Injectable } from "@angular/core";
 import { Effect, ofType, Actions } from "@ngrx/effects";
-import { map, switchMap } from "rxjs/operators";
+import { map, switchMap, subscribeOn, take } from "rxjs/operators";
 
 import { GetBusinessDetail } from "../actions/business";
 
 import { BusinessService } from "../../services/business/business.service";
 import { EBusinessActions } from "../actions/business";
+import { GeneralService } from "src/app/services/general/general.service";
 
 @Injectable()
 export class BusinessEffects {
@@ -63,5 +64,11 @@ export class BusinessEffects {
     })
   );
 
-  constructor(private businessService: BusinessService, private actions$: Actions) {}
+  constructor(
+    private businessService: BusinessService,
+    private generalService: GeneralService,
+    private actions$: Actions
+  ) {
+    this.businessService.setGeneralService(this.generalService);
+  }
 }

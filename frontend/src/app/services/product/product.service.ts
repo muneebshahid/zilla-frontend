@@ -15,18 +15,24 @@ import {
 import { IAppState } from "src/app/store/state/app.state";
 import { Store } from "@ngrx/store";
 import { IGFilters } from "src/app/models/general_filters";
+import { GeneralService } from "../general/general.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class ProductService {
+  private productFilter: IPFilters;
+  private generalService: GeneralService;
+
   constructor(
     private httpService: HttpService,
     private filterService: FiltersService,
     private store: Store<IAppState>
   ) {}
 
-  private productFilter: IPFilters;
+  setGeneralService(generalService: GeneralService) {
+    this.generalService = generalService;
+  }
 
   cleanProductFilters(pparams: any, gparams: any) {
     let filteredParam = {};
@@ -36,7 +42,11 @@ export class ProductService {
     if (gparams.query !== "") {
       filteredParam["query"] = gparams.query;
     }
-    if (gparams.latlondis[0] !== -1) {
+    if (
+      gparams.latlondis[0] !== this.generalService.getDefaultLatLonDis()[0] ||
+      gparams.latlondis[1] !== this.generalService.getDefaultLatLonDis()[1] ||
+      gparams.latlondis[2] !== this.generalService.getDefaultLatLonDis()[2]
+    ) {
       filteredParam["latlondis"] = `${gparams.latlondis[0]},${gparams.latlondis[1]},${
         gparams.latlondis[2]
       }`;

@@ -249,6 +249,8 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
           });
       } else {
         // set map center to default latlng
+        // although no changes to generalFilter but we call this to ensure we unsubscribe from defaultLatLonsubscriber in generalService.
+        this.generalService.updateDefaultLatLonDis();
         this.searchBusinesses(
           this.businessService.getBusinessFilter(),
           this.generalService.getGeneralFilters()
