@@ -56,7 +56,6 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   */
   public defaultLocationLoaded = false;
   public productsRetrieved: boolean = false;
-  public showingBusinesses: boolean = true;
   public filterTypeText: string;
 
   @ViewChild("location") locationElementRef: ElementRef;
@@ -141,8 +140,8 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     /* this subscribe will be called whenever we switch tabs b/w business and products */
     const showingBusinessesSubscriber = this.showingBusinessesSelector.subscribe(
       showingBusinesses => {
-        this.showingBusinesses = showingBusinesses;
-        if (this.showingBusinesses) {
+        this.generalService.setShowBusinesses(showingBusinesses);
+        if (this.generalService.getShowBusinesses()) {
           this.saveProductFiltersState();
           this.setBusinessDrawerFilters();
         } else {
@@ -151,6 +150,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
 
           if (!this.productsRetrieved) {
             this.productsRetrieved = !this.productsRetrieved;
+
             this.searchProducts(
               this.productService.getProductFilters(),
               this.generalService.getGeneralFilters()
@@ -262,8 +262,9 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   applyFilters() {
-    if (this.showingBusinesses) {
+    if (this.generalService.getShowBusinesses()) {
       this.saveBusinessState();
+
       this.searchBusinesses(
         this.businessService.getBusinessFilter(),
         this.generalService.getGeneralFilters()
@@ -292,11 +293,13 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   searchBusinesses(businessParams: any, generalParams: any) {
-    this.businessService.updateBusinessFilters(businessParams);
+    this.businessService.setBusinessFilter(businessParams);
+    this.businessService.updateBusinessFilters();
     this.businessService.dispatchSearchBusinesses(generalParams);
   }
   searchProducts(productsParams: any, generalParams: any) {
-    this.productService.updateProductFilters(productsParams);
+    this.productService.setProductFilters(productsParams);
+    this.productService.updateProductFilters();
     this.productService.dispatchSearchProducts(generalParams);
   }
 

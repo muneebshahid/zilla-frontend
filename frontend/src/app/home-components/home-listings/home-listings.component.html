@@ -30,23 +30,29 @@
             <li
               role="presentation"
               (click)="searchBusinesses()"
-              [ngClass]="showingBusinesses ? 'active' : ''"
+              [ngClass]="generalService.showingBusinesses ? 'active' : ''"
             >
               <a href="javascript:void(0)">Businesses</a>
             </li>
             <li
               role="presentation"
               (click)="searchProducts()"
-              [ngClass]="showingBusinesses ? '' : 'active'"
+              [ngClass]="generalService.showingBusinesses ? '' : 'active'"
             >
               <a href="javascript:void(0)">Products</a>
             </li>
           </ul>
         </div>
       </div>
-      <app-product-info *ngIf="!showingBusinesses" [homePage]="true"></app-product-info>
+      <app-product-info
+        *ngIf="!generalService.showingBusinesses"
+        [homePage]="true"
+      ></app-product-info>
 
-      <app-business-info *ngIf="showingBusinesses" [homePage]="true"></app-business-info>
+      <app-business-info
+        *ngIf="generalService.showingBusinesses"
+        [homePage]="true"
+      ></app-business-info>
       <!-- <a class="load_more_jobs" href="#" style="display: none;"
         ><strong>Load more listings</strong></a -->
     </div>

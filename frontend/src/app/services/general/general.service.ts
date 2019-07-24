@@ -1,7 +1,11 @@
 import { Injectable } from "@angular/core";
 import { IGFilters } from "src/app/models/general_filters";
 import { IFilterChips } from "src/app/models/filterchips";
-import { UpdateGeneralFilters, UpdateDefaultLatLonDis } from "src/app/store/actions/general";
+import {
+  UpdateGeneralFilters,
+  UpdateDefaultLatLonDis,
+  UpdateSearchType
+} from "src/app/store/actions/general";
 import { Store } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
 
@@ -11,16 +15,20 @@ import { IAppState } from "src/app/store/state/app.state";
 export class GeneralService {
   constructor(private store: Store<IAppState>) {}
 
+  public showingBusinesses = true;
   defaultLatLonDis: Array<number>;
   defaultCity: string;
 
-  generalFilters: IGFilters;
+  public generalFilters: IGFilters;
 
   setDefaultLatLonDis(defaultLatLonDis: Array<number>) {
     this.defaultLatLonDis = Object.assign({}, defaultLatLonDis);
   }
   setDefaultCity(defaultCity: string) {
     this.defaultCity = defaultCity;
+  }
+  setShowBusinesses(showing) {
+    this.showingBusinesses = showing;
   }
   setGeneralFilters(generalFilters: IGFilters) {
     this.generalFilters = generalFilters;
@@ -34,6 +42,10 @@ export class GeneralService {
   }
   setGeneralFiltersCity(city) {
     this.generalFilters.city = city;
+  }
+
+  getShowBusinesses() {
+    return this.showingBusinesses;
   }
 
   getDefaultLatLonDis() {
@@ -54,6 +66,9 @@ export class GeneralService {
   }
   updateDefaultLatLonDis() {
     this.store.dispatch(new UpdateDefaultLatLonDis(Object.assign({}, this.generalFilters)));
+  }
+  updateSearchType() {
+    this.store.dispatch(new UpdateSearchType({ showingBusinesses: this.showingBusinesses }));
   }
 
   removeGeneralFilter(generalFilterChips: IFilterChips[], type: string) {

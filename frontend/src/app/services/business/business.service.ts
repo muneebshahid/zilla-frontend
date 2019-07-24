@@ -12,7 +12,8 @@ import {
   UpdateBusinessFilters,
   GetBusinessAmenities,
   GetBusinessTypes,
-  GetSearchBusiness
+  GetSearchBusiness,
+  GetBusinessDetail
 } from "src/app/store/actions/business";
 import { IGFilters } from "src/app/models/general_filters";
 
@@ -21,6 +22,7 @@ import { IGFilters } from "src/app/models/general_filters";
 })
 export class BusinessService {
   public businessFilters: IBFilters;
+  public businesses: IBusiness[];
 
   constructor(
     private httpService: HttpService,
@@ -94,12 +96,12 @@ export class BusinessService {
     return selectedFilters;
   }
 
+  /* GETTERS AND SETTERS */
   saveBusinessFiltersState(selectedTags, selectedTypes) {
     this.businessFilters.amenities = selectedTags;
     this.businessFilters.business_types = selectedTypes;
   }
 
-  /* GETTERS AND SETTERS */
   setBusinessFilter(businessFilter: IBFilters) {
     this.businessFilters = businessFilter;
   }
@@ -109,7 +111,13 @@ export class BusinessService {
   setBusinessFilterTypes(types) {
     this.businessFilters.business_types = types;
   }
+  setBusinesses(businesses) {
+    this.businesses = businesses;
+  }
 
+  getBusinesses() {
+    return this.businesses;
+  }
   getBusinessFilter() {
     return this.businessFilters;
   }
@@ -120,6 +128,7 @@ export class BusinessService {
     return this.businessFilters.business_types;
   }
 
+  /* ACTIONS DISPATCHES */
   getBusinessFilterData() {
     this.store.dispatch(new GetBusinessAmenities());
     this.store.dispatch(new GetBusinessTypes());
@@ -130,8 +139,11 @@ export class BusinessService {
       new GetSearchBusiness({ businessParams: this.businessFilters, generalParams: generalParams })
     );
   }
-  updateBusinessFilters(params: any) {
-    this.store.dispatch(new UpdateBusinessFilters(Object.assign({}, params)));
+  updateBusinessFilters() {
+    this.store.dispatch(new UpdateBusinessFilters(Object.assign({}, this.businessFilters)));
+  }
+  dispatchGetBusinessDetail(id: number) {
+    this.store.dispatch(new GetBusinessDetail({ id: id }));
   }
   /* HTTP CALLS */
   getSearchBusinesses(params: any) {

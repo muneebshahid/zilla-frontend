@@ -94,12 +94,12 @@ export class ProductService {
     return selectedFilters;
   }
 
-  updateProductFilters(params: any) {
-    this.store.dispatch(new UpdateProductFilters(Object.assign({}, params)));
+  updateProductFilters() {
+    this.store.dispatch(new UpdateProductFilters(Object.assign({}, this.productFilter)));
   }
   dispatchSearchProducts(generalParams: IGFilters) {
     this.store.dispatch(
-      new GetSearchProducts({ businessParams: this.productFilter, generalParams: generalParams })
+      new GetSearchProducts({ productParams: this.productFilter, generalParams: generalParams })
     );
   }
 

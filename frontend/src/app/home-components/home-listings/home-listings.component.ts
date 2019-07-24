@@ -2,7 +2,7 @@ import { selectdefaultGeneralFilter } from "./../../store/selectors/general";
 import { FiltersService } from "src/app/services/filters/filters.service";
 import { selectBusinessFilter, selectBusinessNumHits } from "./../../store/selectors/business";
 import { UpdateSearchType } from "./../../store/actions/general";
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, NgZone } from "@angular/core";
 import { select, Store } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
 import { Subscription } from "rxjs";
@@ -18,8 +18,6 @@ import { BusinessService } from "src/app/services/business/business.service";
 import { ProductService } from "src/app/services/product/product.service";
 import { GeneralService } from "src/app/services/general/general.service";
 import { IFilterChips } from "src/app/models/filterchips";
-import { GetSearchBusiness } from "src/app/store/actions/business";
-import { GetSearchProducts } from "src/app/store/actions/product";
 @Component({
   selector: "app-home-listings",
   templateUrl: "./home-listings.component.html",
@@ -41,7 +39,6 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   public generalFilterSelector = this.store.pipe(select(selectGeneralFilters));
 
   private subscriptionsArr: Subscription[] = [];
-  public showingBusinesses = true;
   public searchDistance = 0;
   public selectedFilters = [];
 
@@ -67,7 +64,8 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     private businessService: BusinessService,
     private generalService: GeneralService,
     private productService: ProductService,
-    private filterService: FiltersService
+    private filterService: FiltersService,
+    private ngZone: NgZone
   ) {}
 
   ngOnInit() {
@@ -95,7 +93,9 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
 
     const businessNumHitSubscriber = this.businessNumHitSelector.subscribe(numHits => {
       this.businessHits = numHits;
-      this.hits = numHits;
+      this.ngZone.run(() => {
+        this.hits = numHits;
+      });
     });
     const productsNumHitSubscriber = this.productsNumHitSelector.subscribe(numHits => {
       this.productHits = numHits;
@@ -103,10 +103,11 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     });
     const showingBusinessesSubscriber = this.showingBusinessesSelector.subscribe(
       showingBusinesses => {
-        this.showingBusinesses = showingBusinesses;
+        this.generalService.setShowBusinesses(showingBusinesses);
+
         this.mapComponent.markers = [];
 
-        if (this.showingBusinesses) {
+        if (this.generalService.getShowBusinesses()) {
           this.selectedFilterChips = this.businessFilterChips;
           this.hits = this.businessHits;
           this.selectedCategory = "Businesses";
@@ -163,38 +164,29 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   removeFilter(key, id) {
     for (let i = 0; i < this.selectedFilterChips.length; i++) {
       if (this.selectedFilterChips[i].key === key && this.selectedFilterChips[i].id === id) {
-        if (this.showingBusinesses) {
+        if (this.generalService.getShowBusinesses()) {
           let originalBusinessFilter = this.deSelectFilterFromOriginal(
             key,
             id,
             this.businessService.getBusinessFilter()
           );
-          this.businessService.updateBusinessFilters(originalBusinessFilter);
-          this.getSearchBusinesses({
-            businessParams: originalBusinessFilter,
-            generalParams: this.generalService.getGeneralFilters()
-          });
+
+          this.businessService.setBusinessFilter(originalBusinessFilter);
+          this.businessService.updateBusinessFilters();
+          this.businessService.dispatchSearchBusinesses(this.generalService.getGeneralFilters());
         } else {
           let originalProductFilter = this.deSelectFilterFromOriginal(
             key,
             id,
             this.productService.getProductFilters()
           );
-          this.productService.updateProductFilters(originalProductFilter);
-          this.getSearchProducts({
-            productParams: originalProductFilter,
-            generalParams: this.generalService.getGeneralFilters()
-          });
+
+          this.productService.setProductFilters(originalProductFilter);
+          this.productService.updateProductFilters();
+          this.productService.dispatchSearchProducts(this.generalService.getGeneralFilters());
         }
       }
     }
-  }
-
-  getSearchProducts(params: any) {
-    this.store.dispatch(new GetSearchProducts(params));
-  }
-  getSearchBusinesses(params: any) {
-    this.store.dispatch(new GetSearchBusiness(params));
   }
 
   removeGeneralFilter(type) {
@@ -206,15 +198,9 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     this.generalService.setGeneralFilters(originalGeneralFilter);
     this.generalService.updateGeneralFilters();
 
-    this.showingBusinesses
-      ? this.getSearchBusinesses({
-          businessParams: this.businessService.getBusinessFilter(),
-          generalParams: originalGeneralFilter
-        })
-      : this.getSearchProducts({
-          productParams: this.productService.getProductFilters(),
-          generalParams: originalGeneralFilter
-        });
+    this.generalService.getShowBusinesses()
+      ? this.businessService.dispatchSearchBusinesses(this.generalService.getGeneralFilters())
+      : this.productService.dispatchSearchProducts(this.generalService.getGeneralFilters());
   }
 
   putMarkersOnMap(markers: any) {
@@ -231,13 +217,13 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   }
 
   searchProducts() {
-    this.showingBusinesses = false;
-    this.store.dispatch(new UpdateSearchType({ showingBusinesses: this.showingBusinesses }));
+    this.generalService.setShowBusinesses(false);
+    this.generalService.updateSearchType();
   }
 
   searchBusinesses() {
-    this.showingBusinesses = true;
-    this.store.dispatch(new UpdateSearchType({ showingBusinesses: this.showingBusinesses }));
+    this.generalService.setShowBusinesses(true);
+    this.generalService.updateSearchType();
   }
 
   ngOnDestroy() {

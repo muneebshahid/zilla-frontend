@@ -95,7 +95,9 @@
               <div class="search-distance-label">
                 <label for="use_search_distance">
                   Radius:
-                  <span class="text-distance" #textDistance>{{ generalFilters.latlondis[2] }}</span>
+                  <span class="text-distance" #textDistance>{{
+                    generalService.generalFilters.latlondis[2]
+                  }}</span>
                   km
                 </label>
               </div>
@@ -106,7 +108,7 @@
                   type="hidden"
                   name="search_distance"
                   id="search_distance"
-                  [value]="generalFilters.latlondis[2]"
+                  [value]="generalService.generalFilters.latlondis[2]"
                 />
                 <div
                   #searchDistanceSlider

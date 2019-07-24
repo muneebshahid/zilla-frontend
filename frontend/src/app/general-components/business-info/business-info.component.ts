@@ -2,43 +2,34 @@ import { Component, OnInit, Input, OnDestroy, AfterViewInit, NgZone } from "@ang
 import { environment } from "src/environments/environment";
 import { IAppState } from "src/app/store/state/app.state";
 import { Store, select } from "@ngrx/store";
-import {
-  GetBusinessDetail,
-  UpdateBusinessFilters,
-  GetSearchBusiness
-} from "src/app/store/actions/business";
 import { Subscription } from "rxjs";
 import { selectBusinesses, selectBusinessFilter } from "src/app/store/selectors/business";
 import { HighlightMapMarker } from "src/app/store/actions/general";
-import { IBFilters } from "src/app/models/business_filters";
 import { FiltersService } from "src/app/services/filters/filters.service";
 import { selectGeneralFilters } from "src/app/store/selectors/general";
-import { IGFilters } from "src/app/models/general_filters";
-import { IBusiness } from "src/app/models/business";
+import { BusinessService } from "src/app/services/business/business.service";
+import { GeneralService } from "src/app/services/general/general.service";
 
 @Component({
   selector: "app-business-info",
   templateUrl: "./business-info.component.html",
   styleUrls: ["./business-info.component.css"]
 })
-export class BusinessInfoComponent implements OnInit, OnDestroy, AfterViewInit {
+export class BusinessInfoComponent implements OnInit, OnDestroy {
   @Input() public homePage = false;
   private subscriptionsArr: Subscription[] = [];
   public businessesSelector = this.store.pipe(select(selectBusinesses));
   public businessFilterSelector = this.store.pipe(select(selectBusinessFilter));
   public generalFiltersSelector = this.store.pipe(select(selectGeneralFilters));
 
-  public businesses: IBusiness[];
   public endpoint = environment.apiEndpoint;
-  public bfilters: IBFilters = null;
-  public gfilters: IGFilters = null;
 
   constructor(
     private store: Store<IAppState>,
     private filterService: FiltersService,
-    private zone: NgZone
+    private businessService: BusinessService,
+    private generalService: GeneralService
   ) {}
-  ngAfterViewInit() {}
 
   ngOnInit() {
     this.subscriptions();
@@ -46,15 +37,13 @@ export class BusinessInfoComponent implements OnInit, OnDestroy, AfterViewInit {
 
   subscriptions() {
     const businessSelectorSubscriber = this.businessesSelector.subscribe(business => {
-      this.zone.run(() => {
-        this.businesses = business;
-      });
+      this.businessService.setBusinesses(business);
     });
     const businessFilterSubscriber = this.businessFilterSelector.subscribe(filters => {
-      this.bfilters = filters;
+      this.businessService.setBusinessFilter(filters);
     });
     const generalFiltersSubscriber = this.generalFiltersSelector.subscribe(filters => {
-      this.gfilters = filters;
+      this.generalService.setGeneralFilters(filters);
     });
 
     this.subscriptionsArr.push(businessSelectorSubscriber);
@@ -67,22 +56,20 @@ export class BusinessInfoComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
   openDetailDrawer(id: number) {
-    this.store.dispatch(new GetBusinessDetail({ id: id }));
+    this.businessService.dispatchGetBusinessDetail(id);
   }
 
   updateBusinessTypeSelection(id: number) {
-    this.bfilters.business_types = this.filterService.selectTypeInFilter(
-      this.bfilters.business_types,
-      id
+    this.businessService.setBusinessFilterTypes(
+      this.filterService.selectTypeInFilter(this.businessService.getBusinessFilterTypes(), id)
     );
   }
 
   searchByTag(id: number) {
     this.updateBusinessTypeSelection(id);
-    this.store.dispatch(new UpdateBusinessFilters(Object.assign({}, this.bfilters)));
-    this.store.dispatch(
-      new GetSearchBusiness({ businessParams: this.bfilters, generalParams: this.gfilters })
-    );
+
+    this.businessService.updateBusinessFilters();
+    this.businessService.dispatchSearchBusinesses(this.generalService.getGeneralFilters());
   }
 
   highlightMarker(id: number, highlight: boolean) {
