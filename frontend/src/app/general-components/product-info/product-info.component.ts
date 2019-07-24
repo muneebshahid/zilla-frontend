@@ -5,13 +5,12 @@ import { selectProducts, selectProductFilter } from "src/app/store/selectors/pro
 import { select, Store } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
 import { Subscription } from "rxjs";
-import { GetBusinessDetail } from "src/app/store/actions/business";
 import { HighlightMapMarker } from "src/app/store/actions/general";
-import { IPFilters } from "src/app/models/product_filters";
-import { GetSearchProducts, UpdateProductFilters } from "src/app/store/actions/product";
 import { FiltersService } from "src/app/services/filters/filters.service";
-import { IGFilters } from "src/app/models/general_filters";
 import { selectGeneralFilters } from "src/app/store/selectors/general";
+import { BusinessService } from "src/app/services/business/business.service";
+import { ProductService } from "src/app/services/product/product.service";
+import { GeneralService } from "src/app/services/general/general.service";
 
 @Component({
   selector: "app-product-info",
@@ -26,24 +25,32 @@ export class ProductInfoComponent implements OnInit {
   public productsSelector = this.store.pipe(select(selectProducts));
   public generalFiltersSelector = this.store.pipe(select(selectGeneralFilters));
   public endpoint = environment.apiEndpoint;
-  public pfilters: IPFilters = null;
-  public gfilters: IGFilters = null;
 
-  constructor(private store: Store<IAppState>, private filterService: FiltersService) {}
+  constructor(
+    private store: Store<IAppState>,
+    private filterService: FiltersService,
+    private productService: ProductService,
+    private businessService: BusinessService,
+    private generalService: GeneralService
+  ) {}
 
   ngOnInit() {
+    const productsSelectorSubscriber = this.productsSelector.subscribe(products => {
+      this.businessService.setBusinesses(products);
+    });
     const productFilterSubscriber = this.productsFilterSelector.subscribe(filters => {
-      this.pfilters = filters;
+      this.productService.setProductFilters(filters);
     });
     const generalFiltersSubscriber = this.generalFiltersSelector.subscribe(filters => {
-      this.gfilters = filters;
+      this.generalService.setGeneralFilters(filters);
     });
 
     this.subscriptionsArr.push(productFilterSubscriber);
+    this.subscriptionsArr.push(productsSelectorSubscriber);
     this.subscriptionsArr.push(generalFiltersSubscriber);
   }
   openDetailDrawer(id: number) {
-    this.store.dispatch(new GetBusinessDetail({ id: id }));
+    this.businessService.dispatchGetBusinessDetail(id);
   }
   ngOnDestroy() {
     for (const subscriber of this.subscriptionsArr) {
@@ -52,9 +59,8 @@ export class ProductInfoComponent implements OnInit {
   }
 
   updateProductTypeSelection(id: number) {
-    this.pfilters.product_types = this.filterService.selectTypeInFilter(
-      this.pfilters.product_types,
-      id
+    this.productService.setProductFilterTypes(
+      this.filterService.selectTypeInFilter(this.productService.getProductFilterTypes(), id)
     );
   }
 
@@ -63,15 +69,15 @@ export class ProductInfoComponent implements OnInit {
     this.sendRequest();
   }
   searchByTag(tagId: number) {
-    this.pfilters.tags = this.filterService.selectTagInFilter(this.pfilters.tags, tagId);
+    this.productService.setProductFilterTags(
+      this.filterService.selectTagInFilter(this.productService.getProductFilterTags(), tagId)
+    );
     this.sendRequest();
   }
 
   sendRequest() {
-    this.store.dispatch(new UpdateProductFilters(Object.assign({}, this.pfilters)));
-    this.store.dispatch(
-      new GetSearchProducts({ productParams: this.pfilters, generalParams: this.gfilters })
-    );
+    this.productService.updateProductFilters();
+    this.productService.dispatchSearchProducts(this.generalService.getGeneralFilters());
   }
 
   highlightMarker(id: number, highlight: boolean) {
