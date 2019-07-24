@@ -43,6 +43,13 @@ export class GeneralService {
   setGeneralFiltersCity(city) {
     this.generalFilters.city = city;
   }
+  setGeneralFilterQuery(query) {
+    this.generalFilters.query = query;
+  }
+
+  getGeneralFilterQuery() {
+    return this.generalFilters.query;
+  }
 
   getShowBusinesses() {
     return this.showingBusinesses;

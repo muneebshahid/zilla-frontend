@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy, AfterViewInit, NgZone } from "@angular/core";
+import { Component, OnInit, Input, OnDestroy } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { IAppState } from "src/app/store/state/app.state";
 import { Store, select } from "@ngrx/store";

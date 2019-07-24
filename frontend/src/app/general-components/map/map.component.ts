@@ -7,6 +7,7 @@ import { selectMarkerHighlighting, selectGeneralFilters } from "src/app/store/se
 import { GetBusinessDetail } from "src/app/store/actions/business";
 import { Subscription } from "rxjs";
 import { IGFilters } from "src/app/models/general_filters";
+import { BusinessService } from "src/app/services/business/business.service";
 
 declare var google: any;
 
@@ -54,7 +55,11 @@ export class MapComponent implements OnInit {
 
   private lastLatLonDis = [1, 2, 3];
 
-  constructor(public mapsApiLoader: MapsAPILoader, private store: Store<IAppState>) {
+  constructor(
+    public mapsApiLoader: MapsAPILoader,
+    private store: Store<IAppState>,
+    private businessService: BusinessService
+  ) {
     this.mapsApiLoader = mapsApiLoader;
     this.mapsApiLoader.load().then(() => {});
   }
@@ -80,7 +85,7 @@ export class MapComponent implements OnInit {
   }
 
   openDetailDrawer(marker) {
-    this.store.dispatch(new GetBusinessDetail({ id: marker.id }));
+    this.businessService.dispatchGetBusinessDetail(marker.id);
   }
 
   /* Highlights the marker which is being hovered in the left side on the grid */

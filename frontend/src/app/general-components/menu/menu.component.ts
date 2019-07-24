@@ -3,14 +3,11 @@ import { IAppState } from "src/app/store/state/app.state";
 import { Store, select } from "@ngrx/store";
 import { selectGeneralFilters, selectShowingBusinesses } from "src/app/store/selectors/general";
 import { Subscription } from "rxjs";
-import { IGFilters } from "src/app/models/general_filters";
 import { selectProductFilter } from "src/app/store/selectors/product";
 import { selectBusinessFilter } from "src/app/store/selectors/business";
-import { IBFilters } from "src/app/models/business_filters";
-import { IPFilters } from "src/app/models/product_filters";
-import { UpdateGeneralFilters } from "src/app/store/actions/general";
-import { GetSearchBusiness } from "src/app/store/actions/business";
-import { GetSearchProducts } from "src/app/store/actions/product";
+import { BusinessService } from "src/app/services/business/business.service";
+import { GeneralService } from "src/app/services/general/general.service";
+import { ProductService } from "src/app/services/product/product.service";
 
 @Component({
   selector: "app-menu",
@@ -22,30 +19,31 @@ export class MenuComponent implements OnInit, OnDestroy {
   public showingBusinessesSelector = this.store.pipe(select(selectShowingBusinesses));
   public productsFilterSelector = this.store.pipe(select(selectProductFilter));
   public businessesFilterSelector = this.store.pipe(select(selectBusinessFilter));
-  public generalFilters: IGFilters = null;
-  public businessFilters: IBFilters = null;
-  public productsFilters: IPFilters = null;
-  public showingBusinesses = true;
 
   private subscriptionsArr: Subscription[] = [];
   private searchText: string;
 
-  constructor(private store: Store<IAppState>) {}
+  constructor(
+    private store: Store<IAppState>,
+    private businessService: BusinessService,
+    private generalService: GeneralService,
+    private productService: ProductService
+  ) {}
 
   ngOnInit() {
     const generalFiltersSubscriber = this.generalFiltersSelector.subscribe(filter => {
-      this.generalFilters = filter;
+      this.generalService.setGeneralFilters(filter);
     });
     const businessFilterSubscriber = this.businessesFilterSelector.subscribe(filter => {
-      this.businessFilters = filter;
+      this.businessService.setBusinessFilter(filter);
     });
     const productsFilterSubscriber = this.productsFilterSelector.subscribe(filter => {
-      this.productsFilters = filter;
+      this.productService.setProductFilters(filter);
     });
 
     const showingBusinessesSubscriber = this.showingBusinessesSelector.subscribe(
       showingBusinesses => {
-        this.showingBusinesses = showingBusinesses;
+        this.generalService.setShowBusinesses(showingBusinesses);
       }
     );
 
@@ -56,27 +54,17 @@ export class MenuComponent implements OnInit, OnDestroy {
   }
 
   searchResults() {
-    if (this.searchText === "" || this.searchText === this.generalFilters.query) {
+    if (this.searchText === "" || this.searchText === this.generalService.getGeneralFilterQuery()) {
       return;
     }
 
-    this.generalFilters.query = this.searchText;
+    this.generalService.setGeneralFilterQuery(this.searchText);
+    this.generalService.updateGeneralFilters();
 
-    this.store.dispatch(new UpdateGeneralFilters(Object.assign({}, this.generalFilters)));
-    if (this.showingBusinesses) {
-      this.store.dispatch(
-        new GetSearchBusiness({
-          businessParams: this.businessFilters,
-          generalParams: this.generalFilters
-        })
-      );
+    if (this.generalService.getShowBusinesses()) {
+      this.businessService.dispatchSearchBusinesses(this.generalService.getGeneralFilters());
     } else {
-      this.store.dispatch(
-        new GetSearchProducts({
-          productParams: this.productsFilters,
-          generalParams: this.generalFilters
-        })
-      );
+      this.productService.dispatchSearchProducts(this.generalService.getGeneralFilters());
     }
   }
   ngOnDestroy() {
