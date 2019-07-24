@@ -7,36 +7,24 @@ import { FiltersService } from "../filters/filters.service";
 import { IBFilters } from "src/app/models/business_filters";
 import { IFilterChips } from "src/app/models/filterchips";
 import { IAppState } from "src/app/store/state/app.state";
-import { Store } from "@ngrx/store";
-import { UpdateBusinessFilters } from "src/app/store/actions/business";
-import { IGFilters } from "src/app/models/general_filters";
+import { Store, select } from "@ngrx/store";
+import {
+  UpdateBusinessFilters,
+  GetBusinessAmenities,
+  GetBusinessTypes
+} from "src/app/store/actions/business";
 
 @Injectable({
   providedIn: "root"
 })
 export class BusinessService {
+  public businessFilters: IBFilters;
+
   constructor(
     private httpService: HttpService,
     private filterService: FiltersService,
     private store: Store<IAppState>
   ) {}
-
-  public originalBusinessFilter: IBFilters;
-  public defaultGFilter: IGFilters;
-
-  updateBusinessFilters(params: any) {
-    this.store.dispatch(new UpdateBusinessFilters(Object.assign({}, params)));
-  }
-
-  setDefaultLatLonDis(params: IGFilters) {
-    this.defaultGFilter = params;
-  }
-  setOriginalBusinessFilter(originalBusinessFilter: IBFilters) {
-    this.originalBusinessFilter = originalBusinessFilter;
-  }
-  getOriginalBusinessFilter() {
-    return this.originalBusinessFilter;
-  }
 
   getSearchBusinesses(params: any) {
     const filteredParams = this.cleanBusinessFilters(params.businessParams, params.generalParams);
@@ -67,16 +55,6 @@ export class BusinessService {
       filteredParam["business_type"] = businessTypeID;
     }
     return filteredParam;
-  }
-  getBusinessDetail(businessID: any): Observable<IBusiness> {
-    return this.httpService.get(`${environment.businessUrl}/${businessID.id}/`, {});
-  }
-
-  getBusinesstypes() {
-    return this.httpService.get(`${environment.businessTypeUrl}/`, {});
-  }
-  getBusinessAmenities() {
-    return this.httpService.get(`${environment.businessAmenitiesUrl}/`, {});
   }
 
   /* This is called to extract the markers from the search results sent by server, to show on the map */
@@ -120,5 +98,37 @@ export class BusinessService {
       }
     }
     return selectedFilters;
+  }
+
+  saveBusinessFiltersState(selectedTags, selectedTypes) {
+    this.businessFilters.amenities = selectedTags;
+    this.businessFilters.business_types = selectedTypes;
+  }
+
+  setOriginalBusinessFilter(originalBusinessFilter: IBFilters) {
+    this.businessFilters = originalBusinessFilter;
+  }
+  getOriginalBusinessFilter() {
+    return this.businessFilters;
+  }
+
+  getBusinessFilterData() {
+    this.store.dispatch(new GetBusinessAmenities());
+    this.store.dispatch(new GetBusinessTypes());
+  }
+
+  updateBusinessFilters(params: any) {
+    this.store.dispatch(new UpdateBusinessFilters(Object.assign({}, params)));
+  }
+
+  getBusinessDetail(businessID: any): Observable<IBusiness> {
+    return this.httpService.get(`${environment.businessUrl}/${businessID.id}/`, {});
+  }
+
+  getBusinesstypes() {
+    return this.httpService.get(`${environment.businessTypeUrl}/`, {});
+  }
+  getBusinessAmenities() {
+    return this.httpService.get(`${environment.businessAmenitiesUrl}/`, {});
   }
 }

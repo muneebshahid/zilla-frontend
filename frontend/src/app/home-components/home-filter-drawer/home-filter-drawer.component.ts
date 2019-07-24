@@ -1,8 +1,4 @@
-import {
-  GetBusinessAmenities,
-  GetBusinessTypes,
-  UpdateBusinessFilters
-} from "./../../store/actions/business";
+import { GetBusinessAmenities, GetBusinessTypes } from "./../../store/actions/business";
 import { IBFilters } from "./../../models/business_filters";
 import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef } from "@angular/core";
 import { Store, select } from "@ngrx/store";
@@ -40,14 +36,20 @@ declare var jQuery: any;
 })
 export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewInit {
   private subscriptionsArr: Subscription[] = [];
+
+  /* general */
   public showingBusinessesSelector = this.store.pipe(select(selectShowingBusinesses));
+  public generalFiltersSelector = this.store.pipe(select(selectGeneralFilters));
+
+  /* products */
   public productsFilterSelector = this.store.pipe(select(selectProductFilter));
-  public businessesFilterSelector = this.store.pipe(select(selectBusinessFilter));
   public productTypesSelector = this.store.pipe(select(selectProductTypes));
   public productTagsSelector = this.store.pipe(select(selectProductTags));
+
+  /* business */
+  public businessesFilterSelector = this.store.pipe(select(selectBusinessFilter));
   public businessesTypesSelector = this.store.pipe(select(selectBusinessTypes));
   public businessesAmenitiesSelector = this.store.pipe(select(selectBusinessAmenities));
-  public generalFiltersSelector = this.store.pipe(select(selectGeneralFilters));
 
   public businessFilters: IBFilters = null;
   public productsFilters: IPFilters = null;
@@ -105,11 +107,6 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     this.filterTypeText = "Business Type";
   }
 
-  saveBusinessFiltersState() {
-    this.businessFilters.amenities = this.selectedTags;
-    this.businessFilters.business_types = this.selectedTypes;
-  }
-
   setProductDrawerFilters() {
     this.selectedTags = this.productsFilters.tags;
     this.selectedTypes = this.productsFilters.product_types;
@@ -149,7 +146,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
           this.saveProductFiltersState();
           this.setBusinessDrawerFilters();
         } else {
-          this.saveBusinessFiltersState();
+          this.saveBusinessState();
           this.setProductDrawerFilters();
 
           if (!this.productsRetrieved) {
@@ -230,8 +227,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   dispatchActions() {
-    this.store.dispatch(new GetBusinessAmenities());
-    this.store.dispatch(new GetBusinessTypes());
+    this.businessService.getBusinessFilterData();
     this.store.dispatch(new GetProductTypes());
     this.store.dispatch(new GetProductTags());
   }
@@ -261,9 +257,13 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     });
   }
 
+  saveBusinessState() {
+    this.businessService.saveBusinessFiltersState(this.selectedTags, this.selectedTypes);
+  }
+
   applyFilters() {
     if (this.showingBusinesses) {
-      this.saveBusinessFiltersState();
+      this.saveBusinessState();
       this.searchBusinesses(this.businessFilters, this.generalFilters);
     } else {
       this.saveProductFiltersState();
