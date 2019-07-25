@@ -28,7 +28,8 @@ export class BusinessService {
   constructor(
     private httpService: HttpService,
     private filterService: FiltersService,
-    private store: Store<IAppState>
+    private store: Store<IAppState>,
+    private generalService: GeneralService
   ) {}
 
   cleanBusinessFilters(bparams: any, gparams: any) {
@@ -134,6 +135,7 @@ export class BusinessService {
   }
 
   dispatchSearchBusinesses(generalParams: IGFilters) {
+    this.generalService.updateLoadingSign(true);
     this.store.dispatch(
       new GetSearchBusiness({ businessParams: this.businessFilters, generalParams: generalParams })
     );
@@ -142,6 +144,7 @@ export class BusinessService {
     this.store.dispatch(new UpdateBusinessFilters(Object.assign({}, this.businessFilters)));
   }
   dispatchGetBusinessDetail(id: number) {
+    this.generalService.updateLoadingSign(true);
     this.store.dispatch(new GetBusinessDetail({ id: id }));
   }
   /* HTTP CALLS */

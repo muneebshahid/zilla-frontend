@@ -5,7 +5,8 @@ export enum EGeneralActions {
   UpdateGeneralFilters = "[General] Update General Filters",
   HighlightMapMarker = "[General] Highlight Map Marker",
   UpdateCloseDetailDrawer = "[General] Close Detail Drawer",
-  UpdateDefaultLatLonDis = "[General] Update Default Latlondis"
+  UpdateDefaultLatLonDis = "[General] Update Default Latlondis",
+  UpdateIsLoading = "[General] Update Is Loading"
 }
 
 export class UpdateSearchType implements Action {
@@ -33,10 +34,16 @@ export class UpdateDefaultLatLonDis implements Action {
 
   constructor(public payload: any) {}
 }
+export class UpdateIsLoading implements Action {
+  public readonly type = EGeneralActions.UpdateIsLoading;
+
+  constructor(public payload: any) {}
+}
 
 export type GeneralActions =
   | UpdateSearchType
   | HighlightMapMarker
   | UpdateGeneralFilters
   | UpdateCloseDetailDrawer
-  | UpdateDefaultLatLonDis;
+  | UpdateDefaultLatLonDis
+  | UpdateIsLoading;

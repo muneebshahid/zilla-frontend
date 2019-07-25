@@ -26,7 +26,8 @@ export class ProductService {
   constructor(
     private httpService: HttpService,
     private filterService: FiltersService,
-    private store: Store<IAppState>
+    private store: Store<IAppState>,
+    private generalService: GeneralService
   ) {}
 
   cleanProductFilters(pparams: any, gparams: any) {
@@ -97,6 +98,7 @@ export class ProductService {
     this.store.dispatch(new UpdateProductFilters(Object.assign({}, this.productFilter)));
   }
   dispatchSearchProducts(generalParams: IGFilters) {
+    this.generalService.updateLoadingSign(true);
     this.store.dispatch(
       new GetSearchProducts({ productParams: this.productFilter, generalParams: generalParams })
     );

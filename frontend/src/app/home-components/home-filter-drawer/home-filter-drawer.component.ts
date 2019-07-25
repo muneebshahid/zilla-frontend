@@ -126,7 +126,6 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
 
     const generalFiltersSubscriber = this.generalFiltersSelector.subscribe(filter => {
       this.generalService.setGeneralFilters(filter);
-
       if (!this.defaultLocationLoaded) {
         this.defaultLocationLoaded = !this.defaultLocationLoaded;
         this.setInitialLatLon();

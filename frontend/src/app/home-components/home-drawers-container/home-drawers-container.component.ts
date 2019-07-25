@@ -1,3 +1,4 @@
+import { GeneralService } from "./../../services/general/general.service";
 import { UpdateCloseDetailDrawer } from "./../../store/actions/general";
 import { selectCloseDetailDrawer } from "./../../store/selectors/general";
 import {
@@ -21,7 +22,11 @@ import { HomeDetailDrawerComponent } from "../home-detail-drawer/home-detail-dra
   styleUrls: ["./home-drawers-container.component.css"]
 })
 export class HomeDrawersContainerComponent implements OnInit, OnDestroy {
-  constructor(private store: Store<IAppState>, private resolver: ComponentFactoryResolver) {}
+  constructor(
+    private store: Store<IAppState>,
+    private resolver: ComponentFactoryResolver,
+    private generalService: GeneralService
+  ) {}
   private businessSelector = this.store.pipe(select(selectBusiness));
   private closeDrawerSelector = this.store.pipe(select(selectCloseDetailDrawer));
   private subscriptionsArr: Subscription[] = [];
@@ -36,6 +41,7 @@ export class HomeDrawersContainerComponent implements OnInit, OnDestroy {
   private subscriptions() {
     const subcriberBusiness = this.businessSelector.subscribe(business => {
       if (business !== null && business !== undefined) {
+        this.generalService.updateLoadingSign(false);
         this.business = business;
         this.createComponent(business);
       }

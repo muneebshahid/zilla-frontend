@@ -37,6 +37,9 @@ export class BusinessInfoComponent implements OnInit, OnDestroy {
 
   subscriptions() {
     const businessSelectorSubscriber = this.businessesSelector.subscribe(business => {
+      if (business.length > 0) {
+        this.generalService.updateLoadingSign(false);
+      }
       this.businessService.setBusinesses(business);
     });
     const businessFilterSubscriber = this.businessFilterSelector.subscribe(filters => {

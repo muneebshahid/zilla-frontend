@@ -32,3 +32,9 @@ export const selectCloseDetailDrawer = createSelector(
     return state.closeDetailDrawer;
   }
 );
+export const selectIsLoading = createSelector(
+  selectItems,
+  (state: IGeneralState) => {
+    return state.isloading;
+  }
+);

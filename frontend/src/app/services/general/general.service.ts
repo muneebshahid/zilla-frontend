@@ -4,12 +4,14 @@ import { IFilterChips } from "src/app/models/filterchips";
 import {
   UpdateGeneralFilters,
   UpdateDefaultLatLonDis,
-  UpdateSearchType
+  UpdateSearchType,
+  UpdateIsLoading
 } from "src/app/store/actions/general";
 import { Store, select } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
-import { selectdefaultGeneralFilter } from "src/app/store/selectors/general";
+import { selectdefaultGeneralFilter, selectGeneralFilters } from "src/app/store/selectors/general";
 import { take } from "rxjs/operators";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -85,6 +87,9 @@ export class GeneralService {
   }
   updateSearchType() {
     this.store.dispatch(new UpdateSearchType({ showingBusinesses: this.showingBusinesses }));
+  }
+  updateLoadingSign(addSign: boolean) {
+    this.store.dispatch(new UpdateIsLoading(addSign));
   }
 
   removeGeneralFilter(generalFilterChips: IFilterChips[], type: string) {

@@ -37,6 +37,12 @@ export const generalReducers = (
         defaultGeneralFilter: action.payload
       };
     }
+    case EGeneralActions.UpdateIsLoading: {
+      return {
+        ...state,
+        isloading: action.payload
+      };
+    }
 
     default:
       return state;

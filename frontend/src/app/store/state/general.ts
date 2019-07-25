@@ -11,12 +11,14 @@ export interface IGeneralState {
   generalFilters?: IGFilters;
   defaultGeneralFilter: IGFilters;
   closeDetailDrawer: boolean;
+  isloading: boolean;
 }
 
 export const initialGeneralState: IGeneralState = {
   showingBusinesses: true,
   highlightedMarkerID: null,
   highlighted: false,
+  isloading: true,
   generalFilters: {
     latlondis: defaultLatlonDis,
     query: "",
