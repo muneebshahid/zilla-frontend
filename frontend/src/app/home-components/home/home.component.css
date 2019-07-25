@@ -1,3 +1,7 @@
 footer {
   display: none !important;
 }
+
+.partial-transparency {
+  opacity: 0.5 !important;
+}

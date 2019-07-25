@@ -1,10 +1,14 @@
-<div id="wrapper-container" class="wrapper-container">
+<app-loading *ngIf="loading"></app-loading>
+
+<div
+  id="wrapper-container"
+  class="wrapper-container"
+  [ngClass]="loading ? 'partial-transparency' : ''"
+>
   <app-m-home-menu-drawer></app-m-home-menu-drawer>
   <app-m-menu></app-m-menu>
 
   <app-menu></app-menu>
-
-  <app-loading transparency="partial-transparency" *ngIf="loading"></app-loading>
 
   <div id="apus-main-content">
     <section id="main-container" class="inner">
