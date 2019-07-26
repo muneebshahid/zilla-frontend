@@ -121,7 +121,6 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
       this.businessService.setBusinessFilter(filters);
     });
     const productFilterSubscriber = this.productFilterSelector.subscribe(filters => {
-      console.log(filters);
       this.productFilterChips = this.productService.getFilterChips(filters);
       this.selectedFilterChips = Object.assign([], this.productFilterChips);
       this.productService.setProductFilters(filters);

@@ -156,6 +156,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
           this.setProductDrawerFilters();
 
           if (!this.productsRetrieved) {
+            this.productsRetrieved = !this.productsRetrieved;
             this.searchProducts(
               this.productService.getProductFilters(),
               this.generalService.getGeneralFilters()
@@ -192,8 +193,6 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   productsLoadedFirstTime() {
-    this.productsRetrieved = !this.productsRetrieved;
-
     let self = this;
 
     setTimeout(() => {
@@ -334,6 +333,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   }
   searchProducts(productsParams: any, generalParams: any) {
     this.productService.setProductFilters(productsParams);
+
     this.productService.updateProductFilters();
     this.productService.dispatchSearchProducts(generalParams);
   }
