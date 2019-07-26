@@ -44,9 +44,9 @@ export class ProductService {
     if (pparams.price !== -1) {
       filteredParam["price"] = pparams.price;
     }
-    if (pparams.available !== -1) {
-      filteredParam["available"] = pparams.available;
-    }
+    // if (pparams.available !== -1) {
+    //   filteredParam["available"] = pparams.available;
+    // }
 
     if (product_type !== null) {
       filteredParam["product_type"] = product_type;
@@ -143,6 +143,7 @@ export class ProductService {
 
   getSearchProducts(params: any) {
     const filteredParams = this.cleanProductFilters(params.productParams, params.generalParams);
+    console.log(filteredParams);
     return this.httpService.get(
       `${environment.searchUrl}/${environment.productUrl}/`,
       filteredParams

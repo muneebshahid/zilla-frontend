@@ -36,7 +36,10 @@ export class ProductInfoComponent implements OnInit {
 
   ngOnInit() {
     const productsSelectorSubscriber = this.productsSelector.subscribe(products => {
-      this.generalService.updateLoadingSign(false);
+      let self = this;
+      setTimeout(function() {
+        self.generalService.updateLoadingSign(false);
+      });
       this.businessService.setBusinesses(products);
     });
     const productFilterSubscriber = this.productsFilterSelector.subscribe(filters => {
