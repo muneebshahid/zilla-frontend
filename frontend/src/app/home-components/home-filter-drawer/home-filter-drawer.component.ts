@@ -155,12 +155,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
           this.setProductDrawerFilters();
 
           if (!this.productsRetrieved) {
-            this.productsRetrieved = !this.productsRetrieved;
-
-            this.searchProducts(
-              this.productService.getProductFilters(),
-              this.generalService.getGeneralFilters()
-            );
+            this.productsLoadedFirstTime();
           }
         }
       }
@@ -191,6 +186,36 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     this.subscriptionsArr.push(generalFiltersSubscriber);
   }
 
+  productsLoadedFirstTime() {
+    this.productsRetrieved = !this.productsRetrieved;
+
+    this.searchProducts(
+      this.productService.getProductFilters(),
+      this.generalService.getGeneralFilters()
+    );
+    this.loadPriceRangeSlider();
+  }
+
+  loadPriceRangeSlider() {
+    let self = this;
+
+    setTimeout(() => {
+      jQuery(self.searchPriceSliderControl.nativeElement).slider({
+        range: "min",
+        value: jQuery(self.searchPriceControl.nativeElement).val(),
+        min: 0,
+        max: 100,
+        slide: function(event, ui) {
+          self.productService.setProductFilterPrice(ui.value);
+          jQuery(self.searchPriceControl.nativeElement).val(ui.value);
+          jQuery(self.searchPriceTextPriceControl.nativeElement).text(ui.value);
+          jQuery(self.searchPriceCustomHandle.nativeElement).attr("data-value", ui.value);
+        },
+        create: function() {}
+      });
+    });
+  }
+
   getCheckboxVersionOfFilters(items: any) {
     const itemsCheckbox = [];
 
@@ -217,21 +242,6 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
         jQuery(self.searchDistanceControl.nativeElement).val(ui.value);
         jQuery(self.searchDistanceTextDistanceControl.nativeElement).text(ui.value);
         jQuery(self.searchDistanceCustomHandle.nativeElement).attr("data-value", ui.value);
-      },
-      create: function() {}
-    });
-
-    console.log(self.searchPriceSliderControl);
-    jQuery(self.searchPriceSliderControl.nativeElement).slider({
-      range: "min",
-      value: jQuery(self.searchPriceControl.nativeElement).val(),
-      min: 0,
-      max: 100,
-      slide: function(event, ui) {
-        self.productService.setProductFilterPrice(ui.value);
-        // jQuery(self.searchPriceControl.nativeElement).val(ui.value);
-        // jQuery(self.searchPriceTextPriceControl.nativeElement).text(ui.value);
-        // jQuery(self.searchPriceCustomHandle.nativeElement).attr("data-value", ui.value);
       },
       create: function() {}
     });

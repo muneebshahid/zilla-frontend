@@ -22,7 +22,7 @@ export const initialProductState: IProductState = {
   filters: {
     product_types: [],
     tags: [],
-    available: -1,
-    price: -1
+    available: 0,
+    price: 100
   }
 };
