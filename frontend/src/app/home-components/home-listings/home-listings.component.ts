@@ -64,7 +64,9 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     private filterService: FiltersService,
     private ngZone: NgZone
   ) {}
-
+  loadMoreResults() {
+    console.log("scrolled");
+  }
   ngOnInit() {
     const businessMarkersSubscriber = this.businessMarkersSelector.subscribe(markers => {
       if (markers !== null) {

@@ -15,7 +15,7 @@ import { appReducers } from "./store/reducers/app.reducer";
 import { environment } from "../environments/environment";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { ProductEffects } from "./store/effects/product";
-
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import {
   HomeFilterDrawerComponent,
   HomeListingsComponent,
@@ -112,7 +112,8 @@ import {
       libraries: ["places", "geometry"]
     }),
     AgmSnazzyInfoWindowModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    InfiniteScrollModule
   ],
   providers: [GoogleMapsAPIWrapper, GeoLocationService],
   bootstrap: [AppComponent],

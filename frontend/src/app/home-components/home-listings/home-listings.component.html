@@ -1,4 +1,10 @@
-<div class="col-md-8 no-padding products-grid">
+<div
+  class="col-md-8 no-padding products-grid"
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+  (scrolled)="loadMoreResults()"
+>
   <div class="list-content clearfix">
     <app-home-drawers-container #drawerContainer></app-home-drawers-container>
     <app-m-filter-map-menu (setMobileMapView)="updateMobileMapView()"></app-m-filter-map-menu>
