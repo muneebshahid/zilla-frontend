@@ -129,6 +129,44 @@
               </div>
             </div>
 
+            <div class="search_distance_wrapper clearfix" *ngIf="!generalService.showingBusinesses">
+              <div class="search-distance-label">
+                <label for="use_search_distance">
+                  Price:
+                  <span class="text-distance" #textPrice>{{
+                    productService.productFilter.price
+                  }}</span>
+                  $
+                </label>
+              </div>
+
+              <div class="search-distance-wrapper">
+                <input
+                  #searchPrice
+                  type="hidden"
+                  name="search_distance"
+                  id="search_distance"
+                  [value]="productService.productFilter.price"
+                />
+                <div
+                  #searchPriceSlider
+                  id="search-distance-slider"
+                  class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
+                >
+                  <div
+                    #priceCustomHandle
+                    id="distance-custom-handle"
+                    class="ui-slider-handle ui-state-default ui-corner-all"
+                    [attr.data-value]="productService.productFilter.price"
+                    style="left: 50%;"
+                  ></div>
+                  <div
+                    class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"
+                  ></div>
+                </div>
+              </div>
+            </div>
+
             <div class="search_tag_wrapper">
               <a href="javascript:void(0);" class="show-more-filter title"
                 >Tags <i class="fa fa-minus"></i>

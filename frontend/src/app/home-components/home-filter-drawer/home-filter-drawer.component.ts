@@ -59,10 +59,16 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   public filterTypeText: string;
 
   @ViewChild("location") locationElementRef: ElementRef;
+
   @ViewChild("searchDistance") searchDistanceControl: ElementRef;
   @ViewChild("searchDistanceSlider") searchDistanceSliderControl: ElementRef;
   @ViewChild("textDistance") searchDistanceTextDistanceControl: ElementRef;
   @ViewChild("distanceCustomHandle") searchDistanceCustomHandle: ElementRef;
+
+  @ViewChild("searchPrice") searchPriceControl: ElementRef;
+  @ViewChild("searchPriceSlider") searchPriceSliderControl: ElementRef;
+  @ViewChild("textPrice") searchPriceTextPriceControl: ElementRef;
+  @ViewChild("priceCustomHandle") searchPriceCustomHandle: ElementRef;
 
   constructor(
     private store: Store<IAppState>,
@@ -126,6 +132,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
 
     const generalFiltersSubscriber = this.generalFiltersSelector.subscribe(filter => {
       this.generalService.setGeneralFilters(filter);
+
       if (!this.defaultLocationLoaded) {
         this.defaultLocationLoaded = !this.defaultLocationLoaded;
         this.setInitialLatLon();
@@ -213,6 +220,21 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       },
       create: function() {}
     });
+
+    console.log(self.searchPriceSliderControl);
+    jQuery(self.searchPriceSliderControl.nativeElement).slider({
+      range: "min",
+      value: jQuery(self.searchPriceControl.nativeElement).val(),
+      min: 0,
+      max: 100,
+      slide: function(event, ui) {
+        self.productService.setProductFilterPrice(ui.value);
+        // jQuery(self.searchPriceControl.nativeElement).val(ui.value);
+        // jQuery(self.searchPriceTextPriceControl.nativeElement).text(ui.value);
+        // jQuery(self.searchPriceCustomHandle.nativeElement).attr("data-value", ui.value);
+      },
+      create: function() {}
+    });
   }
 
   getDropDownVersionOfFilters(items: any) {
@@ -259,7 +281,8 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   saveBusinessState() {
-    this.businessService.saveBusinessFiltersState(this.selectedTags, this.selectedTypes);
+    this.businessService.setBusinessFilterAmenities(this.selectedTags);
+    this.businessService.setBusinessFilterTypes(this.selectedTypes);
   }
 
   applyFilters() {

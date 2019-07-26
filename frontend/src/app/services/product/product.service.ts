@@ -21,7 +21,7 @@ import { GeneralService } from "../general/general.service";
   providedIn: "root"
 })
 export class ProductService {
-  private productFilter: IPFilters;
+  public productFilter: IPFilters;
 
   constructor(
     private httpService: HttpService,
