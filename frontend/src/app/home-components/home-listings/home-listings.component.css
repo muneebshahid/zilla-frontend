@@ -26,3 +26,7 @@
 .search-tag:hover {
   cursor: pointer;
 }
+
+.load-more-wrapper {
+  text-align: center;
+}

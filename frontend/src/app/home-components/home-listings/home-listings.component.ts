@@ -52,6 +52,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   public generalFilterChips: IFilterChips[] = [];
 
   public defaultCity: string;
+  public loadMoreEnabled: boolean = false;
 
   public hits: number = 0;
   public filters: any;
@@ -66,6 +67,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   ) {}
   loadMoreResults() {
     console.log("scrolled");
+    this.loadMoreEnabled = true;
   }
   ngOnInit() {
     const businessMarkersSubscriber = this.businessMarkersSelector.subscribe(markers => {

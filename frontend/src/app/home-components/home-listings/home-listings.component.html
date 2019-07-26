@@ -59,8 +59,9 @@
         *ngIf="generalService.showingBusinesses"
         [homePage]="true"
       ></app-business-info>
-      <!-- <a class="load_more_jobs" href="#" style="display: none;"
-        ><strong>Load more listings</strong></a -->
+      <div class="load-more-wrapper" *ngIf="loadMoreEnabled">
+        <img src="/assets/images/ajax-loader.gif" />
+      </div>
     </div>
   </div>
 </div>
