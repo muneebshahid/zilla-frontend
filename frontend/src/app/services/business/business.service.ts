@@ -24,6 +24,7 @@ import { GeneralService } from "../general/general.service";
 export class BusinessService {
   public businessFilters: IBFilters;
   public businesses: IBusiness[];
+  public businessHits: number;
 
   constructor(
     private httpService: HttpService,
@@ -109,6 +110,12 @@ export class BusinessService {
   }
   setBusinesses(businesses) {
     this.businesses = businesses;
+  }
+  setBusinessHits(hits) {
+    this.businessHits = hits;
+  }
+  getBusinessHits() {
+    return this.businessHits;
   }
 
   getBusinesses() {

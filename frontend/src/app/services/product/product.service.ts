@@ -26,6 +26,7 @@ export class ProductService {
   public productFilter: IPFilters;
   public defaultProductFilter: IPFilters;
   private defaultProductFilterSelector = this.store.pipe(select(selectDefaultProductFilters));
+  public productHits: number;
 
   constructor(
     private httpService: HttpService,
@@ -147,6 +148,12 @@ export class ProductService {
   }
   setProductFilterPrice(price) {
     this.productFilter.price = price;
+  }
+  setProductHits(hits) {
+    this.productHits = hits;
+  }
+  getProductHits() {
+    return this.productHits;
   }
   getProductFilterTypes() {
     return this.productFilter.product_types;

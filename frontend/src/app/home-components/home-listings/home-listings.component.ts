@@ -39,8 +39,6 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   public searchDistance = 0;
   public selectedFilters = [];
 
-  public businessHits = 0;
-  public productHits = 0;
   public selectedCategory = "Business";
 
   public businessMarkers: any = null;
@@ -51,7 +49,6 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   public productFilterChips: IFilterChips[] = [];
   public generalFilterChips: IFilterChips[] = [];
 
-  public defaultCity: string;
   public loadMoreEnabled: boolean = false;
 
   public hits: number = 0;
@@ -86,13 +83,13 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     });
 
     const businessNumHitSubscriber = this.businessNumHitSelector.subscribe(numHits => {
-      this.businessHits = numHits;
+      this.businessService.setBusinessHits(numHits);
       this.ngZone.run(() => {
         this.hits = numHits;
       });
     });
     const productsNumHitSubscriber = this.productsNumHitSelector.subscribe(numHits => {
-      this.productHits = numHits;
+      this.productService.setProductHits(numHits);
       this.hits = numHits;
     });
     const showingBusinessesSubscriber = this.showingBusinessesSelector.subscribe(
@@ -103,7 +100,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
 
         if (this.generalService.getShowBusinesses()) {
           this.selectedFilterChips = this.businessFilterChips;
-          this.hits = this.businessHits;
+          this.hits = this.businessService.getBusinessHits();
           this.selectedCategory = "Businesses";
 
           if (this.businessMarkers !== null) {
@@ -111,7 +108,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
           }
         } else {
           this.selectedFilterChips = this.productFilterChips;
-          this.hits = this.productHits;
+          this.hits = this.productService.getProductHits();
           this.selectedCategory = "Products";
           if (this.productMarkers !== null) {
             this.putMarkersOnMap(this.productMarkers);
