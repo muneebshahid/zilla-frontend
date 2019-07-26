@@ -45,6 +45,12 @@ export const productReducers = (
         product_types: action.payload
       };
     }
+    case EProductActions.UpdateProductDefaultFilters: {
+      return {
+        ...state,
+        default_filters: action.payload
+      };
+    }
 
     default:
       return state;

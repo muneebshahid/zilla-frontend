@@ -143,6 +143,17 @@ export class BusinessService {
     this.generalService.updateLoadingSign(true);
     this.store.dispatch(new GetBusinessDetail({ id: id }));
   }
+
+  filterChanged() {
+    if (
+      !this.filterService.typeFilterSelected(this.businessFilters.business_types) &&
+      !this.filterService.tagFilterSelected(this.businessFilters.amenities)
+    ) {
+      return false;
+    }
+    return true;
+  }
+
   /* HTTP CALLS */
   getSearchBusinesses(params: any) {
     const filteredParams = this.cleanBusinessFilters(params.businessParams, params.generalParams);

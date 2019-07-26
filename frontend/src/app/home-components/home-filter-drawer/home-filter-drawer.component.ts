@@ -121,6 +121,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   saveProductFiltersState() {
     this.productService.setProductFilterTags(this.selectedTags);
     this.productService.setProductFilterTypes(this.selectedTypes);
+    // price value already being set by the jquery code as soon as user changes the slider.
   }
 
   initializeSubscribers() {
@@ -297,18 +298,22 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
 
   applyFilters() {
     if (this.generalService.getShowBusinesses()) {
-      this.saveBusinessState();
+      if (this.businessService.filterChanged() || this.generalService.filterChanged()) {
+        this.saveBusinessState();
 
-      this.searchBusinesses(
-        this.businessService.getBusinessFilter(),
-        this.generalService.getGeneralFilters()
-      );
+        this.searchBusinesses(
+          this.businessService.getBusinessFilter(),
+          this.generalService.getGeneralFilters()
+        );
+      }
     } else {
-      this.saveProductFiltersState();
-      this.searchProducts(
-        this.productService.getProductFilters(),
-        this.generalService.getGeneralFilters()
-      );
+      if (this.productService.filterChanged() || this.generalService.filterChanged()) {
+        this.saveProductFiltersState();
+        this.searchProducts(
+          this.productService.getProductFilters(),
+          this.generalService.getGeneralFilters()
+        );
+      }
     }
     this.generalService.updateGeneralFilters();
   }

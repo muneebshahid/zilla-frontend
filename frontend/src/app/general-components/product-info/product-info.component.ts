@@ -1,5 +1,5 @@
 import { IBusiness } from "./../../models/business";
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, QueryList, ViewChildren } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { selectProducts, selectProductFilter } from "src/app/store/selectors/product";
 import { select, Store } from "@ngrx/store";
@@ -20,6 +20,7 @@ import { GeneralService } from "src/app/services/general/general.service";
 export class ProductInfoComponent implements OnInit {
   private subscriptionsArr: Subscription[] = [];
   @Input() public homePage = false;
+  @ViewChildren("businessesParentTag") businessesParentTag: QueryList<any>;
 
   public productsFilterSelector = this.store.pipe(select(selectProductFilter));
   public productsSelector = this.store.pipe(select(selectProducts));
@@ -33,13 +34,17 @@ export class ProductInfoComponent implements OnInit {
     private businessService: BusinessService,
     private generalService: GeneralService
   ) {}
+  businessResultsRendered() {
+    this.generalService.updateLoadingSign(false);
+  }
+  ngAfterViewInit() {
+    this.businessesParentTag.changes.subscribe(t => {
+      this.businessResultsRendered();
+    });
+  }
 
   ngOnInit() {
     const productsSelectorSubscriber = this.productsSelector.subscribe(products => {
-      let self = this;
-      setTimeout(function() {
-        self.generalService.updateLoadingSign(false);
-      });
       this.businessService.setBusinesses(products);
     });
     const productFilterSubscriber = this.productsFilterSelector.subscribe(filters => {

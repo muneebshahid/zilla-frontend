@@ -13,22 +13,30 @@ import {
   GetSearchProducts
 } from "src/app/store/actions/product";
 import { IAppState } from "src/app/store/state/app.state";
-import { Store } from "@ngrx/store";
+import { Store, select } from "@ngrx/store";
 import { IGFilters } from "src/app/models/general_filters";
 import { GeneralService } from "../general/general.service";
+import { selectDefaultProductFilters } from "src/app/store/selectors/product";
+import { take } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
 })
 export class ProductService {
   public productFilter: IPFilters;
+  public defaultProductFilter: IPFilters;
+  private defaultProductFilterSelector = this.store.pipe(select(selectDefaultProductFilters));
 
   constructor(
     private httpService: HttpService,
     private filterService: FiltersService,
     private store: Store<IAppState>,
     private generalService: GeneralService
-  ) {}
+  ) {
+    this.defaultProductFilterSelector.pipe(take(1)).subscribe(data => {
+      this.defaultProductFilter = data;
+    });
+  }
 
   cleanProductFilters(pparams: any, gparams: any) {
     let filteredParam = {};
@@ -41,7 +49,7 @@ export class ProductService {
     filteredParam["latlondis"] = `${gparams.latlondis[0]},${gparams.latlondis[1]},${
       gparams.latlondis[2]
     }`;
-    if (pparams.price !== -1) {
+    if (pparams.price !== this.defaultProductFilter.price) {
       filteredParam["price"] = pparams.price;
     }
     // if (pparams.available !== -1) {
@@ -91,6 +99,14 @@ export class ProductService {
         });
       }
     }
+
+    if (this.productFilter.price !== this.defaultProductFilter.price) {
+      selectedFilters.push({
+        key: objectKeys[3],
+        value: "Price: " + this.productFilter.price + "€",
+        id: null
+      });
+    }
     return selectedFilters;
   }
 
@@ -102,6 +118,17 @@ export class ProductService {
     this.store.dispatch(
       new GetSearchProducts({ productParams: this.productFilter, generalParams: generalParams })
     );
+  }
+
+  filterChanged() {
+    if (
+      this.defaultProductFilter.price === this.productFilter.price &&
+      !this.filterService.typeFilterSelected(this.productFilter.product_types) &&
+      !this.filterService.tagFilterSelected(this.productFilter.tags)
+    ) {
+      return false;
+    }
+    return true;
   }
 
   getProductFilterData() {
@@ -133,6 +160,9 @@ export class ProductService {
   getProductFilters() {
     return this.productFilter;
   }
+  getDefaultProductFilters() {
+    return this.defaultProductFilter;
+  }
 
   getProductDetails(productObj: any): Observable<IProduct> {
     return this.httpService.get(
@@ -143,7 +173,6 @@ export class ProductService {
 
   getSearchProducts(params: any) {
     const filteredParams = this.cleanProductFilters(params.productParams, params.generalParams);
-    console.log(filteredParams);
     return this.httpService.get(
       `${environment.searchUrl}/${environment.productUrl}/`,
       filteredParams

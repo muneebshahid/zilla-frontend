@@ -16,7 +16,6 @@ import { BusinessService } from "src/app/services/business/business.service";
 import { ProductService } from "src/app/services/product/product.service";
 import { GeneralService } from "src/app/services/general/general.service";
 import { IFilterChips } from "src/app/models/filterchips";
-import { UpdateIsLoading } from "src/app/store/actions/general";
 @Component({
   selector: "app-home-listings",
   templateUrl: "./home-listings.component.html",
@@ -170,6 +169,12 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
             id,
             this.productService.getProductFilters()
           );
+
+          if (key === "price") {
+            this.productService.setProductFilterPrice(
+              this.productService.getDefaultProductFilters().price
+            );
+          }
 
           this.productService.setProductFilters(originalProductFilter);
           this.productService.updateProductFilters();

@@ -38,7 +38,5 @@ export class DetailHeaderGalleryComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngForRendred() {}
-
   ngOnInit() {}
 }

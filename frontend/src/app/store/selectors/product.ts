@@ -36,3 +36,7 @@ export const selectProductTypes = createSelector(
   selectItems,
   (state: IProductState) => state.product_types
 );
+export const selectDefaultProductFilters = createSelector(
+  selectItems,
+  (state: IProductState) => state.default_filters
+);

@@ -16,7 +16,7 @@ import { take } from "rxjs/operators";
   providedIn: "root"
 })
 export class GeneralService {
-  public defaultGeneralFilterSelector = this.store.pipe(select(selectdefaultGeneralFilter));
+  private defaultGeneralFilterSelector = this.store.pipe(select(selectdefaultGeneralFilter));
   constructor(private store: Store<IAppState>) {
     // take 2 because first time it will be called with default state value and next time with set value.
     this.defaultGeneralFilterSelector.pipe(take(2)).subscribe(data => {
@@ -88,7 +88,10 @@ export class GeneralService {
     this.store.dispatch(new UpdateSearchType({ showingBusinesses: this.showingBusinesses }));
   }
   updateLoadingSign(addSign: boolean) {
-    this.store.dispatch(new UpdateIsLoading(addSign));
+    const self = this;
+    setTimeout(function() {
+      self.store.dispatch(new UpdateIsLoading(addSign));
+    });
   }
 
   removeGeneralFilter(generalFilterChips: IFilterChips[], type: string) {
@@ -127,5 +130,17 @@ export class GeneralService {
     }
 
     return selectedFilters;
+  }
+
+  filterChanged() {
+    if (
+      this.generalFilters.latlondis[0] === this.defaultLatLonDis[0] &&
+      this.generalFilters.latlondis[1] === this.defaultLatLonDis[1] &&
+      this.generalFilters.latlondis[2] === this.defaultLatLonDis[2] &&
+      this.generalFilters.query === ""
+    ) {
+      return false;
+    }
+    return true;
   }
 }

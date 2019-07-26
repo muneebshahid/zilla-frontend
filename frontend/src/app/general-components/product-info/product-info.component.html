@@ -6,6 +6,7 @@
     target="_blank"
     class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450"
     *ngFor="let business of businessService.businesses"
+    #businessesParentTag
   >
     <span *ngFor="let product of business.business.products">
       <div

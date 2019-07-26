@@ -77,4 +77,21 @@ export class FiltersService {
     }
     return filterTypes;
   }
+
+  public typeFilterSelected(filterTags: any) {
+    for (let i = 0; i < filterTags.length; i++) {
+      if (filterTags[i].selected) {
+        return true;
+      }
+    }
+    return false;
+  }
+  public tagFilterSelected(filterTags: any) {
+    for (let i = 0; i < filterTags.length; i++) {
+      if (filterTags[i].checked) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
