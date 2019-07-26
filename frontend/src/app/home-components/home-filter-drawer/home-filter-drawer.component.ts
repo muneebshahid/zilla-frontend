@@ -156,8 +156,12 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
           this.setProductDrawerFilters();
 
           if (!this.productsRetrieved) {
-            this.productsLoadedFirstTime();
+            this.searchProducts(
+              this.productService.getProductFilters(),
+              this.generalService.getGeneralFilters()
+            );
           }
+          this.productsLoadedFirstTime();
         }
       }
     );
@@ -190,14 +194,6 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   productsLoadedFirstTime() {
     this.productsRetrieved = !this.productsRetrieved;
 
-    this.searchProducts(
-      this.productService.getProductFilters(),
-      this.generalService.getGeneralFilters()
-    );
-    this.loadPriceRangeSlider();
-  }
-
-  loadPriceRangeSlider() {
     let self = this;
 
     setTimeout(() => {

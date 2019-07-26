@@ -45,6 +45,9 @@ export class ProductInfoComponent implements OnInit {
 
   ngOnInit() {
     const productsSelectorSubscriber = this.productsSelector.subscribe(products => {
+      if (products.length === 0) {
+        this.businessResultsRendered();
+      }
       this.businessService.setBusinesses(products);
     });
     const productFilterSubscriber = this.productsFilterSelector.subscribe(filters => {
