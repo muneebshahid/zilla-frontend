@@ -13983,6 +13983,7 @@ div.job_listings .load_more_jobs strong {
 }
 .job_filters .search_distance_wrapper .ui-slider-handle {
   margin-top: -1px;
+  z-index: 1;
   width: 14px;
   height: 14px;
   background: #fb3640;

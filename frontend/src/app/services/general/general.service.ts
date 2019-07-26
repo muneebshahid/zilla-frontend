@@ -9,9 +9,8 @@ import {
 } from "src/app/store/actions/general";
 import { Store, select } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
-import { selectdefaultGeneralFilter, selectGeneralFilters } from "src/app/store/selectors/general";
+import { selectdefaultGeneralFilter } from "src/app/store/selectors/general";
 import { take } from "rxjs/operators";
-import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root"

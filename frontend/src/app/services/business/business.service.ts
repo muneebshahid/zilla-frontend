@@ -96,7 +96,7 @@ export class BusinessService {
     return selectedFilters;
   }
 
-  /* GETTERS AND SETTERS */
+  /* GETTERS AND SETTERSfunction */
   saveBusinessFiltersState(selectedTags, selectedTypes) {
     this.businessFilters.amenities = selectedTags;
     this.businessFilters.business_types = selectedTypes;
