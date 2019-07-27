@@ -16,21 +16,19 @@ import {
   GetBusinessDetail
 } from "src/app/store/actions/business";
 import { IGFilters } from "src/app/models/general_filters";
-import { GeneralService } from "../general/general.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class BusinessService {
   public businessFilters: IBFilters;
-  public businesses: IBusiness[];
+  public businesses: IBusiness[] = [];
   public businessHits: number;
 
   constructor(
     private httpService: HttpService,
     private filterService: FiltersService,
-    private store: Store<IAppState>,
-    private generalService: GeneralService
+    private store: Store<IAppState>
   ) {}
 
   cleanBusinessFilters(bparams: any, gparams: any) {
@@ -51,6 +49,10 @@ export class BusinessService {
     if (businessTypeID !== null) {
       filteredParam["business_type"] = businessTypeID;
     }
+
+    if (bparams.paginate) {
+    }
+
     return filteredParam;
   }
 
@@ -109,7 +111,7 @@ export class BusinessService {
     this.businessFilters.business_types = types;
   }
   setBusinesses(businesses) {
-    this.businesses = businesses;
+    this.businesses = this.businesses.concat(businesses);
   }
   setBusinessHits(hits) {
     this.businessHits = hits;

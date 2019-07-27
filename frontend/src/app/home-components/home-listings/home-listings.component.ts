@@ -64,6 +64,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   ) {}
   loadMoreResults() {
     this.loadMoreEnabled = true;
+    this.businessService.dispatchSearchBusinesses(this.generalService.getGeneralFilters());
   }
   ngOnInit() {
     const businessMarkersSubscriber = this.businessMarkersSelector.subscribe(markers => {

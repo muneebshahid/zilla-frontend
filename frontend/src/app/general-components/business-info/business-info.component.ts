@@ -28,9 +28,18 @@ export class BusinessInfoComponent implements OnInit, OnDestroy {
   @Input() public homePage = false;
   @ViewChildren("businessesParentTag") businessesParentTag: QueryList<any>;
   private subscriptionsArr: Subscription[] = [];
-  public businessesSelector = this.store.pipe(select(selectBusinesses));
-  public businessFilterSelector = this.store.pipe(select(selectBusinessFilter));
-  public generalFiltersSelector = this.store.pipe(select(selectGeneralFilters));
+
+  public businessesSelector = this.store
+    .pipe(select(selectBusinesses))
+    .subscribe(business => this.businessService.setBusinesses(business));
+
+  public businessFilterSelector = this.store
+    .pipe(select(selectBusinessFilter))
+    .subscribe(filter => this.businessService.setBusinessFilter(filter));
+
+  public generalFiltersSelector = this.store
+    .pipe(select(selectGeneralFilters))
+    .subscribe(filter => this.generalService.setGeneralFilters(filter));
 
   public endpoint = environment.apiEndpoint;
 
@@ -42,24 +51,11 @@ export class BusinessInfoComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.subscriptions();
+    this.subscriptionsArr.push(this.businessesSelector);
+    this.subscriptionsArr.push(this.businessFilterSelector);
+    this.subscriptionsArr.push(this.generalFiltersSelector);
   }
 
-  subscriptions() {
-    const businessSelectorSubscriber = this.businessesSelector.subscribe(business => {
-      this.businessService.setBusinesses(business);
-    });
-    const businessFilterSubscriber = this.businessFilterSelector.subscribe(filters => {
-      this.businessService.setBusinessFilter(filters);
-    });
-    const generalFiltersSubscriber = this.generalFiltersSelector.subscribe(filters => {
-      this.generalService.setGeneralFilters(filters);
-    });
-
-    this.subscriptionsArr.push(businessSelectorSubscriber);
-    this.subscriptionsArr.push(businessFilterSubscriber);
-    this.subscriptionsArr.push(generalFiltersSubscriber);
-  }
   ngOnDestroy() {
     for (const subscriber of this.subscriptionsArr) {
       subscriber.unsubscribe();

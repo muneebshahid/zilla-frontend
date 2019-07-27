@@ -1,5 +1,4 @@
-import { IBusiness } from "./../../models/business";
-import { Component, OnInit, Input, QueryList, ViewChildren } from "@angular/core";
+import { Component, OnInit, Input, QueryList, ViewChildren, OnDestroy } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { selectProducts, selectProductFilter } from "src/app/store/selectors/product";
 import { select, Store } from "@ngrx/store";
@@ -17,14 +16,23 @@ import { GeneralService } from "src/app/services/general/general.service";
   templateUrl: "./product-info.component.html",
   styleUrls: ["./product-info.component.css"]
 })
-export class ProductInfoComponent implements OnInit {
+export class ProductInfoComponent implements OnInit, OnDestroy {
   private subscriptionsArr: Subscription[] = [];
   @Input() public homePage = false;
   @ViewChildren("businessesParentTag") businessesParentTag: QueryList<any>;
 
-  public productsFilterSelector = this.store.pipe(select(selectProductFilter));
-  public productsSelector = this.store.pipe(select(selectProducts));
-  public generalFiltersSelector = this.store.pipe(select(selectGeneralFilters));
+  public productsFilterSelector = this.store
+    .pipe(select(selectProductFilter))
+    .subscribe(filter => this.productService.setProductFilters(filter));
+
+  public productsSelector = this.store
+    .pipe(select(selectProducts))
+    .subscribe(products => this.businessService.setBusinesses(products));
+
+  public generalFiltersSelector = this.store
+    .pipe(select(selectGeneralFilters))
+    .subscribe(filters => this.generalService.setGeneralFilters(filters));
+
   public endpoint = environment.apiEndpoint;
 
   constructor(
@@ -36,19 +44,9 @@ export class ProductInfoComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const productsSelectorSubscriber = this.productsSelector.subscribe(products => {
-      this.businessService.setBusinesses(products);
-    });
-    const productFilterSubscriber = this.productsFilterSelector.subscribe(filters => {
-      this.productService.setProductFilters(filters);
-    });
-    const generalFiltersSubscriber = this.generalFiltersSelector.subscribe(filters => {
-      this.generalService.setGeneralFilters(filters);
-    });
-
-    this.subscriptionsArr.push(productFilterSubscriber);
-    this.subscriptionsArr.push(productsSelectorSubscriber);
-    this.subscriptionsArr.push(generalFiltersSubscriber);
+    this.subscriptionsArr.push(this.productsSelector);
+    this.subscriptionsArr.push(this.productsFilterSelector);
+    this.subscriptionsArr.push(this.generalFiltersSelector);
   }
   openDetailDrawer(id: number) {
     this.businessService.dispatchGetBusinessDetail(id);

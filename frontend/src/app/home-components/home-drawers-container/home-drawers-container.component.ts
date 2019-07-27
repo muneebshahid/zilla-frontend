@@ -22,11 +22,7 @@ import { HomeDetailDrawerComponent } from "../home-detail-drawer/home-detail-dra
   styleUrls: ["./home-drawers-container.component.css"]
 })
 export class HomeDrawersContainerComponent implements OnInit, OnDestroy {
-  constructor(
-    private store: Store<IAppState>,
-    private resolver: ComponentFactoryResolver,
-    private generalService: GeneralService
-  ) {}
+  constructor(private store: Store<IAppState>, private resolver: ComponentFactoryResolver) {}
   private businessSelector = this.store.pipe(select(selectBusiness));
   private closeDrawerSelector = this.store.pipe(select(selectCloseDetailDrawer));
   private subscriptionsArr: Subscription[] = [];
