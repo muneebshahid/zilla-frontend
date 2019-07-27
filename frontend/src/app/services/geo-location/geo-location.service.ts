@@ -19,17 +19,21 @@ export class GeoLocationService {
             case 3:
               // ...deal with timeout
               observer.next(error);
+              observer.complete();
               break;
             case 2:
               observer.next(error);
+              observer.complete();
               // ...device can't get data
               break;
             case 1:
               observer.next(error);
+              observer.complete();
               break;
             // ...user said no ☹️
             default:
               observer.next(error);
+              observer.complete();
           }
         },
         { timeout: 1000, enableHighAccuracy: true }

@@ -19,6 +19,7 @@ import { FiltersService } from "src/app/services/filters/filters.service";
 import { GeneralService } from "src/app/services/general/general.service";
 import { BusinessService } from "src/app/services/business/business.service";
 import { ProductService } from "src/app/services/product/product.service";
+import { take } from "rxjs/operators";
 
 declare var jQuery: any;
 
@@ -257,33 +258,40 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   setInitialLatLon() {
-    this.geoLocationService.getPosition().subscribe((pos: any) => {
-      /* if we get the user position, update the default latlon of user, otherwise call with default latlon. */
-      if (pos.coords) {
-        this.generalService.setGeneralFiltersLatLon(pos.coords.latitude, pos.coords.longitude);
-        // set map center to this latlng
-        this.geoLocationService
-          .getCityFromLatLng(this.generalService.getGeneralFiltersLatLonDis())
-          .subscribe(place => {
-            this.generalService.setGeneralFiltersCity(place);
+    this.geoLocationService
+      .getPosition()
+      .pipe(take(1))
+      .subscribe((pos: any) => {
+        /* if we get the user position, update the default latlon of user, otherwise call with default latlon. */
+        if (pos.coords) {
+          this.generalService.setGeneralFiltersLatLon(pos.coords.latitude, pos.coords.longitude);
+          // set map center to this latlng
+          this.geoLocationService
+            .getCityFromLatLng(this.generalService.getGeneralFiltersLatLonDis())
+            .pipe(take(1))
+            .subscribe(place => {
+              this.generalService.setGeneralFiltersCity(place);
 
-            this.generalService.updateDefaultLatLonDis();
-            this.generalService.updateGeneralFilters();
-            this.searchBusinesses(
-              this.businessService.getBusinessFilter(),
-              this.generalService.getGeneralFilters()
-            );
-          });
-      } else {
-        // set map center to default latlng
-        // although no changes to generalFilter but we call this to ensure we unsubscribe from defaultLatLonsubscriber in generalService.
-        this.generalService.updateDefaultLatLonDis();
-        this.searchBusinesses(
-          this.businessService.getBusinessFilter(),
-          this.generalService.getGeneralFilters()
-        );
-      }
-    });
+              this.generalService.updateDefaultLatLonDis();
+              this.generalService.updateGeneralFilters();
+              this.searchBusinesses(
+                this.businessService.getBusinessFilter(),
+                this.generalService.getGeneralFilters()
+              );
+            });
+        } else {
+          /* set map center to default latlng */
+          /*
+          although no changes to generalFilter but we call this to ensure we unsubscribe
+          from defaultLatLonsubscriber in generalService.
+        */
+          this.generalService.updateDefaultLatLonDis();
+          this.searchBusinesses(
+            this.businessService.getBusinessFilter(),
+            this.generalService.getGeneralFilters()
+          );
+        }
+      });
   }
 
   saveBusinessState() {
