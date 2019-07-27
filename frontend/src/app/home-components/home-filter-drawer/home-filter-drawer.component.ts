@@ -168,26 +168,22 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
       }
     );
 
-    const businessAmenitiesSubscriber = this.businessesAmenitiesSelector.subscribe(amenities => {
+    this.businessesAmenitiesSelector.pipe(take(2)).subscribe(amenities => {
       this.businessService.setBusinessFilterAmenities(this.getCheckboxVersionOfFilters(amenities));
       this.selectedTags = this.businessService.getBusinessFilterAmenities();
     });
-    const businessTypesSubscriber = this.businessesTypesSelector.subscribe(businessTypes => {
+    this.businessesTypesSelector.pipe(take(2)).subscribe(businessTypes => {
       this.businessService.setBusinessFilterTypes(this.getDropDownVersionOfFilters(businessTypes));
       this.selectedTypes = this.businessService.getBusinessFilterTypes();
     });
 
-    const productTypesSubscriber = this.productTypesSelector.subscribe(productTypes => {
+    this.productTypesSelector.pipe(take(2)).subscribe(productTypes => {
       this.productService.setProductFilterTypes(this.getDropDownVersionOfFilters(productTypes));
     });
-    const productTagsSubscriber = this.productTagsSelector.subscribe(productTags => {
+    this.productTagsSelector.pipe(take(2)).subscribe(productTags => {
       this.productService.setProductFilterTags(this.getCheckboxVersionOfFilters(productTags));
     });
     this.subscriptionsArr.push(showingBusinessesSubscriber);
-    this.subscriptionsArr.push(productTagsSubscriber);
-    this.subscriptionsArr.push(productTypesSubscriber);
-    this.subscriptionsArr.push(businessTypesSubscriber);
-    this.subscriptionsArr.push(businessAmenitiesSubscriber);
     this.subscriptionsArr.push(businessFilterSubscriber);
     this.subscriptionsArr.push(productsFilterSubscriber);
     this.subscriptionsArr.push(generalFiltersSubscriber);
