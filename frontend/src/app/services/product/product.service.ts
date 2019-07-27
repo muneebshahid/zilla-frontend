@@ -115,7 +115,6 @@ export class ProductService {
     this.store.dispatch(new UpdateProductFilters(Object.assign({}, this.productFilter)));
   }
   dispatchSearchProducts(generalParams: IGFilters) {
-    this.generalService.updateLoadingSign(true);
     this.store.dispatch(
       new GetSearchProducts({ productParams: this.productFilter, generalParams: generalParams })
     );

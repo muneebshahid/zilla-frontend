@@ -24,7 +24,7 @@ import { GeneralService } from "src/app/services/general/general.service";
   templateUrl: "./business-info.component.html",
   styleUrls: ["./business-info.component.css"]
 })
-export class BusinessInfoComponent implements OnInit, OnDestroy, AfterViewInit {
+export class BusinessInfoComponent implements OnInit, OnDestroy {
   @Input() public homePage = false;
   @ViewChildren("businessesParentTag") businessesParentTag: QueryList<any>;
   private subscriptionsArr: Subscription[] = [];
@@ -45,19 +45,8 @@ export class BusinessInfoComponent implements OnInit, OnDestroy, AfterViewInit {
     this.subscriptions();
   }
 
-  businessResultsRendered() {
-    this.generalService.updateLoadingSign(false);
-  }
-  ngAfterViewInit() {
-    this.businessesParentTag.changes.subscribe(t => {
-      this.businessResultsRendered();
-    });
-  }
   subscriptions() {
     const businessSelectorSubscriber = this.businessesSelector.subscribe(business => {
-      if (business.length === 0) {
-        this.businessResultsRendered();
-      }
       this.businessService.setBusinesses(business);
     });
     const businessFilterSubscriber = this.businessFilterSelector.subscribe(filters => {

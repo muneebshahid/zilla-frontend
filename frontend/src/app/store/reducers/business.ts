@@ -9,8 +9,8 @@ export const businessReducers = (
     case EBusinessActions.GetSearchBusinessSuccess: {
       return {
         ...state,
-        businesses: action.payload.businesses.businesses,
-        num_hits: action.payload.businesses.num_hits,
+        businesses: action.payload.businesses,
+        num_hits: action.payload.num_hits,
         markers: action.payload.markers
       };
     }

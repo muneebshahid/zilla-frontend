@@ -63,7 +63,6 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     private ngZone: NgZone
   ) {}
   loadMoreResults() {
-    console.log("scrolled");
     this.loadMoreEnabled = true;
   }
   ngOnInit() {

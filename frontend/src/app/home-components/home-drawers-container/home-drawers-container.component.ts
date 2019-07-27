@@ -41,7 +41,6 @@ export class HomeDrawersContainerComponent implements OnInit, OnDestroy {
   private subscriptions() {
     const subcriberBusiness = this.businessSelector.subscribe(business => {
       if (business !== null && business !== undefined) {
-        this.generalService.updateLoadingSign(false);
         this.business = business;
         this.createComponent(business);
       }

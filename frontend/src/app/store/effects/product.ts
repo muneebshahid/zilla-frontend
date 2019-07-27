@@ -24,61 +24,59 @@ export class ProductEffects {
   @Effect()
   getSearchProducts$ = this.actions$.pipe(
     ofType<GetSearchProducts>(EProductActions.GetSearchProducts),
-    map(action => action.payload),
-    switchMap(params => {
-      return this.productService.getSearchProducts(params).pipe(
-        map(
-          products =>
-            new GetSearchProductsSuccess({
-              products: products,
-              markers: this.businessService.getMarkersFromPayload(products.products)
-            })
-        )
-      );
+    map(action => {
+      this.generalService.updateLoadingSign(true);
+      return action.payload;
+    }),
+    switchMap(params => this.productService.getSearchProducts(params)),
+    map(products => {
+      this.generalService.updateLoadingSign(false);
+      return new GetSearchProductsSuccess({
+        products: products,
+        markers: this.businessService.getMarkersFromPayload(products.products)
+      });
     })
   );
   @Effect()
   getProductsOfBusiness$ = this.actions$.pipe(
     ofType<GetProductsOfBusiness>(EProductActions.GetProductsOfBusiness),
     map(action => action.payload),
-    switchMap(payload => {
-      return this.productService
-        .getProductsOfBusiness(payload)
-        .pipe(map(products => new GetProductsOfBusinessSuccess(products)));
+    switchMap(payload => this.productService.getProductsOfBusiness(payload)),
+    map(products => {
+      return new GetProductsOfBusinessSuccess(products);
     })
   );
   @Effect()
   getProductDetails$ = this.actions$.pipe(
     ofType<GetProductDetails>(EProductActions.GetProductDetails),
-    map(action => action.payload),
-    switchMap(payload => {
-      return this.productService
-        .getProductDetails(payload)
-        .pipe(map(products => new GetProductDetailsSuccess(products)));
+    map(action => {
+      this.generalService.updateLoadingSign(true);
+      return action.payload;
+    }),
+    switchMap(payload => this.productService.getProductDetails(payload)),
+    map(products => {
+      this.generalService.updateLoadingSign(false);
+      return new GetProductDetailsSuccess(products);
     })
   );
   @Effect()
   getProductTypes$ = this.actions$.pipe(
     ofType<GetProductTypes>(EProductActions.GetProductTypes),
-    switchMap(() => {
-      return this.productService
-        .getProductTypes()
-        .pipe(map(products => new GetProductTypesSuccess(products)));
-    })
+    switchMap(() => this.productService.getProductTypes()),
+    map(products => new GetProductTypesSuccess(products))
   );
+
   @Effect()
   getProductTags$ = this.actions$.pipe(
     ofType<GetProductTags>(EProductActions.GetProductTags),
-    switchMap(() => {
-      return this.productService
-        .getProductTags()
-        .pipe(map(products => new GetProductTagsSuccess(products)));
-    })
+    switchMap(() => this.productService.getProductTags()),
+    map(products => new GetProductTagsSuccess(products))
   );
 
   constructor(
     private businessService: BusinessService,
     private productService: ProductService,
+    private generalService: GeneralService,
     private actions$: Actions
   ) {}
 }

@@ -18,7 +18,7 @@ export const initialGeneralState: IGeneralState = {
   showingBusinesses: true,
   highlightedMarkerID: null,
   highlighted: false,
-  isloading: true,
+  isloading: false,
   generalFilters: {
     latlondis: defaultLatlonDis,
     query: "",

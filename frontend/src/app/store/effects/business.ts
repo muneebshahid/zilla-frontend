@@ -9,7 +9,7 @@ import {
 } from "./../actions/business";
 import { Injectable } from "@angular/core";
 import { Effect, ofType, Actions } from "@ngrx/effects";
-import { map, switchMap, subscribeOn, take } from "rxjs/operators";
+import { map, switchMap, subscribeOn, take, tap } from "rxjs/operators";
 
 import { GetBusinessDetail } from "../actions/business";
 
@@ -22,47 +22,49 @@ export class BusinessEffects {
   @Effect()
   getBusinessesDetail$ = this.actions$.pipe(
     ofType<GetBusinessDetail>(EBusinessActions.GetBusinessDetail),
-    map(action => action.payload),
-    switchMap(payload => {
-      return this.businessService
-        .getBusinessDetail(payload)
-        .pipe(map(businesses => new GetBusinessDetailSuccess(businesses)));
+    map(action => {
+      this.generalService.updateLoadingSign(true);
+      return action.payload;
+    }),
+    switchMap(payload => this.businessService.getBusinessDetail(payload)),
+    map(businessDetails => {
+      this.generalService.updateLoadingSign(false);
+      return new GetBusinessDetailSuccess(businessDetails);
     })
   );
   @Effect()
   getSearchBusinesses$ = this.actions$.pipe(
     ofType<GetSearchBusiness>(EBusinessActions.GetSearchBusiness),
-    map(action => action.payload),
-    switchMap(payload => {
-      return this.businessService.getSearchBusinesses(payload).pipe(
-        map(
-          businesses =>
-            new GetSearchBusinessSuccess({
-              businesses: businesses,
-              markers: this.businessService.getMarkersFromPayload(businesses.businesses)
-            })
-        )
-      );
+    map(action => {
+      this.generalService.updateLoadingSign(true);
+      return action.payload;
+    }),
+    switchMap(payload => this.businessService.getSearchBusinesses(payload)),
+    map(data => {
+      this.generalService.updateLoadingSign(false);
+      return new GetSearchBusinessSuccess({
+        businesses: data.businesses,
+        markers: this.businessService.getMarkersFromPayload(data.businesses),
+        num_hits: data.num_hits
+      });
     })
   );
   @Effect()
   getBusinessTypes$ = this.actions$.pipe(
     ofType<GetBusinessTypes>(EBusinessActions.GetBusinessTypes),
-    switchMap(() => {
-      return this.businessService
-        .getBusinesstypes()
-        .pipe(map(businessTypes => new GetBusinessTypesSuccess(businessTypes)));
-    })
+    switchMap(() => this.businessService.getBusinesstypes()),
+    map(businessTypes => new GetBusinessTypesSuccess(businessTypes))
   );
   @Effect()
   getBusinessAmenities$ = this.actions$.pipe(
     ofType<GetBusinessAmenities>(EBusinessActions.GetBusinessAmenities),
-    switchMap(() => {
-      return this.businessService
-        .getBusinessAmenities()
-        .pipe(map(businessAmenities => new GetBusinessAmenitiesSuccess(businessAmenities)));
-    })
+    switchMap(() => this.businessService.getBusinessAmenities()),
+    map(businessAmenities => new GetBusinessAmenitiesSuccess(businessAmenities))
   );
 
-  constructor(private businessService: BusinessService, private actions$: Actions) {}
+  constructor(
+    private businessService: BusinessService,
+    private generalService: GeneralService,
+    private actions$: Actions
+  ) {}
 }

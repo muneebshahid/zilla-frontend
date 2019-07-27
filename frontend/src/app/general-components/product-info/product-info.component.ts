@@ -34,20 +34,9 @@ export class ProductInfoComponent implements OnInit {
     private businessService: BusinessService,
     private generalService: GeneralService
   ) {}
-  businessResultsRendered() {
-    this.generalService.updateLoadingSign(false);
-  }
-  ngAfterViewInit() {
-    this.businessesParentTag.changes.subscribe(t => {
-      this.businessResultsRendered();
-    });
-  }
 
   ngOnInit() {
     const productsSelectorSubscriber = this.productsSelector.subscribe(products => {
-      if (products.length === 0) {
-        this.businessResultsRendered();
-      }
       this.businessService.setBusinesses(products);
     });
     const productFilterSubscriber = this.productsFilterSelector.subscribe(filters => {

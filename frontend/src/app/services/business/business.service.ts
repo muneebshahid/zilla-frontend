@@ -138,7 +138,6 @@ export class BusinessService {
   }
 
   dispatchSearchBusinesses(generalParams: IGFilters) {
-    this.generalService.updateLoadingSign(true);
     this.store.dispatch(
       new GetSearchBusiness({ businessParams: this.businessFilters, generalParams: generalParams })
     );
@@ -147,7 +146,6 @@ export class BusinessService {
     this.store.dispatch(new UpdateBusinessFilters(Object.assign({}, this.businessFilters)));
   }
   dispatchGetBusinessDetail(id: number) {
-    this.generalService.updateLoadingSign(true);
     this.store.dispatch(new GetBusinessDetail({ id: id }));
   }
 
