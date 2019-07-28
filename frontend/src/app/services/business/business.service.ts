@@ -124,7 +124,11 @@ export class BusinessService {
     this.businessFilters.business_types = types;
   }
   setBusinesses(businesses: IBusiness[]) {
-    this.businesses = this.businesses.concat(businesses);
+    if (this.businessFilters.paginate) {
+      this.businesses = this.businesses.concat(businesses);
+    } else {
+      this.businesses = businesses;
+    }
   }
   setBusinessHits(hits) {
     this.businessHits = hits;

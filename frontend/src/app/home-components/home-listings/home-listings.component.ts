@@ -169,9 +169,11 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     return original;
   }
   setShownBusinessesCount(counter) {
+    this.loadMoreEnabled = false;
     this.numberOfShownBusinesses = counter;
   }
   setShownProductsCount(counter) {
+    this.loadMoreEnabled = false;
     this.numberOfShownProducts = counter;
   }
 

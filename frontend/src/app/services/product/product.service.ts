@@ -64,6 +64,17 @@ export class ProductService {
     if (tags !== "") {
       filteredParam["tags"] = tags;
     }
+    if (pparams.paginate) {
+      const nextPagination = [
+        pparams.paginationInfo[0] + pparams.paginationInfo[2],
+        pparams.paginationInfo[1] + pparams.paginationInfo[2],
+        pparams.paginationInfo[2]
+      ];
+      filteredParam["pagination"] = `${nextPagination[0]},${nextPagination[1]}`;
+      this.productFilter.paginationInfo = nextPagination;
+    } else {
+      this.productFilter.paginationInfo = [0, pparams.paginationInfo[2], pparams.paginationInfo[2]];
+    }
 
     return filteredParam;
   }
@@ -140,7 +151,11 @@ export class ProductService {
     return this.products;
   }
   setProducts(products: IBusiness[]) {
-    this.products = this.products.concat(products);
+    if (this.productFilter.paginate) {
+      this.products = this.products.concat(products);
+    } else {
+      this.products = products;
+    }
   }
 
   setProductFilters(filters) {

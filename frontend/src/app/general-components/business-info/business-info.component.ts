@@ -42,14 +42,13 @@ export class BusinessInfoComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<IAppState>,
     private filterService: FiltersService,
-    private businessService: BusinessService,
+    public businessService: BusinessService,
     private generalService: GeneralService
   ) {}
 
   ngOnInit() {
     const businessSubscriber = this.businessesSelector.subscribe(businesses => {
       this.numberOfShownBusinesses.emit(businesses.length);
-      this.businesses = Object.assign([], businesses);
     });
 
     const generalFilterSubscriber = this.generalFiltersSelector.subscribe(filters =>
