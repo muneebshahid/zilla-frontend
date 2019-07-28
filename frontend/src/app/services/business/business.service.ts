@@ -24,6 +24,7 @@ export class BusinessService {
   public businessFilters: IBFilters;
   public businesses: IBusiness[] = [];
   public businessHits: number;
+  public businessMarkers: any;
 
   constructor(
     private httpService: HttpService,
@@ -123,11 +124,13 @@ export class BusinessService {
   setBusinessFilterTypes(types) {
     this.businessFilters.business_types = types;
   }
-  setBusinesses(businesses: IBusiness[]) {
+  setBusinesses(businesses: IBusiness[], businessMarkers: any) {
     if (this.businessFilters.paginate) {
       this.businesses = this.businesses.concat(businesses);
+      this.businessMarkers = this.businessMarkers.concat(businessMarkers);
     } else {
       this.businesses = businesses;
+      this.businessMarkers = businessMarkers;
     }
   }
   setBusinessHits(hits) {
@@ -137,6 +140,9 @@ export class BusinessService {
     return this.businessHits;
   }
 
+  getBusinessesMarkers() {
+    return this.businessMarkers;
+  }
   getBusinesses() {
     return this.businesses;
   }

@@ -30,6 +30,9 @@
                 <div class="row no-margin wrapper-half-map">
                   <app-home-listings
                     [mapComponent]="mapParent"
+                    (setMapDetailViewLocationParent)="
+                      mapParent.setFocusLocation($event[0], $event[1], mapParent.detailViewZoom)
+                    "
                     (setMobileMapView)="mapParent.initializeMarkersAndMapZoom()"
                   ></app-home-listings>
                   <div class="no-padding half-map xs-half-map">

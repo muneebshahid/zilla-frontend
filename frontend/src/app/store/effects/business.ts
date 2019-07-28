@@ -41,12 +41,15 @@ export class BusinessEffects {
     }),
     concatMap(payload => this.businessService.getSearchBusinesses(payload)),
     map(data => {
-      this.businessService.setBusinesses(data.businesses);
+      this.businessService.setBusinesses(
+        data.businesses,
+        this.businessService.getMarkersFromPayload(data.businesses)
+      );
       this.generalService.updateLoadingSign(false);
 
       return new GetSearchBusinessSuccess({
         businesses: this.businessService.getBusinesses(),
-        markers: this.businessService.getMarkersFromPayload(data.businesses),
+        markers: this.businessService.getBusinessesMarkers(),
         num_hits: data.num_hits
       });
     })

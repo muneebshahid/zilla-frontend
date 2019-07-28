@@ -7,7 +7,9 @@ import {
   ViewContainerRef,
   ViewChild,
   ComponentFactoryResolver,
-  OnDestroy
+  OnDestroy,
+  EventEmitter,
+  Output
 } from "@angular/core";
 import { IBusiness } from "src/app/models/business";
 import { Subscription } from "rxjs";
@@ -22,6 +24,7 @@ import { HomeDetailDrawerComponent } from "../home-detail-drawer/home-detail-dra
   styleUrls: ["./home-drawers-container.component.css"]
 })
 export class HomeDrawersContainerComponent implements OnInit, OnDestroy {
+  @Output() private setLatLonDis = new EventEmitter<Array<number>>();
   constructor(private store: Store<IAppState>, private resolver: ComponentFactoryResolver) {}
   private businessSelector = this.store.pipe(select(selectBusiness));
   private closeDrawerSelector = this.store.pipe(select(selectCloseDetailDrawer));
@@ -38,6 +41,7 @@ export class HomeDrawersContainerComponent implements OnInit, OnDestroy {
     const subcriberBusiness = this.businessSelector.subscribe(business => {
       if (business !== null && business !== undefined) {
         this.business = business;
+        this.setLatLonDis.emit(business.business.latlon);
         this.createComponent(business);
       }
     });

@@ -28,6 +28,7 @@ export class ProductService {
   private defaultProductFilterSelector = this.store.pipe(select(selectDefaultProductFilters));
   public productHits: number;
   public products: IBusiness[] = [];
+  public productsMarkers: any = [];
 
   constructor(
     private httpService: HttpService,
@@ -147,14 +148,13 @@ export class ProductService {
     this.store.dispatch(new GetProductTypes());
     this.store.dispatch(new GetProductTags());
   }
-  getProducts() {
-    return this.products;
-  }
-  setProducts(products: IBusiness[]) {
+  setProducts(products: IBusiness[], productsMarkers: any) {
     if (this.productFilter.paginate) {
       this.products = this.products.concat(products);
+      this.productsMarkers = this.productsMarkers.concat(productsMarkers);
     } else {
       this.products = products;
+      this.productsMarkers = productsMarkers;
     }
   }
 
@@ -172,6 +172,12 @@ export class ProductService {
   }
   setProductHits(hits) {
     this.productHits = hits;
+  }
+  getProducts() {
+    return this.products;
+  }
+  getProductMarkers() {
+    return this.productsMarkers;
   }
   getProductHits() {
     return this.productHits;

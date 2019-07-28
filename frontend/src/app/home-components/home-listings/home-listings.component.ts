@@ -24,6 +24,7 @@ import { IFilterChips } from "src/app/models/filterchips";
 export class HomeListingsComponent implements OnInit, OnDestroy {
   @Output() public setMobileMapView = new EventEmitter<string>();
   @Output() public highlightMarkerOnGridItemHoverEvent = new EventEmitter<any>();
+  @Output() public setMapDetailViewLocationParent = new EventEmitter<Array<number>>();
   @Input() public mapComponent: MapComponent;
 
   public businessMarkersSelector = this.store.pipe(select(selectBusinessMarkers));
@@ -257,5 +258,8 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
 
   updateMobileMapView() {
     this.setMobileMapView.next("setMobileMapView");
+  }
+  setMapDetailViewLocation(data) {
+    this.setMapDetailViewLocationParent.emit(data);
   }
 }

@@ -4,9 +4,7 @@ import { MapsAPILoader, AgmMap } from "@agm/core";
 import { IAppState } from "src/app/store/state/app.state";
 import { Store, select } from "@ngrx/store";
 import { selectMarkerHighlighting, selectGeneralFilters } from "src/app/store/selectors/general";
-import { GetBusinessDetail } from "src/app/store/actions/business";
 import { Subscription } from "rxjs";
-import { IGFilters } from "src/app/models/general_filters";
 import { BusinessService } from "src/app/services/business/business.service";
 
 declare var google: any;
@@ -35,6 +33,7 @@ interface Location {
 export class MapComponent implements OnInit {
   @Input() mapClass;
   @Output() openDrawer = new EventEmitter<number>();
+  public detailViewZoom = 8;
   private subscriptionsArr: Subscription[] = [];
 
   public markerHighlightingSelector = this.store.pipe(select(selectMarkerHighlighting));
@@ -85,6 +84,7 @@ export class MapComponent implements OnInit {
   }
 
   openDetailDrawer(marker) {
+    this.setFocusLocation(marker.lat, marker.lng, this.detailViewZoom);
     this.businessService.dispatchGetBusinessDetail(marker.id);
   }
 
