@@ -1,3 +1,4 @@
+import { IBusiness } from "src/app/models/business";
 import { environment } from "./../../../environments/environment";
 import { Injectable } from "@angular/core";
 import { HttpService } from "../http/http.service";
@@ -15,7 +16,6 @@ import {
 import { IAppState } from "src/app/store/state/app.state";
 import { Store, select } from "@ngrx/store";
 import { IGFilters } from "src/app/models/general_filters";
-import { GeneralService } from "../general/general.service";
 import { selectDefaultProductFilters } from "src/app/store/selectors/product";
 import { take } from "rxjs/operators";
 
@@ -27,12 +27,12 @@ export class ProductService {
   public defaultProductFilter: IPFilters;
   private defaultProductFilterSelector = this.store.pipe(select(selectDefaultProductFilters));
   public productHits: number;
+  public products: IBusiness[] = [];
 
   constructor(
     private httpService: HttpService,
     private filterService: FiltersService,
-    private store: Store<IAppState>,
-    private generalService: GeneralService
+    private store: Store<IAppState>
   ) {
     this.defaultProductFilterSelector.pipe(take(1)).subscribe(data => {
       this.defaultProductFilter = data;
@@ -114,7 +114,8 @@ export class ProductService {
   updateProductFilters() {
     this.store.dispatch(new UpdateProductFilters(Object.assign({}, this.productFilter)));
   }
-  dispatchSearchProducts(generalParams: IGFilters) {
+  dispatchSearchProducts(generalParams: IGFilters, paginationCall: boolean = false) {
+    this.productFilter.paginate = paginationCall;
     this.store.dispatch(
       new GetSearchProducts({ productParams: this.productFilter, generalParams: generalParams })
     );
@@ -134,6 +135,12 @@ export class ProductService {
   getProductFilterData() {
     this.store.dispatch(new GetProductTypes());
     this.store.dispatch(new GetProductTags());
+  }
+  getProducts() {
+    return this.products;
+  }
+  setProducts(products: IBusiness[]) {
+    this.products = this.products.concat(products);
   }
 
   setProductFilters(filters) {

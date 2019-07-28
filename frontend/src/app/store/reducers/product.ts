@@ -10,8 +10,8 @@ export const productReducers = (
     case EProductActions.GetSearchProductsSuccess: {
       return {
         ...state,
-        products: action.payload.products.products,
-        num_hits: action.payload.products.num_hits,
+        products: action.payload.products,
+        num_hits: action.payload.num_hits,
         markers: action.payload.markers
       };
     }

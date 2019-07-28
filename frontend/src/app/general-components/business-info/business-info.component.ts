@@ -1,3 +1,4 @@
+import { IBusiness } from "./../../models/business";
 import {
   Component,
   OnInit,
@@ -6,7 +7,9 @@ import {
   QueryList,
   ViewChildren,
   AfterViewChecked,
-  AfterViewInit
+  AfterViewInit,
+  Output,
+  EventEmitter
 } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { IAppState } from "src/app/store/state/app.state";
@@ -26,21 +29,14 @@ import { GeneralService } from "src/app/services/general/general.service";
 })
 export class BusinessInfoComponent implements OnInit, OnDestroy {
   @Input() public homePage = false;
-  @ViewChildren("businessesParentTag") businessesParentTag: QueryList<any>;
+  @Output() public numberOfShownBusinesses = new EventEmitter<number>();
   private subscriptionsArr: Subscription[] = [];
 
-  public businessesSelector = this.store
-    .pipe(select(selectBusinesses))
-    .subscribe(business => this.businessService.setBusinesses(business));
+  public businesses: IBusiness[];
 
-  public businessFilterSelector = this.store
-    .pipe(select(selectBusinessFilter))
-    .subscribe(filter => this.businessService.setBusinessFilter(filter));
-
-  public generalFiltersSelector = this.store
-    .pipe(select(selectGeneralFilters))
-    .subscribe(filter => this.generalService.setGeneralFilters(filter));
-
+  public businessesSelector = this.store.pipe(select(selectBusinesses));
+  public businessFilterSelector = this.store.pipe(select(selectBusinessFilter));
+  public generalFiltersSelector = this.store.pipe(select(selectGeneralFilters));
   public endpoint = environment.apiEndpoint;
 
   constructor(
@@ -51,9 +47,22 @@ export class BusinessInfoComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.subscriptionsArr.push(this.businessesSelector);
-    this.subscriptionsArr.push(this.businessFilterSelector);
-    this.subscriptionsArr.push(this.generalFiltersSelector);
+    const businessSubscriber = this.businessesSelector.subscribe(businesses => {
+      this.numberOfShownBusinesses.emit(businesses.length);
+      this.businesses = Object.assign([], businesses);
+    });
+
+    const generalFilterSubscriber = this.generalFiltersSelector.subscribe(filters =>
+      this.generalService.setGeneralFilters(filters)
+    );
+
+    const businessFilterSubscriber = this.businessFilterSelector.subscribe(filter =>
+      this.businessService.setBusinessFilter(filter)
+    );
+
+    this.subscriptionsArr.push(businessFilterSubscriber);
+    this.subscriptionsArr.push(generalFilterSubscriber);
+    this.subscriptionsArr.push(businessSubscriber);
   }
 
   ngOnDestroy() {

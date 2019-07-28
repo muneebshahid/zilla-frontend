@@ -51,11 +51,13 @@
         </div>
       </div>
       <app-product-info
+        (numberOfShownProducts)="setShownProductsCount($event)"
         *ngIf="!generalService.showingBusinesses"
         [homePage]="true"
       ></app-product-info>
 
       <app-business-info
+        (numberOfShownBusinesses)="setShownBusinessesCount($event)"
         *ngIf="generalService.showingBusinesses"
         [homePage]="true"
       ></app-business-info>

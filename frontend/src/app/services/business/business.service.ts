@@ -24,7 +24,6 @@ export class BusinessService {
   public businessFilters: IBFilters;
   public businesses: IBusiness[] = [];
   public businessHits: number;
-  public allBusinessesRetrieved: boolean = false;
 
   constructor(
     private httpService: HttpService,
@@ -125,10 +124,6 @@ export class BusinessService {
     this.businessFilters.business_types = types;
   }
   setBusinesses(businesses: IBusiness[]) {
-    if (businesses.length < this.businessFilters.paginationInfo[2]) {
-      this.allBusinessesRetrieved = true;
-    }
-
     this.businesses = this.businesses.concat(businesses);
   }
   setBusinessHits(hits) {
@@ -138,9 +133,6 @@ export class BusinessService {
     return this.businessHits;
   }
 
-  getAllBusinessesRetrieved() {
-    return this.allBusinessesRetrieved;
-  }
   getBusinesses() {
     return this.businesses;
   }
@@ -162,11 +154,6 @@ export class BusinessService {
 
   dispatchSearchBusinesses(generalParams: IGFilters, paginationCall: boolean = false) {
     this.businessFilters.paginate = paginationCall;
-
-    if (!paginationCall) {
-      this.allBusinessesRetrieved = false;
-    }
-
     this.store.dispatch(
       new GetSearchBusiness({ businessParams: this.businessFilters, generalParams: generalParams })
     );

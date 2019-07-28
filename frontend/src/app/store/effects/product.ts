@@ -30,10 +30,13 @@ export class ProductEffects {
     }),
     concatMap(params => this.productService.getSearchProducts(params)),
     map(products => {
+      this.productService.setProducts(products.products);
       this.generalService.updateLoadingSign(false);
+
       return new GetSearchProductsSuccess({
-        products: products,
-        markers: this.businessService.getMarkersFromPayload(products.products)
+        products: this.productService.getProducts(),
+        markers: this.businessService.getMarkersFromPayload(products.products),
+        num_hits: products.num_hits
       });
     })
   );

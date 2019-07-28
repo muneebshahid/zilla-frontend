@@ -41,6 +41,9 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
 
   public selectedCategory = "Business";
 
+  public numberOfShownBusinesses: number;
+  public numberOfShownProducts: number;
+
   public businessMarkers: any = null;
   public productMarkers: any = null;
 
@@ -57,17 +60,29 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<IAppState>,
     private businessService: BusinessService,
-    private generalService: GeneralService,
+    public generalService: GeneralService,
     private productService: ProductService,
     private filterService: FiltersService,
     private ngZone: NgZone
   ) {}
   loadMoreResults() {
-    if (!this.businessService.getAllBusinessesRetrieved()) {
-      this.loadMoreEnabled = true;
-      this.businessService.dispatchSearchBusinesses(this.generalService.getGeneralFilters(), true);
+    if (this.generalService.getShowBusinesses()) {
+      if (this.businessService.getBusinessHits() !== this.numberOfShownBusinesses) {
+        this.loadMoreEnabled = true;
+        this.businessService.dispatchSearchBusinesses(
+          this.generalService.getGeneralFilters(),
+          true
+        );
+      } else {
+        this.loadMoreEnabled = false;
+      }
     } else {
-      this.loadMoreEnabled = false;
+      if (this.productService.getProductHits() !== this.numberOfShownProducts) {
+        this.loadMoreEnabled = true;
+        this.productService.dispatchSearchProducts(this.generalService.getGeneralFilters(), true);
+      } else {
+        this.loadMoreEnabled = false;
+      }
     }
   }
   ngOnInit() {
@@ -152,6 +167,12 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
       original[key] = this.filterService.deSelectTypeInFilter(original[key], id);
     }
     return original;
+  }
+  setShownBusinessesCount(counter) {
+    this.numberOfShownBusinesses = counter;
+  }
+  setShownProductsCount(counter) {
+    this.numberOfShownProducts = counter;
   }
 
   /* remove filter from the originalFilter so that we can update it in store for other components to know. */
