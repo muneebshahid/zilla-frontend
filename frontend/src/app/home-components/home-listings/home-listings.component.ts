@@ -63,8 +63,12 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     private ngZone: NgZone
   ) {}
   loadMoreResults() {
-    this.loadMoreEnabled = true;
-    this.businessService.dispatchSearchBusinesses(this.generalService.getGeneralFilters());
+    if (!this.businessService.getAllBusinessesRetrieved()) {
+      this.loadMoreEnabled = true;
+      this.businessService.dispatchSearchBusinesses(this.generalService.getGeneralFilters(), true);
+    } else {
+      this.loadMoreEnabled = false;
+    }
   }
   ngOnInit() {
     const businessMarkersSubscriber = this.businessMarkersSelector.subscribe(markers => {

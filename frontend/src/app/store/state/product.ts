@@ -15,7 +15,6 @@ export interface IProductState {
   product_types?: IPType[];
   product_tags?: ITags[];
   markers?: any;
-  paginationInfo?: Array<number>;
 }
 
 export const initialProductState: IProductState = {
@@ -28,14 +27,15 @@ export const initialProductState: IProductState = {
     tags: [],
     available: -1,
     price: defaultPrice,
-    paginate: false
+    paginate: false,
+    paginationInfo: [0, 10, 10]
   },
   default_filters: {
     product_types: [],
     tags: [],
     available: -1,
     price: defaultPrice,
-    paginate: false
-  },
-  paginationInfo: [0, 10, 10]
+    paginate: false,
+    paginationInfo: [0, 10, 10]
+  }
 };

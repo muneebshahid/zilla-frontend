@@ -24,6 +24,7 @@ export class BusinessService {
   public businessFilters: IBFilters;
   public businesses: IBusiness[] = [];
   public businessHits: number;
+  public allBusinessesRetrieved: boolean = false;
 
   constructor(
     private httpService: HttpService,
@@ -31,7 +32,7 @@ export class BusinessService {
     private store: Store<IAppState>
   ) {}
 
-  cleanBusinessFilters(bparams: any, gparams: any) {
+  cleanBusinessFilters(bparams: IBFilters, gparams: IGFilters) {
     let filteredParam = {};
     let amenities = this.filterService.getSelectedTagsCSVs(bparams.amenities);
     let businessTypeID = this.filterService.getSelectedTypeID(bparams.business_types);
@@ -51,6 +52,19 @@ export class BusinessService {
     }
 
     if (bparams.paginate) {
+      const nextPagination = [
+        bparams.paginationInfo[0] + bparams.paginationInfo[2],
+        bparams.paginationInfo[1] + bparams.paginationInfo[2],
+        bparams.paginationInfo[2]
+      ];
+      filteredParam["pagination"] = `${nextPagination[0]},${nextPagination[1]}`;
+      this.businessFilters.paginationInfo = nextPagination;
+    } else {
+      this.businessFilters.paginationInfo = [
+        0,
+        bparams.paginationInfo[2],
+        bparams.paginationInfo[2]
+      ];
     }
 
     return filteredParam;
@@ -110,7 +124,11 @@ export class BusinessService {
   setBusinessFilterTypes(types) {
     this.businessFilters.business_types = types;
   }
-  setBusinesses(businesses) {
+  setBusinesses(businesses: IBusiness[]) {
+    if (businesses.length < this.businessFilters.paginationInfo[2]) {
+      this.allBusinessesRetrieved = true;
+    }
+
     this.businesses = this.businesses.concat(businesses);
   }
   setBusinessHits(hits) {
@@ -120,6 +138,9 @@ export class BusinessService {
     return this.businessHits;
   }
 
+  getAllBusinessesRetrieved() {
+    return this.allBusinessesRetrieved;
+  }
   getBusinesses() {
     return this.businesses;
   }
@@ -139,7 +160,13 @@ export class BusinessService {
     this.store.dispatch(new GetBusinessTypes());
   }
 
-  dispatchSearchBusinesses(generalParams: IGFilters) {
+  dispatchSearchBusinesses(generalParams: IGFilters, paginationCall: boolean = false) {
+    this.businessFilters.paginate = paginationCall;
+
+    if (!paginationCall) {
+      this.allBusinessesRetrieved = false;
+    }
+
     this.store.dispatch(
       new GetSearchBusiness({ businessParams: this.businessFilters, generalParams: generalParams })
     );

@@ -10,7 +10,7 @@ import {
 } from "./../actions/product";
 import { Injectable } from "@angular/core";
 import { Effect, ofType, Actions } from "@ngrx/effects";
-import { map, switchMap } from "rxjs/operators";
+import { map, switchMap, concatMap } from "rxjs/operators";
 
 import { GetProductsOfBusiness, GetProductsOfBusinessSuccess } from "../actions/product";
 
@@ -28,7 +28,7 @@ export class ProductEffects {
       this.generalService.updateLoadingSign(true);
       return action.payload;
     }),
-    switchMap(params => this.productService.getSearchProducts(params)),
+    concatMap(params => this.productService.getSearchProducts(params)),
     map(products => {
       this.generalService.updateLoadingSign(false);
       return new GetSearchProductsSuccess({

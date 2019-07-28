@@ -9,7 +9,7 @@ import {
 } from "./../actions/business";
 import { Injectable } from "@angular/core";
 import { Effect, ofType, Actions } from "@ngrx/effects";
-import { map, switchMap } from "rxjs/operators";
+import { map, switchMap, concatMap } from "rxjs/operators";
 
 import { GetBusinessDetail } from "../actions/business";
 
@@ -39,8 +39,10 @@ export class BusinessEffects {
       this.generalService.updateLoadingSign(true);
       return action.payload;
     }),
-    switchMap(payload => this.businessService.getSearchBusinesses(payload)),
+    concatMap(payload => this.businessService.getSearchBusinesses(payload)),
     map(data => {
+      console.log(Object.assign([], data));
+      console.log(Object.assign([], this.businessService.businesses));
       this.generalService.updateLoadingSign(false);
       return new GetSearchBusinessSuccess({
         businesses: data.businesses,

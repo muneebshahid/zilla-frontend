@@ -4,4 +4,5 @@ export interface IPFilters {
   available: number;
   price: number;
   paginate: boolean;
+  paginationInfo?: Array<number>;
 }

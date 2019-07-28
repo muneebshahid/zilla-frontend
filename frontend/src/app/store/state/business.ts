@@ -11,7 +11,6 @@ export interface IBusinessState {
   businessTypes: IBType[];
   businessAmenities: IAmenities[];
   filters?: IBFilters;
-  paginationInfo?: Array<number>;
 }
 
 export const initialBusinessState: IBusinessState = {
@@ -24,7 +23,7 @@ export const initialBusinessState: IBusinessState = {
   filters: {
     amenities: [],
     business_types: [],
-    paginate: false
-  },
-  paginationInfo: [0, 10, 10]
+    paginate: false,
+    paginationInfo: [0, 10, 10]
+  }
 };
