@@ -1,4 +1,3 @@
-import { GeneralService } from "./../../services/general/general.service";
 import { UpdateCloseDetailDrawer } from "./../../store/actions/general";
 import { selectCloseDetailDrawer } from "./../../store/selectors/general";
 import {
@@ -17,6 +16,7 @@ import { IAppState } from "src/app/store/state/app.state";
 import { Store, select } from "@ngrx/store";
 import { selectBusiness } from "src/app/store/selectors/business";
 import { HomeDetailDrawerComponent } from "../home-detail-drawer/home-detail-drawer.component";
+import { LocationService } from "src/app/services/location/location.service";
 
 @Component({
   selector: "app-home-drawers-container",
@@ -25,7 +25,11 @@ import { HomeDetailDrawerComponent } from "../home-detail-drawer/home-detail-dra
 })
 export class HomeDrawersContainerComponent implements OnInit, OnDestroy {
   @Output() private setLatLonDis = new EventEmitter<Array<number>>();
-  constructor(private store: Store<IAppState>, private resolver: ComponentFactoryResolver) {}
+  constructor(
+    private store: Store<IAppState>,
+    private resolver: ComponentFactoryResolver,
+    private location: LocationService
+  ) {}
   private businessSelector = this.store.pipe(select(selectBusiness));
   private closeDrawerSelector = this.store.pipe(select(selectCloseDetailDrawer));
   private subscriptionsArr: Subscription[] = [];
@@ -47,6 +51,7 @@ export class HomeDrawersContainerComponent implements OnInit, OnDestroy {
     });
     const closeDrawerSubcriber = this.closeDrawerSelector.subscribe(close => {
       if (close) {
+        this.location.clearLocation();
         this.destroyComponent();
       }
     });

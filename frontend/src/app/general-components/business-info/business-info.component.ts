@@ -1,16 +1,5 @@
 import { IBusiness } from "./../../models/business";
-import {
-  Component,
-  OnInit,
-  Input,
-  OnDestroy,
-  QueryList,
-  ViewChildren,
-  AfterViewChecked,
-  AfterViewInit,
-  Output,
-  EventEmitter
-} from "@angular/core";
+import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { IAppState } from "src/app/store/state/app.state";
 import { Store, select } from "@ngrx/store";
@@ -21,7 +10,6 @@ import { FiltersService } from "src/app/services/filters/filters.service";
 import { selectGeneralFilters } from "src/app/store/selectors/general";
 import { BusinessService } from "src/app/services/business/business.service";
 import { GeneralService } from "src/app/services/general/general.service";
-
 @Component({
   selector: "app-business-info",
   templateUrl: "./business-info.component.html",

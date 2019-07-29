@@ -1,3 +1,4 @@
+import { LocationService } from "./../location/location.service";
 import { IBusiness } from "./../../models/business";
 import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
@@ -16,7 +17,6 @@ import {
   GetBusinessDetail
 } from "src/app/store/actions/business";
 import { IGFilters } from "src/app/models/general_filters";
-
 @Injectable({
   providedIn: "root"
 })
@@ -29,7 +29,8 @@ export class BusinessService {
   constructor(
     private httpService: HttpService,
     private filterService: FiltersService,
-    private store: Store<IAppState>
+    private store: Store<IAppState>,
+    private location: LocationService
   ) {}
 
   cleanBusinessFilters(bparams: IBFilters, gparams: IGFilters) {
@@ -172,6 +173,7 @@ export class BusinessService {
     this.store.dispatch(new UpdateBusinessFilters(Object.assign({}, this.businessFilters)));
   }
   dispatchGetBusinessDetail(id: number) {
+    this.location.setDetailLocation(id, environment.businessUrl);
     this.store.dispatch(new GetBusinessDetail({ id: id }));
   }
 

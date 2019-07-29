@@ -16,6 +16,8 @@ import { BusinessService } from "src/app/services/business/business.service";
 import { ProductService } from "src/app/services/product/product.service";
 import { GeneralService } from "src/app/services/general/general.service";
 import { IFilterChips } from "src/app/models/filterchips";
+import { environment } from "src/environments/environment";
+import { ActivatedRoute } from "@angular/router";
 @Component({
   selector: "app-home-listings",
   templateUrl: "./home-listings.component.html",
@@ -64,7 +66,8 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     public generalService: GeneralService,
     private productService: ProductService,
     private filterService: FiltersService,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private route: ActivatedRoute
   ) {}
   loadMoreResults() {
     if (this.generalService.getShowBusinesses()) {
@@ -87,6 +90,14 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     }
   }
   ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      if (params["params"].business_slug === undefined) {
+        return;
+      } else if (params["params"].business_slug === environment.businessUrl) {
+        this.businessService.dispatchGetBusinessDetail(params["params"].business_id);
+      }
+    });
+
     const businessMarkersSubscriber = this.businessMarkersSelector.subscribe(markers => {
       if (markers !== null) {
         this.mapComponent.markers = [];

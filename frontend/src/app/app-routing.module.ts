@@ -5,10 +5,11 @@ import { HomeComponent } from "./home-components/home/home.component";
 import { BusinessDetailComponent } from "./business-detail-components/business-detail/business-detail.component";
 
 const routes: Routes = [
-  { path: "", redirectTo: "home", pathMatch: "full" },
-  { path: "home", component: HomeComponent },
-  { path: "add_listing", component: AddListingComponent },
-  { path: "b/:business_slug/:business_id", component: BusinessDetailComponent }
+  // { path: "", redirectTo: "/", pathMatch: "full" },
+  { path: "", component: HomeComponent },
+  { path: ":business_slug/:business_id", component: HomeComponent },
+  { path: "add_listing", component: AddListingComponent }
+  // { path: "b/:business_slug/:business_id", component: BusinessDetailComponent }
 ];
 
 @NgModule({
