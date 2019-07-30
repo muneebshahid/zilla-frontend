@@ -21,6 +21,7 @@ export class BusinessInfoComponent implements OnInit, OnDestroy {
   private subscriptionsArr: Subscription[] = [];
 
   public businesses: IBusiness[];
+  private firstCall: boolean = true;
 
   public businessesSelector = this.store.pipe(select(selectBusinesses));
   public businessFilterSelector = this.store.pipe(select(selectBusinessFilter));
@@ -37,6 +38,14 @@ export class BusinessInfoComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const businessSubscriber = this.businessesSelector.subscribe(businesses => {
       this.numberOfShownBusinesses.emit(businesses.length);
+      if (businesses.length > 0 && this.firstCall) {
+        this.firstCall = false;
+
+        // open the detail drawer once the business-array is loaded.
+        if (this.businessService.getPendingDetailID() !== null) {
+          this.businessService.dispatchGetBusinessDetail(this.businessService.getPendingDetailID());
+        }
+      }
     });
 
     const generalFilterSubscriber = this.generalFiltersSelector.subscribe(filters =>

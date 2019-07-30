@@ -70,7 +70,6 @@ export class MapComponent implements OnInit {
         latlondis.latlondis[0] !== this.lastLatLonDis[0] ||
         latlondis.latlondis[1] !== this.lastLatLonDis[1]
       ) {
-        console.log("mozi rocks");
         this.setFocusLocation(latlondis.latlondis[0], latlondis.latlondis[1]);
         this.lastLatLonDis = Object.assign({}, latlondis.latlondis);
       }

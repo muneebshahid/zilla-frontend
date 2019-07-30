@@ -20,6 +20,7 @@ import { GeneralService } from "src/app/services/general/general.service";
 import { BusinessService } from "src/app/services/business/business.service";
 import { ProductService } from "src/app/services/product/product.service";
 import { take } from "rxjs/operators";
+import { ActivatedRoute } from "@angular/router";
 
 declare var jQuery: any;
 
@@ -77,10 +78,17 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     private filterService: FiltersService,
     private generalService: GeneralService,
     private businessService: BusinessService,
-    private productService: ProductService
+    private productService: ProductService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      if (params["params"].business_slug !== undefined) {
+        this.businessService.setPendingDetailID(params["params"].business_id);
+      }
+    });
+
     this.businessService.getBusinessFilterData();
     this.productService.getProductFilterData();
 

@@ -1,3 +1,4 @@
+import { ActivatedRoute } from "@angular/router";
 import { UpdateCloseDetailDrawer } from "./../../store/actions/general";
 import { selectCloseDetailDrawer } from "./../../store/selectors/general";
 import {
@@ -17,6 +18,7 @@ import { Store, select } from "@ngrx/store";
 import { selectBusiness } from "src/app/store/selectors/business";
 import { HomeDetailDrawerComponent } from "../home-detail-drawer/home-detail-drawer.component";
 import { LocationService } from "src/app/services/location/location.service";
+import { BusinessService } from "src/app/services/business/business.service";
 
 @Component({
   selector: "app-home-drawers-container",
@@ -25,10 +27,13 @@ import { LocationService } from "src/app/services/location/location.service";
 })
 export class HomeDrawersContainerComponent implements OnInit, OnDestroy {
   @Output() private setLatLonDis = new EventEmitter<Array<number>>();
+  @Output() private putTemporaryMarkerOnMap = new EventEmitter<IBusiness>();
+  @Output() private removeTemporaryMarkerOnMap = new EventEmitter<IBusiness>();
   constructor(
     private store: Store<IAppState>,
     private resolver: ComponentFactoryResolver,
-    private location: LocationService
+    private location: LocationService,
+    private businessService: BusinessService
   ) {}
   private businessSelector = this.store.pipe(select(selectBusiness));
   private closeDrawerSelector = this.store.pipe(select(selectCloseDetailDrawer));
@@ -44,6 +49,14 @@ export class HomeDrawersContainerComponent implements OnInit, OnDestroy {
   private subscriptions() {
     const subcriberBusiness = this.businessSelector.subscribe(business => {
       if (business !== null && business !== undefined) {
+        if (this.businessService.getPendingDetailID() !== null) {
+          if (
+            !this.businessService.checkBusinessShownByID(this.businessService.getPendingDetailID())
+          ) {
+            this.putTemporaryMarkerOnMap.emit(business);
+          }
+        }
+
         this.business = business;
         this.setLatLonDis.emit(business.business.latlon);
         this.createComponent(business);
@@ -51,6 +64,10 @@ export class HomeDrawersContainerComponent implements OnInit, OnDestroy {
     });
     const closeDrawerSubcriber = this.closeDrawerSelector.subscribe(close => {
       if (close) {
+        if (this.businessService.getPendingDetailID() !== null) {
+          this.businessService.setPendingDetailID(null);
+          this.removeTemporaryMarkerOnMap.emit();
+        }
         this.location.clearLocation();
         this.destroyComponent();
       }

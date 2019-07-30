@@ -24,7 +24,8 @@ export class BusinessService {
   public businessFilters: IBFilters;
   public businesses: IBusiness[] = [];
   public businessHits: number;
-  public businessMarkers: any;
+  public businessMarkers: any = [];
+  private pendingDetailID: number = null;
 
   constructor(
     private httpService: HttpService,
@@ -134,8 +135,14 @@ export class BusinessService {
       this.businessMarkers = businessMarkers;
     }
   }
+  setPendingDetailID(id: number) {
+    this.pendingDetailID = id;
+  }
   setBusinessHits(hits) {
     this.businessHits = hits;
+  }
+  getPendingDetailID() {
+    return this.pendingDetailID;
   }
   getBusinessHits() {
     return this.businessHits;
@@ -185,6 +192,15 @@ export class BusinessService {
       return false;
     }
     return true;
+  }
+
+  checkBusinessShownByID(id: number) {
+    for (let i = 0; i < this.businesses.length; i++) {
+      if (this.businesses[i].business.id === id) {
+        return true;
+      }
+    }
+    return false;
   }
 
   /* HTTP CALLS */

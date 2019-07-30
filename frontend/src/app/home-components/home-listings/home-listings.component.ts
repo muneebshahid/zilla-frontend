@@ -1,3 +1,4 @@
+import { IBusiness } from "src/app/models/business";
 import { FiltersService } from "src/app/services/filters/filters.service";
 import { selectBusinessFilter, selectBusinessNumHits } from "./../../store/selectors/business";
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, NgZone } from "@angular/core";
@@ -16,8 +17,6 @@ import { BusinessService } from "src/app/services/business/business.service";
 import { ProductService } from "src/app/services/product/product.service";
 import { GeneralService } from "src/app/services/general/general.service";
 import { IFilterChips } from "src/app/models/filterchips";
-import { environment } from "src/environments/environment";
-import { ActivatedRoute } from "@angular/router";
 @Component({
   selector: "app-home-listings",
   templateUrl: "./home-listings.component.html",
@@ -47,9 +46,6 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   public numberOfShownBusinesses: number;
   public numberOfShownProducts: number;
 
-  public businessMarkers: any = null;
-  public productMarkers: any = null;
-
   public selectedFilterChips: IFilterChips[] = [];
   public businessFilterChips: IFilterChips[] = [];
   public productFilterChips: IFilterChips[] = [];
@@ -66,8 +62,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     public generalService: GeneralService,
     private productService: ProductService,
     private filterService: FiltersService,
-    private ngZone: NgZone,
-    private route: ActivatedRoute
+    private ngZone: NgZone
   ) {}
   loadMoreResults() {
     if (this.generalService.getShowBusinesses()) {
@@ -90,26 +85,16 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     }
   }
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      if (params["params"].business_slug === undefined) {
-        return;
-      } else if (params["params"].business_slug === environment.businessUrl) {
-        this.businessService.dispatchGetBusinessDetail(params["params"].business_id);
-      }
-    });
-
     const businessMarkersSubscriber = this.businessMarkersSelector.subscribe(markers => {
       if (markers !== null) {
         this.mapComponent.markers = [];
-        this.businessMarkers = markers;
-        this.putMarkersOnMap(markers);
+        this.putMarkersOnMap(this.businessService.getBusinessesMarkers());
       }
     });
     const productMarkersSubscriber = this.productMarkersSelector.subscribe(markers => {
       if (markers !== null) {
         this.mapComponent.markers = [];
-        this.productMarkers = markers;
-        this.putMarkersOnMap(markers);
+        this.putMarkersOnMap(this.productService.getProductMarkers());
       }
     });
 
@@ -134,15 +119,15 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
           this.hits = this.businessService.getBusinessHits();
           this.selectedCategory = "Businesses";
 
-          if (this.businessMarkers !== null) {
-            this.putMarkersOnMap(this.businessMarkers);
+          if (this.businessService.getBusinessesMarkers() !== null) {
+            this.putMarkersOnMap(this.businessService.getBusinessesMarkers());
           }
         } else {
           this.selectedFilterChips = this.productFilterChips;
           this.hits = this.productService.getProductHits();
           this.selectedCategory = "Products";
-          if (this.productMarkers !== null) {
-            this.putMarkersOnMap(this.productMarkers);
+          if (this.businessService.getBusinessesMarkers() !== null) {
+            this.putMarkersOnMap(this.businessService.getBusinessesMarkers());
           }
         }
       }
@@ -236,6 +221,14 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     this.generalService.getShowBusinesses()
       ? this.businessService.dispatchSearchBusinesses(this.generalService.getGeneralFilters())
       : this.productService.dispatchSearchProducts(this.generalService.getGeneralFilters());
+  }
+
+  setTemporaryMarker(business: IBusiness) {
+    this.putMarkersOnMap(Object.assign([], this.businessService.getMarkersFromPayload([business])));
+  }
+  removeTemporaryMarker() {
+    this.mapComponent.markers = [];
+    this.putMarkersOnMap(this.businessService.getBusinessesMarkers());
   }
 
   putMarkersOnMap(markers: any) {
