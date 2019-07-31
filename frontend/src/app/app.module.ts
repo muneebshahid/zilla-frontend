@@ -51,12 +51,10 @@ import { AgmSnazzyInfoWindowModule } from "@agm/snazzy-info-window";
 import { AgmCoreModule, GoogleMapsAPIWrapper } from "@agm/core";
 import { BusinessEffects } from "./store/effects/business";
 
-import { NgxSocialButtonModule, SocialServiceConfig } from "ngx-social-button";
-
-export function getAuthServiceConfigs() {
-  let config = new SocialServiceConfig().addFacebook("628275724348438");
-  return config;
-}
+// export function getAuthServiceConfigs() {
+//   let config = new SocialServiceConfig().addFacebook("628275724348438");
+//   return config;
+// }
 
 import {
   AddListingComponent,
@@ -108,7 +106,6 @@ import {
     AppRoutingModule,
     NgbModule.forRoot(),
     FormsModule,
-    NgxSocialButtonModule,
     NgSelectModule,
     ReactiveFormsModule,
     StoreModule.forRoot(appReducers),
@@ -123,14 +120,7 @@ import {
     BrowserAnimationsModule,
     InfiniteScrollModule
   ],
-  providers: [
-    GoogleMapsAPIWrapper,
-    GeoLocationService,
-    {
-      provide: SocialServiceConfig,
-      useFactory: getAuthServiceConfigs
-    }
-  ],
+  providers: [GoogleMapsAPIWrapper, GeoLocationService],
   bootstrap: [AppComponent],
   entryComponents: [HomeDetailDrawerComponent]
 })
