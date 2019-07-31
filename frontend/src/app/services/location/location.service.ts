@@ -16,4 +16,8 @@ export class LocationService {
   clearLocation() {
     this.location.replaceState(`/`);
   }
+
+  getCurrentLocation() {
+    return window.location.href;
+  }
 }
