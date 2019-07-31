@@ -1,11 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+@import "~@ngx-share/button/themes/default/default-theme";
 
-
-.mat-tab-label, 
+.mat-tab-label,
 .mat-tab-link,
 .mat-drawer,
 .mat-container,
-.mat-drawer-container{
-    color:#8d8d8d!important;
+.mat-drawer-container {
+  color: #8d8d8d !important;
 }

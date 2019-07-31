@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { LocationService } from "src/app/services/location/location.service";
+import { ShareService } from "@ngx-share/core";
+import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "app-detail-header",
@@ -17,12 +19,9 @@ export class DetailHeaderComponent implements OnInit {
   @Input() open_or_available: string = "Closed";
   @Input() is_open_or_available: boolean = true;
 
-  private shareObj = {
-    href: "",
-    hashtag: "#businessListing"
-  };
+  constructor(private location: LocationService, public share: ShareService) {}
 
-  constructor(private location: LocationService) {}
+  public ccc = faCoffee;
 
   ngOnInit() {}
 

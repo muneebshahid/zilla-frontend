@@ -16,6 +16,8 @@ import { environment } from "../environments/environment";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { ProductEffects } from "./store/effects/product";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
+import { MatButtonModule } from "@angular/material/button";
+
 import {
   HomeFilterDrawerComponent,
   HomeListingsComponent,
@@ -50,6 +52,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { AgmSnazzyInfoWindowModule } from "@agm/snazzy-info-window";
 import { AgmCoreModule, GoogleMapsAPIWrapper } from "@agm/core";
 import { BusinessEffects } from "./store/effects/business";
+import { ShareModule } from "@ngx-share/core";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 // export function getAuthServiceConfigs() {
 //   let config = new SocialServiceConfig().addFacebook("628275724348438");
@@ -66,6 +70,7 @@ import {
   AddSocialLinksComponent,
   ListingTagsComponent
 } from "./add-listing-components";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -103,6 +108,9 @@ import {
   imports: [
     BrowserModule,
     HttpClientModule,
+    MatButtonModule,
+    FontAwesomeModule,
+    ShareModule,
     AppRoutingModule,
     NgbModule.forRoot(),
     FormsModule,
