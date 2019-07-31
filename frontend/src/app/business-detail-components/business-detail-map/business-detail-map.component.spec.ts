@@ -2,11 +2,7 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { Component, Input } from "@angular/core";
 
 import { BusinessDetailMapComponent } from "./business-detail-map.component";
-
-@Component({ selector: "app-map", template: "" })
-class MapComponent {
-  @Input() mapClass;
-}
+import { MapComponent } from "src/app/testing/dummy_components";
 
 describe("BusinessDetailMapComponent", () => {
   let component: BusinessDetailMapComponent;

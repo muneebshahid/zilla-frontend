@@ -2,35 +2,44 @@ import { IBusiness } from "./../../models/business";
 import { TestBed } from "@angular/core/testing";
 import { BusinessService } from "./business.service";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { of, Observable } from "rxjs";
-import { empty } from "rxjs";
-import { StoreModule } from "@ngrx/store";
-import { appReducers } from "src/app/store/reducers/app.reducer";
+import { of } from "rxjs";
+import { IAppState } from "src/app/store/state/app.state";
+import { MockStore, provideMockStore } from "@ngrx/store/testing";
+import { businessObj, storeInitialState } from "src/app/testing/models";
 
 describe("BusinessService", () => {
-  const emptyObs: IBusiness[] = [
-    {
-      user: 0,
-      images: [],
-      business_type: Object.assign({}),
-      opening_timings: [],
-      is_open: false,
-      title: "",
-      slug: "",
-      description: "",
-      website: "",
-      address: "",
-      claimed: false,
-      phone: "",
-      expensive: 0,
-      latlng: []
-    }
-  ];
+  let store: MockStore<IAppState>;
+  const initialState = storeInitialState;
+  let httpServiceSpy;
+  let stubValue;
+  let businessService;
+  let filterServiceSpy;
+  let locationServiceSpy;
+  const emptyObs: IBusiness[] = businessObj;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, StoreModule.forRoot(appReducers)]
+      imports: [HttpClientTestingModule],
+      providers: [
+        provideMockStore({ initialState })
+        // other providers
+      ]
     });
+
+    httpServiceSpy = jasmine.createSpyObj("HttpService", ["get"]);
+    stubValue = of(emptyObs[0]);
+    httpServiceSpy.get.and.returnValue(stubValue);
+    filterServiceSpy = jasmine.createSpyObj("FilterService", ["get"]);
+    filterServiceSpy.get.and.returnValue(stubValue);
+    locationServiceSpy = jasmine.createSpyObj("LocationService", ["get"]);
+    locationServiceSpy.get.and.returnValue(stubValue);
+
+    businessService = new BusinessService(
+      httpServiceSpy,
+      filterServiceSpy,
+      store,
+      locationServiceSpy
+    );
   });
 
   it("should be created", () => {
@@ -39,14 +48,6 @@ describe("BusinessService", () => {
   });
 
   it("#getBusinessDetail should return stubbed observable value", () => {
-    const httpServiceSpy = jasmine.createSpyObj("HttpService", ["get"]);
-
-    // set the value to return when the `get` spy is called.
-    const stubValue = of(emptyObs[0]);
-    httpServiceSpy.get.and.returnValue(stubValue);
-
-    const businessService = new BusinessService(httpServiceSpy);
-
     expect(businessService.getBusinessDetail("dummy-slug-id")).toBe(
       stubValue,
       "service returned stub value"
@@ -56,14 +57,6 @@ describe("BusinessService", () => {
   });
 
   it("#getNearbyBusinesses should return stubbed observable value", () => {
-    const httpServiceSpy = jasmine.createSpyObj("HttpService", ["get"]);
-
-    // set the value to return when the `get` spy is called.
-    const stubValue = of(emptyObs[0]);
-    httpServiceSpy.get.and.returnValue(stubValue);
-
-    const businessService = new BusinessService(httpServiceSpy);
-
     expect(businessService.getNearbyBusinesses("dummy-slug-id")).toBe(
       stubValue,
       "service returned stub value"
@@ -73,14 +66,6 @@ describe("BusinessService", () => {
   });
 
   it("#getExploreBusinesses should return stubbed observable value", () => {
-    const httpServiceSpy = jasmine.createSpyObj("HttpService", ["get"]);
-
-    // set the value to return when the `get` spy is called.
-    const stubValue = of(emptyObs);
-    httpServiceSpy.get.and.returnValue(stubValue);
-
-    const businessService = new BusinessService(httpServiceSpy);
-
     expect(businessService.getExploreBusiness("dummy-slug-id")).toBe(
       stubValue,
       "service returned stub value"

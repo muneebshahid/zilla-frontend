@@ -7,9 +7,6 @@ import { Location } from "@angular/common";
 export class LocationService {
   constructor(private location: Location) {}
 
-  setProductSearchLocation(params) {}
-  setBusinessSearchLocation(params) {}
-
   setDetailLocation(id: number, type: string) {
     this.location.replaceState(`${type}/${id}`);
   }

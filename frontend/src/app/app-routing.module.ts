@@ -4,7 +4,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { HomeComponent } from "./home-components/home/home.component";
 import { BusinessDetailComponent } from "./business-detail-components/business-detail/business-detail.component";
 
-const routes: Routes = [
+export const routes: Routes = [
   // { path: "", redirectTo: "/", pathMatch: "full" },
   { path: "", component: HomeComponent },
   { path: ":business_slug/:business_id", component: HomeComponent },

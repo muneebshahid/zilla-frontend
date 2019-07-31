@@ -6,20 +6,12 @@ import { IBusiness } from "src/app/models/business";
 import { StoreModule } from "@ngrx/store";
 import { RouterTestingModule } from "@angular/router/testing";
 import { appReducers } from "src/app/store/reducers/app.reducer";
-
-@Component({ selector: "app-m-home-menu-drawer", template: "" })
-class MHomeMenuDrawerComponent {}
-
-@Component({ selector: "app-m-menu", template: "" })
-class MMenuComponent {}
-
-@Component({ selector: "app-menu", template: "" })
-class MenuComponent {}
-
-@Component({ selector: "app-detail-header-gallery", template: "" })
-class DetailHeaderGalleryComponent {
-  @Input() images: Array<string>;
-}
+import {
+  MHomeMenuDrawerComponent,
+  MMenuComponent,
+  MenuComponent,
+  DetailHeaderGalleryComponent
+} from "src/app/testing/dummy_components";
 
 @Component({ selector: "app-detail-header", template: "" })
 class DetailHeaderComponent {

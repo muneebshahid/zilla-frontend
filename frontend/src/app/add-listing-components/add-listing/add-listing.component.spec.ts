@@ -1,31 +1,16 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { AddListingComponent } from "./add-listing.component";
-import { Component } from "@angular/core";
-
-@Component({ selector: "app-general-info", template: "" })
-class GeneralInfoComponent {}
-
-@Component({ selector: "app-opening-closing-hours", template: "" })
-class OpeningClosingHoursComponent {}
-
-@Component({ selector: "app-location", template: "" })
-class LocationComponent {}
-
-@Component({ selector: "app-menu", template: "" })
-class MenuComponent {}
-
-@Component({ selector: "app-add-menu", template: "" })
-class AddMenuComponent {}
-
-@Component({ selector: "app-add-media", template: "" })
-class AddMediaComponent {}
-
-@Component({ selector: "app-add-social-links", template: "" })
-class AddSocialLinksComponent {}
-
-@Component({ selector: "app-listing-tags", template: "" })
-class ListingTagsComponent {}
+import {
+  GeneralInfoComponent,
+  OpeningClosingHoursComponent,
+  LocationComponent,
+  MenuComponent,
+  AddMenuComponent,
+  AddMediaComponent,
+  AddSocialLinksComponent,
+  ListingTagsComponent
+} from "src/app/testing/dummy_components";
 
 describe("AddListingComponent", () => {
   let component: AddListingComponent;
