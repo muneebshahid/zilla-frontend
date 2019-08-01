@@ -25,8 +25,5 @@ export class DetailHeaderComponent implements OnInit {
 
   ngOnInit() {}
 
-  shareOnFacebook() {
-    // this.shareObj.href = this.location.getCurrentLocation() + "/";
-    // this.socialAuthService.facebookSharing(this.shareObj);
-  }
+  shareOnFacebook() {}
 }

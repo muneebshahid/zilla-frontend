@@ -55,11 +55,6 @@ import { BusinessEffects } from "./store/effects/business";
 import { ShareModule } from "@ngx-share/core";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
-// export function getAuthServiceConfigs() {
-//   let config = new SocialServiceConfig().addFacebook("628275724348438");
-//   return config;
-// }
-
 import {
   AddListingComponent,
   GeneralInfoComponent,
