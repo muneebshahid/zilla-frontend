@@ -1,6 +1,7 @@
 import { Component, Input } from "@angular/core";
 import { IProduct } from "../models/product";
 import { IAmenities } from "../models/amenities";
+import { IBusiness } from "../models/business";
 
 @Component({ selector: "app-m-home-menu-drawer", template: "" })
 export class MHomeMenuDrawerComponent {}
@@ -14,6 +15,18 @@ export class MenuComponent {}
 @Component({ selector: "app-detail-header-gallery", template: "" })
 export class DetailHeaderGalleryComponent {
   @Input() images: Array<string>;
+}
+@Component({ selector: "app-detail-header", template: "" })
+export class DetailHeaderComponent {
+  @Input() type: any = "";
+  @Input() description: string = "";
+  @Input() title: string = "";
+  @Input() address: string = "";
+  @Input() phone: string = "";
+  @Input() expensive: number = 0;
+  @Input() tags: Array<string> = [];
+  @Input() open_or_available: string = "Closed";
+  @Input() is_open_or_available: boolean = true;
 }
 
 @Component({ selector: "app-business-detail-menu", template: "" })
@@ -29,6 +42,12 @@ export class BusinessDetailAmenitiesComponent {
 export class BusinessDetailOpeningHoursComponent {
   @Input() opening_timings: any[];
 }
+
+@Component({ selector: "app-business-detail-container", template: "" })
+export class BusinessDetailContainerComponent {
+  @Input() business: IBusiness;
+}
+
 @Component({ selector: "app-business-detail-map", template: "" })
 export class BusinessDetailMapComponent {
   @Input() latlng = [10, 10];
@@ -71,5 +90,7 @@ export class LoadingComponent {}
 export class HomeListingComponent {
   @Input() public mapComponent: MapComponent;
 }
+@Component({ selector: "app-home-filter-drawer", template: "" })
+export class HomeFilterDrawerComponent {}
 @Component({ selector: "app-add-listing", template: "" })
 export class AddListingComponent {}

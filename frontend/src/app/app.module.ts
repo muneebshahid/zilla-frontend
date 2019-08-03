@@ -66,6 +66,11 @@ import {
   ListingTagsComponent
 } from "./add-listing-components";
 
+export const mapInitObj = {
+  apiKey: "AIzaSyAS9PrkmHZ1IKqOfWJ2sEqhKzGlv4_Eojg",
+  libraries: ["places", "geometry"]
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -115,10 +120,7 @@ import {
     EffectsModule.forRoot([ProductEffects, BusinessEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
-    AgmCoreModule.forRoot({
-      apiKey: "AIzaSyAS9PrkmHZ1IKqOfWJ2sEqhKzGlv4_Eojg",
-      libraries: ["places", "geometry"]
-    }),
+    AgmCoreModule.forRoot(mapInitObj),
     AgmSnazzyInfoWindowModule,
     BrowserAnimationsModule,
     InfiniteScrollModule

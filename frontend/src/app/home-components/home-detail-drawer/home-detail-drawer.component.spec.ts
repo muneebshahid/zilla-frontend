@@ -1,16 +1,28 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  DetailHeaderGalleryComponent,
+  DetailHeaderComponent,
+  BusinessDetailContainerComponent
+} from "./../../testing/dummy_components";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { HomeDetailDrawerComponent } from './home-detail-drawer.component';
+import { HomeDetailDrawerComponent } from "./home-detail-drawer.component";
+import { StoreModule } from "@ngrx/store";
+import { appReducers } from "src/app/store/reducers/app.reducer";
 
-describe('HomeDetailDrawerComponent', () => {
+describe("HomeDetailDrawerComponent", () => {
   let component: HomeDetailDrawerComponent;
   let fixture: ComponentFixture<HomeDetailDrawerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomeDetailDrawerComponent ]
-    })
-    .compileComponents();
+      declarations: [
+        HomeDetailDrawerComponent,
+        DetailHeaderGalleryComponent,
+        DetailHeaderComponent,
+        BusinessDetailContainerComponent
+      ],
+      imports: [StoreModule.forRoot(appReducers)]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +31,7 @@ describe('HomeDetailDrawerComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

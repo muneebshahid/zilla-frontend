@@ -4,6 +4,7 @@ import { LocationComponent } from "./location.component";
 import { AgmCoreModule, GoogleMapsAPIWrapper, MapsAPILoader } from "@agm/core";
 import { GeoLocationService } from "src/app/services/geo-location/geo-location.service";
 import { MapComponent } from "src/app/testing/dummy_components";
+import { mapInitObj } from "src/app/app.module";
 
 describe("LocationComponent", () => {
   let component: LocationComponent;
@@ -13,12 +14,7 @@ describe("LocationComponent", () => {
     TestBed.configureTestingModule({
       declarations: [LocationComponent, MapComponent],
       providers: [GoogleMapsAPIWrapper, GeoLocationService],
-      imports: [
-        AgmCoreModule.forRoot({
-          apiKey: "AIzaSyAZfyL5pncodSyDVTP28vnyQep4SNeQDgY",
-          libraries: ["places"]
-        })
-      ]
+      imports: [AgmCoreModule.forRoot(mapInitObj)]
     }).compileComponents();
   }));
 
