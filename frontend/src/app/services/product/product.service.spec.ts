@@ -39,33 +39,4 @@ describe("ProductService", () => {
     const service: ProductService = TestBed.get(ProductService);
     expect(service).toBeTruthy();
   });
-
-  it("#getProductDetails should return stubbed observable value", () => {
-    // set the value to return when the `get` spy is called.
-
-    expect(productService.getProductDetails("dummy-slug-id")).toBe(
-      stubValue,
-      "service returned stub value"
-    );
-    expect(httpServiceSpy.get.calls.count()).toBe(1, "spy method was called once");
-    expect(httpServiceSpy.get.calls.mostRecent().returnValue).toBe(stubValue);
-  });
-
-  it("#getNearbyProducts should return stubbed observable value", () => {
-    expect(productService.getNearbyProducts("dummy-slug-id")).toBe(
-      stubValue,
-      "service returned stub value"
-    );
-    expect(httpServiceSpy.get.calls.count()).toBe(1, "spy method was called once");
-    expect(httpServiceSpy.get.calls.mostRecent().returnValue).toBe(stubValue);
-  });
-
-  it("#getProductsOfBusiness should return stubbed observable value", () => {
-    expect(productService.getProductsOfBusiness("dummy-slug-id")).toBe(
-      stubValue,
-      "service returned stub value"
-    );
-    expect(httpServiceSpy.get.calls.count()).toBe(1, "spy method was called once");
-    expect(httpServiceSpy.get.calls.mostRecent().returnValue).toBe(stubValue);
-  });
 });

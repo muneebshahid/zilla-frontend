@@ -90,7 +90,17 @@ export class LoadingComponent {}
 export class HomeListingComponent {
   @Input() public mapComponent: MapComponent;
 }
+@Component({ selector: "app-home-drawers-container", template: "" })
+export class HomeDrawersContainerComponent {}
 @Component({ selector: "app-home-filter-drawer", template: "" })
 export class HomeFilterDrawerComponent {}
 @Component({ selector: "app-add-listing", template: "" })
 export class AddListingComponent {}
+@Component({ selector: "app-product-info", template: "" })
+export class ProductInfoComponent {
+  @Input() public homePage = false;
+}
+@Component({ selector: "app-business-info", template: "" })
+export class BusinessInfoComponent {
+  @Input() public homePage = false;
+}
