@@ -136,7 +136,6 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
   initializeSubscribers() {
     const businessFilterSubscriber = this.businessesFilterSelector.subscribe(filter => {
       this.businessService.setBusinessFilter(filter);
-
       this.setBusinessDrawerFilters();
     });
 

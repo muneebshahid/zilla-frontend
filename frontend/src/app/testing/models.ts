@@ -53,3 +53,77 @@ export const storeInitialState = {
   businesses: {},
   general: {}
 };
+
+export const dummyAmenities = [
+  { tag: "Amenity1", id: 1, checked: false },
+  { tag: "Amenity2", id: 2, checked: false },
+  { tag: "Amenity3", id: 3, checked: false }
+];
+
+export const dummyBusinessTypes = [
+  { name: "Type1", id: 1, selected: false },
+  { name: "Type2", id: 2, selected: false },
+  { name: "Type3", id: 3, selected: false }
+];
+
+export const dummyFilterTags = [
+  {
+    id: 11,
+    checked: true,
+    tag: "halal"
+  },
+  {
+    id: 12,
+    checked: false,
+    tag: "vegan"
+  },
+  {
+    id: 13,
+    checked: true,
+    tag: "vegan2"
+  }
+];
+
+export const dummyFilterTypes = [
+  {
+    id: 11,
+    selected: true,
+    tag: "halal"
+  },
+  {
+    id: 12,
+    selected: false,
+    tag: "vegan"
+  },
+  {
+    id: 13,
+    selected: true,
+    tag: "vegan2"
+  }
+];
+
+export const dummyFilterTypesAllFalse = [
+  {
+    id: 11,
+    selected: false,
+    tag: "halal"
+  },
+  {
+    id: 12,
+    selected: false,
+    tag: "halal2"
+  }
+];
+
+export const dummyFilterTagsAllFalse = [
+  {
+    id: 11,
+    checked: false,
+    tag: "halal"
+  },
+  {
+    id: 12,
+    checked: false,
+    tag: "halal2"
+  }
+];

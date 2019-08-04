@@ -115,7 +115,7 @@ export class BusinessService {
     return selectedFilters;
   }
 
-  /* GETTERS AND SETTERSfunction */
+  /* GETTERS AND SETTERS function */
 
   setBusinessFilter(businessFilter: IBFilters) {
     this.businessFilters = businessFilter;
