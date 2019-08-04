@@ -1,3 +1,4 @@
+import { dummyBusinessTypes } from "./../../testing/models";
 import { TestBed } from "@angular/core/testing";
 
 import { FiltersService } from "./filters.service";
@@ -16,6 +17,20 @@ describe("FiltersService", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
+
+    dummyFilterTags[0].checked = true;
+    dummyFilterTags[1].checked = false;
+    dummyFilterTags[2].checked = true;
+
+    dummyFilterTypes[0].selected = true;
+    dummyFilterTypes[1].selected = false;
+    dummyFilterTypes[2].selected = true;
+
+    dummyFilterTypesAllFalse[0].selected = false;
+    dummyFilterTypesAllFalse[1].selected = false;
+
+    dummyFilterTagsAllFalse[0].checked = false;
+    dummyFilterTagsAllFalse[1].checked = false;
 
     filterTags = dummyFilterTags;
     filterTypes = dummyFilterTypes;
@@ -71,6 +86,9 @@ describe("FiltersService", () => {
     const service: FiltersService = TestBed.get(FiltersService);
     const type = service.getSelectedTypeIDObject(filterTypes);
     const typeNull = service.getSelectedTypeIDObject(filterTypesAllFalse);
+    console.log("zalalat");
+    console.log(filterTypes);
+    console.log(type);
     expect(type.id).toEqual(11);
     expect(typeNull).toBeNull();
   });

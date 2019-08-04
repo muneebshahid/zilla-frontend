@@ -1,5 +1,5 @@
 import { IBFilters } from "src/app/models/business_filters";
-import { TestBed, inject } from "@angular/core/testing";
+import { TestBed } from "@angular/core/testing";
 
 import { BusinessService } from "./business.service";
 import { appReducers } from "src/app/store/reducers/app.reducer";
@@ -8,7 +8,7 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { IGFilters } from "src/app/models/general_filters";
 import { defaultLatlonDis } from "src/app/store/state/general";
-import { dummyBusinessTypes, dummyAmenities } from "src/app/testing/models";
+import { dummyBusinessTypes, dummyAmenities, businessObj } from "src/app/testing/models";
 
 describe("BusinessService", () => {
   let bparams: IBFilters;
@@ -105,5 +105,18 @@ describe("BusinessService", () => {
       `${defaultLatlonDis[0]},${defaultLatlonDis[1]},${defaultLatlonDis[2]}`
     );
     expect(result.pagination).toBe("10,20");
+  });
+
+  it("should return markers using getMarkersFromPayload", () => {
+    const service: BusinessService = TestBed.get(BusinessService);
+    const result: any = service.getMarkersFromPayload(businessObj);
+    expect(result[0].id).toBe(0);
+    expect(result[0].latlon[0]).toBe(1);
+    expect(result[0].latlon[1]).toBe(2);
+    expect(result[0].latlon[2]).toBe(3);
+    expect(result[1].id).toBe(1);
+    expect(result[1].latlon[0]).toBe(4);
+    expect(result[1].latlon[1]).toBe(5);
+    expect(result[1].latlon[2]).toBe(6);
   });
 });

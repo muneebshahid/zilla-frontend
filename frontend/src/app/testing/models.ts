@@ -12,7 +12,32 @@ export const businessObj: IBusiness[] = [
       address: "",
       claimed: false,
       phone: "",
-      latlon: [],
+      latlon: [1, 2, 3],
+      products: [],
+      images: [],
+      business_type: {
+        tag: "",
+        id: 0,
+        icon: "",
+        selected: false
+      },
+      opening_timings: [],
+      slug: "",
+      expensive: 0,
+      amenities: []
+    }
+  },
+  {
+    business: {
+      id: 1,
+      is_open: false,
+      title: "",
+      description: "",
+      website: "",
+      address: "",
+      claimed: false,
+      phone: "",
+      latlon: [4, 5, 6],
       products: [],
       images: [],
       business_type: {
