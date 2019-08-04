@@ -59,6 +59,7 @@ export class BusinessDetailMapComponent {
 @Component({ selector: "app-map", template: "" })
 export class MapComponent {
   @Input() mapClass;
+  public markers: Array<any> = [];
 }
 
 @Component({ selector: "app-general-info", template: "" })

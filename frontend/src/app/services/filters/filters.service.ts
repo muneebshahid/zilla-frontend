@@ -14,14 +14,6 @@ export class FiltersService {
     }
     return filterTags;
   }
-  public deSelectTypeInFilter(filterTypes: any, selectedtypeId) {
-    for (let i = 0; i < filterTypes.length; i++) {
-      if (filterTypes[i].id === selectedtypeId) {
-        filterTypes[i].selected = false;
-      }
-    }
-    return filterTypes;
-  }
   public deSelectTagFilter(filterTags: any, deselectedTagID) {
     for (let i = 0; i < filterTags.length; i++) {
       if (filterTags[i].id === deselectedTagID) {
@@ -29,6 +21,14 @@ export class FiltersService {
       }
     }
     return filterTags;
+  }
+  public deSelectTypeInFilter(filterTypes: any, selectedtypeId) {
+    for (let i = 0; i < filterTypes.length; i++) {
+      if (filterTypes[i].id === selectedtypeId) {
+        filterTypes[i].selected = false;
+      }
+    }
+    return filterTypes;
   }
 
   public getSelectedTagsCSVs(filterTags: any) {
