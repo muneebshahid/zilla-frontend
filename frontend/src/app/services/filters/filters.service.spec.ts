@@ -86,9 +86,6 @@ describe("FiltersService", () => {
     const service: FiltersService = TestBed.get(FiltersService);
     const type = service.getSelectedTypeIDObject(filterTypes);
     const typeNull = service.getSelectedTypeIDObject(filterTypesAllFalse);
-    console.log("zalalat");
-    console.log(filterTypes);
-    console.log(type);
     expect(type.id).toEqual(11);
     expect(typeNull).toBeNull();
   });
