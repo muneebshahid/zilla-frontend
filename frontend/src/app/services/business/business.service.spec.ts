@@ -10,6 +10,8 @@ import { IGFilters } from "src/app/models/general_filters";
 import { defaultLatlonDis } from "src/app/store/state/general";
 import { dummyBusinessTypes, dummyAmenities, businessObj } from "src/app/testing/models";
 import { IAppState } from "src/app/store/state/app.state";
+import { LocationService } from "../location/location.service";
+import { FiltersService } from "../filters/filters.service";
 import {
   GetBusinessAmenities,
   GetBusinessTypes,
@@ -17,7 +19,6 @@ import {
   UpdateBusinessFilters,
   GetBusinessDetail
 } from "src/app/store/actions/business";
-import { LocationService } from "../location/location.service";
 
 describe("BusinessService", () => {
   let bparams: IBFilters;
@@ -28,12 +29,30 @@ describe("BusinessService", () => {
   let filterServiceSpy;
 
   beforeEach(() => {
-    locationServiceSpy = jasmine.createSpyObj({ setDetailLocation: null });
-    // filterServiceSpy = jasmine.createSpyObj({ typeFilterSelected: false, tagFilterSelected: });
+    locationServiceSpy = jasmine.createSpyObj("LocationService", ["setDetailLocation"]);
+    filterServiceSpy = jasmine.createSpyObj("FiltersService", [
+      "typeFilterSelected",
+      "tagFilterSelected",
+      "getSelectedTagsCSVs",
+      "getSelectedTypeID",
+      "getSelectedTypeIDObject",
+      "getSelectedTagsObjs"
+    ]);
+
+    locationServiceSpy.setDetailLocation.and.returnValue(null);
+    filterServiceSpy.typeFilterSelected.and.callThrough();
+    filterServiceSpy.tagFilterSelected.and.callThrough();
+    filterServiceSpy.getSelectedTagsObjs.and.callThrough();
+    filterServiceSpy.getSelectedTagsCSVs.and.callThrough();
+    filterServiceSpy.getSelectedTypeIDObject.and.callThrough();
+    filterServiceSpy.getSelectedTypeID.and.callThrough();
 
     TestBed.configureTestingModule({
       imports: [StoreModule.forRoot(appReducers), HttpClientTestingModule, RouterTestingModule],
-      providers: [{ provide: LocationService, useValue: locationServiceSpy }]
+      providers: [
+        { provide: LocationService, useValue: locationServiceSpy },
+        { provide: FiltersService, useValue: filterServiceSpy }
+      ]
     });
 
     dummyAmenities[0].checked = false;
@@ -84,8 +103,10 @@ describe("BusinessService", () => {
   });
 
   it("should return latlondis, amenities params", () => {
-    bparams.amenities[2].checked = true;
+    filterServiceSpy.getSelectedTagsCSVs.and.returnValue("3");
+    filterServiceSpy.getSelectedTypeID.and.returnValue(null);
 
+    bparams.amenities[2].checked = true;
     const service: BusinessService = TestBed.get(BusinessService);
     service.setBusinessFilter(bparams);
 
@@ -98,9 +119,13 @@ describe("BusinessService", () => {
   });
 
   it("should return latlondis, query params", () => {
+    filterServiceSpy.getSelectedTagsCSVs.and.returnValue("");
+    filterServiceSpy.getSelectedTypeID.and.returnValue(null);
+
     gparams.query = "burger";
 
     const service: BusinessService = TestBed.get(BusinessService);
+
     service.setBusinessFilter(bparams);
 
     const result: any = service.cleanBusinessFilters(bparams, gparams);
@@ -112,6 +137,9 @@ describe("BusinessService", () => {
   });
 
   it("should return latlondis, businessType params", () => {
+    filterServiceSpy.getSelectedTagsCSVs.and.returnValue("");
+    filterServiceSpy.getSelectedTypeID.and.returnValue(3);
+
     bparams.business_types[2].selected = true;
 
     const service: BusinessService = TestBed.get(BusinessService);
@@ -126,6 +154,9 @@ describe("BusinessService", () => {
   });
 
   it("should return latlondis, pagination params", () => {
+    filterServiceSpy.getSelectedTagsCSVs.and.returnValue("");
+    filterServiceSpy.getSelectedTypeID.and.returnValue(null);
+
     bparams.paginate = true;
 
     const service: BusinessService = TestBed.get(BusinessService);
@@ -154,6 +185,11 @@ describe("BusinessService", () => {
 
   it("should return two chips for two selected amenities using getFilterChips", () => {
     const service: BusinessService = TestBed.get(BusinessService);
+    filterServiceSpy.getSelectedTypeIDObject.and.returnValue(null);
+    filterServiceSpy.getSelectedTagsObjs.and.returnValue([
+      { tag: "Amenity1", id: 1, checked: false },
+      { tag: "Amenity2", id: 2, checked: false }
+    ]);
 
     bparams.amenities[0].checked = true;
     bparams.amenities[1].checked = true;
@@ -169,6 +205,12 @@ describe("BusinessService", () => {
 
   it("should return one chip for the selected businessType using getFilterChips", () => {
     const service: BusinessService = TestBed.get(BusinessService);
+    filterServiceSpy.getSelectedTypeIDObject.and.returnValue({
+      name: "Type2",
+      id: 2,
+      selected: true
+    });
+    filterServiceSpy.getSelectedTagsObjs.and.returnValue([]);
 
     bparams.business_types[1].selected = true;
     const result: any = service.getFilterChips(bparams);
@@ -285,11 +327,23 @@ describe("BusinessService", () => {
     expect(store.dispatch).toHaveBeenCalledWith(getBusinessDetailAction);
     expect(locationServiceSpy.setDetailLocation).toHaveBeenCalled();
   });
-  it("should check if the user changed anything in the filter or not using filterChanged", () => {
-    const getBusinessDetailAction = new GetBusinessDetail({ id: 1 });
+  it("should check if the businessFilter values are set to default using filterChanged", () => {
     const service: BusinessService = TestBed.get(BusinessService);
-    service.dispatchGetBusinessDetail(1);
-    expect(store.dispatch).toHaveBeenCalledWith(getBusinessDetailAction);
-    expect(locationServiceSpy.setDetailLocation).toHaveBeenCalled();
+    service.setBusinessFilter(bparams);
+    let filterChanged = service.filterChanged();
+    expect(filterChanged).toBe(false);
+  });
+
+  it("should check the currently shown business id using checkBusinessShownByID", () => {
+    const service: BusinessService = TestBed.get(BusinessService);
+    const markers: any = service.getMarkersFromPayload(businessObj);
+
+    service.setBusinessFilter(bparams);
+    service.setBusinesses(businessObj, markers);
+    let businessIDFound = service.checkBusinessShownByID(0);
+    let businessIDNotFound = service.checkBusinessShownByID(99);
+
+    expect(businessIDFound).toBe(true);
+    expect(businessIDNotFound).toBe(false);
   });
 });

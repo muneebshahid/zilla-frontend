@@ -38,9 +38,7 @@ export class BusinessService {
     let filteredParam = {};
     let amenities = this.filterService.getSelectedTagsCSVs(bparams.amenities);
     let businessTypeID = this.filterService.getSelectedTypeID(bparams.business_types);
-    console.log("moji moja");
-    console.log(amenities);
-    console.log(businessTypeID);
+
     filteredParam["latlondis"] = `${gparams.latlondis[0]},${gparams.latlondis[1]},${
       gparams.latlondis[2]
     }`;
@@ -97,6 +95,7 @@ export class BusinessService {
     );
 
     let selectedTags = this.filterService.getSelectedTagsObjs(businessFilter.amenities);
+
     if (selectedTypeIDObject !== null) {
       selectedFilters.push({
         key: objectKeys[1],
@@ -187,6 +186,7 @@ export class BusinessService {
     this.store.dispatch(new GetBusinessDetail({ id: id }));
   }
 
+  /* only checks if the filter is not set to the default filter values. */
   filterChanged() {
     if (
       !this.filterService.typeFilterSelected(this.businessFilters.business_types) &&
@@ -197,6 +197,10 @@ export class BusinessService {
     return true;
   }
 
+  /* 
+      maybe user enters a business in url which is not in the list showing. Hence we need this to remove the marker on the map
+      once the user closes the drawer.
+   */
   checkBusinessShownByID(id: number) {
     for (let i = 0; i < this.businesses.length; i++) {
       if (this.businesses[i].business.id === id) {
