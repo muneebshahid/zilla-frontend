@@ -19,6 +19,8 @@ import {
   UpdateBusinessFilters,
   GetBusinessDetail
 } from "src/app/store/actions/business";
+import { HttpService } from "../http/http.service";
+import { Observable, of } from "rxjs";
 
 describe("BusinessService", () => {
   let bparams: IBFilters;
@@ -27,6 +29,7 @@ describe("BusinessService", () => {
 
   let locationServiceSpy;
   let filterServiceSpy;
+  let httpServiceSpy;
 
   beforeEach(() => {
     locationServiceSpy = jasmine.createSpyObj("LocationService", ["setDetailLocation"]);
@@ -38,7 +41,9 @@ describe("BusinessService", () => {
       "getSelectedTypeIDObject",
       "getSelectedTagsObjs"
     ]);
+    httpServiceSpy = jasmine.createSpyObj("HttpService", ["get"]);
 
+    httpServiceSpy.get.and.returnValue(of());
     locationServiceSpy.setDetailLocation.and.returnValue(null);
     filterServiceSpy.typeFilterSelected.and.callThrough();
     filterServiceSpy.tagFilterSelected.and.callThrough();
@@ -51,7 +56,8 @@ describe("BusinessService", () => {
       imports: [StoreModule.forRoot(appReducers), HttpClientTestingModule, RouterTestingModule],
       providers: [
         { provide: LocationService, useValue: locationServiceSpy },
-        { provide: FiltersService, useValue: filterServiceSpy }
+        { provide: FiltersService, useValue: filterServiceSpy },
+        { provide: HttpService, useValue: httpServiceSpy }
       ]
     });
 
@@ -345,5 +351,36 @@ describe("BusinessService", () => {
 
     expect(businessIDFound).toBe(true);
     expect(businessIDNotFound).toBe(false);
+  });
+
+  it("should make an http call for getting search businesses using getSearchBusinesses", () => {
+    const service: BusinessService = TestBed.get(BusinessService);
+    service.setBusinessFilter(bparams);
+    let serverResponse = service.getSearchBusinesses({
+      businessParams: bparams,
+      generalParams: gparams
+    });
+    expect(serverResponse).toBe(of());
+  });
+
+  it("should make an http call for getting business detail using getBusinessDetail", () => {
+    const service: BusinessService = TestBed.get(BusinessService);
+    service.setBusinessFilter(bparams);
+    let serverResponse = service.getBusinessDetail(5);
+    expect(serverResponse).toBe(of());
+  });
+
+  it("should make an http call for getting business types using getBusinesstypes", () => {
+    const service: BusinessService = TestBed.get(BusinessService);
+    service.setBusinessFilter(bparams);
+    let serverResponse = service.getBusinesstypes();
+    expect(serverResponse).toBe(of());
+  });
+
+  it("should make an http call for getting business amenities using getBusinessAmenities", () => {
+    const service: BusinessService = TestBed.get(BusinessService);
+    service.setBusinessFilter(bparams);
+    let serverResponse = service.getBusinessAmenities();
+    expect(serverResponse).toBe(of());
   });
 });
