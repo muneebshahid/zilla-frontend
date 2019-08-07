@@ -20,7 +20,7 @@ import {
   GetBusinessDetail
 } from "src/app/store/actions/business";
 import { HttpService } from "../http/http.service";
-import { Observable, of } from "rxjs";
+import { of } from "rxjs";
 
 describe("BusinessService", () => {
   let bparams: IBFilters;
