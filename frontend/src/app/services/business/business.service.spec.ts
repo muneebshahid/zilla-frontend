@@ -3,19 +3,37 @@ import { TestBed } from "@angular/core/testing";
 
 import { BusinessService } from "./business.service";
 import { appReducers } from "src/app/store/reducers/app.reducer";
-import { StoreModule } from "@ngrx/store";
+import { StoreModule, Store } from "@ngrx/store";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { IGFilters } from "src/app/models/general_filters";
 import { defaultLatlonDis } from "src/app/store/state/general";
 import { dummyBusinessTypes, dummyAmenities, businessObj } from "src/app/testing/models";
+import { IAppState } from "src/app/store/state/app.state";
+import {
+  GetBusinessAmenities,
+  GetBusinessTypes,
+  GetSearchBusiness,
+  UpdateBusinessFilters,
+  GetBusinessDetail
+} from "src/app/store/actions/business";
+import { LocationService } from "../location/location.service";
 
 describe("BusinessService", () => {
   let bparams: IBFilters;
   let gparams: IGFilters;
+  let store: Store<IAppState>;
+
+  let locationServiceSpy;
+  let filterServiceSpy;
+
   beforeEach(() => {
+    locationServiceSpy = jasmine.createSpyObj({ setDetailLocation: null });
+    // filterServiceSpy = jasmine.createSpyObj({ typeFilterSelected: false, tagFilterSelected: });
+
     TestBed.configureTestingModule({
-      imports: [StoreModule.forRoot(appReducers), HttpClientTestingModule, RouterTestingModule]
+      imports: [StoreModule.forRoot(appReducers), HttpClientTestingModule, RouterTestingModule],
+      providers: [{ provide: LocationService, useValue: locationServiceSpy }]
     });
 
     dummyAmenities[0].checked = false;
@@ -38,6 +56,10 @@ describe("BusinessService", () => {
       query: "",
       city: ""
     };
+
+    store = TestBed.get(Store);
+
+    spyOn(store, "dispatch").and.callThrough();
   });
 
   it("should be created", () => {
@@ -88,6 +110,7 @@ describe("BusinessService", () => {
     );
     expect(result.query).toBe("burger");
   });
+
   it("should return latlondis, businessType params", () => {
     bparams.business_types[2].selected = true;
 
@@ -101,6 +124,7 @@ describe("BusinessService", () => {
     );
     expect(result.business_type).toBe(3);
   });
+
   it("should return latlondis, pagination params", () => {
     bparams.paginate = true;
 
@@ -127,6 +151,7 @@ describe("BusinessService", () => {
     expect(result[1].latlon[1]).toBe(5);
     expect(result[1].latlon[2]).toBe(6);
   });
+
   it("should return two chips for two selected amenities using getFilterChips", () => {
     const service: BusinessService = TestBed.get(BusinessService);
 
@@ -141,6 +166,7 @@ describe("BusinessService", () => {
     expect(result[0].id).toBe(1);
     expect(result[1].id).toBe(2);
   });
+
   it("should return one chip for the selected businessType using getFilterChips", () => {
     const service: BusinessService = TestBed.get(BusinessService);
 
@@ -150,6 +176,7 @@ describe("BusinessService", () => {
     expect(result[0].value).toBe("Type2");
     expect(result[0].id).toBe(2);
   });
+
   it("should set the business filter using setBusinessFilter", () => {
     const service: BusinessService = TestBed.get(BusinessService);
     expect(service.getBusinessFilter()).toBeUndefined();
@@ -157,6 +184,7 @@ describe("BusinessService", () => {
     expect(service.getBusinessFilter()).toBeDefined();
     expect(service.getBusinessFilter().amenities.length).toBe(3);
   });
+
   it("should set the business filter amenities using setBusinessFilterAmenities", () => {
     let newAmenity = "Amenity4";
     const service: BusinessService = TestBed.get(BusinessService);
@@ -166,5 +194,102 @@ describe("BusinessService", () => {
     bparams.amenities[0].tag = newAmenity;
     service.setBusinessFilterAmenities(bparams.amenities);
     expect(service.getBusinessFilter().amenities[0].tag).toBe(newAmenity);
+  });
+
+  it("should set the business filter types using setBusinessFilterTypes", () => {
+    let newType = "Type4";
+    const service: BusinessService = TestBed.get(BusinessService);
+
+    expect(service.getBusinessFilter()).toBeUndefined();
+    service.setBusinessFilter(bparams);
+    bparams.business_types[0].name = newType;
+    service.setBusinessFilterTypes(bparams.business_types);
+    expect(service.getBusinessFilter().business_types[0].name).toBe(newType);
+  });
+
+  it("should set the business field as a new field using setBusinesses", () => {
+    const service: BusinessService = TestBed.get(BusinessService);
+    expect(service.getBusinessFilter()).toBeUndefined();
+    service.setBusinessFilter(bparams);
+
+    const markers: any = service.getMarkersFromPayload(businessObj);
+    const businesses: any = businessObj;
+
+    service.setBusinesses(businesses, markers);
+    expect(service.getBusinesses().length).toBe(2);
+  });
+
+  it("should concat the business field as a new field using setBusinesses", () => {
+    const service: BusinessService = TestBed.get(BusinessService);
+    expect(service.getBusinessFilter()).toBeUndefined();
+    service.setBusinessFilter(bparams);
+
+    const markers: any = service.getMarkersFromPayload(businessObj);
+    const markersNew: any = service.getMarkersFromPayload(businessObj);
+    const businesses: any = businessObj;
+    const businessesNew: any = businessObj;
+
+    service.setBusinesses(businesses, markers);
+    expect(service.getBusinesses().length).toBe(2);
+
+    bparams.paginate = true;
+    service.setBusinessFilter(bparams);
+
+    service.setBusinesses(businessesNew, markersNew);
+    expect(service.getBusinesses().length).toBe(4);
+  });
+
+  it("should set the pending detail ID using setPendingDetailID", () => {
+    const service: BusinessService = TestBed.get(BusinessService);
+    expect(service.getPendingDetailID()).toBeNull();
+    service.setPendingDetailID(5);
+    expect(service.getPendingDetailID()).toBe(5);
+  });
+
+  it("should set business hits using setBusinessHits", () => {
+    const service: BusinessService = TestBed.get(BusinessService);
+    expect(service.getBusinessHits()).toBeUndefined();
+    service.setBusinessHits(5);
+    expect(service.getBusinessHits()).toBe(5);
+  });
+  it("should dispatch 2 actions to one get Amenities and other to get BusinessTypes using getBusinessFilterData", () => {
+    const amenitiesAction = new GetBusinessAmenities();
+    const businessTypesAction = new GetBusinessTypes();
+
+    const service: BusinessService = TestBed.get(BusinessService);
+    service.getBusinessFilterData();
+    expect(store.dispatch).toHaveBeenCalledWith(amenitiesAction);
+    expect(store.dispatch).toHaveBeenCalledWith(businessTypesAction);
+  });
+  it("should dispatch search business action with correct general and business filters using dispatchSearchBusinesses", () => {
+    const searchBusinessAction = new GetSearchBusiness({
+      businessParams: bparams,
+      generalParams: gparams
+    });
+    const service: BusinessService = TestBed.get(BusinessService);
+    service.setBusinessFilter(bparams);
+    service.dispatchSearchBusinesses(gparams);
+    expect(store.dispatch).toHaveBeenCalledWith(searchBusinessAction);
+  });
+  it("should dispatch update business filter action with updateBusinessFilters", () => {
+    const updateBusinessFilterAction = new UpdateBusinessFilters(bparams);
+    const service: BusinessService = TestBed.get(BusinessService);
+    service.setBusinessFilter(bparams);
+    service.updateBusinessFilters();
+    expect(store.dispatch).toHaveBeenCalledWith(updateBusinessFilterAction);
+  });
+  it("should dispatch GetBusinessDetail action and change the URL with dispatchGetBusinessDetail", () => {
+    const getBusinessDetailAction = new GetBusinessDetail({ id: 1 });
+    const service: BusinessService = TestBed.get(BusinessService);
+    service.dispatchGetBusinessDetail(1);
+    expect(store.dispatch).toHaveBeenCalledWith(getBusinessDetailAction);
+    expect(locationServiceSpy.setDetailLocation).toHaveBeenCalled();
+  });
+  it("should check if the user changed anything in the filter or not using filterChanged", () => {
+    const getBusinessDetailAction = new GetBusinessDetail({ id: 1 });
+    const service: BusinessService = TestBed.get(BusinessService);
+    service.dispatchGetBusinessDetail(1);
+    expect(store.dispatch).toHaveBeenCalledWith(getBusinessDetailAction);
+    expect(locationServiceSpy.setDetailLocation).toHaveBeenCalled();
   });
 });

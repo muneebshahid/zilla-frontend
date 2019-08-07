@@ -38,7 +38,9 @@ export class BusinessService {
     let filteredParam = {};
     let amenities = this.filterService.getSelectedTagsCSVs(bparams.amenities);
     let businessTypeID = this.filterService.getSelectedTypeID(bparams.business_types);
-
+    console.log("moji moja");
+    console.log(amenities);
+    console.log(businessTypeID);
     filteredParam["latlondis"] = `${gparams.latlondis[0]},${gparams.latlondis[1]},${
       gparams.latlondis[2]
     }`;
@@ -135,6 +137,7 @@ export class BusinessService {
       this.businessMarkers = businessMarkers;
     }
   }
+  /* used for opening a detail drawer directly when person adds the URL. */
   setPendingDetailID(id: number) {
     this.pendingDetailID = id;
   }
