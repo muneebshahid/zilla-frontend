@@ -338,6 +338,11 @@ describe("BusinessService", () => {
     service.setBusinessFilter(bparams);
     let filterChanged = service.filterChanged();
     expect(filterChanged).toBe(false);
+
+    bparams.amenities[0].checked = true;
+    service.setBusinessFilter(bparams);
+    filterChanged = service.filterChanged();
+    expect(filterChanged).toBe(true);
   });
 
   it("should check the currently shown business id using checkBusinessShownByID", () => {
