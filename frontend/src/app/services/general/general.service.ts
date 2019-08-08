@@ -17,6 +17,11 @@ import { take } from "rxjs/operators";
 })
 export class GeneralService {
   private defaultGeneralFilterSelector = this.store.pipe(select(selectdefaultGeneralFilter));
+  public showingBusinesses = true;
+  defaultLatLonDis: Array<number>;
+  public generalFilters: IGFilters;
+  defaultCity: string;
+
   constructor(private store: Store<IAppState>) {
     // take 2 because first time it will be called with default state value and next time with set value.
     this.defaultGeneralFilterSelector.pipe(take(2)).subscribe(data => {
@@ -24,12 +29,6 @@ export class GeneralService {
       this.setDefaultCity(data.city);
     });
   }
-
-  public showingBusinesses = true;
-  defaultLatLonDis: Array<number>;
-  defaultCity: string;
-
-  public generalFilters: IGFilters;
 
   setDefaultLatLonDis(defaultLatLonDis: Array<number>) {
     this.defaultLatLonDis = Object.assign({}, defaultLatLonDis);
