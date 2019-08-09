@@ -25,6 +25,7 @@ import { of } from "rxjs";
 describe("BusinessService", () => {
   let bparams: IBFilters;
   let gparams: IGFilters;
+  let service: BusinessService;
   let store: Store<IAppState>;
 
   let locationServiceSpy;
@@ -84,15 +85,14 @@ describe("BusinessService", () => {
 
     store = TestBed.get(Store);
     spyOn(store, "dispatch").and.callThrough();
+    service = TestBed.get(BusinessService);
   });
 
   it("should be created", () => {
-    const service: BusinessService = TestBed.get(BusinessService);
     expect(service).toBeTruthy();
   });
 
   it("should return latlondis params only", () => {
-    const service: BusinessService = TestBed.get(BusinessService);
     service.setBusinessFilter(bparams);
 
     const result: any = service.cleanBusinessFilters(bparams, gparams);
@@ -112,7 +112,6 @@ describe("BusinessService", () => {
     filterServiceSpy.getSelectedTypeID.and.returnValue(null);
 
     bparams.amenities[2].checked = true;
-    const service: BusinessService = TestBed.get(BusinessService);
     service.setBusinessFilter(bparams);
 
     const result: any = service.cleanBusinessFilters(bparams, gparams);
@@ -128,8 +127,6 @@ describe("BusinessService", () => {
     filterServiceSpy.getSelectedTypeID.and.returnValue(null);
 
     gparams.query = "burger";
-
-    const service: BusinessService = TestBed.get(BusinessService);
 
     service.setBusinessFilter(bparams);
 
@@ -147,7 +144,6 @@ describe("BusinessService", () => {
 
     bparams.business_types[2].selected = true;
 
-    const service: BusinessService = TestBed.get(BusinessService);
     service.setBusinessFilter(bparams);
 
     const result: any = service.cleanBusinessFilters(bparams, gparams);
@@ -164,7 +160,6 @@ describe("BusinessService", () => {
 
     bparams.paginate = true;
 
-    const service: BusinessService = TestBed.get(BusinessService);
     service.setBusinessFilter(bparams);
 
     const result: any = service.cleanBusinessFilters(bparams, gparams);
@@ -176,7 +171,6 @@ describe("BusinessService", () => {
   });
 
   it("should return markers using getMarkersFromPayload", () => {
-    const service: BusinessService = TestBed.get(BusinessService);
     const result: any = service.getMarkersFromPayload(businessObj);
     expect(result[0].id).toBe(0);
     expect(result[0].latlon[0]).toBe(1);
@@ -189,7 +183,6 @@ describe("BusinessService", () => {
   });
 
   it("should return two chips for two selected amenities using getFilterChips", () => {
-    const service: BusinessService = TestBed.get(BusinessService);
     filterServiceSpy.getSelectedTypeIDObject.and.returnValue(null);
     filterServiceSpy.getSelectedTagsObjs.and.returnValue([
       { tag: "Amenity1", id: 1, checked: false },
@@ -209,7 +202,6 @@ describe("BusinessService", () => {
   });
 
   it("should return one chip for the selected businessType using getFilterChips", () => {
-    const service: BusinessService = TestBed.get(BusinessService);
     filterServiceSpy.getSelectedTypeIDObject.and.returnValue({
       name: "Type2",
       id: 2,
@@ -225,7 +217,6 @@ describe("BusinessService", () => {
   });
 
   it("should set the business filter using setBusinessFilter", () => {
-    const service: BusinessService = TestBed.get(BusinessService);
     expect(service.getBusinessFilter()).toBeUndefined();
     service.setBusinessFilter(bparams);
     expect(service.getBusinessFilter()).toBeDefined();
@@ -234,7 +225,6 @@ describe("BusinessService", () => {
 
   it("should set the business filter amenities using setBusinessFilterAmenities", () => {
     let newAmenity = "Amenity4";
-    const service: BusinessService = TestBed.get(BusinessService);
 
     expect(service.getBusinessFilter()).toBeUndefined();
     service.setBusinessFilter(bparams);
@@ -245,7 +235,6 @@ describe("BusinessService", () => {
 
   it("should set the business filter types using setBusinessFilterTypes", () => {
     let newType = "Type4";
-    const service: BusinessService = TestBed.get(BusinessService);
 
     expect(service.getBusinessFilter()).toBeUndefined();
     service.setBusinessFilter(bparams);
@@ -255,7 +244,6 @@ describe("BusinessService", () => {
   });
 
   it("should set the business field as a new field using setBusinesses", () => {
-    const service: BusinessService = TestBed.get(BusinessService);
     expect(service.getBusinessFilter()).toBeUndefined();
     service.setBusinessFilter(bparams);
 
@@ -267,7 +255,6 @@ describe("BusinessService", () => {
   });
 
   it("should concat the business field as a new field using setBusinesses", () => {
-    const service: BusinessService = TestBed.get(BusinessService);
     expect(service.getBusinessFilter()).toBeUndefined();
     service.setBusinessFilter(bparams);
 
@@ -287,14 +274,12 @@ describe("BusinessService", () => {
   });
 
   it("should set the pending detail ID using setPendingDetailID", () => {
-    const service: BusinessService = TestBed.get(BusinessService);
     expect(service.getPendingDetailID()).toBeNull();
     service.setPendingDetailID(5);
     expect(service.getPendingDetailID()).toBe(5);
   });
 
   it("should set business hits using setBusinessHits", () => {
-    const service: BusinessService = TestBed.get(BusinessService);
     expect(service.getBusinessHits()).toBeUndefined();
     service.setBusinessHits(5);
     expect(service.getBusinessHits()).toBe(5);
@@ -303,7 +288,6 @@ describe("BusinessService", () => {
     const amenitiesAction = new GetBusinessAmenities();
     const businessTypesAction = new GetBusinessTypes();
 
-    const service: BusinessService = TestBed.get(BusinessService);
     service.getBusinessFilterData();
     expect(store.dispatch).toHaveBeenCalledWith(amenitiesAction);
     expect(store.dispatch).toHaveBeenCalledWith(businessTypesAction);
@@ -313,27 +297,23 @@ describe("BusinessService", () => {
       businessParams: bparams,
       generalParams: gparams
     });
-    const service: BusinessService = TestBed.get(BusinessService);
     service.setBusinessFilter(bparams);
     service.dispatchSearchBusinesses(gparams);
     expect(store.dispatch).toHaveBeenCalledWith(searchBusinessAction);
   });
   it("should dispatch update business filter action with updateBusinessFilters", () => {
     const updateBusinessFilterAction = new UpdateBusinessFilters(bparams);
-    const service: BusinessService = TestBed.get(BusinessService);
     service.setBusinessFilter(bparams);
     service.updateBusinessFilters();
     expect(store.dispatch).toHaveBeenCalledWith(updateBusinessFilterAction);
   });
   it("should dispatch GetBusinessDetail action and change the URL with dispatchGetBusinessDetail", () => {
     const getBusinessDetailAction = new GetBusinessDetail({ id: 1 });
-    const service: BusinessService = TestBed.get(BusinessService);
     service.dispatchGetBusinessDetail(1);
     expect(store.dispatch).toHaveBeenCalledWith(getBusinessDetailAction);
     expect(locationServiceSpy.setDetailLocation).toHaveBeenCalled();
   });
   it("should check if the businessFilter values are set to default using filterChanged", () => {
-    const service: BusinessService = TestBed.get(BusinessService);
     service.setBusinessFilter(bparams);
     let filterChanged = service.filterChanged();
     expect(filterChanged).toBe(false);
@@ -345,7 +325,6 @@ describe("BusinessService", () => {
   });
 
   it("should check the currently shown business id using checkBusinessShownByID", () => {
-    const service: BusinessService = TestBed.get(BusinessService);
     const markers: any = service.getMarkersFromPayload(businessObj);
 
     service.setBusinessFilter(bparams);
@@ -358,7 +337,6 @@ describe("BusinessService", () => {
   });
 
   it("should make an http call for getting search businesses using getSearchBusinesses", () => {
-    const service: BusinessService = TestBed.get(BusinessService);
     service.setBusinessFilter(bparams);
     let serverResponse = service.getSearchBusinesses({
       businessParams: bparams,
@@ -370,7 +348,6 @@ describe("BusinessService", () => {
   });
 
   it("should make an http call for getting business detail using getBusinessDetail", () => {
-    const service: BusinessService = TestBed.get(BusinessService);
     service.setBusinessFilter(bparams);
     let serverResponse = service.getBusinessDetail(5);
 
@@ -379,7 +356,6 @@ describe("BusinessService", () => {
   });
 
   it("should make an http call for getting business types using getBusinesstypes", () => {
-    const service: BusinessService = TestBed.get(BusinessService);
     service.setBusinessFilter(bparams);
     let serverResponse = service.getBusinesstypes();
 
@@ -388,7 +364,6 @@ describe("BusinessService", () => {
   });
 
   it("should make an http call for getting business amenities using getBusinessAmenities", () => {
-    const service: BusinessService = TestBed.get(BusinessService);
     service.setBusinessFilter(bparams);
     let serverResponse = service.getBusinessAmenities();
 

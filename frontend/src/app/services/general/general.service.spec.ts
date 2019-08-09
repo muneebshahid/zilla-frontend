@@ -19,6 +19,7 @@ import { filter } from "rxjs/operators";
 describe("GeneralService", () => {
   let gParams;
   let store: Store<IAppState>;
+  let service: GeneralService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -33,25 +34,22 @@ describe("GeneralService", () => {
 
     store = TestBed.get(Store);
     spyOn(store, "dispatch").and.callThrough();
+    service = TestBed.get(GeneralService);
   });
 
   it("should be created", () => {
-    const service: GeneralService = TestBed.get(GeneralService);
     expect(service).toBeTruthy();
   });
   it("should set default latlondis value", () => {
-    const service: GeneralService = TestBed.get(GeneralService);
     let lld = service.getDefaultLatLonDis();
     expect(lld[0]).toBe(defaultLatlonDis[0]);
     expect(lld[1]).toBe(defaultLatlonDis[1]);
     expect(lld[2]).toBe(defaultLatlonDis[2]);
   });
   it("should set default city value", () => {
-    const service: GeneralService = TestBed.get(GeneralService);
     expect(service.getDefaultCity()).toBe(defaultCity);
   });
   it("should set defaultLatLonDis", () => {
-    const service: GeneralService = TestBed.get(GeneralService);
     let dlld = [0, 1, 2];
     service.setDefaultLatLonDis(dlld);
     expect(service.getDefaultLatLonDis()[0]).toBe(dlld[0]);
@@ -59,19 +57,16 @@ describe("GeneralService", () => {
     expect(service.getDefaultLatLonDis()[2]).toBe(dlld[2]);
   });
   it("should set defaultCity", () => {
-    const service: GeneralService = TestBed.get(GeneralService);
     service.setDefaultCity(defaultCity);
     expect(service.getDefaultCity()).toBe(defaultCity);
   });
   it("should set ShowBusinesses", () => {
-    const service: GeneralService = TestBed.get(GeneralService);
     service.setShowBusinesses(true);
     expect(service.getShowBusinesses()).toBe(true);
     service.setShowBusinesses(false);
     expect(service.getShowBusinesses()).toBe(false);
   });
   it("should set GeneralFilters", () => {
-    const service: GeneralService = TestBed.get(GeneralService);
     service.setGeneralFilters(gParams);
 
     let generalFilters = service.getGeneralFilters();
@@ -80,7 +75,6 @@ describe("GeneralService", () => {
     expect(generalFilters.latlondis).toBe(defaultLatlonDis);
   });
   it("should set GeneralFilters LatLon", () => {
-    const service: GeneralService = TestBed.get(GeneralService);
     service.setGeneralFilters(gParams);
 
     service.setGeneralFiltersLatLon(1, 2);
@@ -88,21 +82,18 @@ describe("GeneralService", () => {
     expect(service.getGeneralFilters().latlondis[1]).toBe(2);
   });
   it("should set GeneralFiltersRadius", () => {
-    const service: GeneralService = TestBed.get(GeneralService);
     service.setGeneralFilters(gParams);
 
     service.setGeneralFiltersRadius(4);
     expect(service.getGeneralFilters().latlondis[2]).toBe(4);
   });
   it("should set GeneralFiltersRadius", () => {
-    const service: GeneralService = TestBed.get(GeneralService);
     service.setGeneralFilters(gParams);
 
     service.setGeneralFiltersCity(defaultCity);
     expect(service.getGeneralFilters().city).toBe(defaultCity);
   });
   it("should set setGeneralFilterQuery", () => {
-    const service: GeneralService = TestBed.get(GeneralService);
     service.setGeneralFilters(gParams);
 
     service.setGeneralFilterQuery("abc");
@@ -110,14 +101,12 @@ describe("GeneralService", () => {
   });
   it("should dispatch action updateGeneralFilters", () => {
     const updateGeneralFiltersAction = new UpdateGeneralFilters(Object.assign({}, gParams));
-    const service: GeneralService = TestBed.get(GeneralService);
     service.setGeneralFilters(gParams);
     service.updateGeneralFilters();
     expect(store.dispatch).toHaveBeenCalledWith(updateGeneralFiltersAction);
   });
   it("should dispatch action updateDefaultLatLonDis", () => {
     const updateGeneralFiltersAction = new UpdateDefaultLatLonDis(Object.assign({}, gParams));
-    const service: GeneralService = TestBed.get(GeneralService);
     service.setGeneralFilters(gParams);
     service.updateDefaultLatLonDis();
     expect(store.dispatch).toHaveBeenCalledWith(updateGeneralFiltersAction);
@@ -125,7 +114,6 @@ describe("GeneralService", () => {
   it("should dispatch action updateSearchType", () => {
     const showB = true;
     const updateGeneralFiltersAction = new UpdateSearchType({ showingBusinesses: showB });
-    const service: GeneralService = TestBed.get(GeneralService);
     service.setShowBusinesses(showB);
     service.updateSearchType();
     expect(store.dispatch).toHaveBeenCalledWith(updateGeneralFiltersAction);
@@ -133,7 +121,6 @@ describe("GeneralService", () => {
   it("should dispatch action updateLoadingSign", fakeAsync(() => {
     const addSign = true;
     const loadingSignAction = new UpdateIsLoading(addSign);
-    const service: GeneralService = TestBed.get(GeneralService);
     service.updateLoadingSign(addSign);
     tick(100);
     expect(store.dispatch).toHaveBeenCalledWith(loadingSignAction);
@@ -148,7 +135,6 @@ describe("GeneralService", () => {
     gParams.query = "burger";
     gParams.latlondis = [1, 2, 3];
 
-    const service: GeneralService = TestBed.get(GeneralService);
     service.setGeneralFilters(gParams);
 
     let serviceGParams = service.getGeneralFilters();
@@ -172,7 +158,6 @@ describe("GeneralService", () => {
     gParams.query = "burger";
     gParams.latlondis = [1, 2, 3];
 
-    const service: GeneralService = TestBed.get(GeneralService);
     service.setGeneralFilters(gParams);
 
     let chips = service.getFilterChips(gParams);
@@ -185,7 +170,6 @@ describe("GeneralService", () => {
     expect(chips[1].value).toBe(`Search Radius: ${gParams.latlondis[2]} Km, ${gParams.city}`);
   });
   it("should check if filter is changed from default", () => {
-    const service: GeneralService = TestBed.get(GeneralService);
     service.setGeneralFilters(gParams);
     let isFilterChanged = service.filterChanged();
     expect(isFilterChanged).toBe(false);
