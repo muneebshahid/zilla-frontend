@@ -16,7 +16,7 @@ import { take } from "rxjs/operators";
   providedIn: "root"
 })
 export class GeneralService {
-  private defaultGeneralFilterSelector = this.store.pipe(select(selectdefaultGeneralFilter));
+  public defaultGeneralFilterSelector = this.store.pipe(select(selectdefaultGeneralFilter));
   public showingBusinesses = true;
   defaultLatLonDis: Array<number>;
   public generalFilters: IGFilters;

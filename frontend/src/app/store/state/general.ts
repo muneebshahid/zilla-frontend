@@ -2,7 +2,7 @@ import { IGFilters } from "src/app/models/general_filters";
 
 // keep zoom=12 in production. Center location of Munich.
 export let defaultLatlonDis = [48.1548894, 11.4716248, 10000];
-let defaultCity = "München";
+export let defaultCity = "München";
 
 export interface IGeneralState {
   showingBusinesses?: boolean;

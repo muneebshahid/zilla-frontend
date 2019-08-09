@@ -83,7 +83,6 @@ describe("BusinessService", () => {
     };
 
     store = TestBed.get(Store);
-
     spyOn(store, "dispatch").and.callThrough();
   });
 
