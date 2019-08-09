@@ -40,17 +40,18 @@ export class ProductService {
     });
   }
 
-  cleanProductFilters(pparams: any, gparams: any) {
+  cleanProductFilters(pparams: any, gparams: any): any {
     let filteredParam = {};
     let product_type = this.filterService.getSelectedTypeID(pparams.product_types);
     let tags = this.filterService.getSelectedTagsCSVs(pparams.tags);
 
-    if (gparams.query !== "") {
-      filteredParam["query"] = gparams.query;
-    }
     filteredParam["latlondis"] = `${gparams.latlondis[0]},${gparams.latlondis[1]},${
       gparams.latlondis[2]
     }`;
+
+    if (gparams.query !== "") {
+      filteredParam["query"] = gparams.query;
+    }
     if (pparams.price !== this.defaultProductFilter.price) {
       filteredParam["price"] = pparams.price;
     }

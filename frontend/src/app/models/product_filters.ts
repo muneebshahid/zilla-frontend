@@ -1,6 +1,6 @@
 export interface IPFilters {
   product_types: Array<any>;
-  tags: Array<number>;
+  tags: Array<any>;
   available: number;
   price: number;
   paginate: boolean;

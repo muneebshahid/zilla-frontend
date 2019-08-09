@@ -4,7 +4,7 @@ import { IPType } from "src/app/models/ptype";
 import { ITags } from "src/app/models/tags";
 import { IBusiness } from "src/app/models/business";
 
-const defaultPrice = 100;
+export const defaultPrice = 100;
 
 export interface IProductState {
   products?: IBusiness[];
