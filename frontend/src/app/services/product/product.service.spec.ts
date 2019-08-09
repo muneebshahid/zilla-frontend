@@ -3,7 +3,7 @@ import { TestBed } from "@angular/core/testing";
 import { ProductService } from "./product.service";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { appReducers } from "src/app/store/reducers/app.reducer";
-import { StoreModule } from "@ngrx/store";
+import { StoreModule, Store } from "@ngrx/store";
 import { IPFilters } from "src/app/models/product_filters";
 import { defaultPrice } from "src/app/store/state/product";
 import { IGFilters } from "src/app/models/general_filters";
@@ -11,12 +11,15 @@ import { defaultLatlonDis } from "src/app/store/state/general";
 import { dummyFilterTypesAllFalse, dummyFilterTags } from "src/app/testing/models";
 import { of } from "rxjs";
 import { HttpService } from "../http/http.service";
+import { UpdateProductFilters, GetSearchProducts } from "src/app/store/actions/product";
+import { IAppState } from "src/app/store/state/app.state";
 
 describe("ProductService", () => {
   let service: ProductService;
   let pParams: IPFilters;
   let gparams: IGFilters;
   let httpServiceSpy;
+  let store: Store<IAppState>;
 
   beforeEach(() => {
     httpServiceSpy = jasmine.createSpyObj("HttpService", ["get"]);
@@ -43,6 +46,8 @@ describe("ProductService", () => {
       query: "",
       city: ""
     };
+    store = TestBed.get(Store);
+    spyOn(store, "dispatch").and.callThrough();
   });
 
   it("should be created", () => {
@@ -125,4 +130,88 @@ describe("ProductService", () => {
     expect(httpServiceSpy.get).toHaveBeenCalled();
     expect(serverResponse).toBe(of());
   });
+
+  it("should getFilterChips with default params", () => {
+    service.setProductFilters(pParams);
+    const chips = service.getFilterChips(pParams);
+    expect(chips.length).toBe(0);
+  });
+
+  it("should getFilterChips with product_type selected", () => {
+    service.setProductFilters(pParams);
+
+    pParams.product_types = dummyFilterTypesAllFalse;
+    pParams.product_types[0].selected = true;
+
+    const chips = service.getFilterChips(pParams);
+    expect(chips[0].id).toBe(11);
+    expect(chips[0].key).toBe("product_types");
+    expect(chips[0].value).toBeUndefined();
+  });
+
+  it("should getFilterChips with tags selected", () => {
+    service.setProductFilters(pParams);
+
+    pParams.tags = dummyFilterTags;
+
+    const chips = service.getFilterChips(pParams);
+
+    expect(chips.length).toBe(2);
+    expect(chips[0].key).toBe("tags");
+    expect(chips[1].key).toBe("tags");
+    expect(chips[0].value).toBe("halal");
+    expect(chips[1].value).toBe("vegan2");
+    expect(chips[0].id).toBe(11);
+    expect(chips[1].id).toBe(13);
+  });
+
+  it("should getFilterChips with tags selected", () => {
+    service.setProductFilters(pParams);
+
+    pParams.price = 2000;
+
+    const chips = service.getFilterChips(pParams);
+    expect(chips[0].id).toBeNull();
+    expect(chips[0].key).toBe("price");
+    expect(chips[0].value).toBe("Price: 2000€");
+  });
+
+  it("should dispatch UpdateProductFilters", () => {
+    const updateProductFiltersAction = new UpdateProductFilters(Object.assign({}, pParams));
+
+    service.setProductFilters(pParams);
+    service.updateProductFilters();
+    expect(store.dispatch).toHaveBeenCalledWith(updateProductFiltersAction);
+  });
+  it("should dispatchSearchProducts", () => {
+    const updateProductFiltersAction = new GetSearchProducts({
+      productParams: pParams,
+      generalParams: gparams
+    });
+
+    service.setProductFilters(pParams);
+    service.dispatchSearchProducts(gparams, false);
+    expect(store.dispatch).toHaveBeenCalledWith(updateProductFiltersAction);
+  });
+
+  it("should return false as the filtersAreDefault", () => {
+    service.setProductFilters(pParams);
+    const changed = service.filterChanged();
+    expect(changed).toBeFalsy();
+  });
+
+  it("should return true as the filters are changed", () => {
+    pParams.price = 2000;
+
+    service.setProductFilters(pParams);
+    const changed = service.filterChanged();
+    expect(changed).toBeTruthy();
+  });
+
+  it("should dispatch 2 actions for getting tags and product_types ", () => {
+    service.getProductFilterData();
+    expect(store.dispatch).toHaveBeenCalledTimes(2);
+  });
+
+  it("should set products ", () => {});
 });
