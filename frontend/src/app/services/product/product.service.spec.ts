@@ -1,3 +1,4 @@
+import { BusinessService } from "src/app/services/business/business.service";
 import { TestBed } from "@angular/core/testing";
 
 import { ProductService } from "./product.service";
@@ -8,7 +9,7 @@ import { IPFilters } from "src/app/models/product_filters";
 import { defaultPrice } from "src/app/store/state/product";
 import { IGFilters } from "src/app/models/general_filters";
 import { defaultLatlonDis } from "src/app/store/state/general";
-import { dummyFilterTypesAllFalse, dummyFilterTags } from "src/app/testing/models";
+import { dummyFilterTypesAllFalse, dummyFilterTags, businessObj } from "src/app/testing/models";
 import { of } from "rxjs";
 import { HttpService } from "../http/http.service";
 import { UpdateProductFilters, GetSearchProducts } from "src/app/store/actions/product";
@@ -18,11 +19,22 @@ describe("ProductService", () => {
   let service: ProductService;
   let pParams: IPFilters;
   let gparams: IGFilters;
-  let httpServiceSpy;
   let store: Store<IAppState>;
+  let httpServiceSpy;
+  let locationServiceSpy;
+  let filterServiceSpy;
 
   beforeEach(() => {
     httpServiceSpy = jasmine.createSpyObj("HttpService", ["get"]);
+    locationServiceSpy = jasmine.createSpyObj("LocationService", ["setDetailLocation"]);
+    filterServiceSpy = jasmine.createSpyObj("FiltersService", [
+      "typeFilterSelected",
+      "tagFilterSelected",
+      "getSelectedTagsCSVs",
+      "getSelectedTypeID",
+      "getSelectedTypeIDObject",
+      "getSelectedTagsObjs"
+    ]);
 
     httpServiceSpy.get.and.returnValue(of());
 
@@ -213,5 +225,108 @@ describe("ProductService", () => {
     expect(store.dispatch).toHaveBeenCalledTimes(2);
   });
 
-  it("should set products ", () => {});
+  it("should set products as a new field using setProducts", () => {
+    expect(service.getProductFilters()).toBeUndefined();
+    const businessService = new BusinessService(
+      httpServiceSpy,
+      filterServiceSpy,
+      store,
+      locationServiceSpy
+    );
+    const markers: any = businessService.getMarkersFromPayload(businessObj);
+    const products: any = businessObj;
+
+    service.setProductFilters(pParams);
+    service.setProducts(products, markers);
+    expect(service.getProducts().length).toBe(2);
+
+    pParams.paginate = true;
+    service.setProductFilters(pParams);
+
+    service.setProducts(products, markers);
+    expect(service.getProducts().length).toBe(4);
+  });
+
+  it("should update productFilters ", () => {
+    pParams.paginate = true;
+    pParams.price = 99;
+    pParams.paginationInfo = [1, 2, 3];
+    pParams.product_types = dummyFilterTypesAllFalse;
+    pParams.tags = dummyFilterTags;
+    pParams.product_types[1].selected = true;
+
+    service.setProductFilters(pParams);
+
+    const prodFilters = service.getProductFilters();
+    expect(prodFilters.paginate).toBe(pParams.paginate);
+    expect(prodFilters.paginationInfo).toBe(pParams.paginationInfo);
+    expect(prodFilters.price).toBe(pParams.price);
+    expect(prodFilters.product_types).toBe(pParams.product_types);
+    expect(prodFilters.tags).toBe(pParams.tags);
+  });
+
+  it("should update setProductFilterTypes ", () => {
+    service.setProductFilters(pParams);
+    pParams.product_types = dummyFilterTypesAllFalse;
+    pParams.product_types[1].selected = true;
+
+    service.setProductFilterTypes(pParams.product_types);
+
+    const types = service.getProductFilterTypes();
+    expect(types[1].selected).toBe(true);
+  });
+
+  it("should update setProductFilterTags ", () => {
+    service.setProductFilters(pParams);
+    pParams.tags = dummyFilterTags;
+    pParams.tags[0].checked = false;
+    pParams.tags[2].checked = false;
+
+    service.setProductFilterTags(pParams.tags);
+
+    const tags = service.getProductFilterTags();
+    expect(tags[0].checked).toBe(false);
+    expect(tags[2].checked).toBe(false);
+  });
+
+  it("should update setProductFilterPrice ", () => {
+    service.setProductFilters(pParams);
+    pParams.price = 123;
+
+    service.setProductFilterPrice(pParams.price);
+
+    const price = service.getProductFilterPrice();
+    expect(price).toBe(123);
+  });
+
+  it("should update setProductHits ", () => {
+    service.setProductHits(10);
+    const hits = service.getProductHits();
+    expect(hits).toBe(10);
+  });
+
+  it("should get http results using getProductDetails ", () => {
+    const response = service.getProductDetails({});
+    expect(httpServiceSpy.get).toHaveBeenCalled();
+    expect(response).toBe(of());
+  });
+
+  it("should get http results using getSearchProducts ", () => {
+    service.setProductFilters(pParams);
+    const response = service.getSearchProducts({ productParams: pParams, generalParams: gparams });
+    expect(httpServiceSpy.get).toHaveBeenCalled();
+    expect(response).toBe(of());
+  });
+
+  it("should get http results using getProductTypes ", () => {
+    const response = service.getProductTypes();
+    expect(httpServiceSpy.get).toHaveBeenCalled();
+    expect(response).toBe(of());
+  });
+
+  it("should get http results using getProductTags ", () => {
+    const response = service.getProductTags();
+    expect(httpServiceSpy.get).toHaveBeenCalled();
+    expect(response).toBe(of());
+  });
 });
