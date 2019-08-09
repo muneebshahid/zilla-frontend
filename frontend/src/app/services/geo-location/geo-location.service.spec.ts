@@ -1,11 +1,14 @@
-import { GoogleMapsAPIWrapper, AgmCoreModule } from "@agm/core";
-import { TestBed } from "@angular/core/testing";
+import { GoogleMapsAPIWrapper, AgmCoreModule, MapsAPILoader } from "@agm/core";
+import { TestBed, async } from "@angular/core/testing";
 
 import { GeoLocationService } from "./geo-location.service";
 import { mapInitObj } from "src/app/app.module";
+import { take } from "rxjs/operators";
+import { inject, NgZone } from "@angular/core";
 
 describe("GeoLocationService", () => {
   let service: GeoLocationService;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [GeoLocationService, GoogleMapsAPIWrapper],

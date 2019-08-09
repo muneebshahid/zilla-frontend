@@ -18,20 +18,24 @@ export class GeoLocationService {
           switch (error.code) {
             case 3:
               // ...deal with timeout
+              console.log("went wrong4");
               observer.next(error);
               observer.complete();
               break;
             case 2:
+              // ...device can't get data
+              console.log("went wrong3");
               observer.next(error);
               observer.complete();
-              // ...device can't get data
               break;
             case 1:
+              // ...user said no :(
+              console.log("went wrong2");
               observer.next(error);
               observer.complete();
               break;
-            // ...user said no ☹️
             default:
+              console.log("went wrong");
               observer.next(error);
               observer.complete();
           }
