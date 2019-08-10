@@ -1,3 +1,4 @@
+import { IBusinessMenu } from "./../models/business_menu";
 import { IBusiness } from "../models/business";
 import { IProduct } from "../models/product";
 
@@ -150,5 +151,58 @@ export const dummyFilterTagsAllFalse = [
     id: 12,
     checked: false,
     tag: "halal2"
+  }
+];
+
+export const businessMenuDummy: IBusinessMenu[] = [
+  {
+    menuItem: [
+      {
+        description: "menu_description1",
+        title: "menu_title1",
+        image: "menu_image1",
+        price: 0
+      },
+      {
+        description: "menu_description2",
+        title: "menu_title2",
+        image: "menu_image2",
+        price: 1
+      },
+      {
+        description: "menu_description3",
+        title: "menu_title3",
+        image: "menu_image3",
+        price: 2
+      }
+    ],
+    menuCategory: "drinks",
+    collapsed: false,
+    name: "drinkss"
+  },
+  {
+    menuItem: [
+      {
+        description: "menu_description21",
+        title: "menu_title21",
+        image: "menu_image21",
+        price: 5
+      },
+      {
+        description: "menu_description22",
+        title: "menu_title22",
+        image: "menu_image22",
+        price: 6
+      },
+      {
+        description: "menu_description23",
+        title: "menu_title23",
+        image: "menu_image23",
+        price: 7
+      }
+    ],
+    menuCategory: "food",
+    collapsed: true,
+    name: "foodd"
   }
 ];
