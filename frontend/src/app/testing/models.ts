@@ -59,14 +59,18 @@ export const productsObj: IProduct[] = [
   {
     product: 0,
     tags: [],
-    images: [],
+    images: [{ file: "" }],
     latlon: [],
-    title: "",
+    title: "dummy title",
     slug: "",
-    description: "",
-    price: 0,
+    description: "dummy description",
+    price: 25,
     available: false,
-    product_type: Object.assign({}),
+    product_type: {
+      tag: "dummy tag",
+      id: 0,
+      selected: false
+    },
     owner: 0,
     expensive: 0,
     address: "",

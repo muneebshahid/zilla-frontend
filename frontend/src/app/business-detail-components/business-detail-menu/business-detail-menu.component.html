@@ -10,12 +10,12 @@
         <a
           (click)="toggleCollapseIcon(i)"
           role="button"
-          class="collapsed"
+          class="collapsed collapse-btn{{ i }}"
           data-toggle="collapse"
           data-parent="#accordion"
           href="javascript:void(0)"
           aria-expanded="true"
-          aria-controls="collapseOne"
+          aria-controls="collapsed"
         >
           {{ businessMenu.menuCategory }}
           <i
@@ -26,7 +26,7 @@
       </h4>
     </div>
     <div
-      id="collapseOne"
+      id="collapse-detail{{ i }}"
       class="panel-collapse collapse {{ businessMenu.name }}"
       role="tabpanel"
       aria-labelledby="headingOne"
