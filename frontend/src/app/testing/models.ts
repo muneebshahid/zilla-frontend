@@ -210,3 +210,34 @@ export const businessMenuDummy: IBusinessMenu[] = [
     name: "foodd"
   }
 ];
+
+export const opening_timingsDummy = [
+  {
+    open: "21:52",
+    close: "07:31"
+  },
+  {
+    open: "09:28",
+    close: "05:11"
+  },
+  {
+    open: "00:34",
+    close: "18:44"
+  },
+  {
+    open: "08:17",
+    close: "11:42"
+  },
+  {
+    open: "05:02",
+    close: "19:31"
+  },
+  {
+    open: "05:39",
+    close: "07:43"
+  },
+  {
+    open: "00:10",
+    close: "04:11"
+  }
+];
