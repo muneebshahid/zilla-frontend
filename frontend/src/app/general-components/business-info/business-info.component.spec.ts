@@ -170,4 +170,14 @@ describe("BusinessInfoComponent", () => {
     component.highlightMarker(1, true);
     expect(store.dispatch).toHaveBeenCalledWith(highlightMarkerAction);
   });
+
+  it("should unsubscribe to subscriptions", () => {
+    const sub1 = of().subscribe();
+    component.subscriptionsArr.push(sub1);
+    const unsubscriber = spyOn(component.subscriptionsArr[0], "unsubscribe");
+
+    component.ngOnDestroy();
+
+    expect(unsubscriber).toHaveBeenCalled();
+  });
 });
