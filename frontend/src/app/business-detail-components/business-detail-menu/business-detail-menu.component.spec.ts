@@ -45,7 +45,9 @@ describe("BusinessDetailMenuComponent", () => {
     const descriptionBlock: HTMLElement = fixture.debugElement.query(By.css("div.description"))
       .nativeElement;
     const titleBlock: HTMLElement = fixture.debugElement.query(By.css("h5")).nativeElement;
+    const chevronIconBlock: HTMLElement = fixture.debugElement.query(By.css("i")).nativeElement;
 
+    expect(chevronIconBlock.classList).toContain("flaticon-right-chevron");
     expect(informationBlock.innerHTML).toContain("$25");
     expect(descriptionBlock.innerHTML).toContain("dummy description".trim());
     expect(titleBlock.innerHTML).toContain("dummy title".trim());
@@ -71,4 +73,26 @@ describe("BusinessDetailMenuComponent", () => {
     expect(collapseDetails.classList).toContain("in");
     expect(component.businessMenus[0].collapsed).toBeFalsy();
   }));
+
+  it("should getBusinessMenuIndex", () => {
+    component.products = productsObj;
+    component.ngOnChanges({});
+    fixture.detectChanges();
+    const categoryid = component.getBusinessMenuIndex("dummy tag");
+    const categoryid2 = component.getBusinessMenuIndex("dummy tag2");
+    expect(categoryid).toBe(0);
+    expect(categoryid2).toBe(-1);
+  });
+  it("should toggleCollapseIcon", () => {
+    component.products = productsObj;
+    component.ngOnChanges({});
+    expect(component.businessMenus[0].collapsed).toBe(true);
+    component.toggleCollapseIcon(0);
+    fixture.detectChanges();
+
+    const chevronIconBlock: HTMLElement = fixture.debugElement.query(By.css("i")).nativeElement;
+
+    expect(component.businessMenus[0].collapsed).toBe(false);
+    expect(chevronIconBlock.classList).toContain("flaticon-down-chevron");
+  });
 });
