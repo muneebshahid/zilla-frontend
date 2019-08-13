@@ -14,6 +14,7 @@ import { cold, getTestScheduler } from "jasmine-marbles";
 import { BusinessService } from "src/app/services/business/business.service";
 import { Marker } from "@agm/core/services/google-maps-types";
 import { dummymarkers } from "src/app/testing/models";
+import { By } from "@angular/platform-browser";
 
 describe("MapComponent", () => {
   let component: MapComponent;
@@ -163,5 +164,11 @@ describe("MapComponent", () => {
     component.ngOnDestroy();
 
     expect(unsubscriber).toHaveBeenCalled();
+  });
+  it("should show 4 agm-marker tags in html", () => {
+    component.markers = dummymarkers;
+    fixture.detectChanges();
+    let markerElement: number = fixture.debugElement.queryAll(By.css(".agm-marker-class")).length;
+    expect(markerElement).toBe(4);
   });
 });
