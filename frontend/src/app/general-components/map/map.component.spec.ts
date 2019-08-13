@@ -54,6 +54,10 @@ describe("MapComponent", () => {
     dummymarkers[1].icon = "icon2";
     dummymarkers[2].icon = "icon3";
     dummymarkers[3].icon = "icon4";
+    dummymarkers[0].highlighted = false;
+    dummymarkers[1].highlighted = true;
+    dummymarkers[2].highlighted = false;
+    dummymarkers[3].highlighted = true;
     component.markers = dummymarkers;
   });
 
@@ -122,5 +126,42 @@ describe("MapComponent", () => {
       highlighted: false
     });
     expect(component.markers[3].icon).toBe(component.normalMarkerIcon);
+  });
+
+  it("should highlight marker on hover", () => {
+    component.highlightMarkeronHover(0);
+    expect(component.markers[0].icon).toBe(component.highlightedMarkerIcon);
+    component.highlightMarkeronHover(1);
+    expect(component.markers[1].icon).toBe(component.normalMarkerIcon);
+  });
+
+  it("should setFocusLocation", () => {
+    component.setFocusLocation(99, 999, 9999);
+    expect(component.location.lat).toBe(99);
+    expect(component.location.lng).toBe(999);
+    expect(component.location.zoom).toBe(9999);
+  });
+  it("should call setFocusLocation using initializeMarkersAndMapZoom", () => {
+    spyOn(component, "setFocusLocation").and.returnValue(null);
+    component.initializeMarkersAndMapZoom();
+    expect(component.setFocusLocation).toHaveBeenCalled();
+  });
+  it("should return new marker obj", () => {
+    let result = component.createMarker(123, 321, 1, "icon_dummy");
+    expect(result.lat).toBe(123);
+    expect(result.lng).toBe(321);
+    expect(result.id).toBe(1);
+    expect(result.icon).toBe("icon_dummy");
+    expect(result.highlighted).toBe(false);
+    expect(result.draggable).toBe(false);
+  });
+  it("should unsubscribe to subscriptions", () => {
+    const sub1 = of().subscribe();
+    component.subscriptionsArr.push(sub1);
+    const unsubscriber = spyOn(component.subscriptionsArr[0], "unsubscribe");
+
+    component.ngOnDestroy();
+
+    expect(unsubscriber).toHaveBeenCalled();
   });
 });
