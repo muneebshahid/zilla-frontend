@@ -1,5 +1,7 @@
 import { Component, Input, ViewChild, OnInit, EventEmitter, Output } from "@angular/core";
 
+import { Marker } from "../../models/marker";
+import { Location } from "../../models/location";
 import { MapsAPILoader, AgmMap } from "@agm/core";
 import { IAppState } from "src/app/store/state/app.state";
 import { Store, select } from "@ngrx/store";
@@ -8,22 +10,6 @@ import { Subscription } from "rxjs";
 import { BusinessService } from "src/app/services/business/business.service";
 
 declare var google: any;
-
-interface Marker {
-  lat: number;
-  lng: number;
-  label?: string;
-  icon?: string;
-  highlighted?: boolean;
-  draggable: boolean;
-  id: number;
-}
-
-interface Location {
-  lat: number;
-  lng: number;
-  zoom: number;
-}
 
 @Component({
   selector: "app-map",
@@ -34,14 +20,14 @@ export class MapComponent implements OnInit {
   @Input() mapClass;
   @Output() openDrawer = new EventEmitter<number>();
   public detailViewZoom = 8;
-  private subscriptionsArr: Subscription[] = [];
+  public subscriptionsArr: Subscription[] = [];
 
   public markerHighlightingSelector = this.store.pipe(select(selectMarkerHighlighting));
   public generalFilterSelector = this.store.pipe(select(selectGeneralFilters));
 
-  private initialMapLocationLat = 48.17669;
-  private initialMapLocationLng = 11.5726359;
-  private initialZoom = 1;
+  public initialMapLocationLat = 48.17669;
+  public initialMapLocationLng = 11.5726359;
+  public initialZoom = 1;
 
   public normalMarkerIcon =
     "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FF0000";
@@ -52,7 +38,7 @@ export class MapComponent implements OnInit {
 
   @ViewChild(AgmMap) map: AgmMap;
 
-  private lastLatLonDis = [1, 2, 3];
+  public lastLatLonDis = [1, 2, 3];
 
   constructor(
     public mapsApiLoader: MapsAPILoader,

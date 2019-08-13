@@ -1,6 +1,7 @@
 import { IBusinessMenu } from "./../models/business_menu";
 import { IBusiness } from "../models/business";
 import { IProduct } from "../models/product";
+import { Marker } from "../models/marker";
 
 export const businessObj: IBusiness[] = [
   {
@@ -15,7 +16,11 @@ export const businessObj: IBusiness[] = [
       phone: "",
       latlon: [1, 2, 3],
       products: [],
-      images: [],
+      images: [
+        {
+          file: ""
+        }
+      ],
       business_type: {
         tag: "",
         id: 0,
@@ -40,7 +45,11 @@ export const businessObj: IBusiness[] = [
       phone: "",
       latlon: [4, 5, 6],
       products: [],
-      images: [],
+      images: [
+        {
+          file: ""
+        }
+      ],
       business_type: {
         tag: "",
         id: 0,
@@ -52,6 +61,45 @@ export const businessObj: IBusiness[] = [
       expensive: 0,
       amenities: []
     }
+  }
+];
+
+export const dummymarkers: Array<Marker> = [
+  {
+    lat: 1,
+    lng: 2,
+    label: "label1",
+    icon: "icon1",
+    highlighted: false,
+    draggable: false,
+    id: 0
+  },
+  {
+    lat: 3,
+    lng: 4,
+    label: "label2",
+    icon: "icon2",
+    highlighted: true,
+    draggable: true,
+    id: 1
+  },
+  {
+    lat: 5,
+    lng: 6,
+    label: "label3",
+    icon: "icon3",
+    highlighted: false,
+    draggable: true,
+    id: 2
+  },
+  {
+    lat: 7,
+    lng: 8,
+    label: "label4",
+    icon: "icon4",
+    highlighted: true,
+    draggable: false,
+    id: 3
   }
 ];
 

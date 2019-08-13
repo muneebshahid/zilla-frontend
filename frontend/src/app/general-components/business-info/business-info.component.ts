@@ -20,7 +20,6 @@ export class BusinessInfoComponent implements OnInit, OnDestroy {
   @Output() public numberOfShownBusinesses = new EventEmitter<number>();
   public subscriptionsArr: Subscription[] = [];
 
-  public businesses: IBusiness[];
   public firstCall: boolean = true;
 
   public businessesSelector = this.store.pipe(select(selectBusinesses));

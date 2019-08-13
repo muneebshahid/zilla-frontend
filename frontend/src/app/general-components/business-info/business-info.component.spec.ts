@@ -13,6 +13,7 @@ import { defaultLatlonDis } from "src/app/store/state/general";
 import { FiltersService } from "src/app/services/filters/filters.service";
 import { IAppState } from "src/app/store/state/app.state";
 import { HighlightMapMarker } from "src/app/store/actions/general";
+import { By } from "@angular/platform-browser";
 
 describe("BusinessInfoComponent", () => {
   let component: BusinessInfoComponent;
@@ -32,7 +33,8 @@ describe("BusinessInfoComponent", () => {
       "setBusinessFilterTypes",
       "updateBusinessFilters",
       "getBusinessFilterTypes",
-      "dispatchSearchBusinesses"
+      "dispatchSearchBusinesses",
+      "getBusinesses"
     ]);
     filterServiceSpy = jasmine.createSpyObj("FilterService", ["selectTypeInFilter"]);
     generalServiceSpy = jasmine.createSpyObj("GeneralService", [
@@ -44,6 +46,7 @@ describe("BusinessInfoComponent", () => {
     businessServiceSpy.dispatchGetBusinessDetail.and.returnValue(null);
     businessServiceSpy.getPendingDetailID.and.returnValue(null);
     businessServiceSpy.getBusinessFilterTypes.and.returnValue(null);
+    businessServiceSpy.getBusinesses.and.returnValue(businessObj);
 
     bparams = {
       amenities: dummyAmenities,
@@ -143,8 +146,13 @@ describe("BusinessInfoComponent", () => {
   });
 
   it("should call dispatchGetBusinessDetail using openDetailDrawer", () => {
+    let businessInfoItem = fixture.debugElement.queryAll(By.css(".business-info-grid-item"));
+    let businessInfoItemNative: HTMLElement = businessInfoItem[0].nativeElement;
+    businessInfoItemNative.click();
+
     component.openDetailDrawer(1);
     expect(businessServiceSpy.dispatchGetBusinessDetail).toHaveBeenCalled();
+    expect(businessServiceSpy.dispatchGetBusinessDetail).toHaveBeenCalledTimes(2);
   });
 
   it("should updateBusinessTypeSelection", () => {
@@ -162,13 +170,30 @@ describe("BusinessInfoComponent", () => {
     expect(component.updateBusinessTypeSelection).toHaveBeenCalled();
   });
 
-  it("should HighlightMarker", () => {
+  it("should HighlightMarker also simulate using the mouseenter and mouseleave events", () => {
+    let businessInfoItem = fixture.debugElement.queryAll(By.css(".business-info-grid-item"));
+    let businessInfoItemNative: HTMLElement = businessInfoItem[0].nativeElement;
+
     const highlightMarkerAction = new HighlightMapMarker({
-      highlightedMarkerID: 1,
+      highlightedMarkerID: 0,
       highlighted: true
     });
-    component.highlightMarker(1, true);
+    const highlightMarkerAction2 = new HighlightMapMarker({
+      highlightedMarkerID: 0,
+      highlighted: false
+    });
+
+    const mouseenter = new MouseEvent("mouseenter");
+    const mouseleave = new MouseEvent("mouseleave");
+    businessInfoItemNative.dispatchEvent(mouseenter);
+    businessInfoItemNative.dispatchEvent(mouseleave);
+
+    component.highlightMarker(0, true);
+
+    expect(businessInfoItem.length).toBe(2);
     expect(store.dispatch).toHaveBeenCalledWith(highlightMarkerAction);
+    expect(store.dispatch).toHaveBeenCalledWith(highlightMarkerAction2);
+    expect(store.dispatch).toHaveBeenCalledTimes(3);
   });
 
   it("should unsubscribe to subscriptions", () => {
