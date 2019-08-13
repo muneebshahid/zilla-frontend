@@ -107,7 +107,7 @@ describe("BusinessInfoComponent", () => {
     expect(numBusinessSpyOn).toHaveBeenCalled();
     expect(businessServiceSpy.getPendingDetailID).toHaveBeenCalled();
     expect(businessServiceSpy.dispatchGetBusinessDetail).not.toHaveBeenCalled();
-    expect(component.subscriptionsArr.length).toBeGreaterThan(0);
+    expect(component.subscriptionsArr.length).toBeGreaterThan(2);
   });
   it("should emit shownBusinesses, set firstCall, call getPendingDetailID, call dispatchGetBusinessDetail", () => {
     businessServiceSpy.getPendingDetailID.and.returnValue(1);

@@ -20,7 +20,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   public productsFilterSelector = this.store.pipe(select(selectProductFilter));
   public businessesFilterSelector = this.store.pipe(select(selectBusinessFilter));
 
-  private subscriptionsArr: Subscription[] = [];
+  public subscriptionsArr: Subscription[] = [];
   public searchText: string;
 
   constructor(

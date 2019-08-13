@@ -74,7 +74,7 @@ describe("MapComponent", () => {
     component.ngOnInit();
     expect(component.markerHighlightingSelector.subscribe).toHaveBeenCalled();
     expect(component.generalFilterSelector.subscribe).toHaveBeenCalled();
-    expect(component.subscriptionsArr.length).toBe(4);
+    expect(component.subscriptionsArr.length).toBeGreaterThan(1);
     expect(component.location.lat).toBe(component.initialMapLocationLat);
     expect(component.location.lng).toBe(component.initialMapLocationLng);
     expect(component.location.zoom).toBe(component.initialZoom);
