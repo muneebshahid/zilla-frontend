@@ -26,18 +26,18 @@ import { BusinessService } from "src/app/services/business/business.service";
   styleUrls: ["./home-drawers-container.component.css"]
 })
 export class HomeDrawersContainerComponent implements OnInit, OnDestroy {
-  @Output() private setLatLonDis = new EventEmitter<Array<number>>();
-  @Output() private putTemporaryMarkerOnMap = new EventEmitter<IBusiness>();
-  @Output() private removeTemporaryMarkerOnMap = new EventEmitter<IBusiness>();
+  @Output() public setLatLonDis = new EventEmitter<Array<number>>();
+  @Output() public putTemporaryMarkerOnMap = new EventEmitter<IBusiness>();
+  @Output() public removeTemporaryMarkerOnMap = new EventEmitter<IBusiness>();
   constructor(
     private store: Store<IAppState>,
     private resolver: ComponentFactoryResolver,
     private location: LocationService,
     private businessService: BusinessService
   ) {}
-  private businessSelector = this.store.pipe(select(selectBusiness));
-  private closeDrawerSelector = this.store.pipe(select(selectCloseDetailDrawer));
-  private subscriptionsArr: Subscription[] = [];
+  public businessSelector = this.store.pipe(select(selectBusiness));
+  public closeDrawerSelector = this.store.pipe(select(selectCloseDetailDrawer));
+  public subscriptionsArr: Subscription[] = [];
   public business: IBusiness;
 
   componentRef: any;
