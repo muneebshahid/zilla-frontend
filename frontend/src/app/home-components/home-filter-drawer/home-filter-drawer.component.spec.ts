@@ -17,7 +17,9 @@ import { of } from "rxjs";
 
 const activatedRouteStub = {
   paramMap: {
-    subscribe() {}
+    subscribe() {
+      return of();
+    }
   }
 };
 
@@ -67,7 +69,7 @@ describe("HomeFilterDrawerComponent", () => {
   it("should check if subscribes are called in init", () => {
     const initSubSpy = spyOn(component, "initializeSubscribers");
     const latlonSubSpy = spyOn(component, "getLocationLatLon");
-    const subRouteSpy = spyOn(activatedRouteStub.paramMap, "subscribe").and.returnValue(of());
+    const subRouteSpy = spyOn(activatedRouteStub.paramMap, "subscribe");
     component.ngOnInit();
     expect(businessServiceSpy.getBusinessFilterData).toHaveBeenCalled();
     expect(productServiceSpy.getProductFilterData).toHaveBeenCalled();
