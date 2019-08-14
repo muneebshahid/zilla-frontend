@@ -13,7 +13,7 @@ import { HomeListingsComponent } from "../home-listings/home-listings.component"
 export class HomeComponent implements OnInit, OnDestroy {
   mapClass = "agm-map-home";
 
-  private subscriptionsArr: Subscription[] = [];
+  public subscriptionsArr: Subscription[] = [];
   public isLoadingSelector = this.store.pipe(select(selectIsLoading));
 
   loading = false;
