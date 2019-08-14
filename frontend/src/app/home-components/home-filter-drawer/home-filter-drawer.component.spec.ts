@@ -10,15 +10,40 @@ import { GoogleMapsAPIWrapper, AgmCoreModule } from "@agm/core";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { mapInitObj } from "src/app/app.module";
+import { ActivatedRoute } from "@angular/router";
+import { ProductService } from "src/app/services/product/product.service";
+import { BusinessService } from "src/app/services/business/business.service";
+import { of } from "rxjs";
+
+const activatedRouteStub = {
+  paramMap: {
+    subscribe() {}
+  }
+};
 
 describe("HomeFilterDrawerComponent", () => {
   let component: HomeFilterDrawerComponent;
   let fixture: ComponentFixture<HomeFilterDrawerComponent>;
-
+  let businessServiceSpy;
+  let productServiceSpy;
   beforeEach(async(() => {
+    businessServiceSpy = jasmine.createSpyObj("BusinessService", [
+      "getBusinessFilterData",
+      "setBusinessFilter",
+      "getBusinessFilterAmenities",
+      "getBusinessFilterTypes"
+    ]);
+    productServiceSpy = jasmine.createSpyObj("ProductService", ["getProductFilterData"]);
+
     TestBed.configureTestingModule({
       declarations: [HomeFilterDrawerComponent],
-      providers: [GeoLocationService, GoogleMapsAPIWrapper],
+      providers: [
+        GeoLocationService,
+        GoogleMapsAPIWrapper,
+        { provide: ActivatedRoute, useValue: activatedRouteStub },
+        { provide: ProductService, useValue: productServiceSpy },
+        { provide: BusinessService, useValue: businessServiceSpy }
+      ],
       imports: [
         NgSelectModule,
         FormsModule,
@@ -38,5 +63,16 @@ describe("HomeFilterDrawerComponent", () => {
 
   it("should create", () => {
     expect(component).toBeTruthy();
+  });
+  it("should check if subscribes are called in init", () => {
+    const initSubSpy = spyOn(component, "initializeSubscribers");
+    const latlonSubSpy = spyOn(component, "getLocationLatLon");
+    const subRouteSpy = spyOn(activatedRouteStub.paramMap, "subscribe").and.returnValue(of());
+    component.ngOnInit();
+    expect(businessServiceSpy.getBusinessFilterData).toHaveBeenCalled();
+    expect(productServiceSpy.getProductFilterData).toHaveBeenCalled();
+    expect(initSubSpy).toHaveBeenCalled();
+    expect(latlonSubSpy).toHaveBeenCalled();
+    expect(subRouteSpy).toHaveBeenCalled();
   });
 });
