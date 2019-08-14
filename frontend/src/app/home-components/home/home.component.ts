@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, ViewChild } from "@angular/core";
 import { Subscription } from "rxjs";
 import { select, Store } from "@ngrx/store";
 import { IAppState } from "src/app/store/state/app.state";
 import { selectIsLoading } from "src/app/store/selectors/general";
+import { HomeListingsComponent } from "../home-listings/home-listings.component";
 
 @Component({
   selector: "app-home",

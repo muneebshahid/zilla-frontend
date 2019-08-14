@@ -114,7 +114,10 @@ export class ProductService {
       }
     }
 
-    if (this.productFilter.price !== this.defaultProductFilter.price) {
+    if (
+      this.productFilter !== undefined &&
+      this.productFilter.price !== this.defaultProductFilter.price
+    ) {
       selectedFilters.push({
         key: objectKeys[3],
         value: "Price: " + this.productFilter.price + "€",

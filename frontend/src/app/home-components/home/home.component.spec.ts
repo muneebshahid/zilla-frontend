@@ -20,7 +20,6 @@ import { RouterTestingModule } from "@angular/router/testing";
 describe("HomeComponent", () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -48,7 +47,7 @@ describe("HomeComponent", () => {
     fixture.detectChanges();
   });
 
-  // it("should create", () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it("should create", () => {
+    expect(component).toBeTruthy();
+  });
 });

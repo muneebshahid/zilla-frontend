@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { IProduct } from "../models/product";
 import { IAmenities } from "../models/amenities";
 import { IBusiness } from "../models/business";
@@ -55,6 +55,11 @@ export class BusinessDetailMapComponent {
   @Input() phone: string;
   @Input() website: string;
 }
+@Component({ selector: "app-m-filter-map-menu", template: "" })
+export class MFilterMapMenuComponent {
+  @Output() setMobileMapView = new EventEmitter<string>();
+  @Input() searchBarEnabled = true;
+}
 
 @Component({ selector: "app-map", template: "" })
 export class MapComponent {
@@ -89,13 +94,13 @@ export class LoadingComponent {}
 
 @Component({ selector: "app-home-listings", template: "" })
 export class HomeListingComponent {
-  @Input() public mapComponent: MapComponent;
+  @Input() public mapComponent: MapComponent = new MapComponent();
 }
 @Component({ selector: "app-home-drawers-container", template: "" })
 export class HomeDrawersContainerComponent {}
 @Component({ selector: "app-home-filter-drawer", template: "" })
 export class HomeFilterDrawerComponent {}
-@Component({ selector: "app-add-listing", template: "" })
+@Component({ selector: "app-filter-drawer", template: "" })
 export class AddListingComponent {}
 @Component({ selector: "app-product-info", template: "" })
 export class ProductInfoComponent {
