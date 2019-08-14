@@ -28,7 +28,7 @@ import { GeneralService } from "src/app/services/general/general.service";
   styleUrls: ["./product-info.component.css"]
 })
 export class ProductInfoComponent implements OnInit, OnDestroy {
-  private subscriptionsArr: Subscription[] = [];
+  public subscriptionsArr: Subscription[] = [];
   @Input() public homePage = false;
   @Output() public numberOfShownProducts = new EventEmitter<number>();
 

@@ -4,8 +4,8 @@
     (mouseenter)="highlightMarker(business.business.id, true)"
     (mouseleave)="highlightMarker(business.business.id, false)"
     target="_blank"
-    class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450"
-    *ngFor="let business of productsSelector | async"
+    class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450 product-parent-tag"
+    *ngFor="let business of productService.getProducts()"
     #businessesParentTag
   >
     <span *ngFor="let product of business.business.products">
