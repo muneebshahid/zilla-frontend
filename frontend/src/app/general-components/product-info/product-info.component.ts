@@ -1,15 +1,5 @@
 import { IBusiness } from "src/app/models/business";
-import { IProduct } from "src/app/models/product";
-import {
-  Component,
-  OnInit,
-  Input,
-  QueryList,
-  ViewChildren,
-  OnDestroy,
-  Output,
-  EventEmitter
-} from "@angular/core";
+import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { selectProducts, selectProductFilter } from "src/app/store/selectors/product";
 import { select, Store } from "@ngrx/store";
