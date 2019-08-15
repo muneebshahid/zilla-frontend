@@ -14,6 +14,7 @@ import { FiltersService } from "src/app/services/filters/filters.service";
 import { IAppState } from "src/app/store/state/app.state";
 import { HighlightMapMarker } from "src/app/store/actions/general";
 import { By } from "@angular/platform-browser";
+import { dummyBusinessServiceSpy, dummyGeneralServiceSpy } from "src/app/testing/dummy_spies";
 
 describe("BusinessInfoComponent", () => {
   let component: BusinessInfoComponent;
@@ -26,21 +27,9 @@ describe("BusinessInfoComponent", () => {
   let store: Store<IAppState>;
 
   beforeEach(async () => {
-    businessServiceSpy = jasmine.createSpyObj("BusinessService", [
-      "dispatchGetBusinessDetail",
-      "getPendingDetailID",
-      "setBusinessFilter",
-      "setBusinessFilterTypes",
-      "updateBusinessFilters",
-      "getBusinessFilterTypes",
-      "dispatchSearchBusinesses",
-      "getBusinesses"
-    ]);
-    filterServiceSpy = jasmine.createSpyObj("FilterService", ["selectTypeInFilter"]);
-    generalServiceSpy = jasmine.createSpyObj("GeneralService", [
-      "setGeneralFilters",
-      "getGeneralFilters"
-    ]);
+    businessServiceSpy = dummyBusinessServiceSpy;
+    filterServiceSpy = dummyFilterServiceSpy;
+    generalServiceSpy = dummyGeneralServiceSpy;
 
     filterServiceSpy.selectTypeInFilter.and.returnValue(null);
     businessServiceSpy.dispatchGetBusinessDetail.and.returnValue(null);

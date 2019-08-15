@@ -1,4 +1,3 @@
-import { IProduct } from "src/app/models/product";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { BusinessDetailContainerComponent } from "./business-detail-container.component";

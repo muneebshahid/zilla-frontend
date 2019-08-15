@@ -110,3 +110,6 @@ export class ProductInfoComponent {
 export class BusinessInfoComponent {
   @Input() public homePage = false;
 }
+
+@Component({ selector: "app-footer", template: "" })
+export class FooterComponent {}

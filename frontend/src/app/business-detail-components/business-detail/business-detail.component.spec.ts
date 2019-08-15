@@ -10,7 +10,9 @@ import {
   MHomeMenuDrawerComponent,
   MMenuComponent,
   MenuComponent,
-  DetailHeaderGalleryComponent
+  DetailHeaderGalleryComponent,
+  BusinessDetailContainerComponent,
+  FooterComponent
 } from "src/app/testing/dummy_components";
 
 @Component({ selector: "app-detail-header", template: "" })
@@ -25,14 +27,6 @@ class DetailHeaderComponent {
   @Input() open_or_available: string = "Closed";
   @Input() is_open_or_available: boolean = true;
 }
-
-@Component({ selector: "app-business-detail-container", template: "" })
-class BusinessDetailContainerComponent {
-  @Input() business: IBusiness;
-}
-
-@Component({ selector: "app-footer", template: "" })
-class FooterComponent {}
 
 describe("BusinessDetailComponent", () => {
   let component: BusinessDetailComponent;
