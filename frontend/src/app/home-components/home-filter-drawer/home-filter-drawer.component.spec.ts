@@ -1,6 +1,7 @@
 import { FormsModule } from "@angular/forms";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
+import { cold, getTestScheduler } from "jasmine-marbles";
 import { HomeFilterDrawerComponent } from "./home-filter-drawer.component";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { StoreModule } from "@ngrx/store";
@@ -38,7 +39,11 @@ describe("HomeFilterDrawerComponent", () => {
       "getBusinessFilterAmenities",
       "getBusinessFilterTypes",
       "setBusinessFilterTypes",
-      "setBusinessFilterAmenities"
+      "setBusinessFilterAmenities",
+      "setPendingDetailID",
+      "getBusinessFilter",
+      "updateBusinessFilters",
+      "dispatchSearchBusinesses"
     ]);
     productServiceSpy = jasmine.createSpyObj("ProductService", [
       "getProductFilterData",
@@ -82,6 +87,7 @@ describe("HomeFilterDrawerComponent", () => {
   it("should create", () => {
     expect(component).toBeTruthy();
   });
+
   it("should check if subscribes are called in init", () => {
     const initSubSpy = spyOn(component, "initializeSubscribers");
     const latlonSubSpy = spyOn(component, "getLocationLatLon");
@@ -92,5 +98,26 @@ describe("HomeFilterDrawerComponent", () => {
     expect(initSubSpy).toHaveBeenCalled();
     expect(latlonSubSpy).toHaveBeenCalled();
     expect(subRouteSpy).toHaveBeenCalled();
+  });
+
+  it("should setPendingDetailID in routeParam subscribe", () => {
+    const observableParam = cold('a|',{ a: { params: { business_slug: 1, business_id: 1 } }});
+    routeStub.paramMap = observableParam;
+    component.ngOnInit();
+
+    getTestScheduler().flush();
+    fixture.detectChanges();
+
+    expect(businessServiceSpy.setPendingDetailID).toHaveBeenCalledWith(1);
+  });
+  it("should not setPendingDetailID in routeParam subscribe", () => {
+    const observableParam = cold('a|',{ a: { params: { business_slug: undefined } }});
+    routeStub.paramMap = observableParam;
+    component.ngOnInit();
+
+    getTestScheduler().flush();
+    fixture.detectChanges();
+
+    expect(businessServiceSpy.setPendingDetailID).not.toHaveBeenCalledWith(1);
   });
 });
