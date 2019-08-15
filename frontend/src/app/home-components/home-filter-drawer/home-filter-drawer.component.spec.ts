@@ -14,6 +14,7 @@ import { ActivatedRoute } from "@angular/router";
 import { ProductService } from "src/app/services/product/product.service";
 import { BusinessService } from "src/app/services/business/business.service";
 import { of } from "rxjs";
+import { FiltersService } from "src/app/services/filters/filters.service";
 
 const activatedRouteStub = {
   paramMap: {
@@ -28,6 +29,8 @@ describe("HomeFilterDrawerComponent", () => {
   let fixture: ComponentFixture<HomeFilterDrawerComponent>;
   let businessServiceSpy;
   let productServiceSpy;
+  let routeStub;
+  let filterServiceSpy;
   beforeEach(async(() => {
     businessServiceSpy = jasmine.createSpyObj("BusinessService", [
       "getBusinessFilterData",
@@ -35,7 +38,12 @@ describe("HomeFilterDrawerComponent", () => {
       "getBusinessFilterAmenities",
       "getBusinessFilterTypes"
     ]);
-    productServiceSpy = jasmine.createSpyObj("ProductService", ["getProductFilterData"]);
+    productServiceSpy = jasmine.createSpyObj("ProductService", [
+      "getProductFilterData",
+      "setProductFilters",
+      "getProductFilterTags"
+    ]);
+    filterServiceSpy = jasmine.createSpyObj("FilterService", ["getSelectedTypeID"]);
 
     TestBed.configureTestingModule({
       declarations: [HomeFilterDrawerComponent],
@@ -44,6 +52,7 @@ describe("HomeFilterDrawerComponent", () => {
         GoogleMapsAPIWrapper,
         { provide: ActivatedRoute, useValue: activatedRouteStub },
         { provide: ProductService, useValue: productServiceSpy },
+        { provide: FiltersService, useValue: filterServiceSpy },
         { provide: BusinessService, useValue: businessServiceSpy }
       ],
       imports: [
@@ -55,6 +64,8 @@ describe("HomeFilterDrawerComponent", () => {
         RouterTestingModule
       ]
     }).compileComponents();
+
+    routeStub = TestBed.get(ActivatedRoute);
   }));
 
   beforeEach(() => {
@@ -69,7 +80,7 @@ describe("HomeFilterDrawerComponent", () => {
   it("should check if subscribes are called in init", () => {
     const initSubSpy = spyOn(component, "initializeSubscribers");
     const latlonSubSpy = spyOn(component, "getLocationLatLon");
-    const subRouteSpy = spyOn(activatedRouteStub.paramMap, "subscribe");
+    const subRouteSpy = spyOn(routeStub.paramMap, "subscribe");
     component.ngOnInit();
     expect(businessServiceSpy.getBusinessFilterData).toHaveBeenCalled();
     expect(productServiceSpy.getProductFilterData).toHaveBeenCalled();
