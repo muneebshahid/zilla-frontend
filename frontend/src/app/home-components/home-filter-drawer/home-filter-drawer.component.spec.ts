@@ -36,12 +36,17 @@ describe("HomeFilterDrawerComponent", () => {
       "getBusinessFilterData",
       "setBusinessFilter",
       "getBusinessFilterAmenities",
-      "getBusinessFilterTypes"
+      "getBusinessFilterTypes",
+      "setBusinessFilterTypes",
+      "setBusinessFilterAmenities"
     ]);
     productServiceSpy = jasmine.createSpyObj("ProductService", [
       "getProductFilterData",
       "setProductFilters",
-      "getProductFilterTags"
+      "getProductFilterTags",
+      "getProductFilterTypes",
+      "setProductFilterTags",
+      "setProductFilterTypes"
     ]);
     filterServiceSpy = jasmine.createSpyObj("FilterService", ["getSelectedTypeID"]);
 
