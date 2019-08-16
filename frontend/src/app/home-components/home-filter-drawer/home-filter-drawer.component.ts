@@ -30,7 +30,7 @@ declare var jQuery: any;
   styleUrls: ["./home-filter-drawer.component.css"]
 })
 export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewInit {
-  private subscriptionsArr: Subscription[] = [];
+  public subscriptionsArr: Subscription[] = [];
 
   /* general */
   public showingBusinessesSelector = this.store.pipe(select(selectShowingBusinesses));
@@ -74,7 +74,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
 
   constructor(
     private store: Store<IAppState>,
-    private geoLocationService: GeoLocationService,
+    public geoLocationService: GeoLocationService,
     private filterService: FiltersService,
     private generalService: GeneralService,
     private businessService: BusinessService,

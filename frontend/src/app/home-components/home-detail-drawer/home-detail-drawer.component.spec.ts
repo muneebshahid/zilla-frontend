@@ -12,10 +12,13 @@ import { ElementRef } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { IAppState } from "src/app/store/state/app.state";
 import { UpdateCloseDetailDrawer } from "src/app/store/actions/general";
-import { MockElementRef } from "src/app/testing/dummy_spies";
 
 declare var jQuery: any;
-
+export class MockElementRef extends ElementRef {
+  constructor() {
+    super(null);
+  }
+}
 describe("HomeDetailDrawerComponent", () => {
   let component: HomeDetailDrawerComponent;
   let fixture: ComponentFixture<HomeDetailDrawerComponent>;

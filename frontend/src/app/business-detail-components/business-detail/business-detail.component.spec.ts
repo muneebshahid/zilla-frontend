@@ -22,7 +22,6 @@ class DetailHeaderComponent {
   @Input() title: string;
   @Input() address: string;
   @Input() phone: string;
-  @Input() expensive: number;
   @Input() tags: Array<string>;
   @Input() open_or_available: string = "Closed";
   @Input() is_open_or_available: boolean = true;
