@@ -588,8 +588,48 @@ describe("HomeFilterDrawerComponent", () => {
     expect(component.selectedTags[0].checked).toBe(false);
   });
   it("should test dropDownChanged", () => {
-    component.dropDownChanged(dummyFilterTypes[0]);
+    let data = [
+      {
+        id: 11,
+        selected: false,
+        tag: "halal1"
+      },
+      {
+        id: 12,
+        selected: false,
+        tag: "halal2"
+      },
+      {
+        id: 13,
+        selected: false,
+        tag: "halal3"
+      }
+    ];
+    let data2 = [
+      {
+        id: 11,
+        selected: true,
+        tag: "halal1"
+      },
+      {
+        id: 12,
+        selected: false,
+        tag: "halal2"
+      },
+      {
+        id: 13,
+        selected: false,
+        tag: "halal3"
+      }
+    ];
+    filterServiceSpy.selectTypeInFilter.and.returnValue(data2);
+    component.selectedTypes = data;
+    fixture.detectChanges();
+
+    component.dropDownChanged(data[0]);
+
     expect(filterServiceSpy.selectTypeInFilter).toHaveBeenCalled();
+    expect(component.selectedTypes[0].selected).toBe(true);
   });
   it("should test searchBusinesses", () => {
     component.searchBusinesses(bparams, gparams);
@@ -598,9 +638,11 @@ describe("HomeFilterDrawerComponent", () => {
     expect(businessServiceSpy.dispatchSearchBusinesses).toHaveBeenCalledWith(gparams);
   });
   it("should test searchProducts", () => {
-    component.searchProducts(bparams, gparams);
+    component.searchProducts(pParams, gparams);
     expect(productServiceSpy.setProductFilters).toHaveBeenCalledWith(pParams);
     expect(productServiceSpy.updateProductFilters).toHaveBeenCalled();
     expect(productServiceSpy.dispatchSearchProducts).toHaveBeenCalledWith(gparams);
   });
+
+  it("should set dropdown value in html also", () => {});
 });
