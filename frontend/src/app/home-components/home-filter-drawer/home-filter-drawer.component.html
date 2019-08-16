@@ -96,7 +96,7 @@
                 <label for="use_search_distance">
                   Radius:
                   <span class="text-distance" #textDistance>{{
-                    generalService.generalFilters.latlondis[2]
+                    generalService.getGeneralFilters().latlondis[2]
                   }}</span>
                   km
                 </label>
@@ -108,7 +108,7 @@
                   type="hidden"
                   name="search_distance"
                   id="search_distance"
-                  [value]="generalService.generalFilters.latlondis[2]"
+                  [value]="generalService.getGeneralFilters().latlondis[2]"
                 />
                 <div
                   #searchDistanceSlider
@@ -119,7 +119,7 @@
                     #distanceCustomHandle
                     id="distance-custom-handle"
                     class="ui-slider-handle ui-state-default ui-corner-all"
-                    [attr.data-value]="generalService.generalFilters.latlondis[2]"
+                    [attr.data-value]="generalService.getGeneralFilters().latlondis[2]"
                     style="left: 50%;"
                   ></div>
                   <div
@@ -134,7 +134,7 @@
                 <label for="use_search_distance">
                   Price:
                   <span class="text-distance" #textPrice>{{
-                    productService.productFilter.price
+                    productService.getProductFilters().price
                   }}</span>
                   €
                 </label>
@@ -146,7 +146,7 @@
                   type="hidden"
                   name="search_distance"
                   id="search_distance"
-                  [value]="productService.productFilter.price"
+                  [value]="productService.getProductFilters().price"
                 />
                 <div
                   #searchPriceSlider
@@ -157,7 +157,7 @@
                     #priceCustomHandle
                     id="distance-custom-handle"
                     class="ui-slider-handle ui-state-default ui-corner-all"
-                    [attr.data-value]="productService.productFilter.price"
+                    [attr.data-value]="productService.getProductFilters().price"
                     style="left: 50%;"
                   ></div>
                   <div

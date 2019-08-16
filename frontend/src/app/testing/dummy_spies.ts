@@ -39,7 +39,11 @@ export const dummyBusinessServiceSpy = jasmine.createSpyObj("BusinessService", [
   "setPendingDetailID",
   "getBusinessFilter",
   "updateBusinessFilters",
-  "dispatchSearchBusinesses"
+  "dispatchSearchBusinesses",
+
+  "getPendingDetailID",
+  "getBusinesses",
+  "dispatchGetBusinessDetail"
 ]);
 
 export const dummyMapComponentSpy = jasmine.createSpyObj("MapComponent", ["setFocusLocation"]);

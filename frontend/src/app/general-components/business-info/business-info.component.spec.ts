@@ -82,12 +82,13 @@ describe("BusinessInfoComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BusinessInfoComponent);
     component = fixture.componentInstance;
+    component.ngOnInit();
     fixture.detectChanges();
   });
 
-  // it("should create", () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it("should create", () => {
+    expect(component).toBeTruthy();
+  });
   it("should call subscribe in ngOnInit for getting businesses", () => {
     spyOn(component.businessesSelector, "subscribe").and.returnValue(of(businessObj));
     spyOn(component.generalFiltersSelector, "subscribe").and.returnValue(of(gparams));
