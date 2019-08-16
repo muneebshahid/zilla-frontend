@@ -205,7 +205,7 @@ describe("BusinessInfoComponent", () => {
     const sub1 = of().subscribe();
     component.subscriptionsArr.push(sub1);
     const unsubscriber = spyOn(component.subscriptionsArr[0], "unsubscribe");
-
+    unsubscriber.and.callThrough();
     component.ngOnDestroy();
 
     expect(unsubscriber).toHaveBeenCalled();

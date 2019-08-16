@@ -174,7 +174,11 @@
               <div class="tags-wrap active">
                 <ul class="row job_tags">
                   <li class="col-xs-6" *ngFor="let tag of selectedTags; let i = index">
-                    <label for="tag_filter_{{ i }}" [ngClass]="tag.checked ? 'active' : ''">
+                    <label
+                      for="tag_filter_{{ i }}"
+                      class="tag_filter_lbl{{ i }}"
+                      [ngClass]="tag.checked ? 'active' : ''"
+                    >
                       <!-- <input
                         type="checkbox"
                         name="filter_job_amenity"

@@ -644,5 +644,35 @@ describe("HomeFilterDrawerComponent", () => {
     expect(productServiceSpy.dispatchSearchProducts).toHaveBeenCalledWith(gparams);
   });
 
-  it("should set dropdown value in html also", () => {});
+  it("should select a tag in filter drawer", fakeAsync(() => {
+    component.selectedTags = [
+      {
+        id: 11,
+        checked: false,
+        tag: "halal"
+      },
+      {
+        id: 12,
+        checked: false,
+        tag: "halal2"
+      }
+    ];
+    fixture.detectChanges();
+    let filterCheckBox1: HTMLElement = fixture.debugElement.query(By.css("#tag_filter_0"))
+      .nativeElement;
+    let filterTag1: HTMLElement = fixture.debugElement.query(By.css(".tag_filter_lbl0"))
+      .nativeElement;
+    filterCheckBox1.click();
+    fixture.detectChanges();
+    tick(1000);
+    expect(filterTag1.classList).toContain("active");
+  }));
+  it("should click on filter drawer search button", () => {
+    let filterSpy = spyOn(component, "applyFilters");
+    let submitFilters: HTMLElement = fixture.debugElement.query(By.css(".wpcf7-submit"))
+      .nativeElement;
+
+    submitFilters.click();
+    expect(filterSpy).toHaveBeenCalled();
+  });
 });
