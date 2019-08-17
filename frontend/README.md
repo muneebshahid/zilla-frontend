@@ -3,6 +3,10 @@
 To run the project. Perform the following steps.
 
 - Run `npm install` in the project root (frontend) directory.
+- `npm install` will install angular locally. Therefore add `/frontend/nodemodules/.bin` to `PATH` like so 
+```
+export PATH="$PATH:/frontend/node_modules/.bin/"
+```
 - Run `ng serve`
 
 ## Before starting Development.
