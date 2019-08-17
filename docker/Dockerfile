@@ -8,7 +8,7 @@ RUN npm i
 
 ENV PATH "$PATH:/frontend/node_modules/.bin/"
 
-COPY ./scripts/docker/entrypoint_f.sh entrypoint.sh
+COPY ./zilla-frontend/docker/entrypoint.sh entrypoint.sh
 
 RUN chmod +x entrypoint.sh
 
