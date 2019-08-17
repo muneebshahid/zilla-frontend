@@ -1,0 +1,17 @@
+.git
+.gitignore
+.gitkeep
+.ipynb_checkpoints
+Dockerfile
+.DS_Store
+env.*
+*.pyc
+__pycache__
+*.log
+backend/media/business/*
+backend/media/product/*
+backend/internal/migrations/*
+# To prevent storing dev/temporary container data
+*.csv
+tmp
+frontend/node_modules/*
