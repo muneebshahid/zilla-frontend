@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: "http://localhost:8000",
+  apiEndpoint: "http://localhost:80" //for docker
+  // apiEndpoint: "http://localhost:8000",
 
   exploreUrl: "a",
   productUrl: "p",
