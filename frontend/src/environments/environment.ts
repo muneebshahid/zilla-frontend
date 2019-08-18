@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: "http://localhost/back/",
+  apiEndpoint: "http://localhost:81",
 
   exploreUrl: "a",
   productUrl: "p",
