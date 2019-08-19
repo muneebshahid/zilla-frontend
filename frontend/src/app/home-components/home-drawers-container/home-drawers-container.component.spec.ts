@@ -63,15 +63,6 @@ describe("HomeDrawersContainerComponent", () => {
   it("should create", () => {
     expect(component).toBeTruthy();
   });
-  it("should call subscribtions in ngOnInit", () => {
-    spyOn(component.businessSelector, "subscribe").and.returnValue(of());
-    spyOn(component.closeDrawerSelector, "subscribe").and.returnValue(of());
-    component.ngOnInit();
-    fixture.detectChanges();
-    expect(component.businessSelector.subscribe).toHaveBeenCalled();
-    expect(component.closeDrawerSelector.subscribe).toHaveBeenCalled();
-    expect(component.subscriptionsArr.length).toBeGreaterThan(1);
-  });
 
   it("should call internal business subscription without putTemporaryMarkerOnMap", () => {
     let businessParam = cold("a|", { a: businessObj[0] });

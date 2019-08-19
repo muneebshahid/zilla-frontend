@@ -65,18 +65,6 @@ describe("MenuComponent", () => {
   it("should create", () => {
     expect(component).toBeTruthy();
   });
-  it("should call ngOnInit subscribers", () => {
-    spyOn(component.generalFiltersSelector, "subscribe").and.returnValue(of());
-    spyOn(component.businessesFilterSelector, "subscribe").and.returnValue(of());
-    spyOn(component.productsFilterSelector, "subscribe").and.returnValue(of());
-    spyOn(component.showingBusinessesSelector, "subscribe").and.returnValue(of());
-    component.ngOnInit();
-    expect(component.generalFiltersSelector.subscribe).toHaveBeenCalled();
-    expect(component.businessesFilterSelector.subscribe).toHaveBeenCalled();
-    expect(component.productsFilterSelector.subscribe).toHaveBeenCalled();
-    expect(component.showingBusinessesSelector.subscribe).toHaveBeenCalled();
-    expect(component.subscriptionsArr.length).toBeGreaterThan(3);
-  });
   it("should set the generalFilter value in the generalFilterService", () => {
     const observableParam = cold("a|", { a: [] });
     component.generalFiltersSelector = observableParam;

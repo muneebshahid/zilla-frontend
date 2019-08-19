@@ -177,13 +177,11 @@ describe("HomeFilterDrawerComponent", () => {
   });
 
   it("should check if subscribes are called in init", () => {
-    const subRouteSpy = spyOn(routeStub.paramMap, "subscribe");
     component.ngOnInit();
     expect(businessServiceSpy.getBusinessFilterData).toHaveBeenCalled();
     expect(productServiceSpy.getProductFilterData).toHaveBeenCalled();
     expect(initSubSpy).toHaveBeenCalled();
     expect(latlonSubSpy).toHaveBeenCalled();
-    expect(subRouteSpy).toHaveBeenCalled();
   });
 
   it("should setPendingDetailID in routeParam subscribe", () => {
@@ -314,18 +312,10 @@ describe("HomeFilterDrawerComponent", () => {
   });
   it("should initialize showBusinessSubscriber with getShowBusinesses=true", () => {
     initSubSpy.and.callThrough();
-    spyOn(component.productsFilterSelector, "subscribe").and.returnValue(null);
-    spyOn(component.generalFiltersSelector, "subscribe").and.returnValue(null);
-    spyOn(component.businessesFilterSelector, "subscribe").and.returnValue(null);
-    spyOn(component.businessesAmenitiesSelector.pipe(take(2)), "subscribe").and.returnValue(null);
-    spyOn(component.businessesTypesSelector.pipe(take(2)), "subscribe").and.returnValue(null);
-    spyOn(component.productTypesSelector.pipe(take(2)), "subscribe").and.returnValue(null);
-    spyOn(component.productTagsSelector.pipe(take(2)), "subscribe").and.returnValue(null);
 
     let saveProductFiltersStateSpy = spyOn(component, "saveProductFiltersState");
     let setBusinessDrawerFiltersSpy = spyOn(component, "setBusinessDrawerFilters");
     let saveBusinessStateSpy = spyOn(component, "saveBusinessState");
-    let setProductDrawerFiltersSpy = spyOn(component, "setProductDrawerFilters");
     let searchProductsSpy = spyOn(component, "searchProducts");
     let productsLoadedFirstTimeSpy = spyOn(component, "productsLoadedFirstTime");
 
@@ -341,27 +331,18 @@ describe("HomeFilterDrawerComponent", () => {
 
     expect(saveProductFiltersStateSpy).toHaveBeenCalled();
     expect(setBusinessDrawerFiltersSpy).toHaveBeenCalled();
+    expect(saveBusinessStateSpy).not.toHaveBeenCalled();
+    expect(searchProductsSpy).not.toHaveBeenCalled();
+    expect(productsLoadedFirstTimeSpy).not.toHaveBeenCalled();
 
     expect(component.productsRetrieved).toBe(false);
-    expect(searchProductsSpy).not.toHaveBeenCalled();
-    expect(setProductDrawerFiltersSpy).not.toHaveBeenCalled();
-    expect(saveBusinessStateSpy).not.toHaveBeenCalled();
-    expect(productsLoadedFirstTimeSpy).not.toHaveBeenCalled();
   });
 
   it("should initialize showBusinessSubscriber with getShowBusinesses=false", () => {
     initSubSpy.and.callThrough();
     latlonSubSpy.and.returnValue(null);
-    spyOn(component.productsFilterSelector, "subscribe").and.returnValue(null);
-    spyOn(component.generalFiltersSelector, "subscribe").and.returnValue(null);
-    spyOn(component.businessesFilterSelector, "subscribe").and.returnValue(null);
-    spyOn(component.businessesAmenitiesSelector.pipe(take(2)), "subscribe").and.returnValue(null);
-    spyOn(component.businessesTypesSelector.pipe(take(2)), "subscribe").and.returnValue(null);
-    spyOn(component.productTypesSelector.pipe(take(2)), "subscribe").and.returnValue(null);
-    spyOn(component.productTagsSelector.pipe(take(2)), "subscribe").and.returnValue(null);
 
     let saveProductFiltersStateSpy = spyOn(component, "saveProductFiltersState");
-    let setBusinessDrawerFiltersSpy = spyOn(component, "setBusinessDrawerFilters");
     let saveBusinessStateSpy = spyOn(component, "saveBusinessState");
     let setProductDrawerFiltersSpy = spyOn(component, "setProductDrawerFilters");
     let searchProductsSpy = spyOn(component, "searchProducts");
@@ -378,7 +359,6 @@ describe("HomeFilterDrawerComponent", () => {
     expect(generalServiceSpy.getShowBusinesses).toHaveBeenCalled();
 
     expect(saveProductFiltersStateSpy).not.toHaveBeenCalled();
-    expect(setBusinessDrawerFiltersSpy).not.toHaveBeenCalled();
 
     expect(component.productsRetrieved).toBe(true);
     expect(searchProductsSpy).toHaveBeenCalled();
@@ -387,44 +367,44 @@ describe("HomeFilterDrawerComponent", () => {
     expect(productsLoadedFirstTimeSpy).toHaveBeenCalled();
   });
 
-  it("should initialize showBusinessSubscriber with getShowBusinesses=false and productsRetrieved=true", () => {
-    initSubSpy.and.callThrough();
-    latlonSubSpy.and.returnValue(null);
-    spyOn(component.productsFilterSelector, "subscribe").and.returnValue(null);
-    spyOn(component.generalFiltersSelector, "subscribe").and.returnValue(null);
-    spyOn(component.businessesFilterSelector, "subscribe").and.returnValue(null);
-    spyOn(component.businessesAmenitiesSelector.pipe(take(2)), "subscribe").and.returnValue(null);
-    spyOn(component.businessesTypesSelector.pipe(take(2)), "subscribe").and.returnValue(null);
-    spyOn(component.productTypesSelector.pipe(take(2)), "subscribe").and.returnValue(null);
-    spyOn(component.productTagsSelector.pipe(take(2)), "subscribe").and.returnValue(null);
+  // it("should initialize showBusinessSubscriber with getShowBusinesses=false and productsRetrieved=true", () => {
+  //   initSubSpy.and.callThrough();
+  //   latlonSubSpy.and.returnValue(null);
+  //   spyOn(component.productsFilterSelector, "subscribe").and.returnValue(null);
+  //   spyOn(component.generalFiltersSelector, "subscribe").and.returnValue(null);
+  //   spyOn(component.businessesFilterSelector, "subscribe").and.returnValue(null);
+  //   spyOn(component.businessesAmenitiesSelector.pipe(take(2)), "subscribe").and.returnValue(null);
+  //   spyOn(component.businessesTypesSelector.pipe(take(2)), "subscribe").and.returnValue(null);
+  //   spyOn(component.productTypesSelector.pipe(take(2)), "subscribe").and.returnValue(null);
+  //   spyOn(component.productTagsSelector.pipe(take(2)), "subscribe").and.returnValue(null);
 
-    let saveProductFiltersStateSpy = spyOn(component, "saveProductFiltersState");
-    let setBusinessDrawerFiltersSpy = spyOn(component, "setBusinessDrawerFilters");
-    let saveBusinessStateSpy = spyOn(component, "saveBusinessState");
-    let setProductDrawerFiltersSpy = spyOn(component, "setProductDrawerFilters");
-    let searchProductsSpy = spyOn(component, "searchProducts");
-    let productsLoadedFirstTimeSpy = spyOn(component, "productsLoadedFirstTime");
+  //   let saveProductFiltersStateSpy = spyOn(component, "saveProductFiltersState");
+  //   let setBusinessDrawerFiltersSpy = spyOn(component, "setBusinessDrawerFilters");
+  //   let saveBusinessStateSpy = spyOn(component, "saveBusinessState");
+  //   let setProductDrawerFiltersSpy = spyOn(component, "setProductDrawerFilters");
+  //   let searchProductsSpy = spyOn(component, "searchProducts");
+  //   let productsLoadedFirstTimeSpy = spyOn(component, "productsLoadedFirstTime");
 
-    generalServiceSpy.getShowBusinesses.and.returnValue(false);
-    component.productsRetrieved = true;
+  //   generalServiceSpy.getShowBusinesses.and.returnValue(false);
+  //   component.productsRetrieved = true;
 
-    component.showingBusinessesSelector = cold("a|", { a: false });
-    component.initializeSubscribers();
-    fixture.detectChanges();
-    getTestScheduler().flush();
+  //   component.showingBusinessesSelector = cold("a|", { a: false });
+  //   component.initializeSubscribers();
+  //   fixture.detectChanges();
+  //   getTestScheduler().flush();
 
-    expect(generalServiceSpy.setShowBusinesses).toHaveBeenCalled();
-    expect(generalServiceSpy.getShowBusinesses).toHaveBeenCalled();
+  //   expect(generalServiceSpy.setShowBusinesses).toHaveBeenCalled();
+  //   expect(generalServiceSpy.getShowBusinesses).toHaveBeenCalled();
 
-    expect(saveProductFiltersStateSpy).not.toHaveBeenCalled();
-    expect(setBusinessDrawerFiltersSpy).not.toHaveBeenCalled();
+  //   expect(saveProductFiltersStateSpy).not.toHaveBeenCalled();
+  //   expect(setBusinessDrawerFiltersSpy).not.toHaveBeenCalled();
 
-    expect(component.productsRetrieved).toBe(true);
-    expect(searchProductsSpy).not.toHaveBeenCalled();
-    expect(setProductDrawerFiltersSpy).toHaveBeenCalled();
-    expect(saveBusinessStateSpy).toHaveBeenCalled();
-    expect(productsLoadedFirstTimeSpy).toHaveBeenCalled();
-  });
+  //   expect(component.productsRetrieved).toBe(true);
+  //   expect(searchProductsSpy).not.toHaveBeenCalled();
+  //   expect(setProductDrawerFiltersSpy).toHaveBeenCalled();
+  //   expect(saveBusinessStateSpy).toHaveBeenCalled();
+  //   expect(productsLoadedFirstTimeSpy).toHaveBeenCalled();
+  // });
 
   it("should initialize businessAmenitiesSelector", () => {
     initSubSpy.and.callThrough();

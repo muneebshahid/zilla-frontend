@@ -76,16 +76,6 @@ describe("ProductInfoComponent", () => {
     expect(component).toBeTruthy();
   });
 
-  it("should call subscribe in ngOnInit for getting products", () => {
-    spyOn(component.productsSelector, "subscribe").and.returnValue(of());
-    spyOn(component.productsFilterSelector, "subscribe").and.returnValue(of());
-    spyOn(component.generalFiltersSelector, "subscribe").and.returnValue(of());
-    component.ngOnInit();
-    fixture.detectChanges();
-    expect(component.productsSelector.subscribe).toHaveBeenCalled();
-    expect(component.productsFilterSelector.subscribe).toHaveBeenCalled();
-    expect(component.generalFiltersSelector.subscribe).toHaveBeenCalled();
-  });
   it("should emit numberOfShownBusinesses inside subscribe for products", () => {
     const observableParam = cold("a|", { a: businessObj });
     component.productsSelector = observableParam;

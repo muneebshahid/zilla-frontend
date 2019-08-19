@@ -53,13 +53,6 @@ describe("HomeComponent", () => {
   it("should create", () => {
     expect(component).toBeTruthy();
   });
-  it("should call subscribe in ngOnInit for getting businesses", () => {
-    spyOn(component.isLoadingSelector, "subscribe").and.returnValue(of());
-    component.ngOnInit();
-    fixture.detectChanges();
-    expect(component.isLoadingSelector.subscribe).toHaveBeenCalled();
-    expect(component.subscriptionsArr.length).toBeGreaterThan(0);
-  });
   it("should unsubscribe to subscriptions", () => {
     const sub1 = of().subscribe();
     component.subscriptionsArr.push(sub1);

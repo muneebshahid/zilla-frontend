@@ -66,14 +66,8 @@ describe("MapComponent", () => {
     expect(component).toBeTruthy();
   });
 
-  it("should set initialMapLatLonDis, call subscribe for markerHighlightingSelector, \
-      call subscribe for generalFilterSelector, push 2 items in subscription array", () => {
-    spyOn(component.markerHighlightingSelector, "subscribe").and.returnValue(of(null));
-    spyOn(component.generalFilterSelector, "subscribe").and.returnValue(of(null));
-
+  it("should set initialMapLatLonDis, push 2 items in subscription array", () => {
     component.ngOnInit();
-    expect(component.markerHighlightingSelector.subscribe).toHaveBeenCalled();
-    expect(component.generalFilterSelector.subscribe).toHaveBeenCalled();
     expect(component.subscriptionsArr.length).toBeGreaterThan(1);
     expect(component.location.lat).toBe(component.initialMapLocationLat);
     expect(component.location.lng).toBe(component.initialMapLocationLng);

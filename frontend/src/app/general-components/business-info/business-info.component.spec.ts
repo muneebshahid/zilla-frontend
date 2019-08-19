@@ -89,16 +89,6 @@ describe("BusinessInfoComponent", () => {
   it("should create", () => {
     expect(component).toBeTruthy();
   });
-  it("should call subscribe in ngOnInit for getting businesses", () => {
-    spyOn(component.businessesSelector, "subscribe").and.returnValue(of(businessObj));
-    spyOn(component.generalFiltersSelector, "subscribe").and.returnValue(of(gparams));
-    spyOn(component.businessFilterSelector, "subscribe").and.returnValue(of(bparams));
-    component.ngOnInit();
-    fixture.detectChanges();
-    expect(component.businessesSelector.subscribe).toHaveBeenCalled();
-    expect(component.generalFiltersSelector.subscribe).toHaveBeenCalled();
-    expect(component.businessFilterSelector.subscribe).toHaveBeenCalled();
-  });
   it("should emit numberOfShownBusinesses, set firstCall, call getPendingDetailID", () => {
     const observableParam = cold("a|", { a: businessObj });
     const numBusinessSpyOn = spyOn(component.numberOfShownBusinesses, "emit");
