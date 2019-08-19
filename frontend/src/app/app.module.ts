@@ -54,7 +54,7 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from "@agm/core";
 import { BusinessEffects } from "./store/effects/business";
 import { ShareModule } from "@ngx-share/core";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-
+import { ShareButtonsModule } from "@ngx-share/buttons";
 import {
   AddListingComponent,
   GeneralInfoComponent,
@@ -110,6 +110,7 @@ export const mapInitObj = {
     HttpClientModule,
     MatButtonModule,
     FontAwesomeModule,
+    ShareButtonsModule,
     ShareModule,
     AppRoutingModule,
     NgbModule.forRoot(),

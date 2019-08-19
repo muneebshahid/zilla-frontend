@@ -38,12 +38,12 @@
         </div>
         <div class="listing-review">
           <button
-            style="color:white;margin: 1%;"
             mat-fab
             shareButton="facebook"
             [style.backgroundColor]="share.prop.facebook.color"
+            style="color:white;"
           >
-            <fa-icon class="fa fa-facebook" [icon]="" size="md"></fa-icon>
+            <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>
           </button>
           <button
             mat-fab
@@ -51,7 +51,7 @@
             style="color:white;margin: 1%;"
             [style.backgroundColor]="share.prop.twitter.color"
           >
-            <fa-icon class="fa fa-twitter" [icon]="" size="md"></fa-icon>
+            <fa-icon [icon]="share.prop.twitter.icon" size="md"></fa-icon>
           </button>
         </div>
       </div>
