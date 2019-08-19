@@ -18,7 +18,19 @@ describe("MFilterMapMenuComponent", () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it("should create", () => {
+    expect(component).toBeTruthy();
+  });
+  it("should assign the correct value to productViewBtnText", () => {
+    component.productViewBtnText = "Products";
+    component.productViewClicked();
+    expect(component.productViewBtnText).toBe("Businesses");
+    component.productViewClicked();
+    expect(component.productViewBtnText).toBe("Products");
+  });
+  it("should emit setMobileMapView option for mobile screen size", () => {
+    let emitterSpy = spyOn(component.setMobileMapView, "next");
+    component.updateMobileMapView();
+    expect(emitterSpy).toHaveBeenCalled();
+  });
 });

@@ -106,7 +106,7 @@ export class MapComponent implements OnInit {
     this.setFocusLocation(this.initialMapLocationLat, this.initialMapLocationLng, this.initialZoom);
   }
 
-  createMarker(lat, lng, id, icon) {
+  public createMarker(lat, lng, id, icon) {
     return {
       lat: lat,
       lng: lng,

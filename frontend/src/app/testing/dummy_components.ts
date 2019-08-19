@@ -65,6 +65,7 @@ export class MFilterMapMenuComponent {
 export class MapComponent {
   @Input() mapClass;
   public markers: Array<any> = [];
+  createMarker() {}
 }
 
 @Component({ selector: "app-general-info", template: "" })

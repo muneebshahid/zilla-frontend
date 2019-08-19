@@ -37,7 +37,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   public productFilterSelector = this.store.pipe(select(selectProductFilter));
   public generalFilterSelector = this.store.pipe(select(selectGeneralFilters));
 
-  private subscriptionsArr: Subscription[] = [];
+  public subscriptionsArr: Subscription[] = [];
   public searchDistance = 0;
   public selectedFilters = [];
 
@@ -61,8 +61,8 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     private businessService: BusinessService,
     public generalService: GeneralService,
     private productService: ProductService,
-    private filterService: FiltersService,
-    private ngZone: NgZone
+    public filterService: FiltersService,
+    public ngZone: NgZone
   ) {}
   loadMoreResults() {
     if (this.generalService.getShowBusinesses()) {
@@ -147,7 +147,6 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
       this.generalService.setGeneralFilters(filters);
     });
 
-    this.subscriptionsArr.push(businessFilterSubscriber);
     this.subscriptionsArr.push(showingBusinessesSubscriber);
     this.subscriptionsArr.push(businessNumHitSubscriber);
     this.subscriptionsArr.push(businessMarkersSubscriber);
@@ -155,6 +154,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     this.subscriptionsArr.push(productMarkersSubscriber);
     this.subscriptionsArr.push(generalFilterSubscriber);
     this.subscriptionsArr.push(productFilterSubscriber);
+    this.subscriptionsArr.push(businessFilterSubscriber);
   }
 
   deSelectFilterFromOriginal(key, id, original) {

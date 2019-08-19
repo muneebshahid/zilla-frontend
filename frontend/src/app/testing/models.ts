@@ -2,6 +2,7 @@ import { IBusinessMenu } from "./../models/business_menu";
 import { IBusiness } from "../models/business";
 import { IProduct } from "../models/product";
 import { Marker } from "../models/marker";
+import { IFilterChips } from "../models/filterchips";
 
 export const businessObj: IBusiness[] = [
   {
@@ -103,6 +104,25 @@ export const dummymarkers: Array<Marker> = [
   }
 ];
 
+export const markerFromPayloadDummy: any = [
+  {
+    id: 1,
+    latlon: [1, 2]
+  },
+  {
+    id: 2,
+    latlon: [3, 4]
+  },
+  {
+    id: 3,
+    latlon: [5, 6]
+  },
+  {
+    id: 4,
+    latlon: [7, 8]
+  }
+];
+
 export const productsObj: IProduct[] = [
   {
     product: 0,
@@ -131,6 +151,23 @@ export const storeInitialState = {
   businesses: {},
   general: {}
 };
+export const dummyFilterChip: IFilterChips[] = [
+  {
+    id: 1,
+    key: "key1",
+    value: "value1"
+  },
+  {
+    id: 2,
+    key: "key2",
+    value: "value2"
+  },
+  {
+    id: 3,
+    key: "key3",
+    value: "value3"
+  }
+];
 
 export const dummyAmenities = [
   { tag: "Amenity1", id: 1, checked: false },
