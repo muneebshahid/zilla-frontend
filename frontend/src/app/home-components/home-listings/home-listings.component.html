@@ -20,7 +20,7 @@
           <div class="results">
             <span class="results-no">{{ hits }}</span> {{ selectedCategory }} Found (Showing 1 - 14)
           </div>
-          <div class="filters">
+          <div class="filters" *ngIf="selectedFilterChips.length > 0">
             <div class="results">
               <span class="search-tag" *ngFor="let chip of selectedFilterChips">
                 {{ chip.value }}
