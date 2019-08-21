@@ -42,8 +42,8 @@ export class BusinessEffects {
     concatMap(payload => this.businessService.getSearchBusinesses(payload)),
     map(data => {
       this.businessService.setBusinesses(
-        data.businesses,
-        this.businessService.getMarkersFromPayload(data.businesses)
+        data.hits,
+        this.businessService.getMarkersFromPayload(data.hits)
       );
       this.generalService.updateLoadingSign(false);
 

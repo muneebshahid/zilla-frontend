@@ -31,8 +31,8 @@ export class ProductEffects {
     concatMap(params => this.productService.getSearchProducts(params)),
     map(products => {
       this.productService.setProducts(
-        products.products,
-        this.businessService.getMarkersFromPayload(products.products)
+        products.hits,
+        this.businessService.getMarkersFromPayload(products.hits)
       );
       this.generalService.updateLoadingSign(false);
 
