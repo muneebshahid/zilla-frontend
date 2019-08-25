@@ -8,7 +8,7 @@ RUN npm i
 
 ENV PATH "$PATH:/frontend/node_modules/.bin/"
 
-RUN ng build
+RUN ng build --prod
 
 COPY ./zilla-frontend/docker/entrypoint.sh entrypoint.sh
 
