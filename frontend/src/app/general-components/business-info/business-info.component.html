@@ -4,7 +4,7 @@
     (mouseenter)="highlightMarker(business.business.id, true)"
     (mouseleave)="highlightMarker(business.business.id, false)"
     target="_blank"
-    class="md-clear-3 col-md-4 col-sm-6 col-xs-12 layout-1450 business-info-grid-item"
+    class="col-md-3 col-sm-6 col-xs-12 layout-1450 business-info-grid-item"
     *ngFor="let business of businessService.getBusinesses()"
   >
     <div

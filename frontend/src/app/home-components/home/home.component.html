@@ -28,6 +28,10 @@
             >
               <div class="apus-half-map-layout apus-half-map-layout-v1 apus-listing-warpper">
                 <div class="row no-margin wrapper-half-map">
+                  <app-home-listings></app-home-listings>
+
+                  <!-- HOME MAP -->
+                  <!-- 
                   <app-home-listings
                     [mapComponent]="mapParent"
                     (setMapDetailViewLocationParent)="
@@ -35,9 +39,10 @@
                     "
                     (setMobileMapView)="mapParent.initializeMarkersAndMapZoom()"
                   ></app-home-listings>
-                  <div class="no-padding half-map xs-half-map">
+
+                    <div class="no-padding half-map xs-half-map">
                     <app-map #mapParent [mapClass]="mapClass"></app-map>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>

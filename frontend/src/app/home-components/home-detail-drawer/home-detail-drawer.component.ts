@@ -53,9 +53,7 @@ export class HomeDetailDrawerComponent implements OnInit {
       if (this.lastState !== "popup was open") {
         this.isActive = false;
 
-        setTimeout(function() {
-          self.store.dispatch(new UpdateCloseDetailDrawer(true));
-        }, 100);
+        self.store.dispatch(new UpdateCloseDetailDrawer(true));
       } else {
         this.lastState = "pop up was not open";
       }
