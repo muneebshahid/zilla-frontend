@@ -1,10 +1,10 @@
 import { BusinessActions, EBusinessActions } from "../actions/business";
 import { IBusinessState, initialBusinessState } from "../state/business";
 
-export const businessReducers = (
+export function businessReducers(
   state = initialBusinessState,
   action: BusinessActions
-): IBusinessState => {
+): IBusinessState {
   switch (action.type) {
     case EBusinessActions.GetSearchBusinessSuccess: {
       return {
@@ -42,4 +42,4 @@ export const businessReducers = (
     default:
       return state;
   }
-};
+}

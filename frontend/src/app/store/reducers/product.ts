@@ -2,10 +2,10 @@ import { ProductActions, EProductActions } from "../actions/product";
 import { initialProductState } from "../state/product";
 import { IProductState } from "../state/product";
 
-export const productReducers = (
+export function productReducers(
   state = initialProductState,
   action: ProductActions
-): IProductState => {
+): IProductState {
   switch (action.type) {
     case EProductActions.GetSearchProductsSuccess: {
       return {
@@ -55,4 +55,4 @@ export const productReducers = (
     default:
       return state;
   }
-};
+}

@@ -1,10 +1,10 @@
 import { GeneralActions, EGeneralActions } from "../actions/general";
 import { initialGeneralState, IGeneralState } from "../state/general";
 
-export const generalReducers = (
+export function generalReducers(
   state = initialGeneralState,
   action: GeneralActions
-): IGeneralState => {
+): IGeneralState {
   switch (action.type) {
     case EGeneralActions.UpdateSearchType: {
       return {
@@ -47,4 +47,4 @@ export const generalReducers = (
     default:
       return state;
   }
-};
+}
