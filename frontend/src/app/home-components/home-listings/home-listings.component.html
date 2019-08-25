@@ -1,22 +1,23 @@
 <div
-  class="col-md-8 no-padding products-grid"
+  class="col-md-12 no-padding products-grid"
   infiniteScroll
   [infiniteScrollDistance]="2"
   [infiniteScrollThrottle]="200"
   (scrolled)="loadMoreResults()"
 >
   <div class="list-content clearfix">
-    <app-home-drawers-container
+    <!-- <app-home-drawers-container
       #drawerContainer
       (setLatLonDis)="setMapDetailViewLocation($event)"
       (putTemporaryMarkerOnMap)="setTemporaryMarker($event)"
       (removeTemporaryMarkerOnMap)="removeTemporaryMarker($event)"
-    ></app-home-drawers-container>
-    <app-m-filter-map-menu (setMobileMapView)="updateMobileMapView()"></app-m-filter-map-menu>
+    ></app-home-drawers-container> -->
+    <app-home-drawers-container #drawerContainer></app-home-drawers-container>
+    <!-- <app-m-filter-map-menu (setMobileMapView)="updateMobileMapView()"></app-m-filter-map-menu> -->
 
     <div class="main-results">
       <div class="listing-action clearfix">
-        <div class="listing-search-result col-md-9">
+        <div class="listing-search-result col-md-10">
           <div class="results">
             <span class="results-no">{{ hits }}</span> {{ selectedCategory }} Found (Showing 1 - 14)
           </div>
@@ -33,7 +34,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
           <ul class="nav nav-pills">
             <li
               role="presentation"

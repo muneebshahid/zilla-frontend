@@ -26,7 +26,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   @Output() public setMobileMapView = new EventEmitter<string>();
   @Output() public highlightMarkerOnGridItemHoverEvent = new EventEmitter<any>();
   @Output() public setMapDetailViewLocationParent = new EventEmitter<Array<number>>();
-  @Input() public mapComponent: MapComponent;
+  // @Input() public mapComponent: MapComponent;
 
   public businessMarkersSelector = this.store.pipe(select(selectBusinessMarkers));
   public productMarkersSelector = this.store.pipe(select(selectProductMarkers));
@@ -85,18 +85,18 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     }
   }
   ngOnInit() {
-    const businessMarkersSubscriber = this.businessMarkersSelector.subscribe(markers => {
-      if (markers !== null) {
-        this.mapComponent.markers = [];
-        this.putMarkersOnMap(this.businessService.getBusinessesMarkers());
-      }
-    });
-    const productMarkersSubscriber = this.productMarkersSelector.subscribe(markers => {
-      if (markers !== null) {
-        this.mapComponent.markers = [];
-        this.putMarkersOnMap(this.productService.getProductMarkers());
-      }
-    });
+    // const businessMarkersSubscriber = this.businessMarkersSelector.subscribe(markers => {
+    //   if (markers !== null) {
+    //     this.mapComponent.markers = [];
+    //     this.putMarkersOnMap(this.businessService.getBusinessesMarkers());
+    //   }
+    // });
+    // const productMarkersSubscriber = this.productMarkersSelector.subscribe(markers => {
+    //   if (markers !== null) {
+    //     this.mapComponent.markers = [];
+    //     this.putMarkersOnMap(this.productService.getProductMarkers());
+    //   }
+    // });
 
     const businessNumHitSubscriber = this.businessNumHitSelector.subscribe(numHits => {
       this.businessService.setBusinessHits(numHits);
@@ -112,23 +112,23 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
       showingBusinesses => {
         this.generalService.setShowBusinesses(showingBusinesses);
 
-        this.mapComponent.markers = [];
+        // this.mapComponent.markers = [];
 
         if (this.generalService.getShowBusinesses()) {
           this.selectedFilterChips = this.businessFilterChips;
           this.hits = this.businessService.getBusinessHits();
           this.selectedCategory = "Businesses";
 
-          if (this.businessService.getBusinessesMarkers() !== null) {
-            this.putMarkersOnMap(this.businessService.getBusinessesMarkers());
-          }
+          // if (this.businessService.getBusinessesMarkers() !== null) {
+          //   this.putMarkersOnMap(this.businessService.getBusinessesMarkers());
+          // }
         } else {
           this.selectedFilterChips = this.productFilterChips;
           this.hits = this.productService.getProductHits();
           this.selectedCategory = "Products";
-          if (this.businessService.getBusinessesMarkers() !== null) {
-            this.putMarkersOnMap(this.businessService.getBusinessesMarkers());
-          }
+          // if (this.businessService.getBusinessesMarkers() !== null) {
+          //   this.putMarkersOnMap(this.businessService.getBusinessesMarkers());
+          // }
         }
       }
     );
@@ -149,9 +149,9 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
 
     this.subscriptionsArr.push(showingBusinessesSubscriber);
     this.subscriptionsArr.push(businessNumHitSubscriber);
-    this.subscriptionsArr.push(businessMarkersSubscriber);
+    // this.subscriptionsArr.push(businessMarkersSubscriber);
     this.subscriptionsArr.push(productsNumHitSubscriber);
-    this.subscriptionsArr.push(productMarkersSubscriber);
+    // this.subscriptionsArr.push(productMarkersSubscriber);
     this.subscriptionsArr.push(generalFilterSubscriber);
     this.subscriptionsArr.push(productFilterSubscriber);
     this.subscriptionsArr.push(businessFilterSubscriber);
@@ -223,26 +223,26 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
       : this.productService.dispatchSearchProducts(this.generalService.getGeneralFilters());
   }
 
-  setTemporaryMarker(business: IBusiness) {
-    this.putMarkersOnMap(Object.assign([], this.businessService.getMarkersFromPayload([business])));
-  }
-  removeTemporaryMarker($event) {
-    this.mapComponent.markers = [];
-    this.putMarkersOnMap(this.businessService.getBusinessesMarkers());
-  }
+  // setTemporaryMarker(business: IBusiness) {
+  //   this.putMarkersOnMap(Object.assign([], this.businessService.getMarkersFromPayload([business])));
+  // }
+  // removeTemporaryMarker($event) {
+  //   this.mapComponent.markers = [];
+  //   this.putMarkersOnMap(this.businessService.getBusinessesMarkers());
+  // }
 
-  putMarkersOnMap(markers: any) {
-    for (const marker of markers) {
-      this.mapComponent.markers.push(
-        this.mapComponent.createMarker(
-          marker.latlon[0],
-          marker.latlon[1],
-          marker.id,
-          this.mapComponent.normalMarkerIcon
-        )
-      );
-    }
-  }
+  // putMarkersOnMap(markers: any) {
+  //   for (const marker of markers) {
+  //     this.mapComponent.markers.push(
+  //       this.mapComponent.createMarker(
+  //         marker.latlon[0],
+  //         marker.latlon[1],
+  //         marker.id,
+  //         this.mapComponent.normalMarkerIcon
+  //       )
+  //     );
+  //   }
+  // }
 
   searchProducts() {
     this.generalService.setShowBusinesses(false);
@@ -260,10 +260,10 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
     }
   }
 
-  updateMobileMapView() {
-    this.setMobileMapView.next("setMobileMapView");
-  }
-  setMapDetailViewLocation(data) {
-    this.setMapDetailViewLocationParent.emit(data);
-  }
+  // updateMobileMapView() {
+  //   this.setMobileMapView.next("setMobileMapView");
+  // }
+  // setMapDetailViewLocation(data) {
+  //   this.setMapDetailViewLocationParent.emit(data);
+  // }
 }

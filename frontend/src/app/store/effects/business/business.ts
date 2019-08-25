@@ -6,15 +6,15 @@ import {
   GetBusinessTypes,
   GetBusinessAmenities,
   GetBusinessAmenitiesSuccess
-} from "./../actions/business";
+} from "../../actions/business";
 import { Injectable } from "@angular/core";
 import { Effect, ofType, Actions } from "@ngrx/effects";
 import { map, switchMap, concatMap } from "rxjs/operators";
 
-import { GetBusinessDetail } from "../actions/business";
+import { GetBusinessDetail } from "../../actions/business";
 
-import { BusinessService } from "../../services/business/business.service";
-import { EBusinessActions } from "../actions/business";
+import { BusinessService } from "../../../services/business/business.service";
+import { EBusinessActions } from "../../actions/business";
 import { GeneralService } from "src/app/services/general/general.service";
 
 @Injectable()
@@ -43,7 +43,8 @@ export class BusinessEffects {
     map(data => {
       this.businessService.setBusinesses(
         data.hits,
-        this.businessService.getMarkersFromPayload(data.hits)
+        []
+        // this.businessService.getMarkersFromPayload(data.hits)
       );
       this.generalService.updateLoadingSign(false);
 

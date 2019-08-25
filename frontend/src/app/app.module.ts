@@ -14,7 +14,7 @@ import { StoreRouterConnectingModule } from "@ngrx/router-store";
 import { appReducers } from "./store/reducers/app.reducer";
 import { environment } from "../environments/environment";
 import { NgSelectModule } from "@ng-select/ng-select";
-import { ProductEffects } from "./store/effects/product";
+import { ProductEffects } from "./store/effects/product/product";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { MatButtonModule } from "@angular/material/button";
 
@@ -50,7 +50,7 @@ import {
 import { HttpClientModule } from "@angular/common/http";
 import { AgmSnazzyInfoWindowModule } from "@agm/snazzy-info-window";
 import { AgmCoreModule, GoogleMapsAPIWrapper } from "@agm/core";
-import { BusinessEffects } from "./store/effects/business";
+import { BusinessEffects } from "./store/effects/business/business";
 import { ShareModule } from "@ngx-share/core";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { ShareButtonsModule } from "@ngx-share/buttons";

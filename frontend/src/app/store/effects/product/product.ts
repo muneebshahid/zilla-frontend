@@ -7,15 +7,15 @@ import {
   GetProductTypesSuccess,
   GetProductTagsSuccess,
   GetProductTags
-} from "./../actions/product";
+} from "../../actions/product";
 import { Injectable } from "@angular/core";
 import { Effect, ofType, Actions } from "@ngrx/effects";
 import { map, switchMap, concatMap } from "rxjs/operators";
 
-import { GetProductsOfBusiness, GetProductsOfBusinessSuccess } from "../actions/product";
+import { GetProductsOfBusiness, GetProductsOfBusinessSuccess } from "../../actions/product";
 
-import { ProductService } from "../../services/product/product.service";
-import { EProductActions } from "../actions/product";
+import { ProductService } from "../../../services/product/product.service";
+import { EProductActions } from "../../actions/product";
 import { BusinessService } from "src/app/services/business/business.service";
 import { GeneralService } from "src/app/services/general/general.service";
 
@@ -32,7 +32,8 @@ export class ProductEffects {
     map(products => {
       this.productService.setProducts(
         products.hits,
-        this.businessService.getMarkersFromPayload(products.hits)
+        []
+        // this.businessService.getMarkersFromPayload(products.hits)
       );
       this.generalService.updateLoadingSign(false);
 
