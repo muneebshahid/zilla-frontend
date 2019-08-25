@@ -226,7 +226,7 @@ export class HomeListingsComponent implements OnInit, OnDestroy {
   setTemporaryMarker(business: IBusiness) {
     this.putMarkersOnMap(Object.assign([], this.businessService.getMarkersFromPayload([business])));
   }
-  removeTemporaryMarker() {
+  removeTemporaryMarker($event) {
     this.mapComponent.markers = [];
     this.putMarkersOnMap(this.businessService.getBusinessesMarkers());
   }

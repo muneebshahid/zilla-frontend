@@ -76,7 +76,7 @@ export class HomeFilterDrawerComponent implements OnInit, OnDestroy, AfterViewIn
     private store: Store<IAppState>,
     public geoLocationService: GeoLocationService,
     private filterService: FiltersService,
-    private generalService: GeneralService,
+    public generalService: GeneralService,
     private businessService: BusinessService,
     private productService: ProductService,
     private route: ActivatedRoute
