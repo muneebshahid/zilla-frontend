@@ -28,12 +28,7 @@
             >
               <div class="apus-half-map-layout apus-half-map-layout-v1 apus-listing-warpper">
                 <div class="row no-margin wrapper-half-map">
-                  <app-home-listings
-                    (setMapDetailViewLocationParent)="
-                      mapParent.setFocusLocation($event[0], $event[1], mapParent.detailViewZoom)
-                    "
-                    (setMobileMapView)="mapParent.initializeMarkersAndMapZoom()"
-                  ></app-home-listings>
+                  <app-home-listings></app-home-listings>
 
                   <!-- HOME MAP -->
                   <!-- 
