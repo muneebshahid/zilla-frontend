@@ -1,43 +1,37 @@
-<div
-  id="wrapper-container"
-  class="wrapper-container"
-  [ngClass]="loading ? 'partial-transparency' : ''"
->
-  <app-m-home-menu-drawer></app-m-home-menu-drawer>
-  <app-m-menu></app-m-menu>
+<app-m-home-menu-drawer></app-m-home-menu-drawer>
+<app-m-menu></app-m-menu>
 
-  <app-menu></app-menu>
+<app-menu></app-menu>
 
-  <section class="page-404">
-    <section id="main-container" class="container inner">
-      <div class="row">
-        <div id="main-content" class="main-page col-xs-12">
-          <section class="error-404 not-found text-center clearfix">
-            <div class="text-center">
-              <div class="top-404">
-                <img src="https://demoapus.com/findgo/wp-content/themes/findgo/images/404.jpg" />
+<section class="page-404">
+  <section id="main-container" class="container inner">
+    <div class="row">
+      <div id="main-content" class="main-page col-xs-12">
+        <section class="error-404 not-found text-center clearfix">
+          <div class="text-center">
+            <div class="top-404">
+              <img src="https://demoapus.com/findgo/wp-content/themes/findgo/images/404.jpg" />
+            </div>
+            <div class="page-content">
+              <div class="back-home">
+                We're sorry, but the page you were looking for doesn't exist.
               </div>
-              <div class="page-content">
-                <div class="back-home">
-                  We're sorry, but the page you were looking for doesn't exist.
-                </div>
-                <div class="search-form">
-                  <div _ngcontent-lnn-c10="" class="col-xs-12">
-                    <input
-                      routerLink="/"
-                      _ngcontent-lnn-c10=""
-                      class="wpcf7-form-control wpcf7-submit btn btn-lg btn-second"
-                      style="width:100%;"
-                      type="submit"
-                      value="Back to Home"
-                    />
-                  </div>
+              <div class="search-form">
+                <div _ngcontent-lnn-c10="" class="col-xs-12">
+                  <input
+                    routerLink="/"
+                    _ngcontent-lnn-c10=""
+                    class="wpcf7-form-control wpcf7-submit btn btn-lg btn-second"
+                    style="width:100%;"
+                    type="submit"
+                    value="Back to Home"
+                  />
                 </div>
               </div>
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
       </div>
-    </section>
+    </div>
   </section>
-</div>
+</section>
