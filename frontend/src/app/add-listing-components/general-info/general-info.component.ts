@@ -14,6 +14,8 @@ export class GeneralInfoComponent implements OnInit {
     { id: 5, name: "Klaipėda" }
   ];
 
+  selectedCityIds = [1, 2, 3];
+
   constructor() {}
 
   ngOnInit() {}

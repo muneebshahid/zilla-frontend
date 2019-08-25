@@ -28,7 +28,6 @@ import {
 } from "./home-components";
 
 import {
-  BusinessDetailComponent,
   BusinessDetailContainerComponent,
   BusinessDetailMenuComponent,
   BusinessDetailAmenitiesComponent,
@@ -83,7 +82,6 @@ export const mapInitObj = {
     MapComponent,
     FooterComponent,
     MMenuComponent,
-    BusinessDetailComponent,
     DetailHeaderGalleryComponent,
     DetailHeaderComponent,
     BusinessDetailContainerComponent,

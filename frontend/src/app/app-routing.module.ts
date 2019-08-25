@@ -2,7 +2,6 @@ import { AddListingComponent } from "./add-listing-components/add-listing/add-li
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { HomeComponent } from "./home-components/home/home.component";
-import { BusinessDetailComponent } from "./business-detail-components/business-detail/business-detail.component";
 
 export const routes: Routes = [
   // { path: "", redirectTo: "/", pathMatch: "full" },

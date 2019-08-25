@@ -7,6 +7,7 @@ import { Component, OnInit } from "@angular/core";
 })
 export class OpeningClosingHoursComponent implements OnInit {
   selectedCityIds: string[];
+  selectedCity: number = 1;
 
   cities = [
     { id: 1, name: "08:00" },

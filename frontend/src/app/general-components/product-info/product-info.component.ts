@@ -32,7 +32,7 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<IAppState>,
     private filterService: FiltersService,
-    private productService: ProductService,
+    public productService: ProductService,
     private businessService: BusinessService,
     private generalService: GeneralService
   ) {}
