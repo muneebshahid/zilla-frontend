@@ -68,14 +68,14 @@ export class BusinessInfoComponent implements OnInit, OnDestroy {
     this.businessService.dispatchGetBusinessDetail(id);
   }
 
-  updateBusinessTypeSelection(id: number) {
+  updateTypeSelection(id: number) {
     this.businessService.setBusinessFilterTypes(
       this.filterService.selectTypeInFilter(this.businessService.getBusinessFilterTypes(), id)
     );
   }
 
-  searchByTag(id: number) {
-    this.updateBusinessTypeSelection(id);
+  searchByBusinessType(id: number) {
+    this.updateTypeSelection(id);
 
     this.businessService.updateBusinessFilters();
     this.businessService.dispatchSearchBusinesses(this.generalService.getGeneralFilters());

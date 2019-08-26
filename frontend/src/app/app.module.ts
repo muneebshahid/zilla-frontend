@@ -45,7 +45,8 @@ import {
   ProductInfoComponent,
   LoadingComponent,
   BusinessInfoComponent,
-  Error404Component
+  Error404Component,
+  InfoDetailComponent
 } from "./general-components";
 
 import { HttpClientModule } from "@angular/common/http";
@@ -103,7 +104,8 @@ export const mapInitObj = {
     HomeDetailDrawerComponent,
     HomeDrawersContainerComponent,
     BusinessInfoComponent,
-    Error404Component
+    Error404Component,
+    InfoDetailComponent
   ],
   imports: [
     BrowserModule,

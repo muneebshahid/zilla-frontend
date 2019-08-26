@@ -62,14 +62,14 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
     }
   }
 
-  updateProductTypeSelection(id: number) {
+  updateTypeSelection(id: number) {
     this.productService.setProductFilterTypes(
       this.filterService.selectTypeInFilter(this.productService.getProductFilterTypes(), id)
     );
   }
 
   searchByProductType(productTypeID: number) {
-    this.updateProductTypeSelection(productTypeID);
+    this.updateTypeSelection(productTypeID);
     this.sendRequest();
   }
   searchByTag(tagId: number) {

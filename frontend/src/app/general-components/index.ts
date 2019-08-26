@@ -8,3 +8,4 @@ export * from "./detail-header/detail-header.component";
 export * from "./product-info/product-info.component";
 export * from "./business-info/business-info.component";
 export * from "./error404/error404.component";
+export * from "./info-detail/info-detail.component";
