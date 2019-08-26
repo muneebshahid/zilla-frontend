@@ -10,6 +10,8 @@
   >
     <span *ngFor="let product of business.business.products">
       <app-info-detail
+        (addSearchFilterForType)="searchByProductType($event)"
+        (addSearchFilterForTag)="searchByTag($event)"
         [business]="business.business"
         [product]="product"
         [isBusinessShowing]="false"

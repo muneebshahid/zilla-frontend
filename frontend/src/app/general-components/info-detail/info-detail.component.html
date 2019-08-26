@@ -1,11 +1,9 @@
 <div
   class="mobile-icons-size mobile-icons-size job-grid-style job-grid-style-v1 post-635 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-shops job_listing_type-full-time job_listing_amenity-accepts-credit-cards job_listing_amenity-bike-parking job_listing_amenity-coupons job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-reservations job_listing_amenity-smoking-allowed job_listing_amenity-wheelchair-accesible job_listing_region-new-york job_listing_tag-card-payment job_listing_tag-daily-specials job_listing_tag-hotels job_listing_tag-new-york job_listing_tag-parking-street job_listing_tag-restaurant job-type-full-time job_position_featured"
-  itemscope=""
-  itemtype="http://schema.org/LocalBusiness"
 >
-  <div class="listing-cat-icon hidden">
+  <!-- <div class="listing-cat-icon hidden">
     <i class="flaticon-shopping-cart"></i>
-  </div>
+  </div> -->
 
   <div class="listing-image">
     <div class="listing-image-inner">
@@ -61,14 +59,14 @@
             *ngIf="isBusinessShowing"
             (click)="searchByType(business.business_type.id); $event.stopPropagation()"
             href="javascript:void(0)"
-            ><i class="flaticon-shopping-cart"></i>{{ business.business_type.tag }}</a
+            ><i class="{{ business.business_type.icon }}"></i>{{ business.business_type.tag }}</a
           >
           <a
             class="information-type"
             *ngIf="!isBusinessShowing"
             href="javascript:void(0)"
             (click)="searchByType(business.product_type.id); $event.stopPropagation()"
-            ><i class="flaticon-shopping-cart"></i>{{ product.product_type.tag }}</a
+            ><i class="{{ product.product_type.icon }}"></i>{{ product.product_type.tag }}</a
           >
         </div>
         <div class="p-relative" *ngIf="!isBusinessShowing">

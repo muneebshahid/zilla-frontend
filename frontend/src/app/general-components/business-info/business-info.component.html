@@ -7,6 +7,10 @@
     class="col-md-2 col-sm-5 col-xs-12 layout-1450 business-info-grid-item"
     *ngFor="let business of businessService.getBusinesses()"
   >
-    <app-info-detail [business]="business.business" [isBusinessShowing]="true"></app-info-detail>
+    <app-info-detail
+      (addSearchFilterForType)="searchByBusinessType($event)"
+      [business]="business.business"
+      [isBusinessShowing]="true"
+    ></app-info-detail>
   </div>
 </div>
