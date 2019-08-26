@@ -5,3 +5,7 @@ footer {
 .partial-transparency {
   opacity: 0.5 !important;
 }
+
+.apus-listing-warpper {
+  background: #fafafa;
+}

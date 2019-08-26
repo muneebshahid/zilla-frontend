@@ -1,4 +1,3 @@
-import { ActivatedRoute } from "@angular/router";
 import { UpdateCloseDetailDrawer } from "./../../store/actions/general";
 import { selectCloseDetailDrawer } from "./../../store/selectors/general";
 import {
