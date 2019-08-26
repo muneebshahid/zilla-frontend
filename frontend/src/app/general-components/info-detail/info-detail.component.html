@@ -64,7 +64,7 @@
           <a
             *ngIf="!isBusinessShowing"
             href="javascript:void(0)"
-            (click)="searchByType(business.product_type.id); $event.stopPropagation()"
+            (click)="searchByType(product.product_type.id); $event.stopPropagation()"
           >
             <!-- <i class="{{ product.product_type.icon }}"></i> -->
             {{ product.product_type.tag }}</a
