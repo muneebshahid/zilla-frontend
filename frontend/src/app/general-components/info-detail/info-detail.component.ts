@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges, OnChanges } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { IBusiness } from "src/app/models/business";
 import { environment } from "src/environments/environment";
 import { IProduct } from "src/app/models/product";
@@ -8,7 +8,7 @@ import { IProduct } from "src/app/models/product";
   templateUrl: "./info-detail.component.html",
   styleUrls: ["./info-detail.component.css"]
 })
-export class InfoDetailComponent implements OnInit, OnChanges {
+export class InfoDetailComponent implements OnInit {
   @Input() business: IBusiness;
   @Input() product: IProduct;
 
@@ -17,9 +17,4 @@ export class InfoDetailComponent implements OnInit, OnChanges {
   constructor() {}
 
   ngOnInit() {}
-
-  ngOnChanges(changes: SimpleChanges) {
-    // const name: SimpleChange = changes.name;
-    // console.log(changes);
-  }
 }

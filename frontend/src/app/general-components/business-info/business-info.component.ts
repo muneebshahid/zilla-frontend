@@ -38,8 +38,6 @@ export class BusinessInfoComponent implements OnInit, OnDestroy {
     const businessSubscriber = this.businessesSelector.subscribe(businesses => {
       this.numberOfShownBusinesses.emit(businesses.length);
 
-      console.log("wah");
-      console.log(this.businessService.getBusinesses());
       if (businesses.length > 0 && this.firstCall) {
         this.firstCall = false;
         // open the detail drawer once the business-array is loaded.
