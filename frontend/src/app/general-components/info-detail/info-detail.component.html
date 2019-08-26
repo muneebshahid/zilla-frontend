@@ -62,11 +62,12 @@
             ><i class="{{ business.business_type.icon }}"></i>{{ business.business_type.tag }}</a
           >
           <a
-            class="information-type"
             *ngIf="!isBusinessShowing"
             href="javascript:void(0)"
             (click)="searchByType(business.product_type.id); $event.stopPropagation()"
-            ><i class="{{ product.product_type.icon }}"></i>{{ product.product_type.tag }}</a
+          >
+            <!-- <i class="{{ product.product_type.icon }}"></i> -->
+            {{ product.product_type.tag }}</a
           >
         </div>
         <div class="p-relative" *ngIf="!isBusinessShowing">
