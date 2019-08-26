@@ -85,8 +85,8 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
   }
 
   highlightMarker(id: number, highlight: boolean) {
-    this.store.dispatch(
-      new HighlightMapMarker({ highlightedMarkerID: id, highlighted: highlight })
-    );
+    // this.store.dispatch(
+    //   new HighlightMapMarker({ highlightedMarkerID: id, highlighted: highlight })
+    // );
   }
 }

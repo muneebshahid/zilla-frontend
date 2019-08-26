@@ -42,3 +42,11 @@ div.job_listing .listing-preview i {
 .top-imformation {
   padding: 0px 10px !important;
 }
+
+.listing-location,
+.listing-phone,
+.listing-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
