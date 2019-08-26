@@ -40,6 +40,8 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const productSubscriber = this.productsSelector.subscribe(product => {
       this.numberOfShownProducts.next(product.length);
+      console.log("wah2");
+      console.log(this.productService.getProducts());
     });
 
     const productFilterSubscriber = this.productsFilterSelector.subscribe(filter =>

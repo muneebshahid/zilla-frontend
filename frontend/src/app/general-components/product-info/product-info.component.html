@@ -9,90 +9,11 @@
     #businessesParentTag
   >
     <span *ngFor="let product of business.business.products">
-      <div
-        class="mobile-icons-size mobile-icons-size job-grid-style job-grid-style-v1 post-635 job_listing type-job_listing status-publish has-post-thumbnail hentry job_listing_category-shops job_listing_type-full-time job_listing_amenity-accepts-credit-cards job_listing_amenity-bike-parking job_listing_amenity-coupons job_listing_amenity-outdoor-seating job_listing_amenity-parking-street job_listing_amenity-reservations job_listing_amenity-smoking-allowed job_listing_amenity-wheelchair-accesible job_listing_region-new-york job_listing_tag-card-payment job_listing_tag-daily-specials job_listing_tag-hotels job_listing_tag-new-york job_listing_tag-parking-street job_listing_tag-restaurant job-type-full-time job_position_featured"
-      >
-        <div class="listing-cat-icon hidden">
-          <i class="flaticon-shopping-cart"></i>
-        </div>
-
-        <div class="listing-image">
-          <div class="listing-image-inner">
-            <div class="image-wrapper image-loaded">
-              <a href="javascript:void(0)">
-                <img
-                  [src]="endpoint + product.images[0].file"
-                  [alt]="product.title"
-                  class="unveil-image"
-                />
-              </a>
-            </div>
-            <!-- <span class="price-range"> $100 - $200 </span> -->
-            <div class="top-imformation">
-              <div class="listing-preview-wrapper pull-left">
-                <a href="#preview-635" class="listing-preview" data-id="635"
-                  ><i class="flaticon-visible"></i><span class="preview-text">Preview</span></a
-                >
-              </div>
-              <!-- <div class="listing-bookmark pull-right">
-                <a href="#apus-bookmark-add" class="apus-bookmark-not-login" data-id="635">
-                  <span class="bookmark-text">Save</span>
-                  <i class="flaticon-like"></i>
-                </a>
-              </div> -->
-            </div>
-          </div>
-        </div>
-        <div class="bottom-grid">
-          <div class="listing-content">
-            <h3 class="listing-title">
-              <a href="javascript:void(0)">{{ product.title }}</a>
-            </h3>
-            <div class="listing-tagline ellipsize-description">{{ product.description }}</div>
-            <div class="listing-tags">
-              <!-- <div class="listing-review">
-              <span class="review-avg">5.0</span>
-              1 Rating
-            </div> -->
-
-              <div class="listing-category" *ngIf="homePage == true">
-                <a
-                  href="javascript:void(0)"
-                  (click)="searchByProductType(product.product_type.id); $event.stopPropagation()"
-                  ><i class="flaticon-shopping-cart"></i>{{ product.product_type.tag }}</a
-                >
-              </div>
-              <div class="p-relative">
-                <div class="listing-price-range price">{{ product.price }} $</div>
-              </div>
-            </div>
-          </div>
-          <div class="listing-content-custom clearfix" *ngIf="homePage == true">
-            <div class="listing-location">
-              <i class="flaticon-placeholder product-address-icon"></i
-              ><a href="javascript:void(0)" class="product-address">{{
-                business.business.address
-              }}</a>
-            </div>
-            <div class="listing-phone product-phone">
-              <i class="flaticon-phone-call"></i>
-              {{ business.business.phone }}
-            </div>
-          </div>
-          <div class="listing-content-bottom clearfix">
-            <div class="pull-left">
-              <div class="listing-location">
-                <span
-                  class="review-avg food-tag"
-                  (click)="searchByTag(tag.id); $event.stopPropagation()"
-                  *ngFor="let tag of product.tags"
-                  >{{ tag.tag }}</span
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <app-info-detail
+        [business]="business.business"
+        [product]="product"
+        [isBusinessShowing]="false"
+      ></app-info-detail>
     </span>
   </a>
 </div>

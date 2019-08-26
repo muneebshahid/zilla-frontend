@@ -12,8 +12,15 @@
       <div class="image-wrapper image-loaded">
         <a href="javascript:void(0)">
           <img
+            *ngIf="isBusinessShowing"
             [src]="endpoint + business.images[0].file"
             [alt]="business.title"
+            class="unveil-image"
+          />
+          <img
+            *ngIf="!isBusinessShowing"
+            [src]="endpoint + product.images[0].file"
+            [alt]="product.title"
             class="unveil-image"
           />
         </a>
@@ -35,30 +42,38 @@
   </div>
   <div class="bottom-grid">
     <div class="listing-content">
-      <h3 class="listing-title">
+      <h3 class="listing-title" *ngIf="isBusinessShowing">
         <a href="javascript:void(0)">{{ business.title }}</a>
       </h3>
-      <div class="listing-tagline ellipsize-description">
+      <h3 class="listing-title" *ngIf="!isBusinessShowing">
+        <a href="javascript:void(0)">{{ product.title }}</a>
+      </h3>
+      <div class="listing-tagline ellipsize-description" *ngIf="isBusinessShowing">
         {{ business.description }}
+      </div>
+      <div class="listing-tagline ellipsize-description" *ngIf="!isBusinessShowing">
+        {{ product.description }}
       </div>
       <div class="listing-tags">
         <div class="listing-category">
           <a
+            class="information-type"
             *ngIf="isBusinessShowing"
             (click)="searchByType(business.business_type.id); $event.stopPropagation()"
             href="javascript:void(0)"
             ><i class="flaticon-shopping-cart"></i>{{ business.business_type.tag }}</a
           >
           <a
+            class="information-type"
             *ngIf="!isBusinessShowing"
             href="javascript:void(0)"
-            (click)="searchByType(product.product_type.id); $event.stopPropagation()"
-            ><i class="flaticon-shopping-cart"></i>{{ business.product_type.tag }}</a
+            (click)="searchByType(business.product_type.id); $event.stopPropagation()"
+            ><i class="flaticon-shopping-cart"></i>{{ product.product_type.tag }}</a
           >
         </div>
-      </div>
-      <div class="p-relative" *ngIf="!isBusinessShowing">
-        <div class="listing-price-range price">{{ business.price }} $</div>
+        <div class="p-relative" *ngIf="!isBusinessShowing">
+          <div class="listing-price-range price">{{ product.price }} $</div>
+        </div>
       </div>
     </div>
     <div class="listing-content-custom clearfix">
