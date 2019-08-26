@@ -40,10 +40,10 @@
   </div>
   <div class="bottom-grid">
     <div class="listing-content">
-      <h3 class="listing-title" *ngIf="isBusinessShowing">
+      <h3 class="listing-title ellipsize-description" *ngIf="isBusinessShowing">
         <a href="javascript:void(0)">{{ business.title }}</a>
       </h3>
-      <h3 class="listing-title" *ngIf="!isBusinessShowing">
+      <h3 class="listing-title ellipsize-description" *ngIf="!isBusinessShowing">
         <a href="javascript:void(0)">{{ product.title }}</a>
       </h3>
       <div class="listing-tagline ellipsize-description" *ngIf="isBusinessShowing">
