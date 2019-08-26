@@ -33,3 +33,12 @@
 .food-tag:hover {
   cursor: pointer;
 }
+
+div.job_listing .listing-bookmark i,
+div.job_listing .listing-preview i {
+  margin-left: -10px !important;
+}
+
+.top-imformation {
+  padding: 0px 10px !important;
+}
