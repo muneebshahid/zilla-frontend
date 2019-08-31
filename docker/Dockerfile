@@ -8,7 +8,7 @@ RUN npm i
 
 ENV PATH "$PATH:/frontend/node_modules/.bin/"
 
-RUN ng build --prod
+RUN ng build --prod --extract-css=false
 
 COPY ./zilla-frontend/docker/entrypoint.sh entrypoint.sh
 
