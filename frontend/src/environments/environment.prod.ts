@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiEndpoint: "http://165.22.74.121:81",
+  apiEndpoint: "http://167.71.48.53:81",
 
   exploreUrl: "a",
   productUrl: "p",
